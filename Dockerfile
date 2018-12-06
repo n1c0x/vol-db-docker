@@ -4,4 +4,8 @@ RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
+WORKDIR /code/venv
+RUN pip install git+https://github.com/douwevandermeij/admin-totals.git
+WORKDIR /code
 ADD . /code/
+RUN python manage.py migrate

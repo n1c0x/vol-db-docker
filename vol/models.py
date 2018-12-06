@@ -40,7 +40,10 @@ class Immatriculation(models.Model):
         verbose_name = 'Immatriculation de l\'avion',
         max_length = 10,
     )
-    type_avion = models.ForeignKey(TypeAvion, on_delete=models.PROTECT)
+    type_avion = models.ForeignKey(
+        TypeAvion,
+        on_delete=models.PROTECT
+    )
     
     def __str__(self):
         return self.immatriculation
@@ -124,10 +127,15 @@ class Vol(models.Model):
         verbose_name = "Arrivée",
     )
     duree_jour = models.DurationField(
-        verbose_name="Durée de vol de jour",
+        verbose_name="Vol de jour",
     )
     duree_nuit = models.DurationField(
-        verbose_name="Durée de vol de nuit",
+        verbose_name="Vol de nuit",
+    )
+    duree_ifr = models.DurationField(
+        verbose_name="Vol IFR",
+        blank=True,
+        null=True,
     )
     arrivee_ifr = models.BooleanField(
         verbose_name="Arrivée IFR ?",

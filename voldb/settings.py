@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'vol.apps.VolConfig',
+    'admin_totals',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

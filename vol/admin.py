@@ -27,12 +27,6 @@ class VolAdmin(ModelAdminTotals):
     ]
     #raw_id_fields = ('immatriculation','depart','arrivee',)
 
-    #def duree_jour_description(self,object):
-    #    return object.duree_jour
-    #duree_jour_description.short_description = "Vol de jour"
-    #def duree_nuit_description(self,object):
-    #    return object.duree_nuit
-    #duree_nuit_description.short_description = "Vol de nuit"
     def fonction_description(self,object):
         return object.fonction
     fonction_description.short_description = "Fonction"

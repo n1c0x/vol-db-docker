@@ -63,9 +63,9 @@ class Pilote(models.Model):
 
 class Vol(models.Model):
     FONCTION = (
-        ('PF','PF'),
-        ('PNF','PNF'),
-        ('MIX','MIX'),
+        ('PF','Pilot Flying'),
+        ('PNF','Pilot Non Flying'),
+        ('MIX','Mix'),
     )
     POSTE = (
         ('CDB','Commandant de bord'),
@@ -74,7 +74,6 @@ class Vol(models.Model):
         ('OBS','Observateur'),
     )
     
-
     date = models.DateField(
         verbose_name = 'Date du vol',
     )
@@ -132,7 +131,12 @@ class Vol(models.Model):
     duree_nuit = models.DurationField(
         verbose_name="Vol de nuit",
     )
-    duree_ifr = models.DurationField(
+    duree_ifr_jour = models.DurationField(
+        verbose_name="Vol IFR",
+        blank=True,
+        null=True,
+    )
+    duree_ifr_nuit = models.DurationField(
         verbose_name="Vol IFR",
         blank=True,
         null=True,
@@ -162,5 +166,10 @@ class Vol(models.Model):
     )
     simu = models.BooleanField(
         verbose_name="Simulateur ?",
+    )
+    duree_simu = models.DurationField(
+        verbose_name="Vol Simu",
+        blank=True,
+        null=True,
     )
 

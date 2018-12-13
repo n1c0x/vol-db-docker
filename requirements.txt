@@ -1,2 +1,6 @@
 Django>2.0
 psycopg2-binary
+django-tables2
+django-tables2-reports
+#django-admin-tools
+#django-admintools-bootstrap

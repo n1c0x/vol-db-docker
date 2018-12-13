@@ -17,10 +17,13 @@ class VolAdmin(ModelAdminTotals):
             'fields' : ['obs1','obs2','instructeur']}),
         ('Code AITA des aéroports de départ et d\'arrivée',         {'fields' : ['depart','arrivee']}),
         ('Durée',         {'fields' : ['duree_jour','duree_nuit']}),
-        ('Autre',          {'fields' : ['simu','fonction','poste','immatriculation']}),
+        ('Autre',          {'fields' : ['fonction','poste','immatriculation']}),
+        ('Simulateur',          {
+            'classes' : ('collapse',),
+            'fields' : ['simu','duree_simu']}),
         ('IFR',          {
             'classes' : ('collapse',),
-            'fields' : ['arrivee_ifr','duree_ifr']}),
+            'fields' : ['arrivee_ifr','duree_ifr_jour','duree_ifr_nuit']}),
         ('Observations',          {
             'classes' : ('collapse',),
             'fields' : ['observation']}),

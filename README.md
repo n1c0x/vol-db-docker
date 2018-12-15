@@ -2,11 +2,19 @@
 
 ## Installation
 
+### Prérequis
+
+Docker v1.13+
+
 ### Compilation du conteneur
+
 `sudo docker-compose build`. 
 
 En cas d'utilisation d'un proxy, il faut utiliser la commande suivante au lieu de la commande ci-dessus : 
 `sudo docker-compose build --build-arg HTTP_PROXY=http://xx.xx.xx.xx:xx --build-arg HTTPS_PROXY=http://xx.xx.xx.xx:xx`
+
+Si l'erreur suivante apparait, il faut lancer le service docker avant la compilation : `sudo systemctl start docker` 
+`ERROR: Couldn't connect to Docker daemon at http+docker://localhost - is it running?` 
 
 ### Lancement du conteneur
 `sudo docker-compose up`

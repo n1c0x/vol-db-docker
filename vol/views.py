@@ -1,8 +1,6 @@
 from django.shortcuts import render,get_object_or_404
-from django_tables2 import RequestConfig
 
 from .models import Vol
-from .tables import VolTable
 
 # Create your views here.
 

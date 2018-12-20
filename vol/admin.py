@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import *
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from admin_totals.admin import ModelAdminTotals
 from django.db.models import Sum, Avg
@@ -7,6 +9,17 @@ from django.db.models.functions import Coalesce
 
 
 # Register your models here.
+
+
+
+class VolResource(resources.ModelResource):
+    class Meta:
+        model = Vol
+        fields = ('id','date','cdb','opl',)
+
+class VolAdmin(ImportExportModelAdmin):
+    resource_class = VolResource
+
 
 class VolAdmin(ModelAdminTotals):
     fieldsets = [
@@ -28,7 +41,6 @@ class VolAdmin(ModelAdminTotals):
             'classes' : ('collapse',),
             'fields' : ['observation']}),
     ]
-    #raw_id_fields = ('immatriculation','depart','arrivee',)
 
     def fonction_description(self,object):
         return object.fonction
@@ -80,3 +92,4 @@ admin.site.register(TypeAvion,TypeAvionAdmin)
 admin.site.register(Immatriculation,ImmatriculationAdmin)
 admin.site.register(Pilote,PiloteAdmin)
 admin.site.register(Vol,VolAdmin)
+

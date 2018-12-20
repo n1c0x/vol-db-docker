@@ -131,18 +131,23 @@ class Vol(models.Model):
     duree_nuit = models.DurationField(
         verbose_name="Vol de nuit",
     )
-    duree_ifr_jour = models.DurationField(
-        verbose_name="Vol IFR",
-        blank=True,
-        null=True,
-    )
-    duree_ifr_nuit = models.DurationField(
+    duree_ifr = models.DurationField(
         verbose_name="Vol IFR",
         blank=True,
         null=True,
     )
     arrivee_ifr = models.BooleanField(
         verbose_name="Arrivée IFR ?",
+        default=False,
+    )
+    vol_dc = models.BooleanField(
+        verbose_name="Vol en doubles commandes ?",
+        default=False,
+    )
+    duree_dc = models.DurationField(
+        verbose_name="Vol double commandes",
+        blank=True,
+        null=True,
     )
     fonction = models.CharField(
         choices = FONCTION,
@@ -166,6 +171,7 @@ class Vol(models.Model):
     )
     simu = models.BooleanField(
         verbose_name="Simulateur ?",
+        default=False,
     )
     duree_simu = models.DurationField(
         verbose_name="Vol Simu",

@@ -36,7 +36,10 @@ class VolAdmin(ModelAdminTotals):
             'fields' : ['simu','duree_simu']}),
         ('IFR',          {
             'classes' : ('collapse',),
-            'fields' : ['arrivee_ifr','duree_ifr_jour','duree_ifr_nuit']}),
+            'fields' : ['arrivee_ifr','duree_ifr']}),
+        ('Doubles commandes',          {
+            'classes' : ('collapse',),
+            'fields' : ['vol_dc','duree_dc']}),
         ('Observations',          {
             'classes' : ('collapse',),
             'fields' : ['observation']}),

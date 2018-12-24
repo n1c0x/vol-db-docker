@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Sommes</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    </head>
+    <body>
+    <div class="container">
+        Total des heures de vol de journée : {{ data.somme_vols_jours.duree_jour__sum }}<br>
+        Total des heures de vol de nuit : {{ data.somme_vols_nuit.duree_nuit__sum }}<br>
+        Total des heures de vol de journée en tant que CDB : {{ data.somme_vols_jour_cdb.duree_jour__sum }}<br>
+        Total des heures de vol de nuit en tant que CDB : {{ data.somme_vols_nuit_cdb.duree_nuit__sum }}<br>
+        <hr>
+
+        {{ data }}
+        <hr>
+        {% for liste in data.liste_somme_vols_type_avion %}
+            
+            {{ liste }}
+        {% endfor %}
+        <hr>
+        {% for liste in data.avions %}
+
+            <!-- Tableau somme avions -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{{ liste }}</th>
+                        <th>CDB Jour</th>
+                        <th>CDB Nuit</th>
+                        <th>OPL Jour</th>
+                        <th>OPL Nuit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Header</th>
+                        {% for key, values in data.liste_somme_vols_jour_cdb_type_avion.items %}
+                        <td>{{ values.duree_jour__sum }}</td>
+                        {% endfor %}
+                        {% for key, values in data.liste_somme_vols_nuit_cdb_type_avion.items %}
+                        <td>{{ values.duree_nuit__sum }}</td>
+                        {% endfor %}
+                        <td>test opl jour</td>
+                        <td>test opl nuit</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+        {% endfor %}
+        <hr>
+
+
+    </div>
+    </body>
+</html>

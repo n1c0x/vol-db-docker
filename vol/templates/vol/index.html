@@ -10,6 +10,7 @@
         <div class="row">
             <div class="col-4"><h1>Affichage des vols</h1></div>
             <div class="col"></div>
+            <div class="col-1"><a target=_blank href="./somme.html"><h4>Totaux</h4></a></div>
             <div class="col-1"><a target=_blank href="../admin"><h4>Login</h4></a></div>
         </div>
          {% if vols_list %}
@@ -44,11 +45,9 @@
                     {% endfor %}
                 </tbody>
             </table>
-            {{ vol.total_heures }}
         {% else %}
             <p>Il n'y a pas de vols enregistrés.</p>
         {% endif %}
-        {# render_table table #}
     </div>
     </body>
 </html>

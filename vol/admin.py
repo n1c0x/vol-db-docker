@@ -33,10 +33,10 @@ class VolAdmin(ModelAdminTotals):
         ('Autre',          {'fields' : ['fonction','poste','immatriculation']}),
         ('Simulateur',          {
             'classes' : ('collapse',),
-            'fields' : ['simu','duree_simu']}),
+            'fields' : ['vol_simu','duree_simu']}),
         ('IFR',          {
             'classes' : ('collapse',),
-            'fields' : ['arrivee_ifr','duree_ifr']}),
+            'fields' : ['vol_ifr','duree_ifr']}),
         ('Doubles commandes',          {
             'classes' : ('collapse',),
             'fields' : ['vol_dc','duree_dc']}),
@@ -45,22 +45,36 @@ class VolAdmin(ModelAdminTotals):
             'fields' : ['observation']}),
     ]
 
-    def fonction_description(self,object):
-        return object.fonction
+    def fonction_description(self,obj):
+        return obj.fonction
     fonction_description.short_description = "Fonction"
-    def poste_description(self,object):
-        return object.poste
+    def poste_description(self,obj):
+        return obj.poste
     poste_description.short_description = "Poste"
     def get_type_avion(self, obj):
         return obj.immatriculation.type_avion
     get_type_avion.short_description = "Avion"
+    def total_general_count(self, obj):
+        if obj.duree_jour and obj.duree_nuit:
+            return obj.duree_jour + obj.duree_nuit
+    total_general_count.short_description = "Total Jour + Nuit"
+    def total_vol_ifr(self, obj):
+        return obj.vol_ifr.annotate(filter(vol_fr=True))
+    def vol_dc_description(self, obj):
+        return obj.vol_dc
+    vol_dc_description.short_description = "Vol DC"
 
-    list_display = ['date','depart','arrivee', 'duree_jour','duree_nuit','cdb','opl','get_type_avion']
+
+    list_display = ['date','depart','arrivee', 'duree_jour','duree_nuit','total_general_count','duree_ifr','vol_ifr','vol_dc','duree_dc','vol_simu','duree_simu','cdb','opl','get_type_avion','poste']
     list_totals = [
         ('duree_jour', lambda field: Coalesce(Sum(field), 0)), ('duree_jour', Sum),
         ('duree_nuit', lambda field: Coalesce(Sum(field), 0)), ('duree_nuit', Sum),
+        ('duree_ifr', lambda field: Coalesce(Sum(field), 0)), ('duree_ifr', Sum),
+        ('duree_simu', lambda field: Coalesce(Sum(field), 0)), ('duree_simu', Sum),
+        ('duree_dc', lambda field: Coalesce(Sum(field), 0)), ('duree_dc', Sum),
+#        ('vol_ifr', lambda field: Coalesce(Sum(field), 0)), ('total_vol_ifr', Sum),
     ]
-    list_filter = ['date','arrivee_ifr']
+    list_filter = ['date','immatriculation__type_avion__type_avion','vol_ifr','vol_simu','vol_dc']
     search_fields = [
         'cdb__prenom',
         'cdb__nom',

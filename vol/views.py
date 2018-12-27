@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.db.models import Sum
 from django.http import HttpResponse
+import datetime
 
 from .models import Vol, Immatriculation, TypeAvion
 
@@ -27,46 +28,47 @@ def somme(request):
 
     for modele_avion in avions:
         # Current Year
-        somme_vols_jour_cdb = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
-        somme_vols_nuit_cdb = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
-        somme_vols_jour_opl = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
-        somme_vols_nuit_opl = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
-        
-        liste_somme_vols_cur_year.append([modele_avion, somme_vols_jour_cdb,somme_vols_nuit_cdb,somme_vols_jour_opl,somme_vols_nuit_opl])
+        current_year = datetime.datetime.now()
+        somme_vols_jour_cdb_cur_year = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year).aggregate(Sum('duree_jour'))
+        somme_vols_nuit_cdb_cur_year = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year).aggregate(Sum('duree_nuit'))
+        somme_vols_jour_opl_cur_year = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year).aggregate(Sum('duree_jour'))
+        somme_vols_nuit_opl_cur_year = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year).aggregate(Sum('duree_nuit'))
 
         # Last Year
-        somme_vols_jour_cdb = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
-        somme_vols_nuit_cdb = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
-        somme_vols_jour_opl = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
-        somme_vols_nuit_opl = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
-        
-        liste_somme_vols_last_year.append([modele_avion, somme_vols_jour_cdb,somme_vols_nuit_cdb,somme_vols_jour_opl,somme_vols_nuit_opl])
+        somme_vols_jour_cdb_last_year = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year-1).aggregate(Sum('duree_jour'))
+        somme_vols_nuit_cdb_last_year = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year-1).aggregate(Sum('duree_nuit'))
+        somme_vols_jour_opl_last_year = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year-1).aggregate(Sum('duree_jour'))
+        somme_vols_nuit_opl_last_year = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year-1).aggregate(Sum('duree_nuit'))
 
         # Total Year
-        somme_vols_jour_cdb = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
-        somme_vols_nuit_cdb = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
-        somme_vols_jour_opl = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
-        somme_vols_nuit_opl = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
-        
-        liste_somme_vols_total.append([modele_avion, somme_vols_jour_cdb,somme_vols_nuit_cdb,somme_vols_jour_opl,somme_vols_nuit_opl])
+        somme_vols_jour_cdb_total = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
+        somme_vols_nuit_cdb_total = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
+        somme_vols_jour_opl_total = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
+        somme_vols_nuit_opl_total = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
+
+        liste_somme_vols_total.append([
+            modele_avion, 
+            somme_vols_jour_cdb_cur_year,
+            somme_vols_nuit_cdb_cur_year,
+            somme_vols_jour_opl_cur_year,
+            somme_vols_nuit_opl_cur_year,
+            somme_vols_jour_cdb_last_year,
+            somme_vols_nuit_cdb_last_year,
+            somme_vols_jour_opl_last_year,
+            somme_vols_nuit_opl_last_year,
+            somme_vols_jour_cdb_total,
+            somme_vols_nuit_cdb_total,
+            somme_vols_jour_opl_total,
+            somme_vols_nuit_opl_total,
+            ])
         
 
 
 
     data = {
-#        'avions':avions,
-#        'somme_vols_jours': somme_vols_jours,
-#        'somme_vols_nuit': somme_vols_nuit,
-#        'somme_vols_jour_cdb': somme_vols_jour_cdb,
-#        'somme_vols_nuit_cdb': somme_vols_nuit_cdb,
-#        'liste_somme_vols_jour_cdb_type_avion': liste_somme_vols_jour_cdb_type_avion,
         'liste_somme_vols_cur_year': liste_somme_vols_cur_year,
         'liste_somme_vols_last_year': liste_somme_vols_last_year,
         'liste_somme_vols_total': liste_somme_vols_total,
-#        'liste_somme_vols_nuit_cdb_type_avion': liste_somme_vols_nuit_cdb_type_avion,
-#        'liste_somme_vols_jour_opl_type_avion': liste_somme_vols_jour_opl_type_avion,
-#        'liste_somme_vols_nuit_opl_type_avion': liste_somme_vols_nuit_opl_type_avion,
-#        'liste_somme_vols_type_avion': liste_somme_vols_type_avion,
     }
 
     return render(request, 'vol/somme.html', {'data': data})

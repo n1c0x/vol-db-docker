@@ -23,7 +23,7 @@
             <hr>
         {% endfor %} 
         <hr> -->
-        {% for liste in data.liste_somme_vols %}
+        {% for liste in data.liste_somme_vols_total %}
 
                 <table class="table">
                     <thead>
@@ -42,6 +42,20 @@
                             <td>{{ liste.2.duree_nuit__sum }}</td>
                             <td>{{ liste.3.duree_jour__sum }}</td>
                             <td>{{ liste.4.duree_nuit__sum }}</td>
+                        </tr>
+                        <tr>
+                            <th>Année précédente</th>
+                            <td>{{ liste.5.duree_jour__sum }}</td>
+                            <td>{{ liste.6.duree_nuit__sum }}</td>
+                            <td>{{ liste.7.duree_jour__sum }}</td>
+                            <td>{{ liste.8.duree_nuit__sum }}</td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td>{{ liste.9.duree_jour__sum }}</td>
+                            <td>{{ liste.10.duree_nuit__sum }}</td>
+                            <td>{{ liste.11.duree_jour__sum }}</td>
+                            <td>{{ liste.12.duree_nuit__sum }}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -24,9 +24,11 @@
         {% endfor %} 
         <hr> -->
         {% for liste in data.liste_somme_vols_total %}
-
-                <table class="table">
-                    <thead>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <table class="table table-sm">
+                    <thead class="thead-dark">
                         <tr>
                             <th>{{ liste.0 }}</th>
                             <th>CDB Jour</th>
@@ -59,7 +61,9 @@
                         </tr>
                     </tbody>
                 </table>
-
+            </div>
+            <div class="col-1"></div>
+        </div>
         {% endfor %}
 
     </div>

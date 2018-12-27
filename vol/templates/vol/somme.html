@@ -7,50 +7,46 @@
     </head>
     <body>
     <div class="container">
-        Total des heures de vol de journée : {{ data.somme_vols_jours.duree_jour__sum }}<br>
-        Total des heures de vol de nuit : {{ data.somme_vols_nuit.duree_nuit__sum }}<br>
-        Total des heures de vol de journée en tant que CDB : {{ data.somme_vols_jour_cdb.duree_jour__sum }}<br>
-        Total des heures de vol de nuit en tant que CDB : {{ data.somme_vols_nuit_cdb.duree_nuit__sum }}<br>
-        <hr>
 
-        {{ data }}
-        <hr>
-        {% for liste in data.liste_somme_vols_type_avion %}
-            
-            {{ liste }}
-        {% endfor %}
-        <hr>
-        {% for liste in data.avions %}
-
-            <!-- Tableau somme avions -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>{{ liste }}</th>
-                        <th>CDB Jour</th>
-                        <th>CDB Nuit</th>
-                        <th>OPL Jour</th>
-                        <th>OPL Nuit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>Header</th>
-                        {% for key, values in data.liste_somme_vols_jour_cdb_type_avion.items %}
-                        <td>{{ values.duree_jour__sum }}</td>
-                        {% endfor %}
-                        {% for key, values in data.liste_somme_vols_nuit_cdb_type_avion.items %}
-                        <td>{{ values.duree_nuit__sum }}</td>
-                        {% endfor %}
-                        <td>test opl jour</td>
-                        <td>test opl nuit</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-1"><h1>Totaux</h1></div>
+            <div class="col"></div>
+            <div class="col-3"><a target=_blank href="./index.html"><h4>Affichage des vols</h4></a></div>
+        </div>
+        <!-- {{ data.liste_somme_vols }} -->
+<!--         {% for bla in data.liste_somme_vols %}
+            Avion : {{ bla.0 }}<br>
+            Durée Jour CDB : {{ bla.1.duree_jour__sum }}<br>
+            Durée Nuit CDB : {{ bla.2.duree_nuit__sum }}<br>
+            Durée Jour OPL : {{ bla.3.duree_jour__sum }}<br>
+            Durée Nuit OPL : {{ bla.4.duree_nuit__sum }}<br>
             <hr>
-        {% endfor %}
-        <hr>
+        {% endfor %} 
+        <hr> -->
+        {% for liste in data.liste_somme_vols %}
 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>{{ liste.0 }}</th>
+                            <th>CDB Jour</th>
+                            <th>CDB Nuit</th>
+                            <th>OPL Jour</th>
+                            <th>OPL Nuit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Année en cours</th>
+                            <td>{{ liste.1.duree_jour__sum }}</td>
+                            <td>{{ liste.2.duree_nuit__sum }}</td>
+                            <td>{{ liste.3.duree_jour__sum }}</td>
+                            <td>{{ liste.4.duree_nuit__sum }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+        {% endfor %}
 
     </div>
     </body>

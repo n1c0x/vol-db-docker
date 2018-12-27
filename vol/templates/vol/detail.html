@@ -28,7 +28,7 @@
                         <li class="list-group-item"> 
                                 <div class="card-body text-center">
                                     <h5 class="card-title"> IFR  
-                                    {% if vol.arrivee_ifr %}
+                                    {% if vol.vol_ifr %}
                                         <i class="fas fa-check-circle text-success"></i></h5>
                                         <i class="far fa-sun text-warning"></i> {{ vol.duree_ifr_jour }}
                                         <i class="fas fa-moon text-primary"></i> {{ vol.duree_ifr_nuit }}
@@ -44,7 +44,7 @@
                         <li class="list-group-item"> 
                                 <div class="card-body text-center">
                                     <h5 class="card-title"> Simulateur  
-                                    {% if vol.simu %}
+                                    {% if vol.vol_simu %}
                                         <i class="fas fa-check-circle text-success"></i></h5>
                                         {{ vol.duree_simu }}
                                     {% else %}

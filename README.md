@@ -41,10 +41,16 @@ Si l'erreur suivante apparait, il faut lancer le service docker avant la compila
 
 ## A faire
 
-- Ajouter d'autres filtres
+- Voir Issues
 
 
 ## Source
 
 - https://docs.docker.com/compose/django/ 
 - https://www.supinfo.com/articles/single/5779-bien-debuter-avec-django-docker
+
+### Déploiement
+- https://docs.djangoproject.com/en/2.1/howto/deployment/
+- https://www.stavros.io/posts/deploy-django-dokku/
+- https://github.com/pydanny/cookiecutter-django/blob/master/docs/deployment-with-docker.rst
+- http://dokku.viewdocs.io/dokku/

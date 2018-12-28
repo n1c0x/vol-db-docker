@@ -1,5 +1,10 @@
 {% extends 'vol/base.html' %}
 {% block content %}
+<script>
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+</script>
     <div class="container">
         <div class="row">
             <div class="col-4"><h1>Affichage des vols</h1></div>
@@ -8,62 +13,67 @@
             <div class="col-1"><a target=_blank href="../admin"><h4>Login</h4></a></div>
         </div>
          {% if vols_list %}
-         <div class="table-responsive">
-            <table class="table table-bordered table-hover table-sm">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Départ</th>
-                    <th scope="col">Arrivée</th>
-                    <th scope="col">CDB</th>
-                    <th scope="col">OPL</th>
-                    <th scope="col">OBS1</th>
-                    <th scope="col">OBS2</th>
-                    <th scope="col">Instructeur</th>
-                    <th scope="col">Durée Jour</th>
-                    <th scope="col">Durée Nuit</th>
-                    <th scope="col">Simu</th>
-                    <th scope="col">Arrivées IFR</th>
-                    <th scope="col">Durée IFR</th>
-                    <th scope="col">Fonction</th>
-                    <th scope="col">Immatriculation</th>
-                    <th scope="col">Type d'avion</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {% for vol in vols_list %}
-                        <tr>
-                                <td><a target="_blank" href="{% url 'detail' vol.id %}">{{ vol.date }}</a></td>
-                                <td>{{ vol.depart }}</td>
-                                <td>{{ vol.arrivee }}</td>
-                                <td>{{ vol.cdb }}</td>
-                                <td>{{ vol.opl }}</td>
-                                <td>{{ vol.obs1 }}</td>
-                                <td>{{ vol.obs2 }}</td>
-                                <td>{{ vol.instruct }}</td>
-                                <td>{{ vol.duree_jour }}</td>
-                                <td>{{ vol.duree_nuit }}</td>
-                                <td>{% if vol.vol_simu %}
-                                        {{ vol.duree_simu }}
-                                    {% else %}
-                                    {% endif %}</td>
-                                    <td>{% if vol.vol_ifr %}
-                                            <i class="fas fa-check-circle text-success"></i></h5>
+         <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm dt-responsive" id="table_id">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Départ</th>
+                        <th>Arrivée</th>
+                        <th>CDB</th>
+                        <th>OPL</th>
+                        <th>OBS1</th>
+                        <th>OBS2</th>
+                        <th>Instructeur</th>
+                        <th>Durée Jour</th>
+                        <th>Durée Nuit</th>
+                        <th>Simu</th>
+                        <th>Arrivées IFR</th>
+                        <th>Durée IFR</th>
+                        <th>Fonction</th>
+                        <th>Immatriculation</th>
+                        <th>Type d'avion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for vol in vols_list %}
+                            <tr>
+                                    <td><a target="_blank" href="{% url 'detail' vol.id %}">{{ vol.date }}</a></td>
+                                    <td>{{ vol.depart }}</td>
+                                    <td>{{ vol.arrivee }}</td>
+                                    <td>{{ vol.cdb }}</td>
+                                    <td>{{ vol.opl }}</td>
+                                    <td>{{ vol.obs1 }}</td>
+                                    <td>{{ vol.obs2 }}</td>
+                                    <td>{{ vol.instruct }}</td>
+                                    <td>{{ vol.duree_jour }}</td>
+                                    <td>{{ vol.duree_nuit }}</td>
+                                    <td>{% if vol.vol_simu %}
+                                            {{ vol.duree_simu }}
                                         {% else %}
-                                        <i class="fas fa-times-circle text-danger"></i>
                                         {% endif %}</td>
-                                <td>{% if vol.vol_ifr %}
-                                                {{ vol.duree_ifr }}
+                                        <td>{% if vol.vol_ifr %}
+                                                <i class="fas fa-check-circle text-success"></i></h5>
                                             {% else %}
+                                            <i class="fas fa-times-circle text-danger"></i>
                                             {% endif %}</td>
-                                <td>{{ vol.fonction }}</td>
-                                <td>{{ vol.immatriculation }}</td>
-                                <td>{{ vol.immatriculation.type_avion }}</td>
-                        </tr>
-                        
-                    {% endfor %}
-                </tbody>
-            </table>
+                                    <td>{% if vol.vol_ifr %}
+                                                    {{ vol.duree_ifr }}
+                                                {% else %}
+                                                {% endif %}</td>
+                                    <td>{{ vol.fonction }}</td>
+                                    <td>{{ vol.immatriculation }}</td>
+                                    <td>{{ vol.immatriculation.type_avion }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="col-1"></div>
         </div>
         {% else %}
             <p>Il n'y a pas de vols enregistrés.</p>

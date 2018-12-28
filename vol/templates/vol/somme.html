@@ -1,11 +1,6 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Sommes</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    </head>
-    <body>
+{% extends 'vol/base.html' %}
+{% block title %} Sommes {% endblock %}
+{% block content %}
     <div class="container">
 
         <div class="row">
@@ -25,16 +20,23 @@
         <hr> -->
         {% for liste in data.liste_somme_vols_total %}
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <table class="table table-sm">
-                    <thead class="thead-dark">
+            <div class="col"></div>
+            <div class="col-12">
+                <table class="table table-sm table-bordered">
+                    <thead class="">
                         <tr>
                             <th>{{ liste.0 }}</th>
                             <th>CDB Jour</th>
                             <th>CDB Nuit</th>
                             <th>OPL Jour</th>
                             <th>OPL Nuit</th>
+                            <th>DC Jour</th>
+                            <th>DC Nuit</th>
+                            <th>Inst Jour</th>
+                            <th>Inst Nuit</th>
+                            <th>Simu</th>
+                            <th>Arrivée IFR</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +46,13 @@
                             <td>{{ liste.2.duree_nuit__sum }}</td>
                             <td>{{ liste.3.duree_jour__sum }}</td>
                             <td>{{ liste.4.duree_nuit__sum }}</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ liste.5.duree_jour__sum }}</td>
+                            <td>{{ liste.6.duree_nuit__sum }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>Année précédente</th>
@@ -51,21 +60,34 @@
                             <td>{{ liste.6.duree_nuit__sum }}</td>
                             <td>{{ liste.7.duree_jour__sum }}</td>
                             <td>{{ liste.8.duree_nuit__sum }}</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ liste.5.duree_jour__sum }}</td>
+                            <td>{{ liste.6.duree_nuit__sum }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
-                        <tr>
+                        <tr class="table-info">
                             <th>Total</th>
                             <td>{{ liste.9.duree_jour__sum }}</td>
                             <td>{{ liste.10.duree_nuit__sum }}</td>
                             <td>{{ liste.11.duree_jour__sum }}</td>
                             <td>{{ liste.12.duree_nuit__sum }}</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ liste.5.duree_jour__sum }}</td>
+                            <td>{{ liste.6.duree_nuit__sum }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="col-1"></div>
+            <div class="col"></div>
         </div>
         {% endfor %}
 
     </div>
-    </body>
-</html>
+{% endblock %}

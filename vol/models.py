@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 
-class CodeAita(models.Model):
-    code_aita = models.CharField(
-        verbose_name = 'Code Aita',
+class CodeIata(models.Model):
+    code_iata = models.CharField(
+        verbose_name = 'Code IATA',
         max_length = 5,
     )
     ville = models.CharField(
@@ -15,7 +15,7 @@ class CodeAita(models.Model):
     )
 
     def __str__(self):
-        return self.code_aita
+        return self.code_iata
     
 class TypeAvion(models.Model):
     NOMBRE_MOTEURS = (
@@ -114,13 +114,13 @@ class Vol(models.Model):
         null=True,
     )
     depart = models.ForeignKey(
-        CodeAita, 
+        CodeIata, 
         on_delete=models.PROTECT,
         related_name='%(class)s_depart',
         verbose_name = "Départ",
     )
     arrivee = models.ForeignKey(
-        CodeAita, 
+        CodeIata, 
         on_delete=models.PROTECT,
         related_name='%(class)s_arrivee',
         verbose_name = "Arrivée",

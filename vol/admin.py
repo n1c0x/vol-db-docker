@@ -10,8 +10,6 @@ from django.db.models.functions import Coalesce
 
 # Register your models here.
 
-
-
 class VolResource(resources.ModelResource):
     class Meta:
         model = Vol
@@ -28,7 +26,7 @@ class VolAdmin(ModelAdminTotals):
         ('Personnel supplémentaire',  {
             'classes' : ('collapse',),
             'fields' : ['obs1','obs2','instructeur']}),
-        ('Code AITA des aéroports de départ et d\'arrivée',         {'fields' : ['depart','arrivee']}),
+        ('Code IATA des aéroports de départ et d\'arrivée',         {'fields' : ['depart','arrivee']}),
         ('Durée',         {'fields' : ['duree_jour','duree_nuit']}),
         ('Autre',          {'fields' : ['fonction','poste','immatriculation']}),
         ('Simulateur',          {
@@ -90,8 +88,8 @@ class VolAdmin(ModelAdminTotals):
         ]
 
 
-class CodeAitaAdmin(admin.ModelAdmin):
-    list_display = ('code_aita','ville',)
+class CodeIataAdmin(admin.ModelAdmin):
+    list_display = ('code_iata','ville',)
 
 class ImmatriculationAdmin(admin.ModelAdmin):
     list_display = ('immatriculation','type_avion',)
@@ -104,7 +102,7 @@ class TypeAvionAdmin(admin.ModelAdmin):
 class PiloteAdmin(admin.ModelAdmin):
     list_display = ('prenom','nom',)
 
-admin.site.register(CodeAita,CodeAitaAdmin)
+admin.site.register(CodeIata,CodeIataAdmin)
 admin.site.register(TypeAvion,TypeAvionAdmin)
 admin.site.register(Immatriculation,ImmatriculationAdmin)
 admin.site.register(Pilote,PiloteAdmin)

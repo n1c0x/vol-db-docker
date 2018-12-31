@@ -42,47 +42,143 @@
                     <tbody>
                         <tr>
                             <th>Année en cours</th>
-                            <td>{{ liste.1.duree_jour__sum }}</td>
-                            <td>{{ liste.2.duree_nuit__sum }}</td>
-                            <td>{{ liste.3.duree_jour__sum }}</td>
-                            <td>{{ liste.4.duree_nuit__sum }}</td>
+                            <td>{% if liste.1.duree_jour__sum %}
+                                    {{ liste.1.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.2.duree_nuit__sum %}
+                                    {{ liste.2.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.3.duree_jour__sum %}
+                                    {{ liste.3.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.4.duree_nuit__sum %}
+                                    {{ liste.4.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.5.duree_jour__sum %}
+                                    {{ liste.5.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.6.duree_nuit__sum %}
+                                    {{ liste.6.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.7.duree_jour__sum %}
+                                    {{ liste.7.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.8.duree_nuit__sum %}
+                                    {{ liste.8.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
                             <td></td>
                             <td></td>
-                            <td>{{ liste.5.duree_jour__sum }}</td>
-                            <td>{{ liste.6.duree_nuit__sum }}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ liste.25 }}</td>
                         </tr>
                         <tr>
                             <th>Année précédente</th>
-                            <td>{{ liste.5.duree_jour__sum }}</td>
-                            <td>{{ liste.6.duree_nuit__sum }}</td>
-                            <td>{{ liste.7.duree_jour__sum }}</td>
-                            <td>{{ liste.8.duree_nuit__sum }}</td>
+                            <td>{% if liste.9.duree_jour__sum %}
+                                    {{ liste.9.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.10.duree_nuit__sum %}
+                                    {{ liste.10.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.11.duree_jour__sum %}
+                                    {{ liste.11.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.12.duree_nuit__sum %}
+                                    {{ liste.12.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.13.duree_jour__sum %}
+                                    {{ liste.13.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.14.duree_nuit__sum %}
+                                    {{ liste.14.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.15.duree_jour__sum %}
+                                    {{ liste.15.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.16.duree_nuit__sum %}
+                                    {{ liste.16.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
                             <td></td>
                             <td></td>
-                            <td>{{ liste.5.duree_jour__sum }}</td>
-                            <td>{{ liste.6.duree_nuit__sum }}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ liste.26 }}</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr class="table-info">
                             <th>Total</th>
-                            <td>{{ liste.9.duree_jour__sum }}</td>
-                            <td>{{ liste.10.duree_nuit__sum }}</td>
-                            <td>{{ liste.11.duree_jour__sum }}</td>
-                            <td>{{ liste.12.duree_nuit__sum }}</td>
+                            <td>{% if liste.17.duree_jour__sum %}
+                                    {{ liste.17.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.18.duree_nuit__sum %}
+                                    {{ liste.18.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.19.duree_jour__sum %}
+                                    {{ liste.19.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.20.duree_nuit__sum %}
+                                    {{ liste.20.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.21.duree_jour__sum %}
+                                    {{ liste.21.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.22.duree_nuit__sum %}
+                                    {{ liste.22.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.23.duree_jour__sum %}
+                                    {{ liste.23.duree_jour__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.24.duree_nuit__sum %}
+                                    {{ liste.24.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
                             <td></td>
                             <td></td>
-                            <td>{{ liste.5.duree_jour__sum }}</td>
-                            <td>{{ liste.6.duree_nuit__sum }}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ liste.27 }}</td>
                         </tr>
                     </tfoot>
                 </table>

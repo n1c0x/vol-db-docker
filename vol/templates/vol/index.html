@@ -43,7 +43,7 @@ $(document).ready(function() {
                     <tbody>
                         {% for vol in vols_list %}
                             <tr>
-                                    <td><a target="_blank" href="{% url 'detail' vol.id %}">{{ vol.date }}</a></td>
+                                    <td><a target="_blank" href="{% url 'detail' vol.id %}">{{ vol.date|date:"d/m/Y" }}</a></td>
                                     <td>{{ vol.depart }}</td>
                                     <td>{{ vol.arrivee }}</td>
                                     <td>{{ vol.cdb }}</td>

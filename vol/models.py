@@ -73,6 +73,11 @@ class Vol(models.Model):
         ('Instruct','Instructeur'),
         ('OBS','Observateur'),
     )
+    ARRIVEE_IFR = (
+        ('Zéro','0'),
+        ('Un','1'), 
+        ('Deux','2'),
+    )
     
     date = models.DateField(
         verbose_name = 'Date du vol',
@@ -129,16 +134,18 @@ class Vol(models.Model):
         verbose_name="Vol de jour",
         blank=True,
         null=True,
+        help_text='Format hh:mm:ss'
     )
     duree_nuit = models.DurationField(
         verbose_name="Vol de nuit",
         blank=True,
         null=True,
+        help_text='Format hh:mm:ss'
     )
     fonction = models.CharField(
         choices = FONCTION,
         verbose_name = 'Fonction occupée',
-        max_length = 3
+        max_length = 20,
     )
     poste = models.CharField(
         choices = POSTE,
@@ -149,20 +156,23 @@ class Vol(models.Model):
         Immatriculation, 
         on_delete=models.PROTECT,
         related_name='%(class)s_immatriculation',
-         verbose_name="Immatriculation de l'avion",
+        verbose_name="Immatriculation de l'avion",
     )
     observation = models.TextField(
         verbose_name="Observations",
         blank=True,
     )
-    vol_ifr = models.BooleanField(
-        verbose_name="Vol IFR ?",
-        default=False,
+    vol_ifr = models.CharField(
+        choices = ARRIVEE_IFR,
+        verbose_name = "Nombre d'arrivée IFR",
+        max_length = 20,
+        default = 1,
     )
     duree_ifr = models.DurationField(
         verbose_name="Durée IFR",
         blank=True,
         null=True,
+        help_text='Format hh:mm:ss'
     )
     vol_dc = models.BooleanField(
         verbose_name="Vol DC ?",
@@ -172,6 +182,7 @@ class Vol(models.Model):
         verbose_name="Durée DC",
         blank=True,
         null=True,
+        help_text='Format hh:mm:ss'
     )
     vol_simu = models.BooleanField(
         verbose_name="Simulateur ?",
@@ -181,5 +192,6 @@ class Vol(models.Model):
         verbose_name="Durée Simu",
         blank=True,
         null=True,
+        help_text='Format hh:mm:ss'
     )
 

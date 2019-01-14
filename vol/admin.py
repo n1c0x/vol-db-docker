@@ -72,7 +72,7 @@ class VolAdmin(ModelAdminTotals):
         ('duree_dc', lambda field: Coalesce(Sum(field), 0)), ('duree_dc', Sum),
 #        ('vol_ifr', lambda field: Coalesce(Sum(field), 0)), ('total_vol_ifr', Sum),
     ]
-    list_filter = ['date','immatriculation__type_avion__type_avion','vol_ifr','vol_simu','vol_dc']
+    list_filter = ['date','immatriculation__type_avion__type_avion','poste','vol_ifr','vol_simu','vol_dc']
     search_fields = [
         'cdb__prenom',
         'cdb__nom',

@@ -34,12 +34,16 @@ def somme(request):
         current_year = datetime(today.year, 1, 1)
         
         # Current Year
-        somme_vols_jour_cdb_cur_year = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year).aggregate(Sum('duree_jour'))
-        somme_vols_nuit_cdb_cur_year = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year).aggregate(Sum('duree_nuit'))
-        somme_vols_jour_opl_cur_year = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year).aggregate(Sum('duree_jour'))
-        somme_vols_nuit_opl_cur_year = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year).aggregate(Sum('duree_nuit'))
-        somme_vols_jour_inst_cur_year = Vol.objects.filter(poste="Instruct", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year).aggregate(Sum('duree_jour'))
-        somme_vols_nuit_inst_cur_year = Vol.objects.filter(poste="Instruct", immatriculation__type_avion__type_avion=modele_avion,date__year=current_year.year).aggregate(Sum('duree_nuit'))
+        somme_vols_jour_cdb_cur_year = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion, date__year=current_year.year).aggregate(Sum('duree_jour'))
+        somme_vols_nuit_cdb_cur_year = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion, date__year=current_year.year).aggregate(Sum('duree_nuit'))
+        somme_vols_jour_opl_cur_year = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion, date__year=current_year.year).aggregate(Sum('duree_jour'))
+        somme_vols_nuit_opl_cur_year = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion, date__year=current_year.year).aggregate(Sum('duree_nuit'))
+        somme_vols_jour_inst_cur_year = Vol.objects.filter(poste="Instruct", immatriculation__type_avion__type_avion=modele_avion, date__year=current_year.year).aggregate(Sum('duree_jour'))
+        somme_vols_nuit_inst_cur_year = Vol.objects.filter(poste="Instruct", immatriculation__type_avion__type_avion=modele_avion, date__year=current_year.year).aggregate(Sum('duree_nuit'))
+        somme_vols_simu_cur_year = Vol.objects.filter(immatriculation__type_avion__type_avion=modele_avion, date__year=current_year.year).aggregate(Sum('duree_simu'))
+        somme_vols_arrivee_ifr_cur_year = Vol.objects.filter(immatriculation__type_avion__type_avion=modele_avion, date__year=current_year.year).aggregate(Sum('vol_ifr'))
+
+        print(somme_vols_arrivee_ifr_cur_year)
 
         # Last Year
         somme_vols_jour_cdb_last_year = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).exclude(date__gt=current_year).aggregate(Sum('duree_jour'))
@@ -48,10 +52,14 @@ def somme(request):
         somme_vols_nuit_opl_last_year = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).exclude(date__gt=current_year).aggregate(Sum('duree_nuit'))
         somme_vols_jour_inst_last_year = Vol.objects.filter(poste="Instruct", immatriculation__type_avion__type_avion=modele_avion).exclude(date__gt=current_year).aggregate(Sum('duree_jour'))
         somme_vols_nuit_inst_last_year = Vol.objects.filter(poste="Instruct", immatriculation__type_avion__type_avion=modele_avion).exclude(date__gt=current_year).aggregate(Sum('duree_nuit'))
+        somme_vols_simu_last_year = Vol.objects.filter(immatriculation__type_avion__type_avion=modele_avion).exclude(date__gt=current_year).aggregate(Sum('duree_simu'))
+        somme_vols_arrivee_ifr_last_year = Vol.objects.filter(immatriculation__type_avion__type_avion=modele_avion).exclude(date__gt=current_year).aggregate(Sum('vol_ifr'))
+
+        print(somme_vols_arrivee_ifr_cur_year)
 
         # Total Year
         somme_vols_jour_cdb_total = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
-        somme_vols_nuit_cdb_total = Vol.objects.filter(poste="CDB", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
+        somme_vols_nuit_cdb_total = Vol.objects.filter(poste="CDB",  immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
         somme_vols_jour_opl_total = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
         somme_vols_nuit_opl_total = Vol.objects.filter(poste="OPL", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_nuit'))
         somme_vols_jour_inst_total = Vol.objects.filter(poste="Instruct", immatriculation__type_avion__type_avion=modele_avion).aggregate(Sum('duree_jour'))
@@ -80,6 +88,8 @@ def somme(request):
             somme_vols_jour_inst_cur_year["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_inst_cur_year["duree_nuit__sum"] is None:
             somme_vols_nuit_inst_cur_year["duree_nuit__sum"] = timedelta(0)
+        if somme_vols_simu_cur_year["duree_simu__sum"] is None:
+            somme_vols_simu_cur_year["duree_simu__sum"] = timedelta(0)
         if somme_vols_jour_cdb_last_year["duree_jour__sum"] is None:
             somme_vols_jour_cdb_last_year["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_cdb_last_year["duree_nuit__sum"] is None:
@@ -96,6 +106,8 @@ def somme(request):
             somme_vols_jour_inst_last_year["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_inst_last_year["duree_nuit__sum"] is None:
             somme_vols_nuit_inst_last_year["duree_nuit__sum"] = timedelta(0)
+        if somme_vols_simu_last_year["duree_simu__sum"] is None:
+            somme_vols_simu_last_year["duree_simu__sum"] = timedelta(0)
         if somme_vols_jour_cdb_total["duree_jour__sum"] is None:
             somme_vols_jour_cdb_total["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_cdb_total["duree_nuit__sum"] is None:
@@ -112,6 +124,7 @@ def somme(request):
             somme_vols_jour_inst_total["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_inst_total["duree_nuit__sum"] is None:
             somme_vols_nuit_inst_total["duree_nuit__sum"] = timedelta(0)
+
 
         # Total de tous les vols
         liste_somme_vols_cur_year = somme_vols_jour_cdb_cur_year["duree_jour__sum"] + somme_vols_nuit_cdb_cur_year["duree_nuit__sum"] + somme_vols_jour_opl_cur_year["duree_jour__sum"] + somme_vols_nuit_opl_cur_year["duree_nuit__sum"] + somme_vols_jour_inst_cur_year["duree_jour__sum"] + somme_vols_nuit_inst_cur_year["duree_nuit__sum"]
@@ -149,6 +162,10 @@ def somme(request):
             liste_somme_vols_cur_year,
             liste_somme_vols_last_year,
             liste_somme_vols_total_total,
+            somme_vols_simu_cur_year,
+            somme_vols_simu_last_year,
+            somme_vols_arrivee_ifr_cur_year,
+            somme_vols_arrivee_ifr_last_year,
             ])
 
 

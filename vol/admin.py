@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import *
-from import_export import resources
-from import_export.admin import ImportExportModelAdmin
+#from import_export import resources
+#from import_export.admin import ImportExportModelAdmin
 
 from admin_totals.admin import ModelAdminTotals
 from django.db.models import Sum, Avg
@@ -10,13 +10,13 @@ from django.db.models.functions import Coalesce
 
 # Register your models here.
 
-class VolResource(resources.ModelResource):
-    class Meta:
-        model = Vol
-        fields = ('id','date','cdb','opl',)
+#class VolResource(resources.ModelResource):
+#    class Meta:
+#        model = Vol
+#        fields = ('id','date','cdb','opl',)
 
-class VolAdmin(ImportExportModelAdmin):
-    resource_class = VolResource
+#class VolAdmin(ImportExportModelAdmin):
+ #   resource_class = VolResource
 
 
 class VolAdmin(ModelAdminTotals):
@@ -70,9 +70,9 @@ class VolAdmin(ModelAdminTotals):
         ('duree_ifr', lambda field: Coalesce(Sum(field), 0)), ('duree_ifr', Sum),
         ('duree_simu', lambda field: Coalesce(Sum(field), 0)), ('duree_simu', Sum),
         ('duree_dc', lambda field: Coalesce(Sum(field), 0)), ('duree_dc', Sum),
-#        ('vol_ifr', lambda field: Coalesce(Sum(field), 0)), ('total_vol_ifr', Sum),
+        ('vol_ifr', lambda field: Coalesce(Sum(field), 0)), ('total_vol_ifr', Sum),
     ]
-    list_filter = ['date','immatriculation__type_avion__type_avion','poste','vol_ifr','vol_simu','vol_dc']
+    list_filter = ['date', 'immatriculation__type_avion__type_avion', 'poste', 'vol_ifr', 'vol_simu', 'vol_dc']
     search_fields = [
         'cdb__prenom',
         'cdb__nom',

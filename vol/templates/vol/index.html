@@ -56,26 +56,40 @@ $(document).ready(function() {
                                         {% else %}
                                             -
                                         {% endif %}</td>
-                                    <td>{% if vol.instruct %}
-                                            {{ vol.instruct }}
+                                    <td>{% if vol.instructeur %}
+                                            {{ vol.instructeur }}
                                         {% else %}
                                             -
                                         {% endif %}</td>
-                                    <td>{{ vol.duree_jour }}</td>
-                                    <td>{{ vol.duree_nuit }}</td>
+                                     <td>{% if vol.duree_jour %}
+                                            {{ vol.duree_jour }}
+                                        {% else %}
+                                            -
+                                        {% endif %}</td>
+                                    <td>{% if vol.duree_nuit %}
+                                            {{ vol.duree_nuit }}
+                                        {% else %}
+                                            -
+                                        {% endif %}</td>
                                     <td>{% if vol.vol_simu %}
-                                            {{ vol.duree_simu }}
+                                        {{ vol.duree_simu }}</td>
                                         {% else %}
+                                            -
                                         {% endif %}</td>
-                                    <td>{% if vol.vol_ifr %}
-                                            <i class="fas fa-check-circle text-success"></i></h5>
+                                    <td>{% if vol.vol_ifr != "Zéro" %}
+                                            {{ vol.get_vol_ifr_display }}
                                         {% else %}
-                                        <i class="fas fa-times-circle text-danger"></i>
+                                            -
                                         {% endif %}</td>
-                                    <td>{% if vol.vol_ifr %}
-                                                    {{ vol.duree_ifr }}
+                                    <td>{% if vol.duree_ifr %}
+                                                {{ vol.duree_ifr }}
+                                            {% else %}
+                                                {% if vol.vol_simu %}
+                                                    {{ vol.duree_simu }}
                                                 {% else %}
-                                                {% endif %}</td>
+                                                    -
+                                                {% endif %}
+                                            {% endif %}</td>
                                     <td>{{ vol.fonction }}</td>
                                     <td>{{ vol.immatriculation }}</td>
                                     <td>{{ vol.immatriculation.type_avion }}</td>

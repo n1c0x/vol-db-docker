@@ -36,6 +36,7 @@
                             <th>Inst Nuit</th>
                             <th>Simu</th>
                             <th>Arrivée IFR</th>
+                            <th>IFR</th>
                             <th>Total</th>
                         </tr>
                     </thead>
@@ -82,6 +83,11 @@
                                 {% else %}
                                     --:--:--
                                 {% endif %}</td>
+                            <td>{% if liste.28.duree_simu__sum %}
+                                    {{ liste.28.duree_simu__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
                             <td></td>
                             <td></td>
                             <td>{{ liste.25 }}</td>
@@ -125,6 +131,11 @@
                                 {% endif %}</td>
                             <td>{% if liste.16.duree_nuit__sum %}
                                     {{ liste.16.duree_nuit__sum }}
+                                {% else %}
+                                    --:--:--
+                                {% endif %}</td>
+                            <td>{% if liste.29.duree_simu__sum %}
+                                    {{ liste.29.duree_simu__sum }}
                                 {% else %}
                                     --:--:--
                                 {% endif %}</td>
@@ -176,6 +187,7 @@
                                 {% else %}
                                     --:--:--
                                 {% endif %}</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td>{{ liste.27 }}</td>

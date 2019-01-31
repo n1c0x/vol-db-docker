@@ -63,20 +63,23 @@ class Pilote(models.Model):
 
 class Vol(models.Model):
     FONCTION = (
-        ('PF','Pilot Flying'),
-        ('PNF','Pilot Non Flying'),
-        ('MIX','Mix'),
+        ('PF', 'Pilot Flying'),
+        ('PNF', 'Pilot Non Flying'),
+        ('MIX', 'Mix'),
     )
     POSTE = (
-        ('CDB','Commandant de bord'),
-        ('OPL','Copilote'),
-        ('Instruct','Instructeur'),
-        ('OBS','Observateur'),
+        ('CDB', 'Commandant de bord'),
+        ('OPL', 'Copilote'),
+        ('Instruct', 'Instructeur'),
+        ('OBS', 'Observateur'),
     )
+    ZERO = 0
+    UN = 1
+    DEUX = 2
     ARRIVEE_IFR = (
-        ('Zéro','0'),
-        ('Un','1'), 
-        ('Deux','2'),
+        ('Zéro', ZERO),
+        ('Un', UN),
+        ('Deux', DEUX),
     )
     
     date = models.DateField(

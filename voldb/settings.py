@@ -130,3 +130,5 @@ STATIC_ROOT = '/static/'
 
 # Import Export 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+LOGIN_REDIRECT_URL = '/vol'

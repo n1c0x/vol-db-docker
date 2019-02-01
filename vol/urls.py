@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^somme',views.somme, name='somme'),
     url(r'^add',views.new_vol, name='new_vol'),
     url(r'^(?P<pk>[0-9]+)/edit/$', views.edit_vol, name='edit_vol'),
+    url(r'^(?P<pk>[0-9]+)/remove/$', views.remove_vol, name='remove_vol'),
 ]

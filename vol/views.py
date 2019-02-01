@@ -1,16 +1,16 @@
 from django.shortcuts import render,get_object_or_404
 from django.db.models import Sum, When
-from django.http import HttpResponse
 from .forms import VolForm
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView, LogoutView
 
 
 from datetime import date, datetime, timedelta
 
 from .models import Vol, Immatriculation, TypeAvion
 
-# Create your views here.
-
+@login_required
 def index(request):
     vols_list = Vol.objects.order_by('-date')
     context = {
@@ -18,10 +18,12 @@ def index(request):
     }
     return render(request, 'vol/index.html', context)
 
+@login_required
 def detail(request,vol_id):
     vol = get_object_or_404(Vol, pk=vol_id)
     return render(request, 'vol/detail.html', {'vol': vol})
 
+@login_required
 def somme(request):
 #    vol = Vol.objects.all()
     avions = TypeAvion.objects.all()
@@ -180,6 +182,7 @@ def somme(request):
 
     return render(request, 'vol/somme.html', {'data': data})
 
+@login_required
 def new_vol(request):
     if request.method == "POST":
         form = VolForm(request.POST)
@@ -191,6 +194,7 @@ def new_vol(request):
         form = VolForm()
     return render(request, 'vol/vol_add.html', {'form': form})
 
+@login_required
 def edit_vol(request, pk):
     vol = get_object_or_404(Vol, pk=pk)
     if request.method == "POST":
@@ -202,3 +206,9 @@ def edit_vol(request, pk):
     else:
         form = VolForm(instance=vol)
     return render(request, 'vol/vol_add.html', {'form': form})
+
+@login_required
+def remove_vol(request, pk):
+    vol = get_object_or_404(Vol, pk=pk)
+    vol.delete()
+    return redirect('index')

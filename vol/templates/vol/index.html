@@ -1,4 +1,5 @@
 {% extends 'vol/base.html' %}
+{% block title %} Vols {% endblock %}
 {% block content %}
 <script>
 $(document).ready(function() {
@@ -7,13 +8,10 @@ $(document).ready(function() {
     });
 } );
 </script>
-    <div class="container">
-        <div class="row">
-            <div class="col-4"><h1>Affichage des vols</h1></div>
-            <div class="col"></div>
-            <div class="col-1"><a target=_blank href="./somme.html"><h4>Totaux</h4></a></div>
-            <div class="col-1"><a target=_blank href="../admin"><h4>Login</h4></a></div>
-        </div>
+
+    <div class="row">
+        <div class="col"><h2>Affichage des vols</h2></div>
+    </div>
          {% if vols_list %}
          <div class="row">
             <div class="col"></div>
@@ -42,7 +40,7 @@ $(document).ready(function() {
                     <tbody>
                         {% for vol in vols_list %}
                             <tr>
-                                    <td><a target="_blank" href="{% url 'detail' vol.id %}">{{ vol.date|date:"d/m/Y" }}</a></td>
+                                    <td><a href="{% url 'detail' vol.id %}">{{ vol.date|date:"d/m/Y" }}</a></td>
                                     <td>{{ vol.depart }}/{{ vol.arrivee }}</td>
                                     <td>{{ vol.cdb }}</td>
                                     <td>{{ vol.opl }}</td>

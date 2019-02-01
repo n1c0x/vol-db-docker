@@ -1,8 +1,18 @@
 {% extends 'vol/base.html' %}
 {% block title %} Détails du vol {% endblock %}
 {% block content %}
+
     <div class="container">
-        <div class="row"><p></p></div>
+        <div class="row"><p><a class="btn btn-default" id="example" data-toggle="tooltip" data-placement="bottom" title="Modifier le vol" href="{% url 'edit_vol' pk=vol.pk %}"><i class="far fa-edit"></i></a>
+</p></div>
+
+
+        <script>
+        $(function () {
+          $('#example').tooltip()
+        })
+        </script>
+
         <div class="row">
             <div class="col"></div>
             <div class="col-4">

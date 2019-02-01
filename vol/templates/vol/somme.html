@@ -4,20 +4,8 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-1"><h1>Totaux</h1></div>
-            <div class="col"></div>
-            <div class="col-3"><a target=_blank href="./index.html"><h4>Affichage des vols</h4></a></div>
+            <div class="col"><h2>Totaux</h2></div>
         </div>
-        <!-- {{ data.liste_somme_vols }} -->
-<!--         {% for bla in data.liste_somme_vols %}
-            Avion : {{ bla.0 }}<br>
-            Durée Jour CDB : {{ bla.1.duree_jour__sum }}<br>
-            Durée Nuit CDB : {{ bla.2.duree_nuit__sum }}<br>
-            Durée Jour OPL : {{ bla.3.duree_jour__sum }}<br>
-            Durée Nuit OPL : {{ bla.4.duree_nuit__sum }}<br>
-            <hr>
-        {% endfor %} 
-        <hr> -->
         {% for liste in data.liste_somme_vols_total %}
         <div class="row">
             <div class="col"></div>

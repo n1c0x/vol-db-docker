@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('<int:vol_id>/', views.detail, name='detail'),
-    #path('somme/', views.somme, name='somme'),
-    url(r'^somme',views.somme),
+    url(r'^somme',views.somme, name='somme'),
+    url(r'^add',views.new_vol, name='new_vol'),
+    url(r'^(?P<pk>[0-9]+)/edit/$', views.edit_vol, name='edit_vol'),
 ]

@@ -1,6 +1,9 @@
 from django.shortcuts import render,get_object_or_404
 from django.db.models import Sum, When
 from django.http import HttpResponse
+from .forms import VolForm
+from django.shortcuts import redirect
+
 
 from datetime import date, datetime, timedelta
 
@@ -176,3 +179,26 @@ def somme(request):
     }
 
     return render(request, 'vol/somme.html', {'data': data})
+
+def new_vol(request):
+    if request.method == "POST":
+        form = VolForm(request.POST)
+        if form.is_valid():
+            vol = form.save(commit=False)
+            vol.save()
+            return redirect('index')
+    else:
+        form = VolForm()
+    return render(request, 'vol/vol_add.html', {'form': form})
+
+def edit_vol(request, pk):
+    vol = get_object_or_404(Vol, pk=pk)
+    if request.method == "POST":
+        form = VolForm(request.POST, instance=vol)
+        if form.is_valid():
+            vol = form.save(commit=False)
+            vol.save()
+            return redirect('index')
+    else:
+        form = VolForm(instance=vol)
+    return render(request, 'vol/vol_add.html', {'form': form})

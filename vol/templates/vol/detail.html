@@ -34,16 +34,26 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"> 
                             <div class="card-body text-center">
-                                    <h5 class="card-title">Durées <i class="far fa-clock"></i></h5>
-                                    <i class="far fa-sun text-warning"></i> {{ vol.duree_jour }}
-                                    <i class="fas fa-moon text-primary"></i> {{ vol.duree_nuit }}
+                                <h5 class="card-title">Durées <i class="far fa-clock"></i></h5>
+                                <i class="far fa-sun text-warning"></i>
+                                {% if vol.duree_jour %}
+                                    {{ vol.duree_jour }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                                <i class="fas fa-moon text-primary"></i>
+                                {% if vol.duree_nuit %}
+                                    {{ vol.duree_nuit }}
+                                {% else %}
+                                    -
+                                {% endif %}
                             </div>
                         </li>
                         <li class="list-group-item"> 
                                 <div class="card-body text-center">
-                                    <h5 class="card-title"> IFR  
+                                    <h5 class="card-title"> IFR :
                                     {% if vol.vol_ifr %}
-                                        <i class="fas fa-check-circle text-success"></i></h5>
+                                        {{ vol.get_vol_ifr_display }}</h5>
                                         <i class="far fa-sun text-warning"></i> {{ vol.duree_ifr_jour }}
                                         <i class="fas fa-moon text-primary"></i> {{ vol.duree_ifr_nuit }}
                                     {% else %}

@@ -26,9 +26,9 @@
 
                 {% if user.is_authenticated %}
                     <div class="col-1"><a href="{% url 'index' %}"><h4>Vols</h4></a></div>
-                    <div class="col-1"><a target=_blank href="{% url 'somme' %}"><h4>Totaux</h4></a></div>
-                    <div class="col-1"><a target=_blank href="{% url 'new_vol' %}"><h4>Ajouter</h4></a></div>
-                    <div class="col"><p class="top-menu">Bonjour {{ user.username }} <small>(<a href="{% url 'logout' %}">Déconnexion</a>)</small></p></div>
+                    <div class="col-1"><a href="{% url 'somme' %}"><h4>Totaux</h4></a></div>
+                    <div class="col-1"><a href="{% url 'new_vol' %}"><h4>Ajouter</h4></a></div>
+                <div class="col">Bonjour {{ user.username }}<br><small>(<a href="{% url 'logout' %}">Déconnexion</a>)</small></div>
                 {% else %}
                     <div class="col"><a target=_blank href="{% url 'login' %}"><h4>Connexion</h4></a></div>
                 {% endif %}

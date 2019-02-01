@@ -2,8 +2,48 @@
 {% block title %} Ajouter un vol {% endblock %}
 {% block content %}
 <h1>Nouveau vol</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+    <form method="POST" class="post-form" id="new_vol">{% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="fieldWrapper">
+            {{ form.date.errors }}
+            {{ form.date.label_tag }}
+            {{ form.date }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.duree_jour.errors }}
+            {{ form.duree_jour.label_tag }}
+            {{ form.duree_jour }}
+        </div>
+        <input type="text" name="base_10" id="deci">
+        <input type="text" name="base_60" onblur="calculate()" id="sexa">
+        <input type="text" name="total" id="total">
+
+        <div id="totalPrice"></div>
+<script>
+calculate = function()
+{
+    var deci = document.getElementById('deci').value;
+    var sexa = document.getElementById('sexa').value;
+    document.getElementById('total').value = (parseFloat(deci)*60)%60;
+
+   }
+</script>
+
+        <div class="fieldWrapper">
+            {{ form.duree_nuit.errors }}
+            {{ form.duree_nuit.label_tag }}
+            {{ form.duree_nuit }}
+        </div>
+
+
+        <button type="submit" class="save btn btn-default">Enregistrer</button>
+
+        <table class="table">
+        {{ form.as_table }}
+        </table>
+
+
+
     </form>
 {% endblock %}

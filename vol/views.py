@@ -10,6 +10,9 @@ from datetime import date, datetime, timedelta
 
 from .models import Vol, Immatriculation, TypeAvion
 
+def homepage(request):
+    return render(request, 'vol/homepage.html')
+
 @login_required
 def index(request):
     vols_list = Vol.objects.order_by('-date')

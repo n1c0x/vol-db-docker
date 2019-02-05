@@ -1,38 +1,57 @@
-{% extends "vol/base.html" %}
+{% extends "vol/base_login.html" %}
 
 {% block content %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+<div class="container">
+    <div class="row">
+        {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if next %}
+            {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.</p>
+            {% else %}
+            <p>Please login to see this page.</p>
+            {% endif %}
+        {% endif %}
+    </div>
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <p>{{ form.username.label_tag }}
+            {{ form.username }}</p>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <p>{{ form.password.label_tag }}
+            {{ form.password }}</p>
+        </div>
+        <div class="col-3"></div>
+    </div>
 
-<input type="submit" value="login">
-<input type="hidden" name="next" value="{{ next }}">
-</form>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <p><input type="submit" value="login">
+            <input type="hidden" name="next" value="{{ next }}"></p>
+        </div>
+        <div class="col-3"></div>
+    </div>
+        </form>
+    <div class="row">
+        {# Assumes you setup the password_reset view in your URLconf #}
+        <p><a href="{# url 'password_reset' #}">Lost password?</a></p>
+    </div>
 
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{# url 'password_reset' #}">Lost password?</a></p>
-
+</div>
 {% endblock %}

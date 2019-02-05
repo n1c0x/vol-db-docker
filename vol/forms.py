@@ -2,6 +2,7 @@ from django import forms
 
 from .models import Vol
 
+
 class VolForm(forms.ModelForm):
 
     class Meta:
@@ -27,3 +28,4 @@ class VolForm(forms.ModelForm):
             'duree_dc',
             'vol_simu',
             'duree_simu', )
+

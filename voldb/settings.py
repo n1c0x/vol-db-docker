@@ -25,7 +25,10 @@ SECRET_KEY = 'cpa)8pm-b=5gp4_1dry3l)e-xyw#9%fxubv*xd^fj490q)m-$s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.22']
+# CentOS perso
+#ALLOWED_HOSTS = ['192.168.1.22']
+# debian work
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -81,7 +84,10 @@ DATABASES = {
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': '/etc/my.cnf.d/client.cnf',
+            # CentOS perso
+#            'read_default_file': '/etc/my.cnf.d/client.cnf',
+            # Debian work
+            'read_default_file': '/etc/mysql/conf.d/mysql.cnf',
         }
     }
 }

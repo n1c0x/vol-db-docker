@@ -1,4 +1,4 @@
-{% extends "vol/base_login.html" %}
+{% extends "vol/base_no_container.html" %}
 
 {% block content %}
 
@@ -19,38 +19,28 @@
         {% endif %}
     </div>
 
-
+    <div class="row">
         <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <p>{{ form.username.label_tag }}
-            {{ form.username }}</p>
-        </div>
-        <div class="col-3"></div>
-    </div>
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <p>{{ form.password.label_tag }}
-            {{ form.password }}</p>
-        </div>
-        <div class="col-3"></div>
-    </div>
+            <table>
+                <tr>
+                    <td><p>{{ form.username.label_tag }}</p></td>
+                    <td><p>{{ form.username }}</p></td>
+                </tr>
+                <tr>
+                    <td><p>{{ form.password.label_tag }}</p></td>
+                    <td><p>{{ form.password }}</p></td>
+                </tr>
+            </table>
 
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <p><input type="submit" value="login">
+            <p><input type="submit" value="Login">
             <input type="hidden" name="next" value="{{ next }}"></p>
-        </div>
-        <div class="col-3"></div>
-    </div>
+
         </form>
+    </div>
     <div class="row">
         {# Assumes you setup the password_reset view in your URLconf #}
-        <p><a href="{# url 'password_reset' #}">Lost password?</a></p>
+        <p><a href="{# url 'password_reset' #}">Password lost?</a></p>
     </div>
 
 </div>

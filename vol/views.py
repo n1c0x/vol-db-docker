@@ -1,9 +1,9 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum, When
 from .forms import VolForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.models import User
 
 
 from datetime import date, datetime, timedelta
@@ -14,6 +14,11 @@ def homepage(request):
     return render(request, 'vol/homepage.html')
 
 @login_required
+def get_user_profile(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'vol/profile.html', {"user":user})
+
+@login_required
 def index(request):
     vols_list = Vol.objects.order_by('-date')
     context = {
@@ -22,7 +27,7 @@ def index(request):
     return render(request, 'vol/index.html', context)
 
 @login_required
-def detail(request,vol_id):
+def detail(request, vol_id):
     vol = get_object_or_404(Vol, pk=vol_id)
     return render(request, 'vol/detail.html', {'vol': vol})
 

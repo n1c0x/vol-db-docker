@@ -4,17 +4,15 @@
 
 ### Prérequis
 
-Python 3.6
-Python 3.6 devel
+- Python 3.6 
+- Python 3.6 devel 
 
 ### Installation des prérequis python
 
-psycopg2-binary
-admin-totals
-mysqlclient
+```pip3 install django>=2 psycopg2-binary admin-totals mysqlclient```
 
 ### Lancement du service
-python manager.py runserver
+```python manager.py runserver```
 
 ## Fait
 

@@ -2,4 +2,6 @@
 voldb/__pycache__/*
 vol/__pycache__/*
 vol/migrations/*
-
+.idea/*
+images/*
+venv-windows/*

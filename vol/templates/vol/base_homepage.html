@@ -12,12 +12,14 @@
         <div class="container">
             <div class="row">
                 <ul class="nav nav-tabs">
+                {% block prices %}
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Page d'accueil</a>
+                    <a class="nav-link active" href="/">Page d'accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{#% url 'prices' %#}">Tarifs</a>
+                    <a class="nav-link" href="{% url 'prices' %}">Tarifs</a>
                 </li>
+                {% endblock %}
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>

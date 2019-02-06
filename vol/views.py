@@ -13,6 +13,9 @@ from .models import Vol, Immatriculation, TypeAvion
 def homepage(request):
     return render(request, 'vol/homepage.html')
 
+def prices(request):
+    return render(request, 'vol/prices.html')
+
 @login_required
 def get_user_profile(request, username):
     user = User.objects.get(username=username)

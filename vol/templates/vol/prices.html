@@ -1,18 +1,27 @@
 {% extends "vol/base_homepage.html" %}
 
+{% block prices %}
+    <li class="nav-item">
+        <a class="nav-link" href="/">Page d'accueil</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'prices' %}">Tarifs</a>
+    </li>
+{% endblock %}
+
 {% block content %}
 
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <h1>Base de données de vol.</h1>
+            <h1>Money money money</h1>
         </div>
         <div class="col-3"></div>
     </div>
+
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <p>Cette application vous permettra de saisir et sauvegarder vos heures de vol de manière simple et sécurisée.</p>
             {% lorem 3 p %}
         </div>
         <div class="col-3"></div>

@@ -1,4 +1,4 @@
-{% extends "vol/base_no_container.html" %}
+{% extends "vol/base_homepage.html" %}
 
 {% block content %}
 
@@ -40,7 +40,7 @@
     </div>
     <div class="row">
         {# Assumes you setup the password_reset view in your URLconf #}
-        <p><a href="{# url 'password_reset' #}">Password lost?</a></p>
+        <p><a href="{% url 'password_reset' %}">Password lost?</a></p>
     </div>
 
 </div>

@@ -12,15 +12,27 @@
         <div class="container">
             <div class="row">
                 <ul class="nav nav-tabs">
-                  <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link active" href="#">Page d'accueil</a>
-                  </li>
-                  <li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{#% url 'prices' %#}">Tarifs</a>
-                  </li>
-                  <li class="nav-item">
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' user %}">Profil utilisateur</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Vols</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">Connexion</a>
-                  </li>
+                </li>
+                {% endif %}
                 </ul>
             </div>
             {% block content %}{% endblock %}

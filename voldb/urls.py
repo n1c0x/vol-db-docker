@@ -17,13 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from django.contrib.auth import views
+from vol import views
 
 urlpatterns = [
     path('', include('vol.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    url(r'^user/', include('vol.urls')),
-#    path('accounts/login/', views.LoginView.as_view(), name='login'),
-#    path('accounts/logout/', views.LogoutView.as_view(next_page='/vol'), name='logout'),
-
+    #url(r'^user/', include('vol.urls')),
+    url(r'profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='profile'),
 ]

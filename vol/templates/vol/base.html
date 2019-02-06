@@ -21,20 +21,22 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-6"><h1>Base de données des vols</h1></div>
-                <div class="col"></div>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active disabled" href="{% url 'index' %}">Base de données des vols</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'somme' %}">Totaux</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'new_vol' %}">Ajouter</a>
+                    </li>
 
-                {% if user.is_authenticated %}
-                    <div class="col-1"><a href="{% url 'index' %}"><h4>Vols</h4></a></div>
-                    <div class="col-1"><a href="{% url 'somme' %}"><h4>Totaux</h4></a></div>
-                    <div class="col-1"><a href="{% url 'new_vol' %}"><h4>Ajouter</h4></a></div>
-                <div class="col">Bonjour {{ user.username }}<br><small>(<a href="{% url 'logout' %}">Déconnexion</a>)</small></div>
-                {% else %}
-                    <div class="col"><a target=_blank href="{% url 'login' %}"><h4>Connexion</h4></a></div>
-                {% endif %}
-
+                </ul>
             </div>
-            <hr>
 
    {% block content %}{% endblock %}
  </body>

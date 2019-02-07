@@ -7,7 +7,7 @@
 
     <form method="POST" class="post-form" id="new_vol">{% csrf_token %}
         {{ form.non_field_errors }}
-<!--
+
         <div class="fieldWrapper">
             {{ form.date.errors }}
             {{ form.date.label_tag }}
@@ -19,18 +19,21 @@
             {{ form.duree_jour }}
         </div>
         <input type="text" name="base_10" id="deci">
-        <input type="text" name="base_60" onblur="calculate()" id="sexa">
-        <input type="text" name="total" id="total">
+        <input type="text" name="total" onfocus="calculate();" id="total">
 
-        <div id="totalPrice"></div>
+        
 <script>
 calculate = function()
 {
     var deci = document.getElementById('deci').value;
-    var sexa = document.getElementById('sexa').value;
-    document.getElementById('total').value = (parseFloat(deci)*60)%60;
-
+    var hour = String(Math.trunc(parseFloat(deci)))
+    var minutes = String((parseFloat(deci) % 1)*60)
+    minutes = minutes*100;
+    minutes = Math.round(minutes);
+    minutes = minutes/100
+    document.getElementById('total').value = hour + ":" + minutes;
    }
+
 </script>
 
         <div class="fieldWrapper">
@@ -38,7 +41,7 @@ calculate = function()
             {{ form.duree_nuit.label_tag }}
             {{ form.duree_nuit }}
         </div>
-         -->
+
 
 
         <button type="submit" class="save btn btn-primary">Enregistrer</button>

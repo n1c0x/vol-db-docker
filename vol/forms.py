@@ -28,6 +28,5 @@ class VolForm(forms.ModelForm):
             'duree_dc',
             'vol_simu',
             'duree_simu',
-            'user_id' )
+            'user_id')
         exclude = ['user_id']
-

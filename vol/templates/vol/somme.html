@@ -4,14 +4,13 @@
     <div class="container">
 
         <div class="row">
-            <div class="col"><h2>Totaux</h2></div>
+            <div class="col"><h2 class="display-4 mt-4 mb-4">Totaux</h2></div>
         </div>
         {% for liste in data.liste_somme_vols_total %}
         <div class="row">
-            <div class="col"></div>
             <div class="col-12">
-                <table class="table table-sm table-bordered">
-                    <thead class="">
+                <table class="table table-sm">
+                    <thead  class="thead-dark">
                         <tr>
                             <th>{{ liste.0 }}</th>
                             <th>CDB Jour</th>
@@ -133,7 +132,7 @@
                         </tr>
                     </tbody>
                     <tfoot>
-                        <tr class="table-info">
+                        <tr class="table-primary">
                             <th>Total</th>
                             <td>{% if liste.17.duree_jour__sum %}
                                     {{ liste.17.duree_jour__sum }}

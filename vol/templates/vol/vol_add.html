@@ -1,10 +1,13 @@
 {% extends 'vol/base.html' %}
 {% block title %} Ajouter un vol {% endblock %}
 {% block content %}
-<h1>Nouveau vol</h1>
+ <div class="row">
+    <div class="col"><h2 class="display-4 mt-4 mb-4">Nouveau vol</h2></div>
+</div>
+
     <form method="POST" class="post-form" id="new_vol">{% csrf_token %}
         {{ form.non_field_errors }}
-
+<!--
         <div class="fieldWrapper">
             {{ form.date.errors }}
             {{ form.date.label_tag }}
@@ -35,9 +38,10 @@ calculate = function()
             {{ form.duree_nuit.label_tag }}
             {{ form.duree_nuit }}
         </div>
+         -->
 
 
-        <button type="submit" class="save btn btn-default">Enregistrer</button>
+        <button type="submit" class="save btn btn-primary">Enregistrer</button>
 
         <table class="table">
         {{ form.as_table }}

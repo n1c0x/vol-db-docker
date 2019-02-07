@@ -10,37 +10,40 @@ $(document).ready(function() {
 </script>
 
     <div class="row">
-        <div class="col"><h2>Affichage des vols</h2></div>
+        <div class="col"><h2 class="display-4 mt-4 mb-4">Affichage des vols</h2></div>
     </div>
          {% if vols_list %}
-         <div class="row">
+        <div class="row">
             <div class="col"></div>
             <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-sm dt-responsive nowrap" id="table_id" style="width:100%">
-                    <thead>
+                <table class="table table-striped table-bordered table-hover dt-responsive nowrap" id="table_id">
+                <thead  class="thead-dark">
                     <tr>
-                        <th>Date</th>
-                        <th>Vol</th>
-                        <th>CDB</th>
-                        <th>OPL</th>
-                        <th>OBS1</th>
-                        <th>OBS2</th>
-                        <th>Instructeur</th>
-                        <th>Durée Jour</th>
-                        <th>Durée Nuit</th>
-                        <th>Simu</th>
-                        <th>Arrivées IFR</th>
-                        <th>Durée IFR</th>
-                        <th>Fonction</th>
-                        <th>Immatriculation</th>
-                        <th>Type d'avion</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Vol</th>
+                        <th scope="col">CDB</th>
+                        <th scope="col">OPL</th>
+                        <th scope="col">OBS1</th>
+                        <th scope="col">OBS2</th>
+                        <th scope="col">Instructeur</th>
+                        <th scope="col">Durée Jour</th>
+                        <th scope="col">Durée Nuit</th>
+                        <th scope="col">Simu</th>
+                        <th scope="col">Arrivées IFR</th>
+                        <th scope="col">Durée IFR</th>
+                        <th scope="col">Fonction</th>
+                        <th scope="col">Immatriculation</th>
+                        <th scope="col">Type d'avion</th>
                     </tr>
-                    </thead>
+                </thead>
                     <tbody>
                         {% for vol in vols_list %}
                             <tr>
-                                    <td><a href="{% url 'detail' vol.id %}">{{ vol.date|date:"d/m/Y" }}</a></td>
+                                    <th scope="row">
+                                        <a href="{% url 'detail' vol.id %}">
+                                            <button class="btn btn-outline-primary btn-sm" type="button">{{ vol.date|date:"d/m/Y" }}</button>
+                                        </a>
+                                    </th>
                                     <td>{{ vol.depart }}/{{ vol.arrivee }}</td>
                                     <td>{{ vol.cdb }}</td>
                                     <td>{{ vol.opl }}</td>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -197,4 +198,10 @@ class Vol(models.Model):
         null=True,
         help_text='Format hh:mm:ss'
     )
+    user_id = models.ForeignKey(
+        User, 
+        on_delete=models.PROTECT,
+        related_name='%(class)s_utilisateur',
+        verbose_name = "Utilisateur",
+        )
 

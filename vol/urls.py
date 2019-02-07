@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
-    path('vols/', views.index, name='index'),
+    url(r'^vols', views.index, name='index'),
     path('<int:vol_id>/', views.detail, name='detail'),
     url(r'^somme', views.somme, name='somme'),
     url(r'^add', views.new_vol, name='new_vol'),

@@ -1,0 +1,42 @@
+{% extends 'vol/base.html' %}
+{% block title %} Nouvelle immatriculation {% endblock %}
+{% block content %}
+ <div class="row">
+    <div class="col"><h2 class="display-4 mt-4 mb-4">Nouvelle immatriculation</h2></div>
+</div>
+{% load widget_tweaks %}
+    <form method="POST" class="post-form" id="new_immatriculation">{% csrf_token %}
+        {{ form_immatriculation.non_field_errors }}
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <div class="fieldWrapper">
+                    {{ form_immatriculation.immatriculation.errors }}
+                    {{ form_immatriculation.immatriculation.label_tag }}
+                    {{ form_immatriculation.immatriculation|add_class:"form-control" }}
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="fieldWrapper">
+                    {{ form_immatriculation.type_avion.errors }}
+                    {{ form_immatriculation.type_avion.label_tag }}
+                    <div class="input-group">
+                        {{ form_immatriculation.type_avion|add_class:"form-control" }}
+                        <div class="input-group-append">
+                            <div class="input-group-text"><a href="" target="_blank">+</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <button type="submit" class="save btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </form>
+
+
+
+{% endblock %}

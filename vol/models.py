@@ -3,64 +3,93 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 class CodeIata(models.Model):
     code_iata = models.CharField(
-        verbose_name = 'Code IATA',
-        max_length = 5,
+        verbose_name='Code IATA',
+        max_length=5,
     )
     ville = models.CharField(
-        verbose_name = "Ville",
-        max_length = 50,
+        verbose_name="Ville",
+        max_length=50,
         blank=True,
         null=True,
+    )
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name='%(class)s_utilisateur',
+        verbose_name="Utilisateur",
     )
 
     def __str__(self):
         return self.code_iata
-    
+
+
 class TypeAvion(models.Model):
     NOMBRE_MOTEURS = (
-        ('1','Monomoteur'),
-        ('2','Multimoteurs'),
+        ('1', 'Monomoteur'),
+        ('2', 'Multimoteurs'),
     )
     type_avion = models.CharField(
-        verbose_name = 'Type d\'avion',
-        max_length  = 255,
+        verbose_name='Type d\'avion',
+        max_length=255,
     )
     nb_moteurs = models.CharField(
-        choices = NOMBRE_MOTEURS,
-        max_length = 25,
-        verbose_name = 'Nombre de moteurs',
-       )
-    
+        choices=NOMBRE_MOTEURS,
+        max_length=25,
+        verbose_name='Nombre de moteurs',
+    )
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name='%(class)s_utilisateur',
+        verbose_name="Utilisateur",
+    )
+
     def __str__(self):
         return self.type_avion
 
+
 class Immatriculation(models.Model):
     immatriculation = models.CharField(
-        verbose_name = 'Immatriculation de l\'avion',
-        max_length = 10,
+        verbose_name='Immatriculation de l\'avion',
+        max_length=10,
     )
     type_avion = models.ForeignKey(
         TypeAvion,
         on_delete=models.PROTECT
     )
-    
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name='%(class)s_utilisateur',
+        verbose_name="Utilisateur",
+    )
+
     def __str__(self):
         return self.immatriculation
- 
+
+
 class Pilote(models.Model):
     prenom = models.CharField(
-        verbose_name = 'Prénom',
-        max_length = 255,
+        verbose_name='Prénom',
+        max_length=255,
     )
     nom = models.CharField(
-        verbose_name = 'Nom de famille',
-        max_length = 255,
+        verbose_name='Nom de famille',
+        max_length=255,
+    )
+    user_id = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name='%(class)s_utilisateur',
+        verbose_name="Utilisateur",
     )
 
     def __str__(self):
         return '%s %s' % (self.prenom, self.nom)
+
 
 class Vol(models.Model):
     FONCTION = (
@@ -199,9 +228,8 @@ class Vol(models.Model):
         help_text='Format hh:mm:ss'
     )
     user_id = models.ForeignKey(
-        User, 
+        User,
         on_delete=models.PROTECT,
         related_name='%(class)s_utilisateur',
-        verbose_name = "Utilisateur",
+        verbose_name="Utilisateur",
         )
-

@@ -4,53 +4,278 @@
  <div class="row">
     <div class="col"><h2 class="display-4 mt-4 mb-4">Nouveau vol</h2></div>
 </div>
-
+{% load widget_tweaks %}
     <form method="POST" class="post-form" id="new_vol">{% csrf_token %}
         {{ form.non_field_errors }}
 
-        <div class="fieldWrapper">
-            {{ form.date.errors }}
-            {{ form.date.label_tag }}
-            {{ form.date }}
+         <div class="row">
+            <div class="col"><p class="h2 mt-4 mb-4">Informations générales</p></div>
         </div>
-        <div class="fieldWrapper">
-            {{ form.duree_jour.errors }}
-            {{ form.duree_jour.label_tag }}
-            {{ form.duree_jour }}
-        </div>
-        <input type="text" name="base_10" id="deci">
-        <input type="text" name="total" onfocus="calculate();" id="total">
 
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <div class="fieldWrapper">
+                    {{ form.date.errors }}
+                    {{ form.date.label_tag }}
+                    {{ form.date|add_class:"form-control" }}
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="fieldWrapper">
+                    {{ form.immatriculation.errors }}
+                    {{ form.immatriculation.label_tag }}
+                    <div class="input-group">
+                        {{ form.immatriculation|add_class:"form-control" }}
+                        <div class="input-group-append">
+                            <div class="input-group-text"><a href="{% url 'new_immatriculation' %}" target="_blank">+</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="fieldWrapper">
+                    {{ form.cdb.errors }}
+                    {{ form.cdb.label_tag }}
+                    <div class="input-group">
+                        {{ form.cdb|add_class:"form-control" }}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <a href="#" onClick="window.open('{% url 'new_pilote' %}','Nouveau pilote','resizable,height=350,width=370'); return false;">+</a><noscript>You need Javascript to use the previous link or use <a href="{% url 'new_pilote' %}" target="_blank">+</a></noscript>
+
+                                {# <a href="{% url 'new_pilote' %}" target="_blank">+</a> #}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="fieldWrapper">
+                    {{ form.opl.errors }}
+                    {{ form.opl.label_tag }}
+                    <div class="input-group">
+                        {{ form.opl|add_class:"form-control" }}
+                        <div class="input-group-append">
+                            <div class="input-group-text"><a href="{% url 'new_pilote' %}" target="_blank">+</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion2" data-children=".itemAccordion">
+          <div class="itemAccordion">
+            <h5>
+              <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">
+                Autres accompagnateurs +
+              </a>
+            </h5>
+            <div id="collapseOne2" class="collapse">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <div class="fieldWrapper">
+                            {{ form.obs1.errors }}
+                            {{ form.obs1.label_tag }}
+                            {{ form.obs1|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="fieldWrapper">
+                            {{ form.obs2.errors }}
+                            {{ form.obs2.label_tag }}
+                            {{ form.obs2|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div class="fieldWrapper">
+                            {{ form.instructeur.errors }}
+                            {{ form.instructeur.label_tag }}
+                            {{ form.instructeur|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <div class="fieldWrapper">
+                        {{ form.depart.errors }}
+                        {{ form.depart.label_tag }}
+                        {{ form.depart|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="fieldWrapper">
+                        {{ form.arrivee.errors }}
+                        {{ form.arrivee.label_tag }}
+                        {{ form.arrivee|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="fieldWrapper">
+                        {{ form.fonction.errors }}
+                        {{ form.fonction.label_tag }}
+                        {{ form.fonction|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="fieldWrapper">
+                        {{ form.poste.errors }}
+                        {{ form.poste.label_tag }}
+                        {{ form.poste|add_class:"form-control" }}
+                    </div>
+                </div>
+        </div>
+        
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <div class="fieldWrapper">
+                    {{ form.duree_jour.errors }}
+                    {{ form.duree_jour.label_tag }}
+                    {{ form.duree_jour|add_class:"form-control" }}
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Conversion</label>
+                <input type="text" name="base_10" id="deci_jour" class="form-control form-control" placeholder="Durée décimale" onkeyup="calculate('jour');">
+            </div>
+        
+            <div class="form-group col-md-3">
+                <div class="fieldWrapper">
+                    {{ form.duree_nuit.errors }}
+                    {{ form.duree_nuit.label_tag }}
+                    {{ form.duree_nuit|add_class:"form-control" }}
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Conversion</label>
+                <input type="text" name="base_10" id="deci_nuit" class="form-control form-control" placeholder="Durée décimale" onkeyup="calculate('nuit');">
+            </div>
+        </div>
+
+        <div id="accordion2" data-children=".itemAccordion">
+          <div class="itemAccordion">
+            <h5>
+              <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne3" aria-expanded="true" aria-controls="collapseOne3">
+                Simulateur +
+              </a>
+            </h5>
+            <div id="collapseOne3" class="collapse">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.vol_simu.errors }}
+                            {{ form.vol_simu.label_tag }}
+                            {{ form.vol_simu|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.duree_simu.errors }}
+                            {{ form.duree_simu.label_tag }}
+                            {{ form.duree_simu|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="accordion3" data-children=".itemAccordion">
+          <div class="itemAccordion">
+            <h5>
+              <a data-toggle="collapse" data-parent="#accordion3" href="#collapseOne4" aria-expanded="true" aria-controls="collapseOne4">
+                IFR +
+              </a>
+            </h5>
+            <div id="collapseOne4" class="collapse">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.vol_ifr.errors }}
+                            {{ form.vol_ifr.label_tag }}
+                            {{ form.vol_ifr|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.duree_ifr.errors }}
+                            {{ form.duree_ifr.label_tag }}
+                            {{ form.duree_ifr|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="accordion4" data-children=".itemAccordion">
+          <div class="itemAccordion">
+            <h5>
+              <a data-toggle="collapse" data-parent="#accordion4" href="#collapseOne5" aria-expanded="true" aria-controls="collapseOne5">
+                Double commandes +
+              </a>
+            </h5>
+            <div id="collapseOne5" class="collapse">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.vol_dc.errors }}
+                            {{ form.vol_dc.label_tag }}
+                            {{ form.vol_dc|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="fieldWrapper">
+                            {{ form.duree_dc.errors }}
+                            {{ form.duree_dc.label_tag }}
+                            {{ form.duree_dc|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <div class="fieldWrapper">
+                    {{ form.observation.errors }}
+                    {{ form.observation.label_tag }}
+                    {{ form.observation|add_class:"form-control" }}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <button type="submit" class="save btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
         
 <script>
-calculate = function()
-{
-    var deci = document.getElementById('deci').value;
+calculate = function(day) {
+    var deci = document.getElementById('deci_'+day).value;
     var hour = String(Math.trunc(parseFloat(deci)))
     var minutes = String((parseFloat(deci) % 1)*60)
-    minutes = minutes*100;
-    minutes = Math.round(minutes);
-    minutes = minutes/100
-    document.getElementById('total').value = hour + ":" + minutes;
+    if (isNaN(hour) || isNaN(minutes)) {
+        document.getElementById('id_duree_'+day).value = "";
+    } else {
+        minutes = minutes*100;
+        minutes = Math.round(minutes);
+        minutes = minutes/100
+        document.getElementById('id_duree_'+day).value = hour + ":" + minutes;
+    }
+    
+    
    }
-
+$( function() {
+    $( "#id_date" ).datepicker();
+} );
 </script>
-
-        <div class="fieldWrapper">
-            {{ form.duree_nuit.errors }}
-            {{ form.duree_nuit.label_tag }}
-            {{ form.duree_nuit }}
-        </div>
-
-
-
-        <button type="submit" class="save btn btn-primary">Enregistrer</button>
-
-        <table class="table">
-        {{ form.as_table }}
-        </table>
-
-
 
     </form>
 {% endblock %}

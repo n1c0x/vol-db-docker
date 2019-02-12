@@ -12,6 +12,8 @@ class VolForm(forms.ModelForm):
 #   cdb = forms.ModelChoiceField(queryset=Pilote.objects.all(), widget=forms.Select(attrs={'onclick': 'rechargement(id)'}))
     observation = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 4}))
     date = forms.DateField(widget=DatePicker(attrs={'autocomplete': 'off', }))
+    duree_jour = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM:SS', }))
+    duree_nuit = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM:SS', }))
 
     class Meta:
         model = Vol

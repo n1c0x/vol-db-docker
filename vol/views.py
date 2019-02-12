@@ -269,7 +269,7 @@ def new_vol(request):
             vol.duree_jour = vol.duree_jour*60
             vol.duree_nuit = vol.duree_nuit*60
             vol.user_id = request.user
-            #vol.save()
+            vol.save()
             return redirect('index')
     else:
         form_vol = VolForm()
@@ -360,7 +360,7 @@ def new_pilote(request):
             pilote = form_pilote.save(commit=False)
             pilote.user_id = request.user
             pilote.save()
-            return redirect('new_pilot')
+            return redirect('new_pilote')
     else:
         form_pilote = PiloteForm()
     context = {
@@ -400,7 +400,7 @@ def edit_pilote(request, pk):
 def remove_pilote(request, pk):
     pilote = get_object_or_404(Pilote, pk=pk)
     pilote.delete()
-    return redirect('pilote_add')
+    return redirect('new_pilote')
 
 
 @login_required

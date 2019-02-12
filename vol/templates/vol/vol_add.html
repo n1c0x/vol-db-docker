@@ -1,7 +1,8 @@
 {% extends 'vol/base.html' %}
 {% block title %} Ajouter un vol {% endblock %}
 {% block content %}
- <div class="row">
+{{ VolForm.media }}
+<div class="row">
     <div class="col"><h2 class="display-4 mt-4 mb-4">Nouveau vol</h2></div>
 </div>
 {% load widget_tweaks %}
@@ -17,7 +18,7 @@
                 <div class="fieldWrapper">
                     {{ form.date.errors }}
                     {{ form.date.label_tag }}
-                    {{ form.date|add_class:"form-control" }}
+                    {{ form.date|add_class:"form-control datepicker" }}
                 </div>
             </div>
             <div class="form-group col-md-3">
@@ -26,25 +27,16 @@
                     {{ form.immatriculation.label_tag }}
                     <div class="input-group">
                         {{ form.immatriculation|add_class:"form-control" }}
-                        <div class="input-group-append">
-                            <div class="input-group-text"><a href="{% url 'new_immatriculation' %}" target="_blank">+</a></div>
-                        </div>
                     </div>
                 </div>
             </div>
+            
             <div class="form-group col-md-3">
                 <div class="fieldWrapper">
                     {{ form.cdb.errors }}
-                    {{ form.cdb.label_tag }}
+                    {{ form.cdb.label_tag }}<!--<a href="#" onclick="rechargement('id_cdb')">R</a>-->
                     <div class="input-group">
                         {{ form.cdb|add_class:"form-control" }}
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <a href="#" onClick="window.open('{% url 'new_pilote' %}','Nouveau pilote','resizable,height=350,width=370'); return false;">+</a><noscript>You need Javascript to use the previous link or use <a href="{% url 'new_pilote' %}" target="_blank">+</a></noscript>
-
-                                {# <a href="{% url 'new_pilote' %}" target="_blank">+</a> #}
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -54,9 +46,6 @@
                     {{ form.opl.label_tag }}
                     <div class="input-group">
                         {{ form.opl|add_class:"form-control" }}
-                        <div class="input-group-append">
-                            <div class="input-group-text"><a href="{% url 'new_pilote' %}" target="_blank">+</a></div>
-                        </div>
                     </div>
                 </div>
             </div>

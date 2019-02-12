@@ -1,26 +1,22 @@
 {% extends 'vol/base.html' %}
 {% block title %} Détails du vol {% endblock %}
 {% block content %}
+{% load widget_tweaks %}
 
     <div class="container">
         <div class="row">
             <div class="col-1">
-                <a class="btn btn-outline-primary management_links" data-toggle="tooltip" data-placement="bottom" title="Modifier le vol" href="{% url 'edit_vol' pk=vol.pk %}"><i class="fas fa-pencil-alt"></i></a>
+                <a class="btn btn-outline-primary management_links" data-toggle="tooltip" data-placement="top" title="Modifier le vol" href="{% url 'edit_vol' pk=vol.pk %}"><i class="fas fa-pencil-alt"></i></a>
             </div>
             <div class="col"></div>
             <div class="col-1">
-                <a class="btn btn-outline-danger management_links" data-toggle="tooltip" data-placement="bottom" title="Supprimer le vol" href="{% url 'remove_vol' pk=vol.pk %}"><i class="far fa-trash-alt"></i></a>
+                <a class="btn btn-outline-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le vol" href="{% url 'remove_vol' pk=vol.pk %}"><i class="far fa-trash-alt"></i></a>
             </div>
         </div>
     </div>
 
 <hr>
     <div class="container">
-        <script>
-        $(function () {
-          $('.management_links').tooltip()
-        })
-        </script>
 
         <div class="row">
             <div class="col"></div>

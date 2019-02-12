@@ -1,26 +1,26 @@
 {% extends 'vol/base.html' %}
-{% block title %} Nouveau pilote {% endblock %}
+{% block title %} Nouveau code IATA {% endblock %}
 {% block content %}
 <div class="row">
-    <div class="col"><h2 class="display-4 mt-4 mb-4">Nouveau Pilote</h2></div>
+    <div class="col"><h2 class="display-4 mt-4 mb-4">Nouveau code IATA</h2></div>
 </div>
 {% load widget_tweaks %}
     <form method="POST" class="post-form" id="new_pilote">{% csrf_token %}
-        {{ form_pilote.non_field_errors }}
+        {{ form_iata.non_field_errors }}
 
         <div class="form-row">
             <div class="form-group col-md-3">
                 <div class="fieldWrapper">
-                    {{ form_pilote.prenom.errors }}
-                    {{ form_pilote.prenom.label_tag }}
-                    {{ form_pilote.prenom|add_class:"form-control" }}
+                    {{ form_iata.code_iata.errors }}
+                    {{ form_iata.code_iata.label_tag }}
+                    {{ form_iata.code_iata|add_class:"form-control" }}
                 </div>
             </div>
             <div class="form-group col-md-3">
                 <div class="fieldWrapper">
-                    {{ form_pilote.nom.errors }}
-                    {{ form_pilote.nom.label_tag }}
-                    {{ form_pilote.nom|add_class:"form-control" }}
+                    {{ form_iata.ville.errors }}
+                    {{ form_iata.ville.label_tag }}
+                    {{ form_iata.ville|add_class:"form-control" }}
                 </div>
             </div>
         </div>
@@ -32,29 +32,30 @@
         </div>
     </form>
 
-
     <div class="row">
-        <div class="col"><h2 class="display-4 mt-4 mb-4">Liste des pilotes</h2></div>
+        <div class="col"><h2 class="display-4 mt-4 mb-4">Liste des aéroports</h2></div>
     </div>
-    {% if pilotes_list %}
+    {% if iata_list %}
         <div class="row">
             <div class="col">
                 <table class="table table-striped table-bordered table-hover table-sm dt-responsive nowrap" id="table_id">
                     <thead>
                     <tr class="thead-dark">
-                        <th scope="col">Pilote</th>
+                        <th scope="col" style="width: 45%">Code IATA</th>
+                        <th scope="col" style="width: 45%">Ville</th>
                         <th scope="col" style="width: 10%">Actions</th>
                     </tr>
                 </thead>
                     <tbody>
-                        {% for pilote in pilotes_list %}
+                        {% for code_iata in iata_list %}
                             <tr>
-                                <td>{{ pilote.prenom }} {{ pilote.nom }}</td>
+                                <td>{{ code_iata.code_iata }}</td>
+                                <td>{{ code_iata.ville }}</td>
                                     <td class="text-center">
-                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="Modifier le pilote" href="{% url 'edit_pilote' pk=pilote.pk %}">
+                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="Modifier le code IATA" href="{% url 'edit_iata' pk=code_iata.pk %}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button>
                                         </a>
-                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le pilote" href="{% url 'remove_pilote' pk=pilote.pk %}" onclick="return confirm('Are you sure you want to delete this?')">
+                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le code IATA" href="{% url 'remove_iata' pk=code_iata.pk %}" onclick="return confirm('Are you sure you want to delete this?')">
                                             <button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                                         </a>
                                     </td>
@@ -66,7 +67,6 @@
             </div>
         </div>
     {% else %}
-        <p>Il n'y a pas de pilotes enregistrés.</p>
+        <p>Il n'y a pas de code IATA enregistrés.</p>
     {% endif %}
-
 {% endblock %}

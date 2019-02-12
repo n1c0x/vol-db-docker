@@ -8,8 +8,11 @@
         <title>{% block title %}Base de données de vols{% endblock %}</title>
         <!--bootstrap specific -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <!--bootstrap specific -->
@@ -24,7 +27,10 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-
+        
+        
+{% load static %}
+        <script type="text/javascript" charset="utf8" src="{% static 'vol/script.js' %}"></script>
 
 
     </head>
@@ -44,8 +50,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'somme' %}">Totaux</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'new_vol' %}">Ajouter</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ajouter</a>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="{% url 'new_vol' %}">Vol</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{% url 'new_pilote' %}">Pilote</a>
+                          <a class="dropdown-item" href="{% url 'new_immatriculation' %}">Immatriculation</a>
+                          <a class="dropdown-item" href="{% url 'new_iata' %}">Aéroport</a>
+                          <a class="dropdown-item" href="{% url 'new_type_avion' %}">Avion</a>
+                        </div>
+                        <!--<a class="nav-link" href="{% url 'new_vol' %}">Vol</a> #}-->
                     </li>
                 </ul>
                 <span class="navbar-text">

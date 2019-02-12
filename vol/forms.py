@@ -9,6 +9,9 @@ class VolForm(forms.ModelForm):
     'If the pilot is a CDB, set the default value of cdb to "user.prenom user.nom". '
     'If the pilot is an OPL, set the default value of opl to "user.prenom user.nom". '
 
+#   cdb = forms.ModelChoiceField(queryset=Pilote.objects.all(), widget=forms.Select(attrs={'onclick': 'rechargement(id)'}))
+    observation = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 4}))
+
     class Meta:
         model = Vol
         fields = (
@@ -46,7 +49,7 @@ class ImmatriculationForm(forms.ModelForm):
         exclude = ['user_id']
 
 
-class TypeAvion(forms.ModelForm):
+class TypeAvionForm(forms.ModelForm):
     class Meta:
         model = TypeAvion
         fields = (
@@ -62,5 +65,15 @@ class PiloteForm(forms.ModelForm):
         fields = (
             'prenom',
             'nom',
+            'user_id')
+        exclude = ['user_id']
+
+
+class IataForm(forms.ModelForm):
+    class Meta:
+        model = CodeIata
+        fields = (
+            'code_iata',
+            'ville',
             'user_id')
         exclude = ['user_id']

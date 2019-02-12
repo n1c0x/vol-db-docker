@@ -1,5 +1,5 @@
 from django import forms
-
+from tempus_dominus.widgets import DatePicker
 
 from .models import *
 
@@ -11,6 +11,7 @@ class VolForm(forms.ModelForm):
 
 #   cdb = forms.ModelChoiceField(queryset=Pilote.objects.all(), widget=forms.Select(attrs={'onclick': 'rechargement(id)'}))
     observation = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 4}))
+    date = forms.DateField(widget=DatePicker(attrs={'autocomplete': 'off', }))
 
     class Meta:
         model = Vol

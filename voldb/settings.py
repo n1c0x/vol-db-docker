@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'vol.apps.VolConfig',
     'admin_totals',
     'widget_tweaks',
+    'tempus_dominus',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,3 +136,9 @@ STATIC_ROOT = '/static/'
 
 
 LOGIN_REDIRECT_URL = '/'
+
+# Tempus Datepicker
+# TEMPUS_DOMINUS_LOCALIZE (default: False): if True, widgets will be translated to the selected browser language and use the localized date and time formats.
+# TEMPUS_DOMINUS_INCLUDE_ASSETS (default: True): if True, loads Tempus Dominus and moment JS and CSS from Cloudflare's CDN, otherwise loading the JS and CSS are up to you.
+TEMPUS_DOMINUS_LOCALIZE = True
+TEMPUS_DOMINUS_INCLUDE_ASSETS = True

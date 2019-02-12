@@ -266,8 +266,10 @@ def new_vol(request):
         form_vol = VolForm(request.POST)
         if form_vol.is_valid():
             vol = form_vol.save(commit=False)
+            vol.duree_jour = vol.duree_jour*60
+            vol.duree_nuit = vol.duree_nuit*60
             vol.user_id = request.user
-            vol.save()
+            #vol.save()
             return redirect('index')
     else:
         form_vol = VolForm()

@@ -2,6 +2,8 @@
 {% block title %} Ajouter un vol {% endblock %}
 {% block content %}
 {{ VolForm.media }}
+{{ form.media }}
+
 <div class="row">
     <div class="col"><h2 class="display-4 mt-4 mb-4">Nouveau vol</h2></div>
 </div>
@@ -18,7 +20,7 @@
                 <div class="fieldWrapper">
                     {{ form.date.errors }}
                     {{ form.date.label_tag }}
-                    {{ form.date|add_class:"form-control datepicker" }}
+                    {{ form.date|add_class:"form-control" }}
                 </div>
             </div>
             <div class="form-group col-md-3">
@@ -256,14 +258,19 @@ calculate = function(day) {
         minutes = minutes*100;
         minutes = Math.round(minutes);
         minutes = minutes/100
-        document.getElementById('id_duree_'+day).value = hour + ":" + minutes;
+        document.getElementById('id_duree_'+day).value = hour + ":" + minutes + ":00";
     }
-    
-    
-   }
-$( function() {
-    $( "#id_date" ).datepicker();
-} );
+}
+// $('.datepicker').datepicker({
+//     autoclose: true,
+//     calendarWeeks: true,
+//     clearBtn: true,
+//     language: "fr-FR",
+//     todayBtn: "linked",
+//     todayHighlight: "true",
+//     weekStart: "1",
+//     orientation: 'bottom auto',
+// });
 </script>
 
     </form>

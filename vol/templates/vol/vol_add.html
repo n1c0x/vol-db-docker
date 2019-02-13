@@ -11,19 +11,19 @@
     <form method="POST" class="post-form" id="new_vol">{% csrf_token %}
         {{ form.non_field_errors }}
 
-         <div class="row">
+        <div class="row">
             <div class="col"><p class="h2 mt-4 mb-4">Informations générales</p></div>
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <div class="fieldWrapper">
                     {{ form.date.errors }}
                     {{ form.date.label_tag }}
                     {{ form.date|add_class:"form-control" }}
                 </div>
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <div class="fieldWrapper">
                     {{ form.immatriculation.errors }}
                     {{ form.immatriculation.label_tag }}
@@ -32,23 +32,43 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="form-group col-md-3">
+        </div>
+
+        <div class="row">
+            <div class="col"><p class="h2 mt-4 mb-4">Équipage</p></div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
                 <div class="fieldWrapper">
                     {{ form.cdb.errors }}
-                    {{ form.cdb.label_tag }}<!--<a href="#" onclick="rechargement('id_cdb')">R</a>-->
+                    {{ form.cdb.label_tag }}
                     <div class="input-group">
                         {{ form.cdb|add_class:"form-control" }}
                     </div>
                 </div>
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <div class="fieldWrapper">
                     {{ form.opl.errors }}
                     {{ form.opl.label_tag }}
                     <div class="input-group">
                         {{ form.opl|add_class:"form-control" }}
                     </div>
+                </div>
+            </div>
+            <div class="form-group col-md-2">
+                <div class="fieldWrapper">
+                    {{ form.fonction.errors }}
+                    {{ form.fonction.label_tag }}
+                    {{ form.fonction|add_class:"form-control" }}
+                </div>
+            </div>
+            <div class="form-group col-md-2">
+                <div class="fieldWrapper">
+                    {{ form.poste.errors }}
+                    {{ form.poste.label_tag }}
+                    {{ form.poste|add_class:"form-control" }}
                 </div>
             </div>
         </div>
@@ -88,146 +108,143 @@
           </div>
         </div>
 
+        <div class="row">
+            <div class="col"><p class="h2 mt-4 mb-4">Aéroports et durées</p></div>
+        </div>
             <div class="form-row">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <div class="fieldWrapper">
                         {{ form.depart.errors }}
                         {{ form.depart.label_tag }}
                         {{ form.depart|add_class:"form-control" }}
                     </div>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <div class="fieldWrapper">
                         {{ form.arrivee.errors }}
                         {{ form.arrivee.label_tag }}
                         {{ form.arrivee|add_class:"form-control" }}
                     </div>
                 </div>
-                <div class="form-group col-md-3">
-                    <div class="fieldWrapper">
-                        {{ form.fonction.errors }}
-                        {{ form.fonction.label_tag }}
-                        {{ form.fonction|add_class:"form-control" }}
-                    </div>
-                </div>
-                <div class="form-group col-md-3">
-                    <div class="fieldWrapper">
-                        {{ form.poste.errors }}
-                        {{ form.poste.label_tag }}
-                        {{ form.poste|add_class:"form-control" }}
-                    </div>
-                </div>
-        </div>
-        
-
-        <div class="form-row">
-            <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                 <div class="fieldWrapper">
                     {{ form.duree_jour.errors }}
                     {{ form.duree_jour.label_tag }}
                     {{ form.duree_jour|add_class:"form-control" }}
                 </div>
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label>Conversion</label>
                 <input type="text" name="base_10" id="deci_jour" class="form-control form-control" placeholder="Durée décimale" onkeyup="calculate('jour');">
             </div>
         
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <div class="fieldWrapper">
                     {{ form.duree_nuit.errors }}
                     {{ form.duree_nuit.label_tag }}
                     {{ form.duree_nuit|add_class:"form-control" }}
                 </div>
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label>Conversion</label>
                 <input type="text" name="base_10" id="deci_nuit" class="form-control form-control" placeholder="Durée décimale" onkeyup="calculate('nuit');">
             </div>
         </div>
+        
 
-        <div id="accordion2" data-children=".itemAccordion">
-          <div class="itemAccordion">
-            <h5>
-              <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne3" aria-expanded="true" aria-controls="collapseOne3">
-                Simulateur +
-              </a>
-            </h5>
-            <div id="collapseOne3" class="collapse">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <div class="fieldWrapper">
-                            {{ form.vol_simu.errors }}
-                            {{ form.vol_simu.label_tag }}
-                            {{ form.vol_simu|add_class:"form-control" }}
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="fieldWrapper">
-                            {{ form.duree_simu.errors }}
-                            {{ form.duree_simu.label_tag }}
-                            {{ form.duree_simu|add_class:"form-control" }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+        <div class="row">
+            <div class="col"><p class="h2 mt-4 mb-4">Autres</p></div>
         </div>
 
-        <div id="accordion3" data-children=".itemAccordion">
-          <div class="itemAccordion">
-            <h5>
-              <a data-toggle="collapse" data-parent="#accordion3" href="#collapseOne4" aria-expanded="true" aria-controls="collapseOne4">
-                IFR +
-              </a>
-            </h5>
-            <div id="collapseOne4" class="collapse">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <div class="fieldWrapper">
-                            {{ form.vol_ifr.errors }}
-                            {{ form.vol_ifr.label_tag }}
-                            {{ form.vol_ifr|add_class:"form-control" }}
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <div class="fieldWrapper">
-                            {{ form.duree_ifr.errors }}
-                            {{ form.duree_ifr.label_tag }}
-                            {{ form.duree_ifr|add_class:"form-control" }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-        </div>
 
-        <div id="accordion4" data-children=".itemAccordion">
-          <div class="itemAccordion">
-            <h5>
-              <a data-toggle="collapse" data-parent="#accordion4" href="#collapseOne5" aria-expanded="true" aria-controls="collapseOne5">
-                Double commandes +
-              </a>
-            </h5>
-            <div id="collapseOne5" class="collapse">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <div class="fieldWrapper">
-                            {{ form.vol_dc.errors }}
-                            {{ form.vol_dc.label_tag }}
-                            {{ form.vol_dc|add_class:"form-control" }}
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <div id="accordion2" data-children=".itemAccordion">
+                  <div class="itemAccordion">
+                    <h5>
+                      <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne3" aria-expanded="true" aria-controls="collapseOne3">
+                        Simulateur +
+                      </a>
+                    </h5>
+                    <div id="collapseOne3" class="collapse">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="fieldWrapper">
+                                    {{ form.vol_simu.errors }}
+                                    {{ form.vol_simu.label_tag }}
+                                    {{ form.vol_simu|add_class:"form-control" }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="fieldWrapper">
+                                    {{ form.duree_simu.errors }}
+                                    {{ form.duree_simu.label_tag }}
+                                    {{ form.duree_simu|add_class:"form-control" }}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <div class="fieldWrapper">
-                            {{ form.duree_dc.errors }}
-                            {{ form.duree_dc.label_tag }}
-                            {{ form.duree_dc|add_class:"form-control" }}
-                        </div>
-                    </div>
+                  </div>
                 </div>
             </div>
-          </div>
+            <div class="form-group col-md-4">
+                <div id="accordion3" data-children=".itemAccordion">
+                  <div class="itemAccordion">
+                    <h5>
+                      <a data-toggle="collapse" data-parent="#accordion3" href="#collapseOne4" aria-expanded="true" aria-controls="collapseOne4">
+                        IFR +
+                      </a>
+                    </h5>
+                    <div id="collapseOne4" class="collapse">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="fieldWrapper">
+                                    {{ form.vol_ifr.errors }}
+                                    {{ form.vol_ifr.label_tag }}
+                                    {{ form.vol_ifr|add_class:"form-control" }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="fieldWrapper">
+                                    {{ form.duree_ifr.errors }}
+                                    {{ form.duree_ifr.label_tag }}
+                                    {{ form.duree_ifr|add_class:"form-control" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div id="accordion4" data-children=".itemAccordion">
+                  <div class="itemAccordion">
+                    <h5>
+                      <a data-toggle="collapse" data-parent="#accordion4" href="#collapseOne5" aria-expanded="true" aria-controls="collapseOne5">
+                        Double commandes +
+                      </a>
+                    </h5>
+                    <div id="collapseOne5" class="collapse">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="fieldWrapper">
+                                    {{ form.vol_dc.errors }}
+                                    {{ form.vol_dc.label_tag }}
+                                    {{ form.vol_dc|add_class:"form-control" }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="fieldWrapper">
+                                    {{ form.duree_dc.errors }}
+                                    {{ form.duree_dc.label_tag }}
+                                    {{ form.duree_dc|add_class:"form-control" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
         </div>
 
         <div class="form-row">
@@ -261,16 +278,6 @@ calculate = function(day) {
         document.getElementById('id_duree_'+day).value = hour + ":" + minutes;
     }
 }
-// $('.datepicker').datepicker({
-//     autoclose: true,
-//     calendarWeeks: true,
-//     clearBtn: true,
-//     language: "fr-FR",
-//     todayBtn: "linked",
-//     todayHighlight: "true",
-//     weekStart: "1",
-//     orientation: 'bottom auto',
-// });
 </script>
 
     </form>

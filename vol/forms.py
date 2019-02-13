@@ -9,7 +9,7 @@ class VolForm(forms.ModelForm):
     'If the pilot is a CDB, set the default value of cdb to "user.prenom user.nom". '
     'If the pilot is an OPL, set the default value of opl to "user.prenom user.nom". '
 
-#   cdb = forms.ModelChoiceField(queryset=Pilote.objects.all(), widget=forms.Select(attrs={'onclick': 'rechargement(id)'}))
+    immatriculation = forms.ModelChoiceField(queryset=Immatriculation.objects.all(), label="Avion")
     observation = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 4}))
     date = forms.DateField(widget=DatePicker(attrs={'autocomplete': 'off', }))
     duree_jour = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }))

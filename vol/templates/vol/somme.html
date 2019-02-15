@@ -5,7 +5,8 @@
 
         <div class="row">
             <div class="col"><h2 class="display-4 mt-4 mb-4">Totaux</h2></div>
-        </div>
+        </div>   
+
         {% for liste in data.liste_somme_vols_total %}
         <div class="row">
             <div class="col-12">
@@ -75,7 +76,11 @@
                                 {% else %}
                                     --:--:--
                                 {% endif %}</td>
-                            <td></td>
+                            <td>{% if liste.30.vol_ifr__sum|floatformat:"0" %}
+                                    {{ liste.30.vol_ifr__sum|floatformat:"0" }}
+                                {% else %}
+                                    0
+                                {% endif %}</td>
                             <td></td>
                             <td>{{ liste.25 }}</td>
                         </tr>
@@ -126,7 +131,11 @@
                                 {% else %}
                                     --:--:--
                                 {% endif %}</td>
-                            <td></td>
+                            <td>{% if liste.31.vol_ifr__sum|floatformat:"0" %}
+                                    {{ liste.31.vol_ifr__sum|floatformat:"0" }}
+                                {% else %}
+                                    0
+                                {% endif %}</td>
                             <td></td>
                             <td>{{ liste.26 }}</td>
                         </tr>
@@ -175,7 +184,11 @@
                                     --:--:--
                                 {% endif %}</td>
                             <td></td>
-                            <td></td>
+                            <td>{% if liste.32.vol_ifr__sum|floatformat:"0" %}
+                                    {{ liste.32.vol_ifr__sum|floatformat:"0" }}
+                                {% else %}
+                                    0
+                                {% endif %}</td>
                             <td></td>
                             <td>{{ liste.27 }}</td>
                         </tr>

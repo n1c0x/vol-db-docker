@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from .forms import *
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
@@ -12,21 +12,25 @@ from .models import Vol, Immatriculation, TypeAvion
 
 
 def homepage(request):
+    """ Render the home page. """
     return render(request, 'vol/homepage.html')
 
 
 def prices(request):
+    """ Render de prices page. """
     return render(request, 'vol/prices.html')
 
 
 @login_required
 def get_user_profile(request, username):
+    """ Render the current user profile on the profile page. """
     user = User.objects.get(username=username)
     return render(request, 'vol/profile.html', {"user": user})
 
 
 @login_required
 def index(request):
+    """ Render the index page which lists all flights for the current user. """
     current_user = request.user
     vols_list = Vol.objects.order_by('-date').filter(user_id=current_user.id)
     context = {
@@ -37,12 +41,19 @@ def index(request):
 
 @login_required
 def detail(request, vol_id):
-    vol = get_object_or_404(Vol, pk=vol_id)
+    """ Render the detail page of a given flight, identified by its ID. """
+    current_user = request.user
+    vols_list = Vol.objects.filter(user_id=current_user.id)
+    vol = get_object_or_404(vols_list, pk=vol_id)
     return render(request, 'vol/detail.html', {'vol': vol})
 
 
 @login_required
 def somme(request):
+    """
+        Render the sum page. This page displays the sums of all the flights
+        grouped by plane type, year and function.
+    """
     current_user = request.user
     avions = TypeAvion.objects.all()
 
@@ -91,7 +102,11 @@ def somme(request):
             immatriculation__type_avion__type_avion=modele_avion,
             date__year=current_year.year,
             user_id=current_user.id).aggregate(Sum('duree_simu'))
-        somme_vols_arrivee_ifr_cur_year = Vol.objects.filter(immatriculation__type_avion__type_avion=modele_avion, date__year=current_year.year, user_id=current_user.id).aggregate(Sum('vol_ifr'))
+        somme_vols_arrivee_ifr_cur_year = Vol.objects.filter(
+            immatriculation__type_avion__type_avion=modele_avion,
+            date__year=current_year.year,
+            user_id=current_user.id,
+            vol_ifr__gt=0).aggregate(Sum('vol_ifr'))
 
         # Last Year
         somme_vols_jour_cdb_last_year = Vol.objects.filter(
@@ -121,7 +136,10 @@ def somme(request):
         somme_vols_simu_last_year = Vol.objects.filter(
             immatriculation__type_avion__type_avion=modele_avion,
             user_id=current_user.id).exclude(date__gt=current_year).aggregate(Sum('duree_simu'))
-        somme_vols_arrivee_ifr_last_year = Vol.objects.filter(immatriculation__type_avion__type_avion=modele_avion, user_id=current_user.id).exclude(date__gt=current_year).aggregate(Sum('vol_ifr'))
+        somme_vols_arrivee_ifr_last_year = Vol.objects.filter(
+            immatriculation__type_avion__type_avion=modele_avion,
+            user_id=current_user.id,
+            vol_ifr__gt=0).exclude(date__gt=current_year).aggregate(Sum('vol_ifr'))
 
         # Total Year
         somme_vols_jour_cdb_total = Vol.objects.filter(
@@ -148,6 +166,10 @@ def somme(request):
             poste="Instruct",
             immatriculation__type_avion__type_avion=modele_avion,
             user_id=current_user.id).aggregate(Sum('duree_nuit'))
+        somme_vols_arrivee_ifr_total = Vol.objects.filter(
+            immatriculation__type_avion__type_avion=modele_avion,
+            user_id=current_user.id,
+            vol_ifr__gt=0).aggregate(Sum('vol_ifr'))
 
         somme_vols_jour_dc_cur_year = []
         somme_vols_nuit_dc_cur_year = []
@@ -249,6 +271,7 @@ def somme(request):
             somme_vols_simu_last_year,
             somme_vols_arrivee_ifr_cur_year,
             somme_vols_arrivee_ifr_last_year,
+            somme_vols_arrivee_ifr_total,
         ])
 
     data = {
@@ -262,12 +285,13 @@ def somme(request):
 
 @login_required
 def new_vol(request):
+    """ Render the new flight page and save the new flight. """
     if request.method == "POST":
         form_vol = VolForm(request.POST)
         if form_vol.is_valid():
             vol = form_vol.save(commit=False)
-            vol.duree_jour = vol.duree_jour*60
-            vol.duree_nuit = vol.duree_nuit*60
+            vol.duree_jour = vol.duree_jour * 60
+            vol.duree_nuit = vol.duree_nuit * 60
             vol.user_id = request.user
             vol.save()
             return redirect('index')
@@ -278,6 +302,7 @@ def new_vol(request):
 
 @login_required
 def edit_vol(request, pk):
+    """ Edit an existing flight via the new_vol view and save the edited flight. """
     vol = get_object_or_404(Vol, pk=pk)
     if request.method == "POST":
         form = VolForm(request.POST, instance=vol)
@@ -292,13 +317,17 @@ def edit_vol(request, pk):
 
 @login_required
 def remove_vol(request, pk):
-    vol = get_object_or_404(Vol, pk=pk)
+    """ Remove a given flight """
+    current_user = request.user
+    vols_list = Vol.objects.filter(user_id=current_user.id)
+    vol = get_object_or_404(vols_list, pk=pk)
     vol.delete()
     return redirect('index')
 
 
 @login_required
 def new_immatriculation(request):
+    """ Render the new immatriculation page and save the new immatriculation. """
     current_user = request.user
     immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=current_user.id)
     if request.method == "POST":
@@ -322,6 +351,7 @@ def new_immatriculation(request):
 
 @login_required
 def edit_immatriculation(request, pk):
+    """ Edit an existing immatriculation via the new_immatriculation view and save the edited immatriculation. """
     current_user = request.user
     immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=current_user.id)
     immatriculation = get_object_or_404(Immatriculation, pk=pk)
@@ -345,13 +375,17 @@ def edit_immatriculation(request, pk):
 
 @login_required
 def remove_immatriculation(request, pk):
-    immatriculation = get_object_or_404(Immatriculation, pk=pk)
+    """ Remove a given immatriculation """
+    current_user = request.user
+    immatriculation_list = Vol.objects.filter(user_id=current_user.id)
+    immatriculation = get_object_or_404(immatriculation_list, pk=pk)
     immatriculation.delete()
     return redirect('new_immatriculation')
 
 
 @login_required
 def new_pilote(request):
+    """ Render the new pilot page and save the new pilot. """
     current_user = request.user
     pilotes_list = Pilote.objects.order_by('nom').filter(user_id=current_user.id)
     if request.method == "POST":
@@ -375,6 +409,7 @@ def new_pilote(request):
 
 @login_required
 def edit_pilote(request, pk):
+    """ Edit an existing pilot via the new_pilote view and save the edited pilot. """
     current_user = request.user
     pilotes_list = Pilote.objects.order_by('nom').filter(user_id=current_user.id)
     pilote = get_object_or_404(Pilote, pk=pk)
@@ -398,13 +433,17 @@ def edit_pilote(request, pk):
 
 @login_required
 def remove_pilote(request, pk):
-    pilote = get_object_or_404(Pilote, pk=pk)
+    """ Remove a given pilot """
+    current_user = request.user
+    pilote_list = Vol.objects.filter(user_id=current_user.id)
+    pilote = get_object_or_404(pilote_list, pk=pk)
     pilote.delete()
     return redirect('new_pilote')
 
 
 @login_required
 def new_iata(request):
+    """ Render the new IATA code page and save the new IATA code. """
     current_user = request.user
     iata_list = CodeIata.objects.order_by('code_iata').filter(user_id=current_user.id)
     if request.method == "POST":
@@ -428,6 +467,7 @@ def new_iata(request):
 
 @login_required
 def edit_iata(request, pk):
+    """ Edit an existing IATA code via the new_iata view and save the edited IATA code. """
     current_user = request.user
     iata_list = CodeIata.objects.order_by('code_iata').filter(user_id=current_user.id)
     iata = get_object_or_404(CodeIata, pk=pk)
@@ -451,13 +491,17 @@ def edit_iata(request, pk):
 
 @login_required
 def remove_iata(request, pk):
-    iata = get_object_or_404(CodeIata, pk=pk)
+    """ Remove a given IATA code """
+    current_user = request.user
+    iata_list = Vol.objects.filter(user_id=current_user.id)
+    iata = get_object_or_404(iata_list, pk=pk)
     iata.delete()
     return redirect('new_iata')
 
 
 @login_required
 def new_type_avion(request):
+    """ Render the new plane type page and save the new plane type. """
     current_user = request.user
     type_avion_list = TypeAvion.objects.order_by('type_avion').filter(user_id=current_user.id)
     if request.method == "POST":
@@ -481,6 +525,7 @@ def new_type_avion(request):
 
 @login_required
 def edit_type_avion(request, pk):
+    """ Edit an existing plane type via the new_type_avion view and save the edited plane type. """
     current_user = request.user
     type_avion_list = TypeAvion.objects.order_by('type_avion').filter(user_id=current_user.id)
     type_avion = get_object_or_404(TypeAvion, pk=pk)
@@ -504,6 +549,9 @@ def edit_type_avion(request, pk):
 
 @login_required
 def remove_type_avion(request, pk):
-    type_avion = get_object_or_404(TypeAvion, pk=pk)
+    """ Remove a given plane type """
+    current_user = request.user
+    type_avion_list = Vol.objects.filter(user_id=current_user.id)
+    type_avion = get_object_or_404(type_avion_list, pk=pk)
     type_avion.delete()
     return redirect('new_type_avion')

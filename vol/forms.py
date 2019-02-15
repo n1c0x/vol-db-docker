@@ -5,6 +5,7 @@ from .models import *
 
 
 class VolForm(forms.ModelForm):
+    """ Generate the flight form. """
     'ToDo : Set default value of cdp/opl according to the status of the pilot.'
     'If the pilot is a CDB, set the default value of cdb to "user.prenom user.nom". '
     'If the pilot is an OPL, set the default value of opl to "user.prenom user.nom". '
@@ -14,6 +15,10 @@ class VolForm(forms.ModelForm):
     date = forms.DateField(widget=DatePicker(attrs={'autocomplete': 'off', }))
     duree_jour = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }))
     duree_nuit = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }))
+    duree_ifr = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), label="Durée IFR")
+    duree_simu = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }))
+    duree_dc = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }))
+    vol_ifr = forms.ChoiceField(choices=Vol.ARRIVEE_IFR, label="Arrivées IFR")
 
     class Meta:
         model = Vol
@@ -43,6 +48,7 @@ class VolForm(forms.ModelForm):
 
 
 class ImmatriculationForm(forms.ModelForm):
+    """ Generate the immatriculation form. """
     class Meta:
         model = Immatriculation
         fields = (
@@ -53,6 +59,7 @@ class ImmatriculationForm(forms.ModelForm):
 
 
 class TypeAvionForm(forms.ModelForm):
+    """ Generate the plane type form. """
     class Meta:
         model = TypeAvion
         fields = (
@@ -63,6 +70,7 @@ class TypeAvionForm(forms.ModelForm):
 
 
 class PiloteForm(forms.ModelForm):
+    """ Generate the pilot form. """
     class Meta:
         model = Pilote
         fields = (
@@ -73,6 +81,7 @@ class PiloteForm(forms.ModelForm):
 
 
 class IataForm(forms.ModelForm):
+    """ Generate the IATA code form. """
     class Meta:
         model = CodeIata
         fields = (

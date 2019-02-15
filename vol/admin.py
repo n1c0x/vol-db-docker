@@ -1,59 +1,77 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from .models import *
 
 from admin_totals.admin import ModelAdminTotals
-from django.db.models import Sum, Avg
+from django.db.models import Sum
 from django.db.models.functions import Coalesce
-
-
 
 
 class VolAdmin(ModelAdminTotals):
     fieldsets = [
-        ('Date Information',          {'fields' : ['date']}),
-        ('Personnel présent',         {'fields' : ['cdb','opl']}),
-        ('Personnel supplémentaire',  {
-            'classes' : ('collapse',),
-            'fields' : ['obs1','obs2','instructeur']}),
-        ('Code IATA des aéroports de départ et d\'arrivée',         {'fields' : ['depart','arrivee']}),
-        ('Durée',         {'fields' : ['duree_jour','duree_nuit']}),
-        ('Autre',          {'fields' : ['fonction','poste','immatriculation']}),
-        ('Simulateur',          {
-            'classes' : ('collapse',),
-            'fields' : ['vol_simu','duree_simu']}),
-        ('IFR',          {
-            'classes' : ('collapse',),
-            'fields' : ['vol_ifr','duree_ifr']}),
-        ('Doubles commandes',          {
-            'classes' : ('collapse',),
-            'fields' : ['vol_dc','duree_dc']}),
-        ('Observations',          {
-            'classes' : ('collapse',),
-            'fields' : ['observation']}),
-        ('Utilisateur',          {'fields' : ['user_id']}),
+        ('Date Information', {'fields': ['date']}),
+        ('Personnel présent', {'fields': ['cdb', 'opl']}),
+        ('Personnel supplémentaire', {'classes': ('collapse',),
+                                      'fields': ['obs1', 'obs2', 'instructeur']}),
+        ('Code IATA des aéroports de départ et d\'arrivée', {'fields': ['depart', 'arrivee']}),
+        ('Durée', {'fields': ['duree_jour', 'duree_nuit']}),
+        ('Autre', {'fields': ['fonction', 'poste', 'immatriculation']}),
+        ('Simulateur', {
+            'classes': ('collapse',),
+            'fields': ['vol_simu', 'duree_simu']}),
+        ('IFR', {
+            'classes': ('collapse',),
+            'fields': ['vol_ifr', 'duree_ifr']}),
+        ('Doubles commandes', {
+            'classes': ('collapse',),
+            'fields': ['vol_dc', 'duree_dc']}),
+        ('Observations', {
+            'classes': ('collapse',),
+            'fields': ['observation']}),
+        ('Utilisateur', {'fields': ['user_id']}),
     ]
 
-    def fonction_description(self,obj):
+    def fonction_description(self, obj):
         return obj.fonction
     fonction_description.short_description = "Fonction"
-    def poste_description(self,obj):
+
+    def poste_description(self, obj):
         return obj.poste
     poste_description.short_description = "Poste"
+
     def get_type_avion(self, obj):
         return obj.immatriculation.type_avion
     get_type_avion.short_description = "Avion"
+
     def total_general_count(self, obj):
         if obj.duree_jour and obj.duree_nuit:
             return obj.duree_jour + obj.duree_nuit
     total_general_count.short_description = "Total Jour + Nuit"
+
     def total_vol_ifr(self, obj):
         return obj.vol_ifr.annotate(filter(vol_fr=True))
+
     def vol_dc_description(self, obj):
         return obj.vol_dc
     vol_dc_description.short_description = "Vol DC"
 
-
-    list_display = ['date','depart','arrivee', 'duree_jour','duree_nuit','total_general_count','duree_ifr','vol_ifr','vol_dc','duree_dc','vol_simu','duree_simu','cdb','opl','get_type_avion','poste','user_id']
+    list_display = ['date',
+                    'depart',
+                    'arrivee',
+                    'duree_jour',
+                    'duree_nuit',
+                    'total_general_count',
+                    'duree_ifr',
+                    'vol_ifr',
+                    'vol_dc',
+                    'duree_dc',
+                    'vol_simu',
+                    'duree_simu',
+                    'cdb',
+                    'opl',
+                    'get_type_avion',
+                    'poste',
+                    'user_id']
     list_totals = [
         ('duree_jour', lambda field: Coalesce(Sum(field), 0)), ('duree_jour', Sum),
         ('duree_nuit', lambda field: Coalesce(Sum(field), 0)), ('duree_nuit', Sum),
@@ -74,27 +92,30 @@ class VolAdmin(ModelAdminTotals):
         'obs2__nom',
         'instructeur__prenom',
         'instructeur__nom',
-        'immatriculation__type_avion__type_avion',
-        ]
+        'immatriculation__type_avion__type_avion']
 
 
 class CodeIataAdmin(admin.ModelAdmin):
-    list_display = ('code_iata','ville',)
+    list_display = ('code_iata', 'ville',)
+
 
 class ImmatriculationAdmin(admin.ModelAdmin):
-    list_display = ('immatriculation','type_avion',)
+    list_display = ('immatriculation', 'type_avion',)
     list_filter = ['type_avion']
 
+
 class TypeAvionAdmin(admin.ModelAdmin):
-    list_display = ('type_avion','nb_moteurs',)
+    list_display = ('type_avion', 'nb_moteurs',)
     list_filter = ['nb_moteurs']
 
+
 class PiloteAdmin(admin.ModelAdmin):
-    list_display = ('prenom','nom',)
+    list_display = ('prenom', 'nom',)
 
-admin.site.register(CodeIata,CodeIataAdmin)
-admin.site.register(TypeAvion,TypeAvionAdmin)
-admin.site.register(Immatriculation,ImmatriculationAdmin)
-admin.site.register(Pilote,PiloteAdmin)
-admin.site.register(Vol,VolAdmin)
 
+admin.site.register(CodeIata, CodeIataAdmin)
+admin.site.register(TypeAvion, TypeAvionAdmin)
+admin.site.register(Immatriculation, ImmatriculationAdmin)
+admin.site.register(Pilote, PiloteAdmin)
+admin.site.register(Vol, VolAdmin)
+#admin.site.register(User, UserAdmin)

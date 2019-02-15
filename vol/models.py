@@ -1,5 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
+
+
+# class User(AbstractUser):
+#     pass
 
 
 class CodeIata(models.Model):
@@ -74,6 +78,12 @@ class Immatriculation(models.Model):
 
 class Pilote(models.Model):
     """ Define pilot table. """
+    POSTE = (
+        ('CDB', 'Commandant de bord'),
+        ('OPL', 'Copilote'),
+        ('Instruct', 'Instructeur'),
+        ('OBS', 'Observateur'),
+    )
     prenom = models.CharField(
         verbose_name='Prénom',
         max_length=255,
@@ -97,7 +107,7 @@ class Vol(models.Model):
     """ Define flight table. """
     FONCTION = (
         ('PF', 'Pilot Flying'),
-        ('PNF', 'Pilot Non Flying'),
+        ('PM (PNF)', 'Pilot Monitoring (Pilot Non Flying)'),
         ('MIX', 'Mix'),
     )
     POSTE = (

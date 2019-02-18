@@ -82,7 +82,7 @@ class Immatriculation(models.Model):
         ordering = ('immatriculation',)
 
     def __str__(self):
-        return self.immatriculation
+        return self.immatriculation + " (" + self.type_avion.type_avion + ")"
 
 
 class Pilote(models.Model):

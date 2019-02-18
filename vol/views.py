@@ -232,11 +232,26 @@ def somme(request):
             somme_vols_nuit_inst_total["duree_nuit__sum"] = timedelta(0)
 
         # Total de tous les vols
-        liste_somme_vols_cur_year = somme_vols_jour_cdb_cur_year["duree_jour__sum"] +somme_vols_nuit_cdb_cur_year["duree_nuit__sum"] + somme_vols_jour_opl_cur_year["duree_jour__sum"] + somme_vols_nuit_opl_cur_year["duree_nuit__sum"] + somme_vols_jour_inst_cur_year["duree_jour__sum"] + somme_vols_nuit_inst_cur_year["duree_nuit__sum"]
+        liste_somme_vols_cur_year = somme_vols_jour_cdb_cur_year["duree_jour__sum"] + \
+            somme_vols_nuit_cdb_cur_year["duree_nuit__sum"] + \
+            somme_vols_jour_opl_cur_year["duree_jour__sum"] + \
+            somme_vols_nuit_opl_cur_year["duree_nuit__sum"] + \
+            somme_vols_jour_inst_cur_year["duree_jour__sum"] + \
+            somme_vols_nuit_inst_cur_year["duree_nuit__sum"]
 
-        liste_somme_vols_last_year = somme_vols_jour_cdb_last_year["duree_jour__sum"] + somme_vols_nuit_cdb_last_year["duree_nuit__sum"] + somme_vols_jour_opl_last_year["duree_jour__sum"] + somme_vols_nuit_opl_last_year["duree_nuit__sum"] + somme_vols_jour_inst_last_year["duree_jour__sum"] + somme_vols_nuit_inst_last_year["duree_nuit__sum"]
+        liste_somme_vols_last_year = somme_vols_jour_cdb_last_year["duree_jour__sum"] + \
+            somme_vols_nuit_cdb_last_year["duree_nuit__sum"] + \
+            somme_vols_jour_opl_last_year["duree_jour__sum"] + \
+            somme_vols_nuit_opl_last_year["duree_nuit__sum"] + \
+            somme_vols_jour_inst_last_year["duree_jour__sum"] + \
+            somme_vols_nuit_inst_last_year["duree_nuit__sum"]
 
-        liste_somme_vols_total_total = somme_vols_jour_cdb_total["duree_jour__sum"] + somme_vols_nuit_cdb_total["duree_nuit__sum"] + somme_vols_jour_opl_total["duree_jour__sum"] + somme_vols_nuit_opl_total["duree_nuit__sum"] + somme_vols_jour_inst_total["duree_jour__sum"] + somme_vols_nuit_inst_total["duree_nuit__sum"]
+        liste_somme_vols_total_total = somme_vols_jour_cdb_total["duree_jour__sum"] + \
+            somme_vols_nuit_cdb_total["duree_nuit__sum"] + \
+            somme_vols_jour_opl_total["duree_jour__sum"] + \
+            somme_vols_nuit_opl_total["duree_nuit__sum"] + \
+            somme_vols_jour_inst_total["duree_jour__sum"] + \
+            somme_vols_nuit_inst_total["duree_nuit__sum"]
 
         liste_somme_vols_total.append([
             modele_avion,

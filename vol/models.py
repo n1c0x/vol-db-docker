@@ -25,6 +25,9 @@ class CodeIata(models.Model):
         verbose_name="Utilisateur",
     )
 
+    class Meta:
+        ordering = ('code_iata',)
+
     def __str__(self):
         return self.code_iata
 
@@ -51,6 +54,9 @@ class TypeAvion(models.Model):
         verbose_name="Utilisateur",
     )
 
+    class Meta:
+        ordering = ('type_avion',)
+
     def __str__(self):
         return self.type_avion
 
@@ -71,6 +77,9 @@ class Immatriculation(models.Model):
         related_name='%(class)s_utilisateur',
         verbose_name="Utilisateur",
     )
+
+    class Meta:
+        ordering = ('immatriculation',)
 
     def __str__(self):
         return self.immatriculation
@@ -98,6 +107,9 @@ class Pilote(models.Model):
         related_name='%(class)s_utilisateur',
         verbose_name="Utilisateur",
     )
+
+    class Meta:
+        ordering = ('nom',)
 
     def __str__(self):
         return '%s %s' % (self.prenom, self.nom)

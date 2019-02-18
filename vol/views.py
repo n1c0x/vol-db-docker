@@ -1,13 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Sum, Count
+from django.db.models import Sum
 from .forms import *
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-
 from datetime import date, datetime, timedelta
-
 from .models import Vol, Immatriculation, TypeAvion
 
 
@@ -45,7 +43,10 @@ def detail(request, vol_id):
     current_user = request.user
     vols_list = Vol.objects.filter(user_id=current_user.id)
     vol = get_object_or_404(vols_list, pk=vol_id)
-    return render(request, 'vol/detail.html', {'vol': vol})
+    if current_user == vol.user_id:
+        return render(request, 'vol/detail.html', {'vol': vol})
+#    else:
+#        return render(request, 'vol/error_not_allowed.html')
 
 
 @login_required
@@ -318,6 +319,7 @@ def new_vol(request):
 @login_required
 def edit_vol(request, pk):
     """ Edit an existing flight via the new_vol view and save the edited flight. """
+    current_user = request.user
     vol = get_object_or_404(Vol, pk=pk)
     if request.method == "POST":
         form = VolForm(request.POST, instance=vol)
@@ -570,3 +572,4 @@ def remove_type_avion(request, pk):
     type_avion = get_object_or_404(type_avion_list, pk=pk)
     type_avion.delete()
     return redirect('new_type_avion')
+

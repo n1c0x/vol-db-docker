@@ -4,9 +4,12 @@
 {{ VolForm.media }}
 {{ form.media }}
 
+
+
 <div class="row">
     <div class="col"><h2 class="display-4 mt-4 mb-4">Nouveau vol</h2></div>
 </div>
+
 {% load widget_tweaks %}
     <form method="POST" class="post-form" id="new_vol">{% csrf_token %}
         {{ form.non_field_errors }}
@@ -130,24 +133,52 @@
                 <div class="fieldWrapper">
                     {{ form.duree_jour.errors }}
                     {{ form.duree_jour.label_tag }}
-                    {{ form.duree_jour|add_class:"form-control" }}
+                    {{ form.duree_jour|add_class:"form-control durationpicker" }}
                 </div>
             </div>
             <div class="form-group col-md-2">
-                <label>Conversion</label>
-                <input type="text" name="base_10" id="deci_jour" class="form-control form-control" placeholder="Durée décimale" onkeyup="calculate('jour');">
+                <div id="accordion2" data-children=".itemAccordion">
+                  <div class="itemAccordion">
+                    <label>
+                      <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne7" aria-expanded="true" aria-controls="collapseOne7">
+                        Conversion +
+                      </a>
+                    </label>
+                    <div id="collapseOne7" class="collapse">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="base_10" id="deci_jour" class="form-control form-control" placeholder="ex : 1.5" onkeyup="calculate('jour');">
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         
             <div class="form-group col-md-2">
                 <div class="fieldWrapper">
                     {{ form.duree_nuit.errors }}
                     {{ form.duree_nuit.label_tag }}
-                    {{ form.duree_nuit|add_class:"form-control" }}
+                    {{ form.duree_nuit|add_class:"form-control durationpicker" }}
                 </div>
             </div>
             <div class="form-group col-md-2">
-                <label>Conversion</label>
-                <input type="text" name="base_10" id="deci_nuit" class="form-control form-control" placeholder="Durée décimale" onkeyup="calculate('nuit');">
+                <div id="accordion2" data-children=".itemAccordion">
+                  <div class="itemAccordion">
+                    <label>
+                      <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne6" aria-expanded="true" aria-controls="collapseOne6">
+                        Conversion +
+                      </a>
+                    </label>
+                    <div id="collapseOne6" class="collapse">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="base_10" id="deci_nuit" class="form-control form-control" placeholder="ex : 1.5" onkeyup="calculate('nuit');">
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
         
@@ -293,6 +324,12 @@ calculate = function(day) {
         minutes = minutes*100;
         minutes = Math.round(minutes);
         minutes = minutes/100
+        if (hour <= 9){
+            hour = "0"+hour
+        }
+        if (minutes <= 9){
+            minutes = "0"+minutes
+        }
         document.getElementById('id_duree_'+day).value = hour + ":" + minutes;
     }
 }

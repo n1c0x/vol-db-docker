@@ -39,14 +39,14 @@ def index(request):
 
 @login_required
 def detail(request, vol_id):
-    """ Render the detail page of a given flight, identified by its ID. """
+    """ Render the detail page of a given flight, identified by its id. """
     current_user = request.user
     vols_list = Vol.objects.filter(user_id=current_user.id)
     vol = get_object_or_404(vols_list, pk=vol_id)
     if current_user == vol.user_id:
         return render(request, 'vol/detail.html', {'vol': vol})
-#    else:
-#        return render(request, 'vol/error_not_allowed.html')
+    # else:
+    #     return render(request, 'vol/error_not_allowed.html')
 
 
 @login_required
@@ -187,10 +187,10 @@ def somme(request):
             somme_vols_jour_opl_cur_year["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_opl_cur_year["duree_nuit__sum"] is None:
             somme_vols_nuit_opl_cur_year["duree_nuit__sum"] = timedelta(0)
-#        if somme_vols_jour_dc_cur_year["duree_jour__sum"] is None:
-#            somme_vols_jour_dc_cur_year["duree_jour__sum"] = datetime.timedelta(0)
-#        if somme_vols_nuit_dc_cur_year["duree_nuit__sum"] is None:
-#            somme_vols_nuit_dc_cur_year["duree_nuit__sum"] = datetime.timedelta(0)
+        # if somme_vols_jour_dc_cur_year["duree_jour__sum"] is None:
+        #     somme_vols_jour_dc_cur_year["duree_jour__sum"] = datetime.timedelta(0)
+        # if somme_vols_nuit_dc_cur_year["duree_nuit__sum"] is None:
+        #     somme_vols_nuit_dc_cur_year["duree_nuit__sum"] = datetime.timedelta(0)
         if somme_vols_jour_inst_cur_year["duree_jour__sum"] is None:
             somme_vols_jour_inst_cur_year["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_inst_cur_year["duree_nuit__sum"] is None:
@@ -205,10 +205,10 @@ def somme(request):
             somme_vols_jour_opl_last_year["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_opl_last_year["duree_nuit__sum"] is None:
             somme_vols_nuit_opl_last_year["duree_nuit__sum"] = timedelta(0)
-#        if somme_vols_jour_dc_last_year["duree_jour__sum"] is None:
-#            somme_vols_jour_dc_last_year["duree_jour__sum"] = datetime.timedelta(0)
-#        if somme_vols_nuit_dc_last_year["duree_nuit__sum"] is None:
-#            somme_vols_nuit_dc_last_year["duree_nuit__sum"] = datetime.timedelta(0)
+       # if somme_vols_jour_dc_last_year["duree_jour__sum"] is None:
+       #     somme_vols_jour_dc_last_year["duree_jour__sum"] = datetime.timedelta(0)
+       # if somme_vols_nuit_dc_last_year["duree_nuit__sum"] is None:
+       #     somme_vols_nuit_dc_last_year["duree_nuit__sum"] = datetime.timedelta(0)
         if somme_vols_jour_inst_last_year["duree_jour__sum"] is None:
             somme_vols_jour_inst_last_year["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_inst_last_year["duree_nuit__sum"] is None:
@@ -223,10 +223,10 @@ def somme(request):
             somme_vols_jour_opl_total["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_opl_total["duree_nuit__sum"] is None:
             somme_vols_nuit_opl_total["duree_nuit__sum"] = timedelta(0)
-#        if somme_vols_jour_dc_total["duree_jour__sum"] is None:
-#            somme_vols_jour_dc_total["duree_jour__sum"] = datetime.timedelta(0)
-#        if somme_vols_nuit_dc_total["duree_nuit__sum"] is None:
-#            somme_vols_nuit_dc_total["duree_nuit__sum"] = datetime.timedelta(0)
+       # if somme_vols_jour_dc_total["duree_jour__sum"] is None:
+       #     somme_vols_jour_dc_total["duree_jour__sum"] = datetime.timedelta(0)
+       # if somme_vols_nuit_dc_total["duree_nuit__sum"] is None:
+       #     somme_vols_nuit_dc_total["duree_nuit__sum"] = datetime.timedelta(0)
         if somme_vols_jour_inst_total["duree_jour__sum"] is None:
             somme_vols_jour_inst_total["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_inst_total["duree_nuit__sum"] is None:
@@ -299,6 +299,15 @@ def somme(request):
     return render(request, 'vol/somme.html', {'data': data})
 
 
+def convert_timedelta_minutes_to_hours(duration):
+    """ Convert a timedelta from format mm:ss to hh:mm """
+    if duration != '':
+        duration = duration * 60
+    else:
+        duration = timedelta(0)
+    return duration
+
+
 @login_required
 def new_vol(request):
     """ Render the new flight page and save the new flight. """
@@ -306,14 +315,25 @@ def new_vol(request):
         form_vol = VolForm(request.POST)
         if form_vol.is_valid():
             vol = form_vol.save(commit=False)
-            vol.duree_jour = vol.duree_jour * 60
-            vol.duree_nuit = vol.duree_nuit * 60
+            print(vol.duree_jour)
+            vol.duree_jour = convert_timedelta_minutes_to_hours(vol.duree_jour)
+            print(vol.duree_jour)
+            vol.duree_nuit = convert_timedelta_minutes_to_hours(vol.duree_nuit)
+            vol.duree_ifr = convert_timedelta_minutes_to_hours(vol.duree_ifr)
+            vol.duree_simu = convert_timedelta_minutes_to_hours(vol.duree_simu)
+            vol.duree_dc = convert_timedelta_minutes_to_hours(vol.duree_dc)
             vol.user_id = request.user
-            vol.save()
+            # vol.save()
             return redirect('index')
     else:
         form_vol = VolForm()
     return render(request, 'vol/vol_add.html', {'form': form_vol})
+
+
+def convert_timedelta(duration):
+    if len(duration) < 8:
+        duration = convert_empty_string_to_timedelta(duration)
+    return duration
 
 
 @login_required
@@ -323,10 +343,19 @@ def edit_vol(request, pk):
     vol = get_object_or_404(Vol, pk=pk)
     if request.method == "POST":
         form = VolForm(request.POST, instance=vol)
-        if form.is_valid():
-            vol = form.save(commit=False)
-            vol.save()
-            return redirect('index')
+        if current_user == vol.user_id:
+            if form.is_valid():
+                vol = form.save(commit=False)
+                # vol.duree_jour = convert_timedelta(vol.duree_jour)
+                # vol.duree_nuit = convert_timedelta(vol.duree_nuit)
+                # vol.duree_simu = convert_timedelta(vol.duree_simu)
+                # vol.duree_ifr = convert_timedelta(vol.duree_ifr)
+                # vol.duree_dc = convert_timedelta(vol.duree_dc)
+                # print(type(vol.duree_jour))
+                vol.save()
+                return redirect('index')
+    #    else:
+    #       return render(request, 'vol/error_not_allowed.html')
     else:
         form = VolForm(instance=vol)
     return render(request, 'vol/vol_add.html', {'form': form})

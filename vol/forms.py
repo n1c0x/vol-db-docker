@@ -15,9 +15,9 @@ class VolForm(forms.ModelForm):
     date = forms.DateField(widget=DatePicker(attrs={'autocomplete': 'off', }))
     duree_jour = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }))
     duree_nuit = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }))
-    duree_ifr = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), label="Durée IFR")
-    duree_simu = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }))
-    duree_dc = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }))
+    duree_ifr = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), label="Durée IFR", required=False)
+    duree_simu = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), required=False)
+    duree_dc = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), required=False)
     vol_ifr = forms.ChoiceField(choices=Vol.ARRIVEE_IFR, label="Arrivées IFR")
 
     class Meta:

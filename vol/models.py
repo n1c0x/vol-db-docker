@@ -249,7 +249,7 @@ class Vol(models.Model):
         verbose_name="Durée Simu",
         blank=True,
         null=True,
-        help_text='Format hh:mm:ss'
+        help_text='Format hh:mm:ss',
     )
     user_id = models.ForeignKey(
         User,

@@ -433,7 +433,7 @@ def remove_immatriculation(request, pk):
 def new_pilote(request):
     """ Render the new pilot page and save the new pilot. """
     current_user = request.user
-    pilotes_list = Pilote.objects.order_by('nom').filter(user_id=current_user.id)
+    pilotes_list = Pilote.objects.order_by('nom', 'prenom').filter(user_id=current_user.id)
     if request.method == "POST":
         form_pilote = PiloteForm(request.POST)
         if form_pilote.is_valid():

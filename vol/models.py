@@ -108,10 +108,10 @@ class Pilote(models.Model):
     )
 
     class Meta:
-        ordering = ('nom',)
+        ordering = ('nom', 'prenom')
 
     def __str__(self):
-        return '%s %s' % (self.prenom, self.nom)
+        return '%s %s' % (self.nom, self.prenom)
 
 
 class Vol(models.Model):

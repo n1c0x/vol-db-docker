@@ -1,8 +1,45 @@
 from django.db import models
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-# class User(AbstractUser):
-#     pass
+
+class Profile(models.Model):
+    CLIENT_TYPE = (
+        ('Gratuit', 'Gratuit'),
+        ('Payant', 'Payant'),
+    )
+    CURRENT_POSITION = (
+        ('CDB', 'Commandant de bord'),
+        ('OPL', 'Copilote'),
+        ('INSTRUC', 'Instructeur'),
+        ('RETR', 'Retraité'),
+        ('AUTRE', 'Autre'),
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    client_type = models.CharField(
+        choices=CLIENT_TYPE,
+        max_length=25,
+        verbose_name='Type de client',
+    )
+    current_position = models.CharField(
+        choices=CURRENT_POSITION,
+        max_length=25,
+        verbose_name='Poste actuel',
+    )
+    employer = models.CharField(
+        max_length=25,
+        verbose_name='Employeur',
+    )
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
 
 class CodeIata(models.Model):
@@ -29,6 +66,10 @@ class CodeIata(models.Model):
 
     def __str__(self):
         return self.code_iata
+
+    def save(self, force_insert=False, force_update=False):
+        self.code_iata = self.code_iata.upper()
+        super(CodeIata, self).save(force_insert, force_update)
 
 
 class TypeAvion(models.Model):
@@ -59,6 +100,10 @@ class TypeAvion(models.Model):
     def __str__(self):
         return self.type_avion
 
+    def save(self, force_insert=False, force_update=False):
+        self.type_avion = self.type_avion.upper()
+        super(TypeAvion, self).save(force_insert, force_update)
+
 
 class Immatriculation(models.Model):
     """ Define immatriculation table. """
@@ -81,7 +126,14 @@ class Immatriculation(models.Model):
         ordering = ('immatriculation',)
 
     def __str__(self):
-        return self.immatriculation + " (" + self.type_avion.type_avion + ")"
+        return self.immatriculation
+
+    # def __str__(self):
+    #     return self.immatriculation + " (" + self.type_avion.type_avion + ")"
+
+    def save(self, force_insert=False, force_update=False):
+        self.immatriculation = self.immatriculation.upper()
+        super(Immatriculation, self).save(force_insert, force_update)
 
 
 class Pilote(models.Model):

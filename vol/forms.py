@@ -1,7 +1,7 @@
 from django import forms
 from tempus_dominus.widgets import DatePicker
-
 from .models import *
+from .views import *
 
 
 class VolForm(forms.ModelForm):
@@ -10,7 +10,19 @@ class VolForm(forms.ModelForm):
     'If the pilot is a CDB, set the default value of cdb to "user.prenom user.nom". '
     'If the pilot is an OPL, set the default value of opl to "user.prenom user.nom". '
 
+    def __init__(self, current_user, *args, **kwargs):
+        # current_user = kwargs.pop('current_user', None)
+        super(VolForm, self).__init__(*args, **kwargs)
+        # print(self.current_user)
+        self.current_user = current_user
+        # if current_user:
+        #     self.fields['current_user'].initial = current_user
+
+    def get_current_user(self):
+        return self.current_user
+
     immatriculation = forms.ModelChoiceField(queryset=Immatriculation.objects.all(), label="Avion")
+    # immatriculation = forms.ModelChoiceField(queryset=Immatriculation.objects.filter(user_id=get_current_user(""), label="Avion"))
     observation = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 4}))
     date = forms.DateField(widget=DatePicker(attrs={'autocomplete': 'off', }))
     duree_jour = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', 'maxlength': 5}), required=False)
@@ -45,6 +57,12 @@ class VolForm(forms.ModelForm):
             'duree_simu',
             'user_id')
         exclude = ['user_id']
+
+    # def __init__(self, current_user, *args, **kwargs):
+    #     self.current_user = current_user
+    #     super(VolForm, self).__init__(*args, **kwargs)
+        #super(VolForm, self).__init__(*args, **kwargs)
+        #self.fields['user_id'].queryset = self.fields['user_id'].queryset.exclude(id=current_user.id)
 
 
 class ImmatriculationForm(forms.ModelForm):
@@ -89,3 +107,15 @@ class IataForm(forms.ModelForm):
             'ville',
             'user_id')
         exclude = ['user_id']
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('client_type', 'current_position', 'employer')

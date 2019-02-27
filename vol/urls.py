@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^type_avion/(?P<pk>[0-9]+)/remove/$', views.remove_type_avion, name='remove_type_avion'),
     url(r'^(?P<pk>[0-9]+)/edit/$', views.edit_vol, name='edit_vol'),
     url(r'^(?P<pk>[0-9]+)/remove/$', views.remove_vol, name='remove_vol'),
-    url(r'profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='profile'),
+    url(r'^profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='profile'),
+    url(r'^profile/(?P<username>[a-zA-Z0-9]+)/edit/$', views.update_user_profile, name='edit_profile'),
     url(r'^prices', views.prices, name='prices'),
 ]

@@ -27,6 +27,52 @@ def get_user_profile(request, username):
 
 
 @login_required
+def update_user_profile(request, username):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            user_form.save()
+            profile.save(update_fields=['current_position', 'employer'])
+            return redirect('profile', username=username)
+        # else:
+        #     return render(request, 'vol/error_not_allowed.html')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'vol/profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form,
+    })
+
+
+@login_required
+def edit_vol(request, pk):
+    """ Edit an existing flight via the new_vol view and save the edited flight. """
+    current_user = request.user
+    vol = get_object_or_404(Vol, pk=pk)
+    if request.method == "POST":
+        form = VolForm(request.POST, instance=vol)
+        if current_user == vol.user_id:
+            if form.is_valid():
+                vol = form.save(commit=False)
+                # vol.duree_jour = convert_timedelta(vol.duree_jour)
+                # vol.duree_nuit = convert_timedelta(vol.duree_nuit)
+                # vol.duree_simu = convert_timedelta(vol.duree_simu)
+                # vol.duree_ifr = convert_timedelta(vol.duree_ifr)
+                # vol.duree_dc = convert_timedelta(vol.duree_dc)
+                # print(type(vol.duree_jour))
+                vol.save()
+                return redirect('index')
+    #    else:
+    #       return render(request, 'vol/error_not_allowed.html')
+    else:
+        form = VolForm(instance=vol)
+    return render(request, 'vol/vol_add.html', {'form': form})
+
+
+@login_required
 def index(request):
     """ Render the index page which lists all flights for the current user. """
     current_user = request.user
@@ -312,7 +358,7 @@ def convert_timedelta_minutes_to_hours(duration):
 def new_vol(request):
     """ Render the new flight page and save the new flight. """
     if request.method == "POST":
-        form_vol = VolForm(request.POST)
+        form_vol = VolForm(request.POST, current_user=request.user)
         if form_vol.is_valid():
             vol = form_vol.save(commit=False)
             print(vol.duree_jour)
@@ -326,7 +372,7 @@ def new_vol(request):
             # vol.save()
             return redirect('index')
     else:
-        form_vol = VolForm()
+        form_vol = VolForm(current_user=request.user)
     return render(request, 'vol/vol_add.html', {'form': form_vol})
 
 
@@ -601,4 +647,3 @@ def remove_type_avion(request, pk):
     type_avion = get_object_or_404(type_avion_list, pk=pk)
     type_avion.delete()
     return redirect('new_type_avion')
-

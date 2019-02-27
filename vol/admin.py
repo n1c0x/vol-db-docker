@@ -1,10 +1,25 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 from .models import *
-
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
 from admin_totals.admin import ModelAdminTotals
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
+
+# Define an inline admin descriptor for Client model
+# which acts a bit like a singleton
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    can_delete = False
+    verbose_name_plural = 'Client'
+
+# Define a new User admin
+class UserAdmin(BaseUserAdmin):
+    inlines = (ProfileInline,)
+
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 
 class VolAdmin(ModelAdminTotals):
@@ -118,4 +133,3 @@ admin.site.register(TypeAvion, TypeAvionAdmin)
 admin.site.register(Immatriculation, ImmatriculationAdmin)
 admin.site.register(Pilote, PiloteAdmin)
 admin.site.register(Vol, VolAdmin)
-#admin.site.register(User, UserAdmin)

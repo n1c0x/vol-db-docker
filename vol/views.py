@@ -28,13 +28,16 @@ def get_user_profile(request, username):
 
 @login_required
 def update_user_profile(request, username):
+    is_modified = True
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
         if user_form.is_valid() and profile_form.is_valid():
-            profile = profile_form.save(commit=False)
+            profile_form = profile_form.save(commit=False)
+            for x in Profile.objects.all():
+                profile_form.client_type = x.client_type
             user_form.save()
-            profile.save(update_fields=['current_position', 'employer'])
+            profile_form.save()
             return redirect('profile', username=username)
         # else:
         #     return render(request, 'vol/error_not_allowed.html')
@@ -44,6 +47,7 @@ def update_user_profile(request, username):
     return render(request, 'vol/profile.html', {
         'user_form': user_form,
         'profile_form': profile_form,
+        'is_modified': is_modified,
     })
 
 

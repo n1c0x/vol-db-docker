@@ -3,20 +3,15 @@ from tempus_dominus.widgets import DatePicker
 from .models import *
 from .views import *
 
+from django.forms.widgets import TextInput
+from django.utils.dateparse import parse_duration
+
 
 class VolForm(forms.ModelForm):
     """ Generate the flight form. """
     'ToDo : Set default value of cdp/opl according to the status of the pilot.'
     'If the pilot is a CDB, set the default value of cdb to "user.prenom user.nom". '
     'If the pilot is an OPL, set the default value of opl to "user.prenom user.nom". '
-
-    def __init__(self, current_user, *args, **kwargs):
-        # current_user = kwargs.pop('current_user', None)
-        super(VolForm, self).__init__(*args, **kwargs)
-        # print(self.current_user)
-        self.current_user = current_user
-        # if current_user:
-        #     self.fields['current_user'].initial = current_user
 
     def get_current_user(self):
         return self.current_user
@@ -58,15 +53,20 @@ class VolForm(forms.ModelForm):
             'user_id')
         exclude = ['user_id']
 
-    # def __init__(self, current_user, *args, **kwargs):
-    #     self.current_user = current_user
-    #     super(VolForm, self).__init__(*args, **kwargs)
-        #super(VolForm, self).__init__(*args, **kwargs)
-        #self.fields['user_id'].queryset = self.fields['user_id'].queryset.exclude(id=current_user.id)
-
 
 class ImmatriculationForm(forms.ModelForm):
     """ Generate the immatriculation form. """
+
+    def __init__(self, user, *args, **kwargs):
+        super(ImmatriculationForm, self).__init__(*args, **kwargs)
+        try:
+            user_id = Profile.objects.values_list('user_id', flat=True).get(user=user)
+            # self.fields['type_avion'] = Immatriculation.objects.filter(user_id=user_id)
+            # self.fields['immatriculation'].queryset = Immatriculation.objects.filter(user_id=user_id)
+        except Profile.DoesNotExist:
+            # there is not userextend corresponding to this user, do what you want
+            pass
+
     class Meta:
         model = Immatriculation
         fields = (

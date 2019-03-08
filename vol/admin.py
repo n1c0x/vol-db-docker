@@ -6,20 +6,15 @@ from admin_totals.admin import ModelAdminTotals
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
 
-# Define an inline admin descriptor for Client model
-# which acts a bit like a singleton
+
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False
     verbose_name_plural = 'Client'
 
-# Define a new User admin
+
 class UserAdmin(BaseUserAdmin):
     inlines = (ProfileInline,)
-
-# Re-register UserAdmin
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
 
 
 class VolAdmin(ModelAdminTotals):
@@ -111,21 +106,21 @@ class VolAdmin(ModelAdminTotals):
 
 
 class CodeIataAdmin(admin.ModelAdmin):
-    list_display = ('code_iata', 'ville',)
+    list_display = ('code_iata', 'ville', 'user_id')
 
 
 class ImmatriculationAdmin(admin.ModelAdmin):
-    list_display = ('immatriculation', 'type_avion',)
+    list_display = ('immatriculation', 'type_avion', 'user_id')
     list_filter = ['type_avion']
 
 
 class TypeAvionAdmin(admin.ModelAdmin):
-    list_display = ('type_avion', 'nb_moteurs',)
+    list_display = ('type_avion', 'nb_moteurs', 'user_id')
     list_filter = ['nb_moteurs']
 
 
 class PiloteAdmin(admin.ModelAdmin):
-    list_display = ('prenom', 'nom',)
+    list_display = ('prenom', 'nom', 'user_id')
 
 
 admin.site.register(CodeIata, CodeIataAdmin)
@@ -133,3 +128,6 @@ admin.site.register(TypeAvion, TypeAvionAdmin)
 admin.site.register(Immatriculation, ImmatriculationAdmin)
 admin.site.register(Pilote, PiloteAdmin)
 admin.site.register(Vol, VolAdmin)
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

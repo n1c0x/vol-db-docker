@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import gettext as _
 
 
 class Profile(models.Model):
@@ -16,7 +17,7 @@ class Profile(models.Model):
         ('RETR', 'Retraité'),
         ('AUTRE', 'Autre'),
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     client_type = models.CharField(
         choices=CLIENT_TYPE,
         max_length=25,
@@ -240,11 +241,22 @@ class Vol(models.Model):
         verbose_name="Arrivée",
     )
     duree_jour = models.DurationField(
-        verbose_name="Vol de jour",
-        blank=True,
         null=True,
-        help_text='Format hh:mm:ss'
+        blank=True,
+        verbose_name=_('duree_jour'),
+        help_text=_('[DD] [HH:[MM:]]ss[.uuuuuu] format')
     )
+
+    def duree_jour_HHmm(self):
+        sec = self.duree_jour.total_seconds()
+        return '%02d:%02d' % (int((sec / 3600) % 3600), int((sec / 60) % 60))
+
+    # duree_jour = models.DurationField(
+    #     verbose_name="Vol de jour",
+    #     blank=True,
+    #     null=True,
+    #     help_text='Format hh:mm:ss'
+    # )
     duree_nuit = models.DurationField(
         verbose_name="Vol de nuit",
         blank=True,

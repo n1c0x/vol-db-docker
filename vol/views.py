@@ -52,31 +52,6 @@ def update_user_profile(request, username):
 
 
 @login_required
-def edit_vol(request, pk):
-    """ Edit an existing flight via the new_vol view and save the edited flight. """
-    current_user = request.user
-    vol = get_object_or_404(Vol, pk=pk)
-    if request.method == "POST":
-        form = VolForm(request.POST, instance=vol)
-        if current_user == vol.user_id:
-            if form.is_valid():
-                vol = form.save(commit=False)
-                # vol.duree_jour = convert_timedelta(vol.duree_jour)
-                # vol.duree_nuit = convert_timedelta(vol.duree_nuit)
-                # vol.duree_simu = convert_timedelta(vol.duree_simu)
-                # vol.duree_ifr = convert_timedelta(vol.duree_ifr)
-                # vol.duree_dc = convert_timedelta(vol.duree_dc)
-                # print(type(vol.duree_jour))
-                vol.save()
-                return redirect('index')
-    #    else:
-    #       return render(request, 'vol/error_not_allowed.html')
-    else:
-        form = VolForm(instance=vol)
-    return render(request, 'vol/vol_add.html', {'form': form})
-
-
-@login_required
 def index(request):
     """ Render the index page which lists all flights for the current user. """
     current_user = request.user
@@ -362,21 +337,21 @@ def convert_timedelta_minutes_to_hours(duration):
 def new_vol(request):
     """ Render the new flight page and save the new flight. """
     if request.method == "POST":
-        form_vol = VolForm(request.POST, current_user=request.user)
+        # form_vol = VolForm(request.POST, current_user=request.user)
+        form_vol = VolForm(request.POST)
         if form_vol.is_valid():
             vol = form_vol.save(commit=False)
-            print(vol.duree_jour)
             vol.duree_jour = convert_timedelta_minutes_to_hours(vol.duree_jour)
-            print(vol.duree_jour)
             vol.duree_nuit = convert_timedelta_minutes_to_hours(vol.duree_nuit)
             vol.duree_ifr = convert_timedelta_minutes_to_hours(vol.duree_ifr)
             vol.duree_simu = convert_timedelta_minutes_to_hours(vol.duree_simu)
             vol.duree_dc = convert_timedelta_minutes_to_hours(vol.duree_dc)
             vol.user_id = request.user
-            # vol.save()
+            vol.save()
             return redirect('index')
     else:
-        form_vol = VolForm(current_user=request.user)
+        # form_vol = VolForm(current_user=request.user)
+        form_vol = VolForm()
     return render(request, 'vol/vol_add.html', {'form': form_vol})
 
 
@@ -396,12 +371,17 @@ def edit_vol(request, pk):
         if current_user == vol.user_id:
             if form.is_valid():
                 vol = form.save(commit=False)
-                # vol.duree_jour = convert_timedelta(vol.duree_jour)
-                # vol.duree_nuit = convert_timedelta(vol.duree_nuit)
-                # vol.duree_simu = convert_timedelta(vol.duree_simu)
-                # vol.duree_ifr = convert_timedelta(vol.duree_ifr)
-                # vol.duree_dc = convert_timedelta(vol.duree_dc)
-                # print(type(vol.duree_jour))
+                # print(vol.duree_jour)
+                if form.has_changed():
+                    print("Le champ suivant change : %s" % ", ".join(form.changed_data))
+                # vol_duree_jour = Vol.objects.get(pk=pk)
+                # print(vol_duree_jour.duree_jour)
+
+                # vol.duree_jour = convert_timedelta_minutes_to_hours(vol.duree_jour)
+                # vol.duree_nuit = convert_timedelta_minutes_to_hours(vol.duree_nuit)
+                # vol.duree_simu = convert_timedelta_minutes_to_hours(vol.duree_simu)
+                # vol.duree_ifr = convert_timedelta_minutes_to_hours(vol.duree_ifr)
+                # vol.duree_dc = convert_timedelta_minutes_to_hours(vol.duree_dc)
                 vol.save()
                 return redirect('index')
     #    else:
@@ -424,17 +404,17 @@ def remove_vol(request, pk):
 @login_required
 def new_immatriculation(request):
     """ Render the new immatriculation page and save the new immatriculation. """
-    current_user = request.user
-    immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=current_user.id)
+    print(type(request.user))
+    immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=request.user.id)
     if request.method == "POST":
-        form_immatriculation = ImmatriculationForm(request.POST)
+        form_immatriculation = ImmatriculationForm(request.POST, request.user)
         if form_immatriculation.is_valid():
             immatriculation = form_immatriculation.save(commit=False)
             immatriculation.user_id = request.user
             immatriculation.save()
             return redirect('new_immatriculation')
     else:
-        form_immatriculation = ImmatriculationForm()
+        form_immatriculation = ImmatriculationForm(request.user)
     context = {
         'immatriculation_list': immatriculation_list,
         'form_immatriculation': form_immatriculation,
@@ -448,17 +428,16 @@ def new_immatriculation(request):
 @login_required
 def edit_immatriculation(request, pk):
     """ Edit an existing immatriculation via the new_immatriculation view and save the edited immatriculation. """
-    current_user = request.user
-    immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=current_user.id)
+    immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=request.user.id)
     immatriculation = get_object_or_404(Immatriculation, pk=pk)
     if request.method == "POST":
-        form_immatriculation = ImmatriculationForm(request.POST, instance=immatriculation)
+        form_immatriculation = ImmatriculationForm(request.POST, request.user, instance=immatriculation)
         if form_immatriculation.is_valid():
             immatriculation = form_immatriculation.save(commit=False)
             immatriculation.save()
             return redirect('new_immatriculation')
     else:
-        form_immatriculation = ImmatriculationForm(instance=immatriculation)
+        form_immatriculation = ImmatriculationForm(request.user, instance=immatriculation)
     context = {
         'immatriculation_list': immatriculation_list,
         'form_immatriculation': form_immatriculation,

@@ -1,5 +1,5 @@
 {% extends 'vol/base.html' %}
-{% block title %} Nouvel avionimmatriculation {% endblock %}
+{% block title %} Nouvelle immatriculation {% endblock %}
 {% block content %}
 
 
@@ -25,7 +25,7 @@
                     <div class="input-group">
                         {{ form_immatriculation.type_avion|add_class:"form-control" }}
                         <div class="input-group-append">
-                            <div class="input-group-text"><a class="management_links" data-toggle="tooltip" data-placement="top" title="Ajouter un type d'avion" href="{% url 'new_type_avion' %}">+</a></div>
+                            <div class="input-group-text"><a class="management_links" data-toggle="tooltip" data-placement="top" title="Ajouter un type d'avion" href="{% url 'new_type_avion' %}"><i class="fas fa-plus"></i></a></div>
                         </div>
                     </div>
                 </div>

@@ -40,9 +40,7 @@ $(document).ready(function() {
                         {% for vol in vols_list %}
                             <tr>
                                     <th scope="row">
-                                        <a href="{% url 'detail' vol.id %}">
-                                            <button class="btn btn-outline-primary btn-sm" type="button">{{ vol.date|date:"d/m/Y" }}</button>
-                                        </a>
+                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="Détails" href="{% url 'detail' vol.id %}"><button class="btn btn-outline-primary btn-sm" type="button">{{ vol.date|date:"d/m/Y" }}</button></a>
                                     </th>
                                     <td>{{ vol.depart }}/{{ vol.arrivee }}</td>
                                     <td>{{ vol.cdb }}</td>

@@ -65,7 +65,7 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    Bonjour {{ user.username }}
+                    Bonjour {{ user.first_name }} {{ user.last_name }}
                     <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-secondary btn-sm">Déconnexion</button></a>
                     {% else %}
                     <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-secondary btn-sm">Connexion</button></a>
@@ -74,8 +74,9 @@
             {% endif %}
         </nav>
 
-<main role="main" class="container">
-        {% block content %}{% endblock %}
-    </main>
- </body>
+        <main role="main" class="container"  style="margin-bottom:50px;">
+            {% block content %}{% endblock %}
+        </main>
+        <footer></footer>
+    </body>
 </html>

@@ -34,8 +34,7 @@
                             <table class="table mb-0">
                                 <tbody>
                                     <tr>
-                                        <td class="align-middle no-padding" rowspan=2 width="20%" style="border:0;"><p class="h1 display-4 text-secondary">
-                                            <!--<i class="far fa-clock"></i>-->
+                                        <td class="align-middle no-padding" rowspan=2 style="border:0;"><p class="h1 display-4 text-secondary">
                                             <!-- SVG Clock -->
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                  width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
@@ -54,8 +53,7 @@
                                             </svg> <!-- SVG Clock -->
 
                                         </p></td>
-                                        <td class="align-middle" width="80%" style="border:0;">
-                                            <!--<i class="far fa-sun text-secondary"></i>-->
+                                        <td class="align-middle" style="border:0;">
                                             <!-- SVG Sun -->
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                              width="30px" height="30px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
@@ -100,19 +98,51 @@
                                     </tr>
                                     <tr>
                                         <td class="align-middle no-padding"><strong>{% if vol.vol_ifr != "0" %}<span class="text-body">IFR :</span> {{ vol.get_vol_ifr_display }}{% else %}<span class="text-secondary">IFR</span>{% endif %}</td></strong>
-                                        <td class="align-middle text-center"><i class="far fa-clock"></i><span class="text-secondary">{% if vol.vol_ifr != "0" %} {{ vol.duree_ifr }}{% else %}<span class="text-secondary">&ensp; &mdash;{% endif %}</span></td>
+                                        <td class="align-middle text-left">
+                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                 width="16px" height="16px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                                            <g>
+                                                <path d="M32,0c-8.547,0-16.583,3.33-22.626,9.375C3.329,15.417,0,23.453,0,32s3.329,16.583,9.374,22.626
+                                                    C15.417,60.671,23.452,64,32,64s16.583-3.33,22.627-9.375C60.671,48.583,64,40.547,64,32s-3.329-16.583-9.374-22.626
+                                                    C48.583,3.329,40.547,0,32,0z M53.213,53.212C47.546,58.879,40.013,62,32,62s-15.546-3.121-21.212-8.789C5.12,47.546,2,40.013,2,32
+                                                    s3.121-15.546,8.788-21.212C16.453,5.121,23.986,2,32,2s15.547,3.122,21.213,8.789C58.88,16.454,62,23.987,62,32
+                                                    S58.88,47.546,53.213,53.212z"/>
+                                                <polygon points="33,12 31,12 31,32.414 40.293,41.707 41.707,40.293 33,31.586    "/>
+                                                <rect x="4" y="31" width="4" height="2"/>
+                                                <rect x="56" y="31" width="4" height="2"/>
+                                                <rect x="31" y="56" width="2" height="4"/>
+                                                <rect x="31" y="4" width="2" height="4"/>
+                                            </g>
+                                            </svg> <!-- SVG Clock -->
+                                            <span class="text-secondary">{% if vol.vol_ifr != "0" %} {{ vol.duree_ifr }}{% else %}<span class="text-secondary">&ensp; &mdash;{% endif %}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle text-uppercase no-padding"><strong>Fonction</strong></td>
-                                        <td class="align-middle text-center"><span class="text-secondary">{{ vol.get_fonction_display }}</span></td>
+                                        <td class="align-middle text-left"><span class="text-secondary">{{ vol.get_fonction_display }}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle text-uppercase no-padding"><strong>Poste</strong></td>
-                                        <td class="align-middle text-center"><span class="text-secondary">{{ vol.get_poste_display }}</span></td>
+                                        <td class="align-middle text-left"><span class="text-secondary">{{ vol.get_poste_display }}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle text-uppercase no-padding"><strong>{% if vol.vol_simu %}<span class="text-body">Simulateur</span>{% else %}<span class="text-secondary">Simulateur</span>{% endif %}</td></strong>
-                                        <td class="align-middle text-center"><i class="far fa-clock"></i><span class="text-secondary">{% if vol.vol_simu %} {{ vol.duree_simu }}{% else %}<span class="text-secondary">&ensp; &mdash;{% endif %}</span></td>
+                                        <td class="align-middle text-left">
+                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                 width="16px" height="16px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                                            <g>
+                                                <path d="M32,0c-8.547,0-16.583,3.33-22.626,9.375C3.329,15.417,0,23.453,0,32s3.329,16.583,9.374,22.626
+                                                    C15.417,60.671,23.452,64,32,64s16.583-3.33,22.627-9.375C60.671,48.583,64,40.547,64,32s-3.329-16.583-9.374-22.626
+                                                    C48.583,3.329,40.547,0,32,0z M53.213,53.212C47.546,58.879,40.013,62,32,62s-15.546-3.121-21.212-8.789C5.12,47.546,2,40.013,2,32
+                                                    s3.121-15.546,8.788-21.212C16.453,5.121,23.986,2,32,2s15.547,3.122,21.213,8.789C58.88,16.454,62,23.987,62,32
+                                                    S58.88,47.546,53.213,53.212z"/>
+                                                <polygon points="33,12 31,12 31,32.414 40.293,41.707 41.707,40.293 33,31.586    "/>
+                                                <rect x="4" y="31" width="4" height="2"/>
+                                                <rect x="56" y="31" width="4" height="2"/>
+                                                <rect x="31" y="56" width="2" height="4"/>
+                                                <rect x="31" y="4" width="2" height="4"/>
+                                            </g>
+                                            </svg> <!-- SVG Clock -->
+                                            <span class="text-secondary">{% if vol.vol_simu %} {{ vol.duree_simu }}{% else %}<span class="text-secondary">&ensp; &mdash;{% endif %}</span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="text-uppercase no-padding"><strong>Observations</strong></td>

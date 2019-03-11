@@ -5,3 +5,4 @@ vol/migrations/
 .idea/
 images/
 venv-windows/
+voldb/settings.py

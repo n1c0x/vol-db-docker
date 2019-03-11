@@ -3,9 +3,6 @@ from tempus_dominus.widgets import DatePicker
 from .models import *
 from .views import *
 
-from django.forms.widgets import TextInput
-from django.utils.dateparse import parse_duration
-
 
 class VolForm(forms.ModelForm):
     """ Generate the flight form. """

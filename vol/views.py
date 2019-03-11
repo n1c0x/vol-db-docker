@@ -81,7 +81,8 @@ def somme(request):
         grouped by plane type, year and function.
     """
     current_user = request.user
-    avions = TypeAvion.objects.all()
+    # avions = TypeAvion.objects.all()
+    avions = TypeAvion.objects.filter(user_id=current_user.id)
 
     liste_somme_vols_cur_year = []
     liste_somme_vols_last_year = []
@@ -365,7 +366,8 @@ def convert_timedelta(duration):
 def edit_vol(request, pk):
     """ Edit an existing flight via the new_vol view and save the edited flight. """
     current_user = request.user
-    vol = get_object_or_404(Vol, pk=pk)
+    vols_list = Vol.objects.filter(user_id=current_user.id)
+    vol = get_object_or_404(vols_list, pk=pk)
     if request.method == "POST":
         form = VolForm(request.POST, instance=vol)
         if current_user == vol.user_id:
@@ -429,7 +431,7 @@ def new_immatriculation(request):
 def edit_immatriculation(request, pk):
     """ Edit an existing immatriculation via the new_immatriculation view and save the edited immatriculation. """
     immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=request.user.id)
-    immatriculation = get_object_or_404(Immatriculation, pk=pk)
+    immatriculation = get_object_or_404(immatriculation_list, pk=pk)
     if request.method == "POST":
         form_immatriculation = ImmatriculationForm(request.POST, request.user, instance=immatriculation)
         if form_immatriculation.is_valid():
@@ -487,7 +489,7 @@ def edit_pilote(request, pk):
     """ Edit an existing pilot via the new_pilote view and save the edited pilot. """
     current_user = request.user
     pilotes_list = Pilote.objects.order_by('nom').filter(user_id=current_user.id)
-    pilote = get_object_or_404(Pilote, pk=pk)
+    pilote = get_object_or_404(pilotes_list, pk=pk)
     if request.method == "POST":
         form_pilote = PiloteForm(request.POST, instance=pilote)
         if form_pilote.is_valid():
@@ -545,7 +547,7 @@ def edit_iata(request, pk):
     """ Edit an existing IATA code via the new_iata view and save the edited IATA code. """
     current_user = request.user
     iata_list = CodeIata.objects.order_by('code_iata').filter(user_id=current_user.id)
-    iata = get_object_or_404(CodeIata, pk=pk)
+    iata = get_object_or_404(iata_list, pk=pk)
     if request.method == "POST":
         form_iata = IataForm(request.POST, instance=iata)
         if form_iata.is_valid():
@@ -603,7 +605,7 @@ def edit_type_avion(request, pk):
     """ Edit an existing plane type via the new_type_avion view and save the edited plane type. """
     current_user = request.user
     type_avion_list = TypeAvion.objects.order_by('type_avion').filter(user_id=current_user.id)
-    type_avion = get_object_or_404(TypeAvion, pk=pk)
+    type_avion = get_object_or_404(type_avion_list, pk=pk)
     if request.method == "POST":
         form_type_avion = TypeAvionForm(request.POST, instance=type_avion)
         if form_type_avion.is_valid():

@@ -26,7 +26,7 @@ SECRET_KEY = 'cpa)8pm-b=5gp4_1dry3l)e-xyw#9%fxubv*xd^fj490q)m-$s'
 DEBUG = True
 
 # CentOS perso
-#ALLOWED_HOSTS = ['192.168.1.22']
+# ALLOWED_HOSTS = ['192.168.1.22']
 # debian work
 ALLOWED_HOSTS = []
 

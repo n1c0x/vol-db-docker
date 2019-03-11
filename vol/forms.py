@@ -54,16 +54,6 @@ class VolForm(forms.ModelForm):
 class ImmatriculationForm(forms.ModelForm):
     """ Generate the immatriculation form. """
 
-    def __init__(self, user, *args, **kwargs):
-        super(ImmatriculationForm, self).__init__(*args, **kwargs)
-        try:
-            user_id = Profile.objects.values_list('user_id', flat=True).get(user=user)
-            # self.fields['type_avion'] = Immatriculation.objects.filter(user_id=user_id)
-            # self.fields['immatriculation'].queryset = Immatriculation.objects.filter(user_id=user_id)
-        except Profile.DoesNotExist:
-            # there is not userextend corresponding to this user, do what you want
-            pass
-
     class Meta:
         model = Immatriculation
         fields = (

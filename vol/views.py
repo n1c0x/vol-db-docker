@@ -409,14 +409,14 @@ def new_immatriculation(request):
     print(type(request.user))
     immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=request.user.id)
     if request.method == "POST":
-        form_immatriculation = ImmatriculationForm(request.POST, request.user)
+        form_immatriculation = ImmatriculationForm(request.POST)
         if form_immatriculation.is_valid():
             immatriculation = form_immatriculation.save(commit=False)
             immatriculation.user_id = request.user
             immatriculation.save()
             return redirect('new_immatriculation')
     else:
-        form_immatriculation = ImmatriculationForm(request.user)
+        form_immatriculation = ImmatriculationForm()
     context = {
         'immatriculation_list': immatriculation_list,
         'form_immatriculation': form_immatriculation,
@@ -433,13 +433,13 @@ def edit_immatriculation(request, pk):
     immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=request.user.id)
     immatriculation = get_object_or_404(immatriculation_list, pk=pk)
     if request.method == "POST":
-        form_immatriculation = ImmatriculationForm(request.POST, request.user, instance=immatriculation)
+        form_immatriculation = ImmatriculationForm(request.POST, instance=immatriculation)
         if form_immatriculation.is_valid():
             immatriculation = form_immatriculation.save(commit=False)
             immatriculation.save()
             return redirect('new_immatriculation')
     else:
-        form_immatriculation = ImmatriculationForm(request.user, instance=immatriculation)
+        form_immatriculation = ImmatriculationForm(instance=immatriculation)
     context = {
         'immatriculation_list': immatriculation_list,
         'form_immatriculation': form_immatriculation,

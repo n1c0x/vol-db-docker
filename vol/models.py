@@ -251,18 +251,17 @@ class Vol(models.Model):
         sec = self.duree_jour.total_seconds()
         return '%02d:%02d' % (int((sec / 3600) % 3600), int((sec / 60) % 60))
 
-    # duree_jour = models.DurationField(
-    #     verbose_name="Vol de jour",
-    #     blank=True,
-    #     null=True,
-    #     help_text='Format hh:mm:ss'
-    # )
     duree_nuit = models.DurationField(
-        verbose_name="Vol de nuit",
-        blank=True,
         null=True,
-        help_text='Format hh:mm:ss'
+        blank=True,
+        verbose_name=_('duree_nuit'),
+        help_text=_('[DD] [HH:[MM:]]ss[.uuuuuu] format')
     )
+
+    def duree_nuit_HHmm(self):
+        sec = self.duree_nuit.total_seconds()
+        return '%02d:%02d' % (int((sec / 3600) % 3600), int((sec / 60) % 60))
+
     fonction = models.CharField(
         choices=FONCTION,
         verbose_name='Fonction occupée',

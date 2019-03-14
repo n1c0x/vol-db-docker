@@ -20,17 +20,17 @@
         </div>
     <hr>
         <div class="row">
-            <div class="col-md-6 offset-3">
+            <div class="col-md-6 offset-md-3">
                 <h1>{{ user.first_name }} {{ user.last_name }}</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 offset-3">
+            <div class="col-md-6 offset-md-3">
                 Adresse Mail : {{ user.email }}
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 offset-3">
+            <div class="col-md-6 offset-md-3">
                 Type de client : {{ user.profile.client_type }} <br>
                 Poste actuel : {{ user.profile.get_current_position_display }} <br>
                 Employeur : {{ user.profile.employer }} <br>

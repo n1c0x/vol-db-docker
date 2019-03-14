@@ -14,34 +14,27 @@
             <div class="col"><h2 class="display-4 mt-4 mb-4">Profil utilisateur</h2></div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-md-1">
                 <a class="btn btn-outline-primary management_links" data-toggle="tooltip" data-placement="top" title="Modifier le profil" href="{% url 'edit_profile' username=user.username %}"><i class="fas fa-pencil-alt"></i></a>
             </div>
-            <div class="col"></div>
         </div>
     <hr>
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-md-6 offset-3">
                 <h1>{{ user.first_name }} {{ user.last_name }}</h1>
             </div>
-            <div class="col-3"></div>
         </div>
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-md-6 offset-3">
                 Adresse Mail : {{ user.email }}
             </div>
-            <div class="col-3"></div>
         </div>
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-md-6 offset-3">
                 Type de client : {{ user.profile.client_type }} <br>
                 Poste actuel : {{ user.profile.get_current_position_display }} <br>
                 Employeur : {{ user.profile.employer }} <br>
             </div>
-            <div class="col-3"></div>
         </div>
     {% if is_modified %}
         <hr>

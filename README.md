@@ -32,13 +32,13 @@
     - Changement de mot de passe
     - Réinitialisation de mot de passe
 - Page d'accueil
-
-## A faire
-
 - Voir Issues
 - Ajout/modification/suppression de codes IATA
     - Ajout/modification/suppression d'avions (immatriculation + type + mono- ou multimoteur)
     - Ajout/modification/suppression de personnes
+
+## A faire
+
 - Filtres possibles
         - Date (toutes les dates, Aujourd'hui, les 7 derniers jours, ce mois-ci et cette année)
         - Arrivée IFR (Oui ou Non)

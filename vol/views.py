@@ -454,7 +454,7 @@ def edit_immatriculation(request, pk):
 def remove_immatriculation(request, pk):
     """ Remove a given immatriculation """
     current_user = request.user
-    immatriculation_list = Vol.objects.filter(user_id=current_user.id)
+    immatriculation_list = Immatriculation.objects.filter(user_id=current_user.id)
     immatriculation = get_object_or_404(immatriculation_list, pk=pk)
     immatriculation.delete()
     return redirect('new_immatriculation')
@@ -512,7 +512,7 @@ def edit_pilote(request, pk):
 def remove_pilote(request, pk):
     """ Remove a given pilot """
     current_user = request.user
-    pilote_list = Vol.objects.filter(user_id=current_user.id)
+    pilote_list = Pilote.objects.filter(user_id=current_user.id)
     pilote = get_object_or_404(pilote_list, pk=pk)
     pilote.delete()
     return redirect('new_pilote')
@@ -570,7 +570,7 @@ def edit_iata(request, pk):
 def remove_iata(request, pk):
     """ Remove a given IATA code """
     current_user = request.user
-    iata_list = Vol.objects.filter(user_id=current_user.id)
+    iata_list = CodeIata.objects.filter(user_id=current_user.id)
     iata = get_object_or_404(iata_list, pk=pk)
     iata.delete()
     return redirect('new_iata')
@@ -628,7 +628,7 @@ def edit_type_avion(request, pk):
 def remove_type_avion(request, pk):
     """ Remove a given plane type """
     current_user = request.user
-    type_avion_list = Vol.objects.filter(user_id=current_user.id)
+    type_avion_list = TypeAvion.objects.filter(user_id=current_user.id)
     type_avion = get_object_or_404(type_avion_list, pk=pk)
     type_avion.delete()
     return redirect('new_type_avion')

@@ -12,7 +12,7 @@ $(document).ready(function() {
     <div class="row">
         <div class="col"><h2 class="display-4 mt-4 mb-4">Affichage des vols</h2></div>
     </div>
-        {% if vols_list %}
+        {% if object_list %}
         <div class="row">
             <div class="col"></div>
             <div class="col-12">
@@ -37,7 +37,7 @@ $(document).ready(function() {
                     </tr>
                 </thead>
                     <tbody>
-                        {% for vol in vols_list %}
+                        {% for vol in object_list %}
                             <tr>
                                     <th scope="row">
                                         <a class="management_links" data-toggle="tooltip" data-placement="top" title="Détails" href="{% url 'detail' vol.id %}"><button class="btn btn-outline-primary btn-sm" type="button">{{ vol.date|date:"d/m/Y" }}</button></a>

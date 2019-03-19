@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from django.conf.urls import url
 from vol.views import *
 
@@ -6,8 +6,9 @@ from . import views
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
-    url(r'^vols', views.index, name='index'),
-    path('<int:vol_id>/', views.detail, name='detail'),
+    # url(r'^vols', views.index, name='index'),
+    re_path('vols', VolList.as_view(), name='index'),
+    re_path(r'^(?P<pk>\d+)/$', VolDetail.as_view(), name='detail'),
     url(r'^somme', views.somme, name='somme'),
     url(r'^vol_add', views.new_vol, name='new_vol'),
     path('immatriculation_add', ImmatriculationCreate.as_view(), name='new_immatriculation'),

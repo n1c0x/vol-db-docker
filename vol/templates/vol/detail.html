@@ -8,26 +8,25 @@
         </div>
         <div class="row">
             <div class="col-1">
-                <a class="btn btn-outline-primary management_links" data-toggle="tooltip" data-placement="top" title="Modifier le vol" href="{% url 'edit_vol' pk=vol.pk %}"><i class="fas fa-pencil-alt"></i></a>
+                <a class="btn btn-outline-primary management_links" data-toggle="tooltip" data-placement="top" title="Modifier le vol" href="{# url 'edit_vol' pk=vol.pk #}"><i class="fas fa-pencil-alt"></i></a>
             </div>
             <div class="col"></div>
             <div class="col-1">
-                <a class="btn btn-outline-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le vol" href="{% url 'remove_vol' pk=vol.pk %}" onclick="return confirm('Are you sure you want to delete this?')"><i class="far fa-trash-alt"></i></a>
+                <a class="btn btn-outline-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le vol" href="{# url 'remove_vol' pk=vol.pk #}" onclick="return confirm('Are you sure you want to delete this?')"><i class="far fa-trash-alt"></i></a>
             </div>
         </div>
 
 <hr>
 
         <div class="row">
-            <div class="col"></div>
-            <div class="col-4">
+            <div class="col-4 offset-md-4">
 
                 <div class="card" >
                     <div class="card-header">
-                        <div class="text-secondary"><strong>{{ vol.date }}</strong></div>
-                        <div class="h2 display-5 dat-head">{{ vol.depart }}</div>
+                        <div class="text-secondary"><strong>{{ object.date }}</strong></div>
+                        <div class="h2 display-5 dat-head">{{ object.depart }}</div>
                         <div class="h2 display-5 dat-head" style="text-align:center"><i style="width:24px;" class="fas fa-long-arrow-alt-right"></i></div>
-                        <div class="h2 display-5 dat-head" style="text-align:right">{{ vol.arrivee }}</div>
+                        <div class="h2 display-5 dat-head" style="text-align:right">{{ object.arrivee }}</div>
                     </div>
                     
                     <div class="card-body p-0" style="padding-left:20px !important; padding-right:20px !important;">
@@ -70,8 +69,8 @@
                                             <rect x="9.964" y="12.5" transform="matrix(0.7071 0.7071 -0.7071 0.7071 13.5 -5.5919)" width="7.071" height="2"/>
                                         </g>
                                         </svg> <!-- SVG Sun -->
-                                            {% if vol.duree_jour %}
-                                                {{ vol.duree_jour }}
+                                            {% if object.duree_jour %}
+                                                {{ object.duree_jour }}
                                             {% else %}
                                                 -
                                             {% endif %}</td>
@@ -89,15 +88,15 @@
                                                 c-8.175,0-16.152-3.341-21.76-9.028C21.555,52.322,33,40.473,33,26z"/>
                                         </g>
                                         </svg> <!-- SVG Moon -->
-                                            {% if vol.duree_nuit %}
-                                                {{ vol.duree_nuit }}
+                                            {% if object.duree_nuit %}
+                                                {{ object.duree_nuit }}
                                             {% else %}
                                                 -
                                             {% endif %}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="align-middle no-padding"><strong>{% if vol.vol_ifr != "0" %}<span class="text-body">IFR :</span> {{ vol.get_vol_ifr_display }}{% else %}<span class="text-secondary">IFR</span>{% endif %}</td></strong>
+                                        <td class="align-middle no-padding"><strong>{% if object.vol_ifr != "0" %}<span class="text-body">IFR :</span> {{ object.get_vol_ifr_display }}{% else %}<span class="text-secondary">IFR</span>{% endif %}</td></strong>
                                         <td class="align-middle text-left">
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                  width="16px" height="16px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
@@ -114,18 +113,18 @@
                                                 <rect x="31" y="4" width="2" height="4"/>
                                             </g>
                                             </svg> <!-- SVG Clock -->
-                                            <span class="text-secondary">{% if vol.vol_ifr != "0" %} {{ vol.duree_ifr }}{% else %}<span class="text-secondary">&ensp; &mdash;{% endif %}</span></td>
+                                            <span class="text-secondary">{% if object.vol_ifr != "0" %} {{ object.duree_ifr }}{% else %}<span class="text-secondary">&ensp; &mdash;{% endif %}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle text-uppercase no-padding"><strong>Fonction</strong></td>
-                                        <td class="align-middle text-left"><span class="text-secondary">{{ vol.get_fonction_display }}</span></td>
+                                        <td class="align-middle text-left"><span class="text-secondary">{{ object.get_fonction_display }}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle text-uppercase no-padding"><strong>Poste</strong></td>
-                                        <td class="align-middle text-left"><span class="text-secondary">{{ vol.get_poste_display }}</span></td>
+                                        <td class="align-middle text-left"><span class="text-secondary">{{ object.get_poste_display }}</span></td>
                                     </tr>
                                     <tr>
-                                        <td class="align-middle text-uppercase no-padding"><strong>{% if vol.vol_simu %}<span class="text-body">Simulateur</span>{% else %}<span class="text-secondary">Simulateur</span>{% endif %}</td></strong>
+                                        <td class="align-middle text-uppercase no-padding"><strong>{% if object.vol_simu %}<span class="text-body">Simulateur</span>{% else %}<span class="text-secondary">Simulateur</span>{% endif %}</td></strong>
                                         <td class="align-middle text-left">
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                  width="16px" height="16px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
@@ -142,13 +141,13 @@
                                                 <rect x="31" y="4" width="2" height="4"/>
                                             </g>
                                             </svg> <!-- SVG Clock -->
-                                            <span class="text-secondary">{% if vol.vol_simu %} {{ vol.duree_simu }}{% else %}<span class="text-secondary">&ensp; &mdash;{% endif %}</span></td>
+                                            <span class="text-secondary">{% if object.vol_simu %} {{ object.duree_simu }}{% else %}<span class="text-secondary">&ensp; &mdash;{% endif %}</span></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="text-uppercase no-padding"><strong>Observations</strong></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" style="border:0;" class="no-padding">{{ vol.observation }}</td>
+                                        <td colspan="2" style="border:0;" class="no-padding">{{ object.observation }}</td>
                                     </tr>
 
                                 </tbody>
@@ -156,8 +155,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-1"></div>
-            <div class="col-3">
+            <div class="col-3 offset-md-1">
 
                 <div class="card" >
                     <div class="card-header"><h3>Avion <i class="fas fa-plane"></i></h3></div>
@@ -166,15 +164,15 @@
                             <tbody>
                             <tr>
                                 <td class="align-middle">Immatriculation</td>
-                                <td class="align-middle">{{ vol.immatriculation }}</td>
+                                <td class="align-middle">{{ object.immatriculation }}</td>
                             </tr>
                             <tr>
                                 <td class="align-middle">Type d'avion</td>
-                                <td class="align-middle">{{ vol.immatriculation.type_avion }}</td>
+                                <td class="align-middle">{{ object.immatriculation.type_avion }}</td>
                             </tr>
                             <tr>
                                 <td class="align-middle">Moteurs</td>
-                                <td class="align-middle">{{ vol.immatriculation.type_avion.get_nb_moteurs_display }}</td>
+                                <td class="align-middle">{{ object.immatriculation.type_avion.get_nb_moteurs_display }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -182,65 +180,61 @@
                 </div>
             </div>
         </div>
-        <div class="row"><p></p></div>
         <div class="row">
-                <div class="col-5"></div>
-                <div class="col-2"><h1>Équipage</h1></div>
-                <div class="col-5"></div>
+                <div class="col-2 offset-md-5"><h1>Équipage</h1></div>
         </div>
         <div class="row">
-            <div class="col"></div>
             <div class="col-12">
                 <div class="card-deck">
                     <div class="card text-white bg-dark">
                         <div class="card-body">
                             <h5 class="card-title">Commandant de bord</h5>
-                            <p class="card-text">{{ vol.cdb }}</p>
+                            <p class="card-text">{{ object.cdb }}</p>
                         </div>
                     </div>
                     <div class="card text-white bg-dark">
                         <div class="card-body">
                         <h5 class="card-title">Copilote</h5>
-                        <p class="card-text">{{ vol.opl }}</p>
+                        <p class="card-text">{{ object.opl }}</p>
                         </div>
                     </div>
-                    {% if vol.obs1 %}
+                    {% if object.obs1 %}
                         <div class="card text-white bg-dark">
                     {% else %}
                         <div class="card text-muted bg-light border-style: dashed;">
                     {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">Observateur 1</h5>
-                                {% if vol.obs1 %}
-                                    <p class="card-text">{{ vol.obs1 }}</p>
+                                {% if object.obs1 %}
+                                    <p class="card-text">{{ object.obs1 }}</p>
                                 {% else %}
                                     <p class="card-text">Absent</p>
                                 {% endif %}
                             </div>
                         </div>
-                    {% if vol.obs2 %}
+                    {% if object.obs2 %}
                         <div class="card text-white bg-dark">
                     {% else %}
                         <div class="card text-muted bg-light border-style: dashed;">
                     {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">Observateur 2</h5>
-                                {% if vol.obs2 %}
-                                    <p class="card-text">{{ vol.obs2 }}</p>
+                                {% if object.obs2 %}
+                                    <p class="card-text">{{ object.obs2 }}</p>
                                 {% else %}
                                     <p class="card-text">Absent</p>
                                 {% endif %}
                             </div>
                         </div>
-                    {% if vol.instructeur %}
+                    {% if object.instructeur %}
                         <div class="card text-white bg-dark">
                     {% else %}
                         <div class="card text-muted bg-light border-style: dashed;">
                     {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">Instructeur</h5>
-                                {% if vol.instructeur %}
-                                    <p class="card-text">{{ vol.instructeur }}</p>
+                                {% if object.instructeur %}
+                                    <p class="card-text">{{ object.instructeur }}</p>
                                 {% else %}
                                     <p class="card-text">Absent</p>
                                 {% endif %}
@@ -248,7 +242,6 @@
                         </div>
                 </div>
             </div>
-            <div class="col"></div>
         </div>
 <style type="text/css">
     .dat-head{

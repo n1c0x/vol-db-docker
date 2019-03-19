@@ -9,6 +9,8 @@ from datetime import date, datetime, timedelta
 from .models import *
 
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 
@@ -55,27 +57,33 @@ def update_user_profile(request, username):
     })
 
 
-@login_required
-def index(request):
-    """ Render the index page which lists all flights for the current user. """
-    current_user = request.user
-    vols_list = Vol.objects.order_by('-date').filter(user_id=current_user.id)
-    context = {
-        'vols_list': vols_list
-    }
-    return render(request, 'vol/index.html', context)
+@method_decorator(login_required, name='dispatch')
+class VolList(ListView):
+    model = Vol
+    template_name = 'vol/index.html'
+
+    def get_queryset(self):
+        return Vol.objects.order_by('-date').filter(user_id=self.request.user)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
-@login_required
-def detail(request, vol_id):
-    """ Render the detail page of a given flight, identified by its id. """
-    current_user = request.user
-    vols_list = Vol.objects.filter(user_id=current_user.id)
-    vol = get_object_or_404(vols_list, pk=vol_id)
-    if current_user == vol.user_id:
-        return render(request, 'vol/detail.html', {'vol': vol})
-    # else:
-    #     return render(request, 'vol/error_not_allowed.html')
+@method_decorator(login_required, name='dispatch')
+class VolDetail(DetailView):
+    model = Vol
+    template_name = 'vol/detail.html'
+    # vol = Vol.objects.filter(user_id=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super(VolDetail, self).get_context_data(**kwargs)
+        vols_list = Vol.objects.filter(user_id=self.request.user)
+        vol = get_object_or_404(vols_list, pk=self.kwargs.get('pk', None))
+        context['vol'] = vol
+        return context
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
 @login_required
@@ -445,8 +453,11 @@ class ImmatriculationUpdate(UpdateView):
         context['immatriculation_list'] = immatriculation_list
         return context
 
+    def get_queryset(self):
+        qs = super(ImmatriculationUpdate, self).get_queryset()
+        return qs.filter(user_id=self.request.user.profile.user_id)
+
     def form_valid(self, form):
-        # form.instance.user_id = self.request.user
         return super(ImmatriculationUpdate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
@@ -459,6 +470,10 @@ class ImmatriculationDelete(DeleteView):
     # template_name = 'vol/immatriculation_add.html'
     # success_url = reverse_lazy('new_immatriculation')
     # template_name_suffix = '_delete_form'
+
+    def get_queryset(self):
+        qs = super(ImmatriculationDelete, self).get_queryset()
+        return qs.filter(user_id=self.request.user.profile.user_id)
 
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -504,6 +519,10 @@ class PiloteUpdate(UpdateView):
         context['pilotes_list'] = pilotes_list
         return context
 
+    def get_queryset(self):
+        qs = super(PiloteUpdate, self).get_queryset()
+        return qs.filter(user_id=self.request.user.profile.user_id)
+
     def form_valid(self, form):
         # form.instance.user_id = self.request.user
         return super(PiloteUpdate, self).form_valid(form)
@@ -518,6 +537,10 @@ class PiloteDelete(DeleteView):
     # template_name = 'vol/pilote_add.html'
     # success_url = reverse_lazy('new_immatriculation')
     # template_name_suffix = '_delete_form'
+
+    def get_queryset(self):
+        qs = super(PiloteDelete, self).get_queryset()
+        return qs.filter(user_id=self.request.user.profile.user_id)
 
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -563,6 +586,10 @@ class CodeIataUpdate(UpdateView):
         context['iata_list'] = iata_list
         return context
 
+    def get_queryset(self):
+        qs = super(CodeIataUpdate, self).get_queryset()
+        return qs.filter(user_id=self.request.user.profile.user_id)
+
     def form_valid(self, form):
         # form.instance.user_id = self.request.user
         return super(CodeIataUpdate, self).form_valid(form)
@@ -577,6 +604,10 @@ class CodeIataDelete(DeleteView):
     # template_name = 'vol/iata_add.html'
     # success_url = reverse_lazy('new_immatriculation')
     # template_name_suffix = '_delete_form'
+
+    def get_queryset(self):
+        qs = super(CodeIataDelete, self).get_queryset()
+        return qs.filter(user_id=self.request.user.profile.user_id)
 
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -622,6 +653,10 @@ class TypeAvionUpdate(UpdateView):
         context['type_avion_list'] = type_avion_list
         return context
 
+    def get_queryset(self):
+        qs = super(TypeAvionUpdate, self).get_queryset()
+        return qs.filter(user_id=self.request.user.profile.user_id)
+
     def form_valid(self, form):
         # form.instance.user_id = self.request.user
         return super(TypeAvionUpdate, self).form_valid(form)
@@ -636,6 +671,10 @@ class TypeAvionDelete(DeleteView):
     # template_name = 'vol/iata_add.html'
     # success_url = reverse_lazy('new_immatriculation')
     # template_name_suffix = '_delete_form'
+
+    def get_queryset(self):
+        qs = super(TypeAvionDelete, self).get_queryset()
+        return qs.filter(user_id=self.request.user.profile.user_id)
 
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)

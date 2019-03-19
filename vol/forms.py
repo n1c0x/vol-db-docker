@@ -51,16 +51,15 @@ class VolForm(forms.ModelForm):
         exclude = ['user_id']
 
 
-class ImmatriculationForm(forms.ModelForm):
-    """ Generate the immatriculation form. """
-
-    class Meta:
-        model = Immatriculation
-        fields = (
-            'immatriculation',
-            'type_avion',
-            'user_id')
-        exclude = ['user_id']
+# class ImmatriculationForm(forms.ModelForm):
+#     """ Generate the immatriculation form. """
+#     class Meta:
+#         model = Immatriculation
+#         fields = (
+#             'immatriculation',
+#             'type_avion',
+#             'user_id')
+#         exclude = ['user_id']
 
 
 class TypeAvionForm(forms.ModelForm):

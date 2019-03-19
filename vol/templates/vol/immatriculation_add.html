@@ -2,28 +2,30 @@
 {% block title %} Nouvelle immatriculation {% endblock %}
 {% block content %}
 
-
- <div class="row">
+<div class="row">
     <div class="col"><h2 class="display-4 mt-4 mb-4">Nouvel avion</h2></div>
 </div>
 {% load widget_tweaks %}
-    <form method="POST" class="post-form" id="new_immatriculation">{% csrf_token %}
-        {{ form_immatriculation.non_field_errors }}
+
+    <form method="POST" class="post-form" id="new_immatriculation" action="">{% csrf_token %}
+
+
+        {{ form.non_field_errors }}
 
         <div class="form-row">
             <div class="form-group col-md-3">
                 <div class="fieldWrapper">
-                    {{ form_immatriculation.immatriculation.errors }}
-                    {{ form_immatriculation.immatriculation.label_tag }}
-                    {{ form_immatriculation.immatriculation|add_class:"form-control" }}
+                    {{ form.immatriculation.errors }}
+                    {{ form.immatriculation.label_tag }}
+                    {{ form.immatriculation|add_class:"form-control" }}
                 </div>
             </div>
             <div class="form-group col-md-3">
                 <div class="fieldWrapper">
-                    {{ form_immatriculation.type_avion.errors }}
-                    {{ form_immatriculation.type_avion.label_tag }}
+                    {{ form.type_avion.errors }}
+                    {{ form.type_avion.label_tag }}
                     <div class="input-group">
-                        {{ form_immatriculation.type_avion|add_class:"form-control" }}
+                        {{ form.type_avion|add_class:"form-control" }}
                         <div class="input-group-append">
                             <div class="input-group-text"><a class="management_links" data-toggle="tooltip" data-placement="top" title="Ajouter un type d'avion" href="{% url 'new_type_avion' %}"><i class="fas fa-plus"></i></a></div>
                         </div>
@@ -59,12 +61,17 @@
                                 <td>{{ immatriculation.immatriculation }}</td>
                                 <td>{{ immatriculation.type_avion }}</td>
                                     <td class="text-center">
+
                                         <a class="management_links" data-toggle="tooltip" data-placement="top" title="Modifier l'avion" href="{% url 'edit_immatriculation' pk=immatriculation.pk %}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button>
                                         </a>
-                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer l'avion" href="{% url 'remove_immatriculation' pk=immatriculation.pk %}" onclick="return confirm('Are you sure you want to delete this?')">
-                                            <button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
-                                        </a>
+                                        <form action="{% url 'remove_immatriculation' pk=immatriculation.pk %}" method="post" style="display: inline;">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="immatriculation_id" value="{{ immatriculation.id }}" />
+                                            <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer l'avion" onclick="return confirm('Are you sure you want to delete this?')">
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                            </a>
+                                        </form>
                                     </td>
                                 </td>
                             </tr>

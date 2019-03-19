@@ -6,7 +6,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from datetime import date, datetime, timedelta
-from .models import Vol, Immatriculation, TypeAvion, Profile, CodeIata, Pilote
+from .models import *
+
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 
 
 def homepage(request):
@@ -403,232 +407,237 @@ def remove_vol(request, pk):
     return redirect('index')
 
 
-@login_required
-def new_immatriculation(request):
-    """ Render the new immatriculation page and save the new immatriculation. """
-    print(type(request.user))
-    immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=request.user.id)
-    if request.method == "POST":
-        form_immatriculation = ImmatriculationForm(request.POST)
-        if form_immatriculation.is_valid():
-            immatriculation = form_immatriculation.save(commit=False)
-            immatriculation.user_id = request.user
-            immatriculation.save()
-            return redirect('new_immatriculation')
-    else:
-        form_immatriculation = ImmatriculationForm()
-    context = {
-        'immatriculation_list': immatriculation_list,
-        'form_immatriculation': form_immatriculation,
-    }
-    return render(
-        request,
-        'vol/immatriculation_add.html',
-        context)
+@method_decorator(login_required, name='dispatch')
+class ImmatriculationCreate(CreateView):
+    model = Immatriculation
+    template_name = 'vol/immatriculation_add.html'
+    fields = ['immatriculation',
+              'type_avion']
+    success_url = '/immatriculation_add'
+    # template_name_suffix = '_add'
+
+    def get_context_data(self, **kwargs):
+        context = super(ImmatriculationCreate, self).get_context_data(**kwargs)
+        immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=self.request.user)
+        context['immatriculation_list'] = immatriculation_list
+        return context
+
+    def form_valid(self, form):
+        form.instance.user_id = self.request.user
+        return super(ImmatriculationCreate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
-@login_required
-def edit_immatriculation(request, pk):
-    """ Edit an existing immatriculation via the new_immatriculation view and save the edited immatriculation. """
-    immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=request.user.id)
-    immatriculation = get_object_or_404(immatriculation_list, pk=pk)
-    if request.method == "POST":
-        form_immatriculation = ImmatriculationForm(request.POST, instance=immatriculation)
-        if form_immatriculation.is_valid():
-            immatriculation = form_immatriculation.save(commit=False)
-            immatriculation.save()
-            return redirect('new_immatriculation')
-    else:
-        form_immatriculation = ImmatriculationForm(instance=immatriculation)
-    context = {
-        'immatriculation_list': immatriculation_list,
-        'form_immatriculation': form_immatriculation,
-    }
-    return render(
-        request,
-        'vol/immatriculation_add.html',
-        context)
+@method_decorator(login_required, name='dispatch')
+class ImmatriculationUpdate(UpdateView):
+    model = Immatriculation
+    template_name = 'vol/immatriculation_add.html'
+    fields = ['immatriculation',
+              'type_avion']
+    success_url = '/immatriculation_add'
+    # template_name_suffix = '_add'
+
+    def get_context_data(self, **kwargs):
+        context = super(ImmatriculationUpdate, self).get_context_data(**kwargs)
+        immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=self.request.user)
+        context['immatriculation_list'] = immatriculation_list
+        return context
+
+    def form_valid(self, form):
+        # form.instance.user_id = self.request.user
+        return super(ImmatriculationUpdate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
-@login_required
-def remove_immatriculation(request, pk):
-    """ Remove a given immatriculation """
-    current_user = request.user
-    immatriculation_list = Immatriculation.objects.filter(user_id=current_user.id)
-    immatriculation = get_object_or_404(immatriculation_list, pk=pk)
-    immatriculation.delete()
-    return redirect('new_immatriculation')
+@method_decorator(login_required, name='dispatch')
+class ImmatriculationDelete(DeleteView):
+    model = Immatriculation
+    # template_name = 'vol/immatriculation_add.html'
+    # success_url = reverse_lazy('new_immatriculation')
+    # template_name_suffix = '_delete_form'
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    success_url = reverse_lazy('new_immatriculation')
 
 
-@login_required
-def new_pilote(request):
-    """ Render the new pilot page and save the new pilot. """
-    current_user = request.user
-    pilotes_list = Pilote.objects.order_by('nom', 'prenom').filter(user_id=current_user.id)
-    if request.method == "POST":
-        form_pilote = PiloteForm(request.POST)
-        if form_pilote.is_valid():
-            pilote = form_pilote.save(commit=False)
-            pilote.user_id = request.user
-            pilote.save()
-            return redirect('new_pilote')
-    else:
-        form_pilote = PiloteForm()
-    context = {
-        'pilotes_list': pilotes_list,
-        'form_pilote': form_pilote,
-    }
-    return render(
-        request,
-        'vol/pilote_add.html',
-        context)
+@method_decorator(login_required, name='dispatch')
+class PiloteCreate(CreateView):
+    model = Pilote
+    template_name = 'vol/pilote_add.html'
+    fields = ['nom',
+              'prenom']
+    success_url = '/pilote_add'
+    # template_name_suffix = '_add'
+
+    def get_context_data(self, **kwargs):
+        context = super(PiloteCreate, self).get_context_data(**kwargs)
+        pilotes_list = Pilote.objects.order_by('nom', 'prenom').filter(user_id=self.request.user)
+        context['pilotes_list'] = pilotes_list
+        return context
+
+    def form_valid(self, form):
+        form.instance.user_id = self.request.user
+        return super(PiloteCreate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
-@login_required
-def edit_pilote(request, pk):
-    """ Edit an existing pilot via the new_pilote view and save the edited pilot. """
-    current_user = request.user
-    pilotes_list = Pilote.objects.order_by('nom').filter(user_id=current_user.id)
-    pilote = get_object_or_404(pilotes_list, pk=pk)
-    if request.method == "POST":
-        form_pilote = PiloteForm(request.POST, instance=pilote)
-        if form_pilote.is_valid():
-            pilote = form_pilote.save(commit=False)
-            pilote.save()
-            return redirect('new_pilote')
-    else:
-        form_pilote = PiloteForm(instance=pilote)
-    context = {
-        'pilotes_list': pilotes_list,
-        'form_pilote': form_pilote,
-    }
-    return render(
-        request,
-        'vol/pilote_add.html',
-        context)
+@method_decorator(login_required, name='dispatch')
+class PiloteUpdate(UpdateView):
+    model = Pilote
+    template_name = 'vol/pilote_add.html'
+    fields = ['nom',
+              'prenom']
+    success_url = '/pilote_add'
+    # template_name_suffix = '_add'
+
+    def get_context_data(self, **kwargs):
+        context = super(PiloteUpdate, self).get_context_data(**kwargs)
+        pilotes_list = Pilote.objects.order_by('nom', 'prenom').filter(user_id=self.request.user)
+        context['pilotes_list'] = pilotes_list
+        return context
+
+    def form_valid(self, form):
+        # form.instance.user_id = self.request.user
+        return super(PiloteUpdate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
-@login_required
-def remove_pilote(request, pk):
-    """ Remove a given pilot """
-    current_user = request.user
-    pilote_list = Pilote.objects.filter(user_id=current_user.id)
-    pilote = get_object_or_404(pilote_list, pk=pk)
-    pilote.delete()
-    return redirect('new_pilote')
+@method_decorator(login_required, name='dispatch')
+class PiloteDelete(DeleteView):
+    model = Pilote
+    # template_name = 'vol/pilote_add.html'
+    # success_url = reverse_lazy('new_immatriculation')
+    # template_name_suffix = '_delete_form'
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    success_url = reverse_lazy('new_pilote')
 
 
-@login_required
-def new_iata(request):
-    """ Render the new IATA code page and save the new IATA code. """
-    current_user = request.user
-    iata_list = CodeIata.objects.order_by('code_iata').filter(user_id=current_user.id)
-    if request.method == "POST":
-        form_iata = IataForm(request.POST)
-        if form_iata.is_valid():
-            iata = form_iata.save(commit=False)
-            iata.user_id = request.user
-            iata.save()
-            return redirect('new_iata')
-    else:
-        form_iata = IataForm()
-    context = {
-        'iata_list': iata_list,
-        'form_iata': form_iata,
-    }
-    return render(
-        request,
-        'vol/iata_add.html',
-        context)
+@method_decorator(login_required, name='dispatch')
+class CodeIataCreate(CreateView):
+    model = CodeIata
+    template_name = 'vol/iata_add.html'
+    fields = ['code_iata',
+              'ville']
+    success_url = '/iata_add'
+    # template_name_suffix = '_add'
+
+    def get_context_data(self, **kwargs):
+        context = super(CodeIataCreate, self).get_context_data(**kwargs)
+        iata_list = CodeIata.objects.order_by('code_iata').filter(user_id=self.request.user)
+        context['iata_list'] = iata_list
+        return context
+
+    def form_valid(self, form):
+        form.instance.user_id = self.request.user
+        return super(CodeIataCreate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
-@login_required
-def edit_iata(request, pk):
-    """ Edit an existing IATA code via the new_iata view and save the edited IATA code. """
-    current_user = request.user
-    iata_list = CodeIata.objects.order_by('code_iata').filter(user_id=current_user.id)
-    iata = get_object_or_404(iata_list, pk=pk)
-    if request.method == "POST":
-        form_iata = IataForm(request.POST, instance=iata)
-        if form_iata.is_valid():
-            iata = form_iata.save(commit=False)
-            iata.save()
-            return redirect('new_iata')
-    else:
-        form_iata = IataForm(instance=iata)
-    context = {
-        'iata_list': iata_list,
-        'form_iata': form_iata,
-    }
-    return render(
-        request,
-        'vol/iata_add.html',
-        context)
+@method_decorator(login_required, name='dispatch')
+class CodeIataUpdate(UpdateView):
+    model = CodeIata
+    template_name = 'vol/iata_add.html'
+    fields = ['code_iata',
+              'ville']
+    success_url = '/iata_add'
+    # template_name_suffix = '_add'
+
+    def get_context_data(self, **kwargs):
+        context = super(CodeIataUpdate, self).get_context_data(**kwargs)
+        iata_list = CodeIata.objects.order_by('code_iata').filter(user_id=self.request.user)
+        context['iata_list'] = iata_list
+        return context
+
+    def form_valid(self, form):
+        # form.instance.user_id = self.request.user
+        return super(CodeIataUpdate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
-@login_required
-def remove_iata(request, pk):
-    """ Remove a given IATA code """
-    current_user = request.user
-    iata_list = CodeIata.objects.filter(user_id=current_user.id)
-    iata = get_object_or_404(iata_list, pk=pk)
-    iata.delete()
-    return redirect('new_iata')
+@method_decorator(login_required, name='dispatch')
+class CodeIataDelete(DeleteView):
+    model = CodeIata
+    # template_name = 'vol/iata_add.html'
+    # success_url = reverse_lazy('new_immatriculation')
+    # template_name_suffix = '_delete_form'
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    success_url = reverse_lazy('new_code_iata')
 
 
-@login_required
-def new_type_avion(request):
-    """ Render the new plane type page and save the new plane type. """
-    current_user = request.user
-    type_avion_list = TypeAvion.objects.order_by('type_avion').filter(user_id=current_user.id)
-    if request.method == "POST":
-        form_type_avion = TypeAvionForm(request.POST)
-        if form_type_avion.is_valid():
-            type_avion = form_type_avion.save(commit=False)
-            type_avion.user_id = request.user
-            type_avion.save()
-            return redirect('new_type_avion')
-    else:
-        form_type_avion = TypeAvionForm()
-    context = {
-        'type_avion_list': type_avion_list,
-        'form_type_avion': form_type_avion,
-    }
-    return render(
-        request,
-        'vol/type_avion_add.html',
-        context)
+@method_decorator(login_required, name='dispatch')
+class TypeAvionCreate(CreateView):
+    model = TypeAvion
+    template_name = 'vol/type_avion_add.html'
+    fields = ['type_avion',
+              'nb_moteurs']
+    success_url = '/type_avion_add'
+    # template_name_suffix = '_add'
+
+    def get_context_data(self, **kwargs):
+        context = super(TypeAvionCreate, self).get_context_data(**kwargs)
+        type_avion_list = TypeAvion.objects.order_by('type_avion').filter(user_id=self.request.user)
+        context['type_avion_list'] = type_avion_list
+        return context
+
+    def form_valid(self, form):
+        form.instance.user_id = self.request.user
+        return super(TypeAvionCreate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
-@login_required
-def edit_type_avion(request, pk):
-    """ Edit an existing plane type via the new_type_avion view and save the edited plane type. """
-    current_user = request.user
-    type_avion_list = TypeAvion.objects.order_by('type_avion').filter(user_id=current_user.id)
-    type_avion = get_object_or_404(type_avion_list, pk=pk)
-    if request.method == "POST":
-        form_type_avion = TypeAvionForm(request.POST, instance=type_avion)
-        if form_type_avion.is_valid():
-            type_avion = form_type_avion.save(commit=False)
-            type_avion.save()
-            return redirect('new_type_avion')
-    else:
-        form_type_avion = TypeAvionForm(instance=type_avion)
-    context = {
-        'type_avion_list': type_avion_list,
-        'form_type_avion': form_type_avion,
-    }
-    return render(
-        request,
-        'vol/type_avion_add.html',
-        context)
+@method_decorator(login_required, name='dispatch')
+class TypeAvionUpdate(UpdateView):
+    model = TypeAvion
+    template_name = 'vol/type_avion_add.html'
+    fields = ['type_avion',
+              'nb_moteurs']
+    success_url = '/type_avion_add'
+    # template_name_suffix = '_add'
+
+    def get_context_data(self, **kwargs):
+        context = super(TypeAvionUpdate, self).get_context_data(**kwargs)
+        type_avion_list = TypeAvion.objects.order_by('type_avion').filter(user_id=self.request.user)
+        context['type_avion_list'] = type_avion_list
+        return context
+
+    def form_valid(self, form):
+        # form.instance.user_id = self.request.user
+        return super(TypeAvionUpdate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
-@login_required
-def remove_type_avion(request, pk):
-    """ Remove a given plane type """
-    current_user = request.user
-    type_avion_list = TypeAvion.objects.filter(user_id=current_user.id)
-    type_avion = get_object_or_404(type_avion_list, pk=pk)
-    type_avion.delete()
-    return redirect('new_type_avion')
+@method_decorator(login_required, name='dispatch')
+class TypeAvionDelete(DeleteView):
+    model = TypeAvion
+    # template_name = 'vol/iata_add.html'
+    # success_url = reverse_lazy('new_immatriculation')
+    # template_name_suffix = '_delete_form'
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    success_url = reverse_lazy('new_type_avion')

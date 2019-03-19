@@ -1,5 +1,6 @@
 from django.urls import path
 from django.conf.urls import url
+from vol.views import *
 
 from . import views
 
@@ -9,18 +10,18 @@ urlpatterns = [
     path('<int:vol_id>/', views.detail, name='detail'),
     url(r'^somme', views.somme, name='somme'),
     url(r'^vol_add', views.new_vol, name='new_vol'),
-    url(r'^immatriculation_add', views.new_immatriculation, name='new_immatriculation'),
-    url(r'^immatriculation/(?P<pk>[0-9]+)/edit/$', views.edit_immatriculation, name='edit_immatriculation'),
-    url(r'^immatriculation/(?P<pk>[0-9]+)/remove/$', views.remove_immatriculation, name='remove_immatriculation'),
-    url(r'^pilote_add', views.new_pilote, name='new_pilote'),
-    url(r'^pilote/(?P<pk>[0-9]+)/edit/$', views.edit_pilote, name='edit_pilote'),
-    url(r'^pilote/(?P<pk>[0-9]+)/remove/$', views.remove_pilote, name='remove_pilote'),
-    url(r'^iata_add', views.new_iata, name='new_iata'),
-    url(r'^iata/(?P<pk>[0-9]+)/edit/$', views.edit_iata, name='edit_iata'),
-    url(r'^iata/(?P<pk>[0-9]+)/remove/$', views.remove_iata, name='remove_iata'),
-    url(r'^type_avion_add', views.new_type_avion, name='new_type_avion'),
-    url(r'^type_avion/(?P<pk>[0-9]+)/edit/$', views.edit_type_avion, name='edit_type_avion'),
-    url(r'^type_avion/(?P<pk>[0-9]+)/remove/$', views.remove_type_avion, name='remove_type_avion'),
+    path('immatriculation_add', ImmatriculationCreate.as_view(), name='new_immatriculation'),
+    path('immatriculation_add/<int:pk>/', ImmatriculationUpdate.as_view(), name='edit_immatriculation'),
+    path('immatriculation_add/<int:pk>/delete', ImmatriculationDelete.as_view(), name='remove_immatriculation'),
+    path('pilote_add', PiloteCreate.as_view(), name='new_pilote'),
+    path('pilote_add/<int:pk>/', PiloteUpdate.as_view(), name='edit_pilote'),
+    path('pilote_add/<int:pk>/delete', PiloteDelete.as_view(), name='remove_pilote'),
+    path('iata_add', CodeIataCreate.as_view(), name='new_code_iata'),
+    path('iata_add/<int:pk>/', CodeIataUpdate.as_view(), name='edit_code_iata'),
+    path('iata_add/<int:pk>/delete', CodeIataDelete.as_view(), name='remove_code_iata'),
+    path('type_avion_add', TypeAvionCreate.as_view(), name='new_type_avion'),
+    path('type_avion_add/<int:pk>/', TypeAvionUpdate.as_view(), name='edit_type_avion'),
+    path('type_avion_add/<int:pk>/delete', TypeAvionDelete.as_view(), name='remove_type_avion'),
     url(r'^(?P<pk>[0-9]+)/edit/$', views.edit_vol, name='edit_vol'),
     url(r'^(?P<pk>[0-9]+)/remove/$', views.remove_vol, name='remove_vol'),
     url(r'^profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='profile'),

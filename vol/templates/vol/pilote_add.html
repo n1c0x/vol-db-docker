@@ -6,21 +6,21 @@
 </div>
 {% load widget_tweaks %}
     <form method="POST" class="post-form" id="new_pilote">{% csrf_token %}
-        {{ form_pilote.non_field_errors }}
+        {{ form.non_field_errors }}
 
         <div class="form-row">
             <div class="form-group col-md-3">
                 <div class="fieldWrapper">
-                    {{ form_pilote.prenom.errors }}
-                    {{ form_pilote.prenom.label_tag }}
-                    {{ form_pilote.prenom|add_class:"form-control" }}
+                    {{ form.prenom.errors }}
+                    {{ form.prenom.label_tag }}
+                    {{ form.prenom|add_class:"form-control" }}
                 </div>
             </div>
             <div class="form-group col-md-3">
                 <div class="fieldWrapper">
-                    {{ form_pilote.nom.errors }}
-                    {{ form_pilote.nom.label_tag }}
-                    {{ form_pilote.nom|add_class:"form-control" }}
+                    {{ form.nom.errors }}
+                    {{ form.nom.label_tag }}
+                    {{ form.nom|add_class:"form-control" }}
                 </div>
             </div>
         </div>
@@ -54,9 +54,13 @@
                                         <a class="management_links" data-toggle="tooltip" data-placement="top" title="Modifier le pilote" href="{% url 'edit_pilote' pk=pilote.pk %}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button>
                                         </a>
-                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le pilote" href="{% url 'remove_pilote' pk=pilote.pk %}" onclick="return confirm('Are you sure you want to delete this?')">
-                                            <button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
-                                        </a>
+                                        <form action="{% url 'remove_pilote' pk=pilote.pk %}" method="post" style="display: inline;">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="pilote_id" value="{{ pilote.id }}" />
+                                            <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le pilote" onclick="return confirm('Are you sure you want to delete this?')">
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                            </a>
+                                        </form>
                                     </td>
                                 </td>
                             </tr>

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import gettext as _
+from django.urls import reverse
 
 
 class Profile(models.Model):
@@ -135,6 +136,9 @@ class Immatriculation(models.Model):
     def save(self, force_insert=False, force_update=False):
         self.immatriculation = self.immatriculation.upper()
         super(Immatriculation, self).save(force_insert, force_update)
+
+    def get_absolute_url(self):
+        return reverse('immatriculation', kwargs={'pk': self.pk})
 
 
 class Pilote(models.Model):

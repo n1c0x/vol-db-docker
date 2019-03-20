@@ -10,7 +10,7 @@
 
 
 <!--
-{% for key, values in liste_somme_vols_total.items %}
+{% for key, values in dict_somme_vols_total.items %}
     {% for key2, values2 in values.items %}
         {{ key2 }} -> {{ values2 }}<br>
     {% endfor %}
@@ -19,7 +19,7 @@
 
 
 
-{% for type_avion, values in liste_somme_vols_total.items %}
+{% for type_avion, values in dict_somme_vols_total.items %}
     <div class="row">
         <div class="col-12">
             <table class="table table-sm">

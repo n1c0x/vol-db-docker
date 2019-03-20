@@ -98,8 +98,7 @@ def somme(request):
 
     liste_somme_vols_cur_year = []
     liste_somme_vols_last_year = []
-    #liste_somme_vols_total = []
-    liste_somme_vols_total = {}
+    dict_somme_vols_total = {}
     liste_somme_vols_total_total = []
 
     for modele_avion in avions:
@@ -151,6 +150,8 @@ def somme(request):
             date__year=current_year.year,
             user_id=current_user.id,
             vol_ifr__gt=0).aggregate(Sum('vol_ifr'))
+        somme_vols_jour_dc_cur_year = []
+        somme_vols_nuit_dc_cur_year = []
 
         # Last Year
         somme_vols_jour_cdb_last_year = Vol.objects.filter(
@@ -187,6 +188,8 @@ def somme(request):
             immatriculation__type_avion__type_avion=modele_avion,
             user_id=current_user.id,
             vol_ifr__gt=0).exclude(date__gt=current_year).aggregate(Sum('vol_ifr'))
+        somme_vols_jour_dc_last_year = []
+        somme_vols_nuit_dc_last_year = []
 
         # Total Year
         somme_vols_jour_cdb_total = Vol.objects.filter(
@@ -223,11 +226,6 @@ def somme(request):
             immatriculation__type_avion__type_avion=modele_avion,
             user_id=current_user.id,
             vol_ifr__gt=0).aggregate(Sum('vol_ifr'))
-
-        somme_vols_jour_dc_cur_year = []
-        somme_vols_nuit_dc_cur_year = []
-        somme_vols_jour_dc_last_year = []
-        somme_vols_nuit_dc_last_year = []
         somme_vols_jour_dc_total = []
         somme_vols_nuit_dc_total = []
 
@@ -325,43 +323,43 @@ def somme(request):
             somme_vols_ifr_total["duree_ifr__sum"]
         # Ne pas oublier de rajouter DC
 
-        liste_somme_vols_total[modele_avion] = {'somme_vols_jour_cdb_cur_year': somme_vols_jour_cdb_cur_year,
-                                                'somme_vols_nuit_cdb_cur_year': somme_vols_nuit_cdb_cur_year,
-                                                'somme_vols_jour_opl_cur_year': somme_vols_jour_opl_cur_year,
-                                                'somme_vols_nuit_opl_cur_year': somme_vols_nuit_opl_cur_year,
-                                                'somme_vols_jour_dc_cur_year': somme_vols_jour_dc_cur_year,
-                                                'somme_vols_nuit_dc_cur_year': somme_vols_nuit_dc_cur_year,
-                                                'somme_vols_jour_inst_cur_year': somme_vols_jour_inst_cur_year,
-                                                'somme_vols_nuit_inst_cur_year': somme_vols_nuit_inst_cur_year,
-                                                'somme_vols_simu_cur_year': somme_vols_simu_cur_year,
-                                                'somme_vols_ifr_cur_year': somme_vols_ifr_cur_year,
-                                                'somme_vols_arrivee_ifr_cur_year': somme_vols_arrivee_ifr_cur_year,
-                                                'somme_vols_jour_cdb_last_year': somme_vols_jour_cdb_last_year,
-                                                'somme_vols_nuit_cdb_last_year': somme_vols_nuit_cdb_last_year,
-                                                'somme_vols_jour_opl_last_year': somme_vols_jour_opl_last_year,
-                                                'somme_vols_nuit_opl_last_year': somme_vols_nuit_opl_last_year,
-                                                'somme_vols_jour_dc_last_year': somme_vols_jour_dc_last_year,
-                                                'somme_vols_nuit_dc_last_year': somme_vols_nuit_dc_last_year,
-                                                'somme_vols_jour_inst_last_year': somme_vols_jour_inst_last_year,
-                                                'somme_vols_nuit_inst_last_year': somme_vols_nuit_inst_last_year,
-                                                'somme_vols_simu_last_year': somme_vols_simu_last_year,
-                                                'somme_vols_ifr_last_year': somme_vols_ifr_last_year,
-                                                'somme_vols_arrivee_ifr_last_year': somme_vols_arrivee_ifr_last_year,
-                                                'somme_vols_jour_cdb_total': somme_vols_jour_cdb_total,
-                                                'somme_vols_nuit_cdb_total': somme_vols_nuit_cdb_total,
-                                                'somme_vols_jour_opl_total': somme_vols_jour_opl_total,
-                                                'somme_vols_nuit_opl_total': somme_vols_nuit_opl_total,
-                                                'somme_vols_jour_dc_total': somme_vols_jour_dc_total,
-                                                'somme_vols_nuit_dc_total': somme_vols_nuit_dc_total,
-                                                'somme_vols_jour_inst_total': somme_vols_jour_inst_total,
-                                                'somme_vols_nuit_inst_total': somme_vols_nuit_inst_total,
-                                                'somme_vols_ifr_total': somme_vols_ifr_total,
-                                                'somme_vols_arrivee_ifr_total': somme_vols_arrivee_ifr_total,
-                                                'liste_somme_vols_cur_year': liste_somme_vols_cur_year,
-                                                'liste_somme_vols_last_year': liste_somme_vols_last_year,
-                                                'liste_somme_vols_total_total': liste_somme_vols_total_total, }
+        dict_somme_vols_total[modele_avion] = {'somme_vols_jour_cdb_cur_year': somme_vols_jour_cdb_cur_year,
+                                               'somme_vols_nuit_cdb_cur_year': somme_vols_nuit_cdb_cur_year,
+                                               'somme_vols_jour_opl_cur_year': somme_vols_jour_opl_cur_year,
+                                               'somme_vols_nuit_opl_cur_year': somme_vols_nuit_opl_cur_year,
+                                               'somme_vols_jour_dc_cur_year': somme_vols_jour_dc_cur_year,
+                                               'somme_vols_nuit_dc_cur_year': somme_vols_nuit_dc_cur_year,
+                                               'somme_vols_jour_inst_cur_year': somme_vols_jour_inst_cur_year,
+                                               'somme_vols_nuit_inst_cur_year': somme_vols_nuit_inst_cur_year,
+                                               'somme_vols_simu_cur_year': somme_vols_simu_cur_year,
+                                               'somme_vols_ifr_cur_year': somme_vols_ifr_cur_year,
+                                               'somme_vols_arrivee_ifr_cur_year': somme_vols_arrivee_ifr_cur_year,
+                                               'somme_vols_jour_cdb_last_year': somme_vols_jour_cdb_last_year,
+                                               'somme_vols_nuit_cdb_last_year': somme_vols_nuit_cdb_last_year,
+                                               'somme_vols_jour_opl_last_year': somme_vols_jour_opl_last_year,
+                                               'somme_vols_nuit_opl_last_year': somme_vols_nuit_opl_last_year,
+                                               'somme_vols_jour_dc_last_year': somme_vols_jour_dc_last_year,
+                                               'somme_vols_nuit_dc_last_year': somme_vols_nuit_dc_last_year,
+                                               'somme_vols_jour_inst_last_year': somme_vols_jour_inst_last_year,
+                                               'somme_vols_nuit_inst_last_year': somme_vols_nuit_inst_last_year,
+                                               'somme_vols_simu_last_year': somme_vols_simu_last_year,
+                                               'somme_vols_ifr_last_year': somme_vols_ifr_last_year,
+                                               'somme_vols_arrivee_ifr_last_year': somme_vols_arrivee_ifr_last_year,
+                                               'somme_vols_jour_cdb_total': somme_vols_jour_cdb_total,
+                                               'somme_vols_nuit_cdb_total': somme_vols_nuit_cdb_total,
+                                               'somme_vols_jour_opl_total': somme_vols_jour_opl_total,
+                                               'somme_vols_nuit_opl_total': somme_vols_nuit_opl_total,
+                                               'somme_vols_jour_dc_total': somme_vols_jour_dc_total,
+                                               'somme_vols_nuit_dc_total': somme_vols_nuit_dc_total,
+                                               'somme_vols_jour_inst_total': somme_vols_jour_inst_total,
+                                               'somme_vols_nuit_inst_total': somme_vols_nuit_inst_total,
+                                               'somme_vols_ifr_total': somme_vols_ifr_total,
+                                               'somme_vols_arrivee_ifr_total': somme_vols_arrivee_ifr_total,
+                                               'liste_somme_vols_cur_year': liste_somme_vols_cur_year,
+                                               'liste_somme_vols_last_year': liste_somme_vols_last_year,
+                                               'liste_somme_vols_total_total': liste_somme_vols_total_total, }
 
-    return render(request, 'vol/somme.html', {'liste_somme_vols_total': liste_somme_vols_total})
+    return render(request, 'vol/somme.html', {'dict_somme_vols_total': dict_somme_vols_total})
 
 
 def convert_timedelta_minutes_to_hours(duration):

@@ -62,37 +62,37 @@ class VolForm(forms.ModelForm):
 #         exclude = ['user_id']
 
 
-class TypeAvionForm(forms.ModelForm):
-    """ Generate the plane type form. """
-    class Meta:
-        model = TypeAvion
-        fields = (
-            'type_avion',
-            'nb_moteurs',
-            'user_id')
-        exclude = ['user_id']
+# class TypeAvionForm(forms.ModelForm):
+#     """ Generate the plane type form. """
+#     class Meta:
+#         model = TypeAvion
+#         fields = (
+#             'type_avion',
+#             'nb_moteurs',
+#             'user_id')
+#         exclude = ['user_id']
 
 
-class PiloteForm(forms.ModelForm):
-    """ Generate the pilot form. """
-    class Meta:
-        model = Pilote
-        fields = (
-            'prenom',
-            'nom',
-            'user_id')
-        exclude = ['user_id']
+# class PiloteForm(forms.ModelForm):
+#     """ Generate the pilot form. """
+#     class Meta:
+#         model = Pilote
+#         fields = (
+#             'prenom',
+#             'nom',
+#             'user_id')
+#         exclude = ['user_id']
 
 
-class IataForm(forms.ModelForm):
-    """ Generate the IATA code form. """
-    class Meta:
-        model = CodeIata
-        fields = (
-            'code_iata',
-            'ville',
-            'user_id')
-        exclude = ['user_id']
+# class IataForm(forms.ModelForm):
+#     """ Generate the IATA code form. """
+#     class Meta:
+#         model = CodeIata
+#         fields = (
+#             'code_iata',
+#             'ville',
+#             'user_id')
+#         exclude = ['user_id']
 
 
 class UserForm(forms.ModelForm):

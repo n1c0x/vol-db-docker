@@ -7,197 +7,222 @@
             <div class="col"><h2 class="display-4 mt-4 mb-4">Totaux</h2></div>
         </div>   
 
-        {% for liste in data.liste_somme_vols_total %}
-        <div class="row">
-            <div class="col-12">
-                <table class="table table-sm">
-                    <thead  class="thead-dark">
-                        <tr>
-                            <th>{{ liste.0 }}</th>
-                            <th>CDB Jour</th>
-                            <th>CDB Nuit</th>
-                            <th>OPL Jour</th>
-                            <th>OPL Nuit</th>
-                            <th>DC Jour</th>
-                            <th>DC Nuit</th>
-                            <th>Inst Jour</th>
-                            <th>Inst Nuit</th>
-                            <th>Simu</th>
-                            <th>Arrivée IFR</th>
-                            <th>IFR</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>Année en cours</th>
-                            <td>{% if liste.1.duree_jour__sum %}
-                                    {{ liste.1.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.2.duree_nuit__sum %}
-                                    {{ liste.2.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.3.duree_jour__sum %}
-                                    {{ liste.3.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.4.duree_nuit__sum %}
-                                    {{ liste.4.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.5.duree_jour__sum %}
-                                    {{ liste.5.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.6.duree_nuit__sum %}
-                                    {{ liste.6.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.7.duree_jour__sum %}
-                                    {{ liste.7.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.8.duree_nuit__sum %}
-                                    {{ liste.8.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.28.duree_simu__sum %}
-                                    {{ liste.28.duree_simu__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.30.vol_ifr__sum|floatformat:"0" %}
-                                    {{ liste.30.vol_ifr__sum|floatformat:"0" }}
-                                {% else %}
-                                    0
-                                {% endif %}</td>
-                            <td></td>
-                            <td>{{ liste.25 }}</td>
-                        </tr>
-                        <tr>
-                            <th>Année précédente</th>
-                            <td>{% if liste.9.duree_jour__sum %}
-                                    {{ liste.9.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.10.duree_nuit__sum %}
-                                    {{ liste.10.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.11.duree_jour__sum %}
-                                    {{ liste.11.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.12.duree_nuit__sum %}
-                                    {{ liste.12.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.13.duree_jour__sum %}
-                                    {{ liste.13.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.14.duree_nuit__sum %}
-                                    {{ liste.14.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.15.duree_jour__sum %}
-                                    {{ liste.15.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.16.duree_nuit__sum %}
-                                    {{ liste.16.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.29.duree_simu__sum %}
-                                    {{ liste.29.duree_simu__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.31.vol_ifr__sum|floatformat:"0" %}
-                                    {{ liste.31.vol_ifr__sum|floatformat:"0" }}
-                                {% else %}
-                                    0
-                                {% endif %}</td>
-                            <td></td>
-                            <td>{{ liste.26 }}</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr class="table-primary">
-                            <th>Total</th>
-                            <td>{% if liste.17.duree_jour__sum %}
-                                    {{ liste.17.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.18.duree_nuit__sum %}
-                                    {{ liste.18.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.19.duree_jour__sum %}
-                                    {{ liste.19.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.20.duree_nuit__sum %}
-                                    {{ liste.20.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.21.duree_jour__sum %}
-                                    {{ liste.21.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.22.duree_nuit__sum %}
-                                    {{ liste.22.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.23.duree_jour__sum %}
-                                    {{ liste.23.duree_jour__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td>{% if liste.24.duree_nuit__sum %}
-                                    {{ liste.24.duree_nuit__sum }}
-                                {% else %}
-                                    --:--:--
-                                {% endif %}</td>
-                            <td></td>
-                            <td>{% if liste.32.vol_ifr__sum|floatformat:"0" %}
-                                    {{ liste.32.vol_ifr__sum|floatformat:"0" }}
-                                {% else %}
-                                    0
-                                {% endif %}</td>
-                            <td></td>
-                            <td>{{ liste.27 }}</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-            <div class="col"></div>
-        </div>
-        {% endfor %}
 
+
+<!--
+{% for key, values in liste_somme_vols_total.items %}
+    {% for key2, values2 in values.items %}
+        {{ key2 }} -> {{ values2 }}<br>
+    {% endfor %}
+{% endfor %}
+-->
+
+
+
+{% for type_avion, values in liste_somme_vols_total.items %}
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-sm">
+                <thead  class="thead-dark">
+                    <tr>
+                        <th>{{ type_avion }}</th>
+                        <th>CDB Jour</th>
+                        <th>CDB Nuit</th>
+                        <th>OPL Jour</th>
+                        <th>OPL Nuit</th>
+                        <th>DC Jour</th>
+                        <th>DC Nuit</th>
+                        <th>Inst Jour</th>
+                        <th>Inst Nuit</th>
+                        <th>Simu</th>
+                        <th>Arrivée IFR</th>
+                        <th>IFR</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Année en cours</th>
+                        <td>{% if values.somme_vols_jour_cdb_cur_year.duree_jour__sum %}
+                                {{ values.somme_vols_jour_cdb_cur_year.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_cdb_cur_year.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_cdb_cur_year.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_jour_opl_cur_year.duree_jour__sum %}
+                                {{ values.somme_vols_jour_opl_cur_year.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_opl_cur_year.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_opl_cur_year.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_jour_dc_cur_year.duree_jour__sum %}
+                                {{ values.somme_vols_jour_dc_cur_year.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_dc_cur_year.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_dc_cur_year.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_jour_inst_cur_year.duree_jour__sum %}
+                                {{ values.somme_vols_jour_inst_cur_year.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_inst_cur_year.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_inst_cur_year.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_simu_cur_year.duree_simu__sum %}
+                                {{ values.somme_vols_simu_cur_year.duree_simu__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_arrivee_ifr_cur_year.vol_ifr__sum|floatformat:"0" %}
+                                {{ values.somme_vols_arrivee_ifr_cur_year.vol_ifr__sum|floatformat:"0" }}
+                            {% else %}
+                                0
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_ifr_cur_year.duree_ifr__sum %}
+                                {{ values.somme_vols_ifr_cur_year.duree_ifr__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{{ values.liste_somme_vols_cur_year }}</td>
+                    </tr>
+                    <tr>
+                        <th>Année précédente</th>
+                        <td>{% if values.somme_vols_jour_cdb_last_year.duree_jour__sum %}
+                                {{ values.somme_vols_jour_cdb_last_year.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_cdb_last_year.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_cdb_last_year.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_jour_opl_last_year.duree_jour__sum %}
+                                {{ values.somme_vols_jour_opl_last_year.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_opl_last_year.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_opl_last_year.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_jour_dc_last_year.duree_jour__sum %}
+                                {{ values.somme_vols_jour_dc_last_year.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_dc_last_year.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_dc_last_year.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_jour_inst_last_year.duree_jour__sum %}
+                                {{ values.somme_vols_jour_inst_last_year.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_inst_last_year.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_inst_last_year.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_simu_last_year.duree_simu__sum %}
+                                {{ values.somme_vols_simu_last_year.duree_simu__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_arrivee_ifr_last_year.vol_ifr__sum|floatformat:"0" %}
+                                {{ values.somme_vols_arrivee_ifr_last_year.vol_ifr__sum|floatformat:"0" }}
+                            {% else %}
+                                0
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_ifr_last_year.duree_ifr__sum %}
+                                {{ values.somme_vols_ifr_last_year.duree_ifr__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{{ values.liste_somme_vols_last_year }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="table-primary">
+                        <th>Total</th>
+                        <td>{% if values.somme_vols_jour_cdb_total.duree_jour__sum %}
+                                {{ values.somme_vols_jour_cdb_total.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_cdb_total.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_cdb_total.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_jour_opl_total.duree_jour__sum %}
+                                {{ values.somme_vols_jour_opl_total.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_opl_total.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_opl_total.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_jour_dc_total.duree_jour__sum %}
+                                {{ values.somme_vols_jour_dc_total.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_dc_total.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_dc_total.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_jour_inst_total.duree_jour__sum %}
+                                {{ values.somme_vols_jour_inst_total.duree_jour__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_nuit_inst_total.duree_nuit__sum %}
+                                {{ values.somme_vols_nuit_inst_total.duree_nuit__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_simu_total.duree_simu__sum %}
+                                {{ values.somme_vols_simu_total.duree_simu__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_arrivee_ifr_total.vol_ifr__sum|floatformat:"0" %}
+                                {{ values.somme_vols_arrivee_ifr_total.vol_ifr__sum|floatformat:"0" }}
+                            {% else %}
+                                0
+                            {% endif %}</td>
+                        <td>{% if values.somme_vols_ifr_total.duree_ifr__sum %}
+                                {{ values.somme_vols_ifr_total.duree_ifr__sum }}
+                            {% else %}
+                                --:--:--
+                            {% endif %}</td>
+                        <td>{{ values.liste_somme_vols_total_total }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
+{% endfor %}
 {% endblock %}

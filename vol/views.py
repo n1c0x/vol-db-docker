@@ -98,7 +98,8 @@ def somme(request):
 
     liste_somme_vols_cur_year = []
     liste_somme_vols_last_year = []
-    liste_somme_vols_total = []
+    #liste_somme_vols_total = []
+    liste_somme_vols_total = {}
     liste_somme_vols_total_total = []
 
     for modele_avion in avions:
@@ -141,6 +142,10 @@ def somme(request):
             immatriculation__type_avion__type_avion=modele_avion,
             date__year=current_year.year,
             user_id=current_user.id).aggregate(Sum('duree_simu'))
+        somme_vols_ifr_cur_year = Vol.objects.filter(
+            immatriculation__type_avion__type_avion=modele_avion,
+            date__year=current_year.year,
+            user_id=current_user.id).aggregate(Sum('duree_ifr'))
         somme_vols_arrivee_ifr_cur_year = Vol.objects.filter(
             immatriculation__type_avion__type_avion=modele_avion,
             date__year=current_year.year,
@@ -175,6 +180,9 @@ def somme(request):
         somme_vols_simu_last_year = Vol.objects.filter(
             immatriculation__type_avion__type_avion=modele_avion,
             user_id=current_user.id).exclude(date__gt=current_year).aggregate(Sum('duree_simu'))
+        somme_vols_ifr_last_year = Vol.objects.filter(
+            immatriculation__type_avion__type_avion=modele_avion,
+            user_id=current_user.id).exclude(date__gt=current_year).aggregate(Sum('duree_ifr'))
         somme_vols_arrivee_ifr_last_year = Vol.objects.filter(
             immatriculation__type_avion__type_avion=modele_avion,
             user_id=current_user.id,
@@ -205,6 +213,12 @@ def somme(request):
             poste="Instruct",
             immatriculation__type_avion__type_avion=modele_avion,
             user_id=current_user.id).aggregate(Sum('duree_nuit'))
+        somme_vols_simu_total = Vol.objects.filter(
+            immatriculation__type_avion__type_avion=modele_avion,
+            user_id=current_user.id).aggregate(Sum('duree_simu'))
+        somme_vols_ifr_total = Vol.objects.filter(
+            immatriculation__type_avion__type_avion=modele_avion,
+            user_id=current_user.id).aggregate(Sum('duree_ifr'))
         somme_vols_arrivee_ifr_total = Vol.objects.filter(
             immatriculation__type_avion__type_avion=modele_avion,
             user_id=current_user.id,
@@ -235,6 +249,9 @@ def somme(request):
             somme_vols_nuit_inst_cur_year["duree_nuit__sum"] = timedelta(0)
         if somme_vols_simu_cur_year["duree_simu__sum"] is None:
             somme_vols_simu_cur_year["duree_simu__sum"] = timedelta(0)
+        if somme_vols_ifr_cur_year["duree_ifr__sum"] is None:
+            somme_vols_ifr_cur_year["duree_ifr__sum"] = timedelta(0)
+
         if somme_vols_jour_cdb_last_year["duree_jour__sum"] is None:
             somme_vols_jour_cdb_last_year["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_cdb_last_year["duree_nuit__sum"] is None:
@@ -243,16 +260,19 @@ def somme(request):
             somme_vols_jour_opl_last_year["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_opl_last_year["duree_nuit__sum"] is None:
             somme_vols_nuit_opl_last_year["duree_nuit__sum"] = timedelta(0)
-       # if somme_vols_jour_dc_last_year["duree_jour__sum"] is None:
-       #     somme_vols_jour_dc_last_year["duree_jour__sum"] = datetime.timedelta(0)
-       # if somme_vols_nuit_dc_last_year["duree_nuit__sum"] is None:
-       #     somme_vols_nuit_dc_last_year["duree_nuit__sum"] = datetime.timedelta(0)
+        # if somme_vols_jour_dc_last_year["duree_jour__sum"] is None:
+        #     somme_vols_jour_dc_last_year["duree_jour__sum"] = datetime.timedelta(0)
+        # if somme_vols_nuit_dc_last_year["duree_nuit__sum"] is None:
+        #     somme_vols_nuit_dc_last_year["duree_nuit__sum"] = datetime.timedelta(0)
         if somme_vols_jour_inst_last_year["duree_jour__sum"] is None:
             somme_vols_jour_inst_last_year["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_inst_last_year["duree_nuit__sum"] is None:
             somme_vols_nuit_inst_last_year["duree_nuit__sum"] = timedelta(0)
         if somme_vols_simu_last_year["duree_simu__sum"] is None:
             somme_vols_simu_last_year["duree_simu__sum"] = timedelta(0)
+        if somme_vols_ifr_last_year["duree_ifr__sum"] is None:
+            somme_vols_ifr_last_year["duree_ifr__sum"] = timedelta(0)
+
         if somme_vols_jour_cdb_total["duree_jour__sum"] is None:
             somme_vols_jour_cdb_total["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_cdb_total["duree_nuit__sum"] is None:
@@ -261,14 +281,18 @@ def somme(request):
             somme_vols_jour_opl_total["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_opl_total["duree_nuit__sum"] is None:
             somme_vols_nuit_opl_total["duree_nuit__sum"] = timedelta(0)
-       # if somme_vols_jour_dc_total["duree_jour__sum"] is None:
-       #     somme_vols_jour_dc_total["duree_jour__sum"] = datetime.timedelta(0)
-       # if somme_vols_nuit_dc_total["duree_nuit__sum"] is None:
-       #     somme_vols_nuit_dc_total["duree_nuit__sum"] = datetime.timedelta(0)
+        # if somme_vols_jour_dc_total["duree_jour__sum"] is None:
+        #     somme_vols_jour_dc_total["duree_jour__sum"] = datetime.timedelta(0)
+        # if somme_vols_nuit_dc_total["duree_nuit__sum"] is None:
+        #     somme_vols_nuit_dc_total["duree_nuit__sum"] = datetime.timedelta(0)
         if somme_vols_jour_inst_total["duree_jour__sum"] is None:
             somme_vols_jour_inst_total["duree_jour__sum"] = timedelta(0)
         if somme_vols_nuit_inst_total["duree_nuit__sum"] is None:
             somme_vols_nuit_inst_total["duree_nuit__sum"] = timedelta(0)
+        if somme_vols_simu_total["duree_simu__sum"] is None:
+            somme_vols_simu_total["duree_simu__sum"] = timedelta(0)
+        if somme_vols_ifr_total["duree_ifr__sum"] is None:
+            somme_vols_ifr_total["duree_ifr__sum"] = timedelta(0)
 
         # Total de tous les vols
         liste_somme_vols_cur_year = somme_vols_jour_cdb_cur_year["duree_jour__sum"] + \
@@ -276,65 +300,68 @@ def somme(request):
             somme_vols_jour_opl_cur_year["duree_jour__sum"] + \
             somme_vols_nuit_opl_cur_year["duree_nuit__sum"] + \
             somme_vols_jour_inst_cur_year["duree_jour__sum"] + \
-            somme_vols_nuit_inst_cur_year["duree_nuit__sum"]
+            somme_vols_nuit_inst_cur_year["duree_nuit__sum"] + \
+            somme_vols_simu_cur_year["duree_simu__sum"] + \
+            somme_vols_ifr_cur_year["duree_ifr__sum"]
+        # Ne pas oublier de rajouter DC
 
         liste_somme_vols_last_year = somme_vols_jour_cdb_last_year["duree_jour__sum"] + \
             somme_vols_nuit_cdb_last_year["duree_nuit__sum"] + \
             somme_vols_jour_opl_last_year["duree_jour__sum"] + \
             somme_vols_nuit_opl_last_year["duree_nuit__sum"] + \
             somme_vols_jour_inst_last_year["duree_jour__sum"] + \
-            somme_vols_nuit_inst_last_year["duree_nuit__sum"]
+            somme_vols_nuit_inst_last_year["duree_nuit__sum"] + \
+            somme_vols_simu_last_year["duree_simu__sum"] + \
+            somme_vols_ifr_last_year["duree_ifr__sum"]
+        # Ne pas oublier de rajouter DC
 
         liste_somme_vols_total_total = somme_vols_jour_cdb_total["duree_jour__sum"] + \
             somme_vols_nuit_cdb_total["duree_nuit__sum"] + \
             somme_vols_jour_opl_total["duree_jour__sum"] + \
             somme_vols_nuit_opl_total["duree_nuit__sum"] + \
             somme_vols_jour_inst_total["duree_jour__sum"] + \
-            somme_vols_nuit_inst_total["duree_nuit__sum"]
+            somme_vols_nuit_inst_total["duree_nuit__sum"] + \
+            somme_vols_simu_total["duree_simu__sum"] + \
+            somme_vols_ifr_total["duree_ifr__sum"]
+        # Ne pas oublier de rajouter DC
 
-        liste_somme_vols_total.append([
-            modele_avion,
-            somme_vols_jour_cdb_cur_year,
-            somme_vols_nuit_cdb_cur_year,
-            somme_vols_jour_opl_cur_year,
-            somme_vols_nuit_opl_cur_year,
-            somme_vols_jour_dc_cur_year,
-            somme_vols_nuit_dc_cur_year,
-            somme_vols_jour_inst_cur_year,
-            somme_vols_nuit_inst_cur_year,
-            somme_vols_jour_cdb_last_year,
-            somme_vols_nuit_cdb_last_year,
-            somme_vols_jour_opl_last_year,
-            somme_vols_nuit_opl_last_year,
-            somme_vols_jour_dc_last_year,
-            somme_vols_nuit_dc_last_year,
-            somme_vols_jour_inst_last_year,
-            somme_vols_nuit_inst_last_year,
-            somme_vols_jour_cdb_total,
-            somme_vols_nuit_cdb_total,
-            somme_vols_jour_opl_total,
-            somme_vols_nuit_opl_total,
-            somme_vols_jour_dc_total,
-            somme_vols_nuit_dc_total,
-            somme_vols_jour_inst_total,
-            somme_vols_nuit_inst_total,
-            liste_somme_vols_cur_year,
-            liste_somme_vols_last_year,
-            liste_somme_vols_total_total,
-            somme_vols_simu_cur_year,
-            somme_vols_simu_last_year,
-            somme_vols_arrivee_ifr_cur_year,
-            somme_vols_arrivee_ifr_last_year,
-            somme_vols_arrivee_ifr_total,
-        ])
+        liste_somme_vols_total[modele_avion] = {'somme_vols_jour_cdb_cur_year': somme_vols_jour_cdb_cur_year,
+                                                'somme_vols_nuit_cdb_cur_year': somme_vols_nuit_cdb_cur_year,
+                                                'somme_vols_jour_opl_cur_year': somme_vols_jour_opl_cur_year,
+                                                'somme_vols_nuit_opl_cur_year': somme_vols_nuit_opl_cur_year,
+                                                'somme_vols_jour_dc_cur_year': somme_vols_jour_dc_cur_year,
+                                                'somme_vols_nuit_dc_cur_year': somme_vols_nuit_dc_cur_year,
+                                                'somme_vols_jour_inst_cur_year': somme_vols_jour_inst_cur_year,
+                                                'somme_vols_nuit_inst_cur_year': somme_vols_nuit_inst_cur_year,
+                                                'somme_vols_simu_cur_year': somme_vols_simu_cur_year,
+                                                'somme_vols_ifr_cur_year': somme_vols_ifr_cur_year,
+                                                'somme_vols_arrivee_ifr_cur_year': somme_vols_arrivee_ifr_cur_year,
+                                                'somme_vols_jour_cdb_last_year': somme_vols_jour_cdb_last_year,
+                                                'somme_vols_nuit_cdb_last_year': somme_vols_nuit_cdb_last_year,
+                                                'somme_vols_jour_opl_last_year': somme_vols_jour_opl_last_year,
+                                                'somme_vols_nuit_opl_last_year': somme_vols_nuit_opl_last_year,
+                                                'somme_vols_jour_dc_last_year': somme_vols_jour_dc_last_year,
+                                                'somme_vols_nuit_dc_last_year': somme_vols_nuit_dc_last_year,
+                                                'somme_vols_jour_inst_last_year': somme_vols_jour_inst_last_year,
+                                                'somme_vols_nuit_inst_last_year': somme_vols_nuit_inst_last_year,
+                                                'somme_vols_simu_last_year': somme_vols_simu_last_year,
+                                                'somme_vols_ifr_last_year': somme_vols_ifr_last_year,
+                                                'somme_vols_arrivee_ifr_last_year': somme_vols_arrivee_ifr_last_year,
+                                                'somme_vols_jour_cdb_total': somme_vols_jour_cdb_total,
+                                                'somme_vols_nuit_cdb_total': somme_vols_nuit_cdb_total,
+                                                'somme_vols_jour_opl_total': somme_vols_jour_opl_total,
+                                                'somme_vols_nuit_opl_total': somme_vols_nuit_opl_total,
+                                                'somme_vols_jour_dc_total': somme_vols_jour_dc_total,
+                                                'somme_vols_nuit_dc_total': somme_vols_nuit_dc_total,
+                                                'somme_vols_jour_inst_total': somme_vols_jour_inst_total,
+                                                'somme_vols_nuit_inst_total': somme_vols_nuit_inst_total,
+                                                'somme_vols_ifr_total': somme_vols_ifr_total,
+                                                'somme_vols_arrivee_ifr_total': somme_vols_arrivee_ifr_total,
+                                                'liste_somme_vols_cur_year': liste_somme_vols_cur_year,
+                                                'liste_somme_vols_last_year': liste_somme_vols_last_year,
+                                                'liste_somme_vols_total_total': liste_somme_vols_total_total, }
 
-    data = {
-        'liste_somme_vols_cur_year': liste_somme_vols_cur_year,
-        'liste_somme_vols_last_year': liste_somme_vols_last_year,
-        'liste_somme_vols_total': liste_somme_vols_total,
-    }
-
-    return render(request, 'vol/somme.html', {'data': data})
+    return render(request, 'vol/somme.html', {'liste_somme_vols_total': liste_somme_vols_total})
 
 
 def convert_timedelta_minutes_to_hours(duration):
@@ -346,26 +373,25 @@ def convert_timedelta_minutes_to_hours(duration):
     return duration
 
 
-@login_required
-def new_vol(request):
-    """ Render the new flight page and save the new flight. """
-    if request.method == "POST":
-        # form_vol = VolForm(request.POST, current_user=request.user)
-        form_vol = VolForm(request.POST)
-        if form_vol.is_valid():
-            vol = form_vol.save(commit=False)
-            vol.duree_jour = convert_timedelta_minutes_to_hours(vol.duree_jour)
-            vol.duree_nuit = convert_timedelta_minutes_to_hours(vol.duree_nuit)
-            vol.duree_ifr = convert_timedelta_minutes_to_hours(vol.duree_ifr)
-            vol.duree_simu = convert_timedelta_minutes_to_hours(vol.duree_simu)
-            vol.duree_dc = convert_timedelta_minutes_to_hours(vol.duree_dc)
-            vol.user_id = request.user
-            vol.save()
-            return redirect('index')
-    else:
-        # form_vol = VolForm(current_user=request.user)
-        form_vol = VolForm()
-    return render(request, 'vol/vol_add.html', {'form': form_vol})
+@method_decorator(login_required, name='dispatch')
+class VolCreate(CreateView):
+    model = Vol
+    template_name = 'vol/vol_add.html'
+    form_class = VolForm
+    success_url = '/vols'
+    # template_name_suffix = '_add'
+
+    def form_valid(self, form):
+        form.instance.user_id = self.request.user
+        form.instance.duree_jour = convert_timedelta_minutes_to_hours(form.instance.duree_jour)
+        form.instance.duree_nuit = convert_timedelta_minutes_to_hours(form.instance.duree_nuit)
+        form.instance.duree_ifr = convert_timedelta_minutes_to_hours(form.instance.duree_ifr)
+        form.instance.duree_simu = convert_timedelta_minutes_to_hours(form.instance.duree_simu)
+        form.instance.duree_dc = convert_timedelta_minutes_to_hours(form.instance.duree_dc)
+        return super(VolCreate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
 def convert_timedelta(duration):
@@ -374,45 +400,45 @@ def convert_timedelta(duration):
     return duration
 
 
-@login_required
-def edit_vol(request, pk):
-    """ Edit an existing flight via the new_vol view and save the edited flight. """
-    current_user = request.user
-    vols_list = Vol.objects.filter(user_id=current_user.id)
-    vol = get_object_or_404(vols_list, pk=pk)
-    if request.method == "POST":
-        form = VolForm(request.POST, instance=vol)
-        if current_user == vol.user_id:
-            if form.is_valid():
-                vol = form.save(commit=False)
-                # print(vol.duree_jour)
-                if form.has_changed():
-                    print("Le champ suivant change : %s" % ", ".join(form.changed_data))
-                # vol_duree_jour = Vol.objects.get(pk=pk)
-                # print(vol_duree_jour.duree_jour)
+@method_decorator(login_required, name='dispatch')
+class VolUpdate(UpdateView):
+    model = Vol
+    template_name = 'vol/vol_add.html'
+    form_class = VolForm
+    success_url = '/vols'
+    # template_name_suffix = '_add'
 
-                # vol.duree_jour = convert_timedelta_minutes_to_hours(vol.duree_jour)
-                # vol.duree_nuit = convert_timedelta_minutes_to_hours(vol.duree_nuit)
-                # vol.duree_simu = convert_timedelta_minutes_to_hours(vol.duree_simu)
-                # vol.duree_ifr = convert_timedelta_minutes_to_hours(vol.duree_ifr)
-                # vol.duree_dc = convert_timedelta_minutes_to_hours(vol.duree_dc)
-                vol.save()
-                return redirect('index')
-    #    else:
-    #       return render(request, 'vol/error_not_allowed.html')
-    else:
-        form = VolForm(instance=vol)
-    return render(request, 'vol/vol_add.html', {'form': form})
+    def form_valid(self, form):
+        # print(vol.duree_jour)
+        if form.has_changed():
+            print("Le champ suivant change : %s" % ", ".join(form.changed_data))
+        # vol_duree_jour = Vol.objects.get(pk=pk)
+        # print(vol_duree_jour.duree_jour)
+
+        # vol.duree_jour = convert_timedelta_minutes_to_hours(vol.duree_jour)
+        # vol.duree_nuit = convert_timedelta_minutes_to_hours(vol.duree_nuit)
+        # vol.duree_simu = convert_timedelta_minutes_to_hours(vol.duree_simu)
+        # vol.duree_ifr = convert_timedelta_minutes_to_hours(vol.duree_ifr)
+        # vol.duree_dc = convert_timedelta_minutes_to_hours(vol.duree_dc)
+        return super(VolUpdate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
-@login_required
-def remove_vol(request, pk):
-    """ Remove a given flight """
-    current_user = request.user
-    vols_list = Vol.objects.filter(user_id=current_user.id)
-    vol = get_object_or_404(vols_list, pk=pk)
-    vol.delete()
-    return redirect('index')
+@method_decorator(login_required, name='dispatch')
+class VolDelete(DeleteView):
+    model = Vol
+    # template_name = 'vol/immatriculation_add.html'
+
+    def get_queryset(self):
+        qs = super(VolDelete, self).get_queryset()
+        return qs.filter(user_id=self.request.user.profile.user_id)
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    success_url = reverse_lazy('index')
 
 
 @method_decorator(login_required, name='dispatch')
@@ -429,6 +455,11 @@ class ImmatriculationCreate(CreateView):
         immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=self.request.user)
         context['immatriculation_list'] = immatriculation_list
         return context
+
+    def get_form(self, *args, **kwargs):
+        form = super(ImmatriculationCreate, self).get_form(*args, **kwargs)
+        form.fields['immatriculation'].queryset = Immatriculation.objects.filter(user_id=self.request.user)
+        return form
 
     def form_valid(self, form):
         form.instance.user_id = self.request.user
@@ -468,8 +499,6 @@ class ImmatriculationUpdate(UpdateView):
 class ImmatriculationDelete(DeleteView):
     model = Immatriculation
     # template_name = 'vol/immatriculation_add.html'
-    # success_url = reverse_lazy('new_immatriculation')
-    # template_name_suffix = '_delete_form'
 
     def get_queryset(self):
         qs = super(ImmatriculationDelete, self).get_queryset()

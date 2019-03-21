@@ -4,14 +4,13 @@
 {% load widget_tweaks %}
 
         <div class="row">
-            <div class="col"><h2 class="display-4 mt-4 mb-4">Détails du vol</h2></div>
+            <div class="col-md-12"><h2 class="display-4 mt-4 mb-4">Détails du vol</h2></div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-auto mr-auto">
                 <a class="btn btn-outline-primary management_links" data-toggle="tooltip" data-placement="top" title="Modifier le vol" href="{% url 'edit_vol' pk=vol.pk %}"><i class="fas fa-pencil-alt"></i></a>
             </div>
-            <div class="col"></div>
-            <div class="col-1">
+            <div class="col-auto">
                 <form action="{% url 'remove_vol' pk=vol.pk %}" method="post" style="display: inline;">
                     {% csrf_token %}
                     <input type="hidden" name="immatriculation_id" value="{{ vol.id }}" />
@@ -25,7 +24,7 @@
 <hr>
 
         <div class="row">
-            <div class="col-4 offset-md-4">
+            <div class="col-md-4 col-sd-12 offset-md-4">
 
                 <div class="card" >
                     <div class="card-header">
@@ -161,9 +160,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 offset-md-1">
+            <div class="col-md-3 col-sd-12 offset-md-1 mt-3 mt-md-0">
 
-                <div class="card" >
+                <div class="card">
                     <div class="card-header"><h3>Avion <i class="fas fa-plane"></i></h3></div>
                     <div class="card-body p-0">
                         <table class="table mb-0">
@@ -187,10 +186,10 @@
             </div>
         </div>
         <div class="row">
-                <div class="col-2 offset-md-5"><h1>Équipage</h1></div>
+                <div class="col-md-2 offset-md-5 mt-md-3 mt-3"><h1>Équipage</h1></div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-12 col-sd-12">
                 <div class="card-deck">
                     <div class="card text-white bg-dark">
                         <div class="card-body">

@@ -4,15 +4,16 @@ from .forms import *
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
 from datetime import date, datetime, timedelta
 from .models import *
-
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+
+from django.utils.duration import _get_duration_components
+from django.db.models.fields import DurationField
 
 
 def homepage(request):
@@ -86,6 +87,30 @@ class VolDetail(DetailView):
         return super().dispatch(*args, **kwargs)
 
 
+class DurationField(DurationField):
+    def value_to_string(self, obj):
+        val = self.value_from_object(obj)
+        if val is None:
+            return ''
+
+        days, hours, minutes, seconds, microseconds = _get_duration_components(val)
+        return '{} days, {:02d} hours, {:02d} minutes, {:02d}.{:06d} seconds'.format(days, hours, minutes, seconds, microseconds)
+
+    # def duration_string(duration):
+    #     """Version of str(timedelta) which is not English specific."""
+    #     days, hours, minutes, seconds, microseconds = _get_duration_components(duration)
+
+    #     return '{} days, {:02d} hours, {:02d} minutes, {:02d}.{:06d} seconds'.format(days, hours, minutes, seconds, microseconds)
+
+        # string = '{:02d}:{:02d}:{:02d}'.format(hours, minutes, seconds)
+        # if days:
+        #     string = '{} '.format(days) + string
+        # if microseconds:
+        #     string += '.{:06d}'.format(microseconds)
+
+        # return string
+
+
 @login_required
 def somme(request):
     """
@@ -93,7 +118,6 @@ def somme(request):
         grouped by plane type, year and function.
     """
     current_user = request.user
-    # avions = TypeAvion.objects.all()
     avions = TypeAvion.objects.filter(user_id=current_user.id)
 
     liste_somme_vols_cur_year = []

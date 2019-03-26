@@ -7,6 +7,7 @@ from django.urls import reverse
 
 
 class Profile(models.Model):
+    """ Define user profile """
     CLIENT_TYPE = (
         ('Gratuit', 'Gratuit'),
         ('Payant', 'Payant'),

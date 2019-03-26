@@ -6,3 +6,4 @@ vol/migrations/
 images/
 venv-windows/
 voldb/settings.py
+__pycache__/

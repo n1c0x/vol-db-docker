@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'admin_totals',
     'widget_tweaks',
     'tempus_dominus',
+    'django.contrib.admindocs',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -17,7 +17,14 @@ from django.db.models.fields import DurationField
 
 
 def homepage(request):
-    """ Render the home page. """
+    """
+    Render the home page.
+
+    **Template:**
+
+    :template:`vol/homepage.html`
+
+    """
     return render(request, 'vol/homepage.html')
 
 
@@ -35,6 +42,7 @@ def get_user_profile(request, username):
 
 @login_required
 def update_user_profile(request, username):
+    """ Update the user profile """
     is_modified = True
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
@@ -60,23 +68,28 @@ def update_user_profile(request, username):
 
 @method_decorator(login_required, name='dispatch')
 class VolList(ListView):
+    """ Class which lists all the flights """
     model = Vol
     template_name = 'vol/index.html'
 
     def get_queryset(self):
+        """ Override the standard get_query method. The override orders by date and filters by current user """
         return Vol.objects.order_by('-date').filter(user_id=self.request.user)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
 @method_decorator(login_required, name='dispatch')
 class VolDetail(DetailView):
+    """ Class which displays the details of a given flight """
     model = Vol
     template_name = 'vol/detail.html'
     # vol = Vol.objects.filter(user_id=self.request.user)
 
     def get_context_data(self, **kwargs):
+        """ Override the standard get_context_data. The override filters by current user """
         context = super(VolDetail, self).get_context_data(**kwargs)
         vols_list = Vol.objects.filter(user_id=self.request.user)
         vol = get_object_or_404(vols_list, pk=self.kwargs.get('pk', None))
@@ -84,6 +97,7 @@ class VolDetail(DetailView):
         return context
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
@@ -397,11 +411,17 @@ def convert_timedelta_minutes_to_hours(duration):
 
 @method_decorator(login_required, name='dispatch')
 class VolCreate(CreateView):
+    """ Class to create a flight """
     model = Vol
     template_name = 'vol/vol_add.html'
     form_class = VolForm
     success_url = '/vols'
     # template_name_suffix = '_add'
+
+    def get_form_kwargs(self, *args, **kwargs):
+        kwargs = super().get_form_kwargs(*args, **kwargs)
+        kwargs['user_id'] = self.request.user.id
+        return kwargs
 
     def form_valid(self, form):
         form.instance.user_id = self.request.user
@@ -413,6 +433,7 @@ class VolCreate(CreateView):
         return super(VolCreate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
@@ -424,6 +445,7 @@ def convert_timedelta(duration):
 
 @method_decorator(login_required, name='dispatch')
 class VolUpdate(UpdateView):
+    """ Class to update a flight """
     model = Vol
     template_name = 'vol/vol_add.html'
     form_class = VolForm
@@ -445,11 +467,13 @@ class VolUpdate(UpdateView):
         return super(VolUpdate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
 @method_decorator(login_required, name='dispatch')
 class VolDelete(DeleteView):
+    """ Class to delete a flight """
     model = Vol
     # template_name = 'vol/immatriculation_add.html'
 
@@ -458,6 +482,7 @@ class VolDelete(DeleteView):
         return qs.filter(user_id=self.request.user.profile.user_id)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
     success_url = reverse_lazy('index')
@@ -465,12 +490,19 @@ class VolDelete(DeleteView):
 
 @method_decorator(login_required, name='dispatch')
 class ImmatriculationCreate(CreateView):
+    """ Class to create a plane """
     model = Immatriculation
     template_name = 'vol/immatriculation_add.html'
-    fields = ['immatriculation',
-              'type_avion']
+    form_class = ImmatriculationForm
+    # fields = ['immatriculation',
+    #           'type_avion']
     success_url = '/immatriculation_add'
     # template_name_suffix = '_add'
+
+    def get_form_kwargs(self, *args, **kwargs):
+        kwargs = super().get_form_kwargs(*args, **kwargs)
+        kwargs['user_id'] = self.request.user.id
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super(ImmatriculationCreate, self).get_context_data(**kwargs)
@@ -488,11 +520,13 @@ class ImmatriculationCreate(CreateView):
         return super(ImmatriculationCreate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
 @method_decorator(login_required, name='dispatch')
 class ImmatriculationUpdate(UpdateView):
+    """ Class to update a plane """
     model = Immatriculation
     template_name = 'vol/immatriculation_add.html'
     fields = ['immatriculation',
@@ -514,11 +548,13 @@ class ImmatriculationUpdate(UpdateView):
         return super(ImmatriculationUpdate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
 @method_decorator(login_required, name='dispatch')
 class ImmatriculationDelete(DeleteView):
+    """ Class to delete a plane """
     model = Immatriculation
     # template_name = 'vol/immatriculation_add.html'
 
@@ -527,6 +563,7 @@ class ImmatriculationDelete(DeleteView):
         return qs.filter(user_id=self.request.user.profile.user_id)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
     success_url = reverse_lazy('new_immatriculation')
@@ -552,6 +589,7 @@ class PiloteCreate(CreateView):
         return super(PiloteCreate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
@@ -579,6 +617,7 @@ class PiloteUpdate(UpdateView):
         return super(PiloteUpdate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
@@ -594,6 +633,7 @@ class PiloteDelete(DeleteView):
         return qs.filter(user_id=self.request.user.profile.user_id)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
     success_url = reverse_lazy('new_pilote')
@@ -619,6 +659,7 @@ class CodeIataCreate(CreateView):
         return super(CodeIataCreate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
@@ -646,6 +687,7 @@ class CodeIataUpdate(UpdateView):
         return super(CodeIataUpdate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
@@ -661,6 +703,7 @@ class CodeIataDelete(DeleteView):
         return qs.filter(user_id=self.request.user.profile.user_id)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
     success_url = reverse_lazy('new_code_iata')
@@ -686,6 +729,7 @@ class TypeAvionCreate(CreateView):
         return super(TypeAvionCreate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
@@ -713,6 +757,7 @@ class TypeAvionUpdate(UpdateView):
         return super(TypeAvionUpdate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
 
@@ -728,6 +773,7 @@ class TypeAvionDelete(DeleteView):
         return qs.filter(user_id=self.request.user.profile.user_id)
 
     def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
     success_url = reverse_lazy('new_type_avion')

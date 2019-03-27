@@ -5,6 +5,32 @@ from django.dispatch import receiver
 from django.utils.translation import gettext as _
 from django.urls import reverse
 
+# from django.utils.duration import _get_duration_components
+# from django.db.models.fields import DurationField
+
+
+# class DurationField(DurationField):
+#     def value_to_string(self, obj):
+#         val = self.value_from_object(obj)
+#         if val is None:
+#             return ''
+#         days, hours, minutes, seconds, microseconds = _get_duration_components(val)
+#         return '{} days, {:02d} hours, {:02d} minutes, {:02d}.{:06d} seconds'.format(days, hours, minutes, seconds, microseconds)
+
+#     def duration_string(duration):
+#         """Version of str(timedelta) which is not English specific."""
+#         days, hours, minutes, seconds, microseconds = _get_duration_components(duration)
+
+#         return '{} days, {:02d} hours, {:02d} minutes, {:02d}.{:06d} seconds'.format(days, hours, minutes, seconds, microseconds)
+
+#         string = '{:02d}:{:02d}:{:02d}'.format(hours, minutes, seconds)
+#         if days:
+#             string = '{} '.format(days) + string
+#         if microseconds:
+#             string += '.{:06d}'.format(microseconds)
+
+#         return string
+
 
 class Profile(models.Model):
     """ Define user profile """

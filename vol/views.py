@@ -12,9 +12,6 @@ from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 
-from django.utils.duration import _get_duration_components
-from django.db.models.fields import DurationField
-
 
 def homepage(request):
     """
@@ -93,36 +90,14 @@ class VolDetail(DetailView):
         context = super(VolDetail, self).get_context_data(**kwargs)
         vols_list = Vol.objects.filter(user_id=self.request.user)
         vol = get_object_or_404(vols_list, pk=self.kwargs.get('pk', None))
+        print(vol.duree_jour)
+        print(vol.duree_jour.seconds)
         context['vol'] = vol
         return context
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
-
-
-class DurationField(DurationField):
-    def value_to_string(self, obj):
-        val = self.value_from_object(obj)
-        if val is None:
-            return ''
-
-        days, hours, minutes, seconds, microseconds = _get_duration_components(val)
-        return '{} days, {:02d} hours, {:02d} minutes, {:02d}.{:06d} seconds'.format(days, hours, minutes, seconds, microseconds)
-
-    # def duration_string(duration):
-    #     """Version of str(timedelta) which is not English specific."""
-    #     days, hours, minutes, seconds, microseconds = _get_duration_components(duration)
-
-    #     return '{} days, {:02d} hours, {:02d} minutes, {:02d}.{:06d} seconds'.format(days, hours, minutes, seconds, microseconds)
-
-        # string = '{:02d}:{:02d}:{:02d}'.format(hours, minutes, seconds)
-        # if days:
-        #     string = '{} '.format(days) + string
-        # if microseconds:
-        #     string += '.{:06d}'.format(microseconds)
-
-        # return string
 
 
 @login_required
@@ -402,9 +377,9 @@ def somme(request):
 
 def convert_timedelta_minutes_to_hours(duration):
     """ Convert a timedelta from format mm:ss to hh:mm """
-    if duration != '':
-        duration = duration * 60
-    else:
+    # if duration != '':
+    #     duration = duration * 60
+    if duration == '':
         duration = timedelta(0)
     return duration
 
@@ -452,18 +427,21 @@ class VolUpdate(UpdateView):
     success_url = '/vols'
     # template_name_suffix = '_add'
 
+    def get_form_kwargs(self, *args, **kwargs):
+        kwargs = super().get_form_kwargs(*args, **kwargs)
+        kwargs['user_id'] = self.request.user.id
+        return kwargs
+
     def form_valid(self, form):
-        # print(vol.duree_jour)
         if form.has_changed():
             print("Le champ suivant change : %s" % ", ".join(form.changed_data))
         # vol_duree_jour = Vol.objects.get(pk=pk)
         # print(vol_duree_jour.duree_jour)
-
-        # vol.duree_jour = convert_timedelta_minutes_to_hours(vol.duree_jour)
-        # vol.duree_nuit = convert_timedelta_minutes_to_hours(vol.duree_nuit)
-        # vol.duree_simu = convert_timedelta_minutes_to_hours(vol.duree_simu)
-        # vol.duree_ifr = convert_timedelta_minutes_to_hours(vol.duree_ifr)
-        # vol.duree_dc = convert_timedelta_minutes_to_hours(vol.duree_dc)
+        # form.instance.duree_jour = convert_timedelta_minutes_to_hours(form.instance.duree_jour)
+        # form.instance.duree_nuit = convert_timedelta_minutes_to_hours(form.instance.duree_nuit)
+        # form.instance.duree_ifr = convert_timedelta_minutes_to_hours(form.instance.duree_simu)
+        # form.instance.duree_simu = convert_timedelta_minutes_to_hours(form.instance.duree_ifr)
+        # form.instance.duree_dc = convert_timedelta_minutes_to_hours(form.instance.duree_dc)
         return super(VolUpdate, self).form_valid(form)
 
     def dispatch(self, *args, **kwargs):
@@ -494,8 +472,6 @@ class ImmatriculationCreate(CreateView):
     model = Immatriculation
     template_name = 'vol/immatriculation_add.html'
     form_class = ImmatriculationForm
-    # fields = ['immatriculation',
-    #           'type_avion']
     success_url = '/immatriculation_add'
     # template_name_suffix = '_add'
 

@@ -26,8 +26,8 @@ class VolForm(forms.ModelForm):
 
     immatriculation = forms.ModelChoiceField(queryset=Immatriculation.objects.all(), label="Avion")
     observation = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 4}))
-    date = forms.DateField(widget=DatePicker(attrs={'autocomplete': 'off', }))
-    duree_jour = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', 'maxlength': 5}), required=False)
+    date = forms.DateField(widget=DatePicker())
+    duree_jour = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), required=False)
     duree_nuit = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), required=False)
     duree_ifr = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), label="Durée IFR", required=False)
     duree_simu = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), required=False)

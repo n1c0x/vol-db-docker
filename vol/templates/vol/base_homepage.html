@@ -34,61 +34,37 @@
 
     </head>
 
-
-
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Page d'accueil</a>
+            <a class="navbar-brand" href="/">Accueil</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
+                    {% block active_nav %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'prices' %}">Tarifs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'documentation' %}">Documentation</a>
                     </li>
+                    {% endblock %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' user %}">Profil</a>
+                        <a class="nav-link" href="{% url 'index' %}">Vol</a>
                     </li>
+                </ul>
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">Vols</a>
+                        <a class="nav-link" href="{% url 'profile' user %}"><button type="button" class="btn btn-outline-light btn-sm">Profil</button></a>
                     </li>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarText">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'index' %}">Tous les vols</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'somme' %}">Totaux</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ajouter</a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="{% url 'new_vol' %}">Vol</a>
-                                  <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="{% url 'new_pilote' %}">Pilote</a>
-                                  <a class="dropdown-item" href="{% url 'new_immatriculation' %}">Immatriculation</a>
-                                  <a class="dropdown-item" href="{% url 'new_code_iata' %}">Aéroport</a>
-                                  <a class="dropdown-item" href="{% url 'new_type_avion' %}">Type d'Avion</a>
-                                </div>
-                            </li>
-                        </ul>
-
-                    </div>
                 </ul>
                 <span class="navbar-text">
                     Bonjour {{ user.username }}
                     <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-secondary btn-sm">Déconnexion</button></a>
                     {% else %}
-                    </ul>
                 <span class="navbar-text">
                     <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-secondary btn-sm">Connexion</button></a>
                     {% endif %}
@@ -97,6 +73,28 @@
         </nav>
 
     <main role="main" class="container">
+        {% block active_secondary_nav %}
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Tous les vols</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'somme' %}">Totaux</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ajouter</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'new_vol' %}">Vol</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'new_pilote' %}">Pilote</a>
+                  <a class="dropdown-item" href="{% url 'new_immatriculation' %}">Immatriculation</a>
+                  <a class="dropdown-item" href="{% url 'new_code_iata' %}">Aéroport</a>
+                  <a class="dropdown-item" href="{% url 'new_type_avion' %}">Type d'Avion</a>
+                </div>
+            </li>
+        </ul>
+        {% endblock %}
+
         {% block content %}{% endblock %}
     </main>
 

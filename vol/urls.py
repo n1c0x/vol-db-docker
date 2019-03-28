@@ -8,7 +8,6 @@ urlpatterns = [
     path('', views.homepage, name='homepage'),
     url(r'^somme', views.somme, name='somme'),
     re_path('vols', VolList.as_view(), name='index'),
-    # url(r'^(?P<pk>[0-9]+)/edit/$', views.edit_vol, name='edit_vol'),
     path('vol_add', VolCreate.as_view(), name='new_vol'),
     re_path(r'^(?P<pk>[0-9]+)/edit/$', VolUpdate.as_view(), name='edit_vol'),
     re_path(r'^(?P<pk>[0-9]+)/remove/$', VolDelete.as_view(), name='remove_vol'),

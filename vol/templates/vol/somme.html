@@ -1,11 +1,32 @@
 {% extends 'vol/base_homepage.html' %}
 {% block title %} Sommes {% endblock %}
 {% block content %}
-    <div class="container">
 
-        <div class="row">
-            <div class="col"><h2 class="display-4 mt-4 mb-4">Totaux</h2></div>
-        </div>   
+{% block active_secondary_nav %} {% endblock %}
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">Tous les vols</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'somme' %}">Totaux</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ajouter</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'new_vol' %}">Vol</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'new_pilote' %}">Pilote</a>
+          <a class="dropdown-item" href="{% url 'new_immatriculation' %}">Immatriculation</a>
+          <a class="dropdown-item" href="{% url 'new_code_iata' %}">Aéroport</a>
+          <a class="dropdown-item" href="{% url 'new_type_avion' %}">Type d'Avion</a>
+        </div>
+    </li>
+</ul>
+
+<div class="row">
+    <div class="col"><h2 class="display-4 mt-4 mb-4">Totaux</h2></div>
+</div>   
 
 {% for type_avion, values in dict_somme_vols_total.items %}
     <div class="row">

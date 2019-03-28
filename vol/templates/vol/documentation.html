@@ -1,14 +1,14 @@
 {% extends "vol/base_homepage.html" %}
 
-{% block prices %}
+{% block active_nav %}
     <li class="nav-item">
-        <a class="nav-link" href="/">Page d'accueil</a>
+        <a class="nav-link" href="{% url 'prices' %}">Tarifs</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="{% url 'prices' %}">Tarifs</a>
+        <a class="nav-link active" href="{% url 'documentation' %}">Documentation</a>
     </li>
 {% endblock %}
-
+{% block active_secondary_nav %}{% endblock %}
 {% block content %}
 
     <div class="row">

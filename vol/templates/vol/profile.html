@@ -7,6 +7,8 @@
 {% load static %}
 {{ ProfileForm.media }}
 
+{% block active_secondary_nav %}{% endblock %}
+
 {% if user == "AnonymousUser" %}
 <p>Please {% url 'login' %} to see this page.</p>
 {% else %}

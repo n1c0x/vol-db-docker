@@ -11,16 +11,64 @@
 {% block active_secondary_nav %}{% endblock %}
 {% block content %}
 
-    <div class="row">
-        <div class="col-md-6 offset-3">
-            <h1>Money money money</h1>
-        </div>
-    </div>
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Money money money</h1>
+</div>
 
-    <div class="row">
-        <div class="col-md-6 offset-3">
-            {% lorem 3 p %}
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p class="lead">Choose your plan according to your needs</p>
+    </div>
+</div>
+
+<div class="card-deck mb-3 text-center">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Standard</h4>
+        </div>
+        <div class="card-body">
+            <h1 class="card-title pricing-card-title">10€ <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+                <li>Unlimited number of flights</li>
+                <li>2 GB of storage</li>
+                <li>Email support</li>
+                <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Get started</button>
         </div>
     </div>
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Pro</h4>
+        </div>
+        <div class="card-body">
+            <h1 class="card-title pricing-card-title">15€ <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+                <li>Standard plan</li>
+                <li>CSV and Excel Import</li>
+                <li>CSV and PDF export</li>
+                <li>Support</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+        </div>
+    </div>
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Enterprise</h4>
+        </div>
+        <div class="card-body">
+            <h1 class="card-title pricing-card-title">30€ <small class="text-muted">/ mo / user</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+                <li>Pro plan</li>
+                <li>Unlimited user</li>
+                <li>Local hosting</li>
+                <li>Support</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+        </div>
+    </div>
+</div>
+
+
 
 {% endblock %}

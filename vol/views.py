@@ -30,6 +30,11 @@ def prices(request):
     return render(request, 'vol/prices.html')
 
 
+def documentation(request):
+    """ Render de prices page. """
+    return render(request, 'vol/documentation.html')
+
+
 @login_required
 def get_user_profile(request, username):
     """ Render the current user profile on the profile page. """

@@ -1,0 +1,26 @@
+{% extends "vol/base_homepage.html" %}
+
+{% block prices %}
+    <li class="nav-item">
+        <a class="nav-link" href="/">Page d'accueil</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'prices' %}">Tarifs</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <h1>Documentation</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            {% lorem 3 p %}
+        </div>
+    </div>
+
+{% endblock %}

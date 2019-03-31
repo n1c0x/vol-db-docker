@@ -13,7 +13,6 @@
 
 ### Installation des prérequis python
 
-```pip3 install django>=2 psycopg2-binary admin-totals mysqlclient```
 ```pip3 install -r requirements.txt```
 
 #### Configuration de la base de données
@@ -22,8 +21,8 @@
 ```MariaDB [(none)]> create database voldb character set 'utf8';```
 
 ##### Création de l'utilisateur et assignation des droits
-```MariaDB [(none)]> CREATE USER voldb@localhost IDENTIFIED BY 'password';
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON voldb.* TO 'voldb'@'localhost';```
+```MariaDB [(none)]> CREATE USER voldb@localhost IDENTIFIED BY 'password';```
+```MariaDB [(none)]> GRANT ALL PRIVILEGES ON voldb.* TO 'voldb'@'localhost';```
 
 ##### Création du fichier de configuration mysql
 Il faut créer le fichier ```/etc/mysql/conf.d/mysql.cnf``` sur Debian

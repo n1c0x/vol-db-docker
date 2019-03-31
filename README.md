@@ -13,25 +13,30 @@
 
 ### Installation des prérequis python
 
-```pip3 install -r requirements.txt```
+```
+$> pip3 install -r requirements.txt
+```
 
 #### Configuration de la base de données
 
 ##### Création de la base de données
-```MariaDB [(none)]> create database voldb character set 'utf8';```
+```sql
+MariaDB [(none)]> create database voldb character set 'utf8';
+```
 
 ##### Création de l'utilisateur et assignation des droits
-```MariaDB [(none)]> CREATE USER voldb@localhost IDENTIFIED BY 'password';```
-
-```MariaDB [(none)]> GRANT ALL PRIVILEGES ON voldb.* TO 'voldb'@'localhost';```
+```sql
+MariaDB [(none)]> CREATE USER voldb@localhost IDENTIFIED BY 'password';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON voldb.* TO 'voldb'@'localhost';
+```
 
 ##### Création du fichier de configuration mysql
-Il faut créer le fichier ```/etc/mysql/conf.d/mysql.cnf``` sur Debian
+Il faut créer le fichier `/etc/mysql/conf.d/mysql.cnf` sur Debian
 
-Il faut créer le fichier ```/etc/my.cnf.d/client.cnf``` sur CentOS/RedHat
+Il faut créer le fichier `/etc/my.cnf.d/client.cnf` sur CentOS/RedHat
 
 Contenu du fichier :
-```
+```apache
 [client]
 database = voldb
 host = localhost
@@ -41,18 +46,25 @@ default-character-set = utf8
 ```
 
 ##### Migration de la base de données
-```python3.7 manage.py makemigrations vol```
-
-```python3.7 manage.py migrate```
+```bash
+$> python3.7 manage.py makemigrations vol
+$> python3.7 manage.py migrate
+```
 
 ### Lancement du service
-```python manager.py runserver 0.0.0.0:8000```
+```bash
+$> python manager.py runserver 0.0.0.0:8000
+```
 
 ### Création de l'administrateur django
-```$> python3 manage.py createsuperuser```
+```bash
+$> python3 manage.py createsuperuser
+```
 
 ### Création du profile de l'administrateur (temporaire, à changer)
-```MariaDB [(none)]> insert into vol_profile (user_id, client_type, current_position, employer) values ("1","Gratuit","AUTRE","Air France");```
+```sql
+MariaDB [(none)]> insert into vol_profile (user_id, client_type, current_position, employer) values ("1","Gratuit","AUTRE","Air France");
+```
 
 
 ## Fait

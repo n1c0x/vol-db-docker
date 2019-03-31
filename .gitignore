@@ -3,6 +3,7 @@ voldb/__pycache__/
 vol/__pycache__/
 vol/migrations/
 .idea/
+.vscode/
 images/
 venv-windows/
 voldb/settings.py

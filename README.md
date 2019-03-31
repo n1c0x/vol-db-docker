@@ -8,7 +8,7 @@
 
 - python3.7
 - python3.7-dev
-- default-libmysqlclient-dev 
+- default-libmysqlclient-dev
 - mariadb-server
 
 ### Installation des prérequis python
@@ -78,7 +78,7 @@ MariaDB [(none)]> insert into vol_profile (user_id, client_type, current_positio
 
 - Formulaires
   - Ajout/modification/suppression d'un vol
-- Liste de tous les vols 
+- Liste de tous les volss
   - Colonnes affichées
     - Date
     - Aéroports de départ et d'arrivée

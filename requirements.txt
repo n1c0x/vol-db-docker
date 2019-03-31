@@ -2,3 +2,5 @@ Django>=2.0
 psycopg2-binary
 admin-totals
 django-widget-tweaks
+django-tempus-dominus
+mysqlclient

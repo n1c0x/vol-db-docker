@@ -1,0 +1,29 @@
+[
+	{
+	"model": "vol.vol",
+	"pk":1,
+	"fields": {
+		"date":"2018-08-23",
+		"duree_jour":"10800000000",
+		"duree_nuit":"7200000000",
+		"fonction":"PF",
+		"poste":"INSTRUCT",
+		"observation":"Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.",
+		"vol_ifr":"Zéro",
+		"duree_ifr":"21600000000",
+		"vol_dc":true,
+		"duree_dc":"7200000000",
+		"vol_simu":false,
+		"duree_simu":"1856995228308",
+		"arrivee_id":4,
+		"cdb_id":20,
+		"depart_id":41,
+		"immatriculation_id":20,
+		"instructeur_id":40,
+		"obs1_id":22,
+		"obs2_id":76,
+		"opl_id":65,
+		"user_id_id":"1"
+		}
+	}
+]

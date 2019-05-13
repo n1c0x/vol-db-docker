@@ -24,6 +24,9 @@ urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    #url(r'^user/', include('vol.urls')),
     url(r'profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='profile'),
 ]
+handler400 = 'vol.views.handler400'
+handler403 = 'vol.views.handler403'
+handler404 = 'vol.views.handler404'
+handler500 = 'vol.views.handler500'

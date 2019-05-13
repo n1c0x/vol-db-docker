@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Sum
+from django.db.models import Sum, ProtectedError
+from django.db import IntegrityError
 from .forms import *
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import date, datetime, timedelta
@@ -11,6 +12,18 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+
+
+def handler404(request, exception, template_name="404.html"):
+    response = render_to_response("errors/404.html")
+    response.status_code = 404
+    return response
+
+
+def handler500(request, template_name="500.html"):
+    response = render_to_response("errors/500.html")
+    response.status_code = 500
+    return response
 
 
 def homepage(request):
@@ -489,6 +502,15 @@ class ImmatriculationCreate(CreateView):
         context = super(ImmatriculationCreate, self).get_context_data(**kwargs)
         immatriculation_list = Immatriculation.objects.order_by('immatriculation').filter(user_id=self.request.user)
         context['immatriculation_list'] = immatriculation_list
+        context["immat_exists"] = []
+        for immatriculation in immatriculation_list:
+            entry = Vol.objects.filter(immatriculation=immatriculation.id)
+            if entry.exists():
+                context["immat_exists"].append((immatriculation.immatriculation, True),)
+                print("Avion : " + str(immatriculation.immatriculation) + " | " + str(entry))
+            else:
+                context["immat_exists"].append((immatriculation.immatriculation, False),)
+                print("Nope")
         return context
 
     def get_form(self, *args, **kwargs):
@@ -499,6 +521,15 @@ class ImmatriculationCreate(CreateView):
     def form_valid(self, form):
         form.instance.user_id = self.request.user
         return super(ImmatriculationCreate, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            super().post(request, *args, **kwargs)
+        except IntegrityError:
+            verbose_name = Immatriculation._meta.verbose_name.title()
+            verbose_name_plural = Immatriculation._meta.verbose_name_plural.title()
+            data = {'verbose_name': verbose_name, 'verbose_name_plural': verbose_name_plural}
+            return render(request, 'vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
@@ -546,6 +577,15 @@ class ImmatriculationDelete(DeleteView):
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return self.delete(request, *args, **kwargs)
+        except ProtectedError:
+            # render the template with your message in the context
+            # or you can use the messages framework to send the message
+            previous_url = self.request.META.get('HTTP_REFERER')
+            return render(request, 'vol/protect.html', {'previous_url': previous_url})
 
     success_url = reverse_lazy('new_immatriculation')
 
@@ -617,6 +657,15 @@ class PiloteDelete(DeleteView):
         """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
+    def post(self, request, *args, **kwargs):
+        try:
+            return self.delete(request, *args, **kwargs)
+        except ProtectedError:
+            # render the template with your message in the context
+            # or you can use the messages framework to send the message
+            previous_url = self.request.META.get('HTTP_REFERER')
+            return render(request, 'vol/protect.html', {'previous_url': previous_url})
+
     success_url = reverse_lazy('new_pilote')
 
 
@@ -638,6 +687,15 @@ class CodeIataCreate(CreateView):
     def form_valid(self, form):
         form.instance.user_id = self.request.user
         return super(CodeIataCreate, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            super().post(request, *args, **kwargs)
+        except IntegrityError:
+            verbose_name = CodeIata._meta.verbose_name.title()
+            verbose_name_plural = CodeIata._meta.verbose_name_plural.title()
+            data = {'verbose_name': verbose_name, 'verbose_name_plural': verbose_name_plural}
+            return render(request, 'vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
@@ -687,6 +745,15 @@ class CodeIataDelete(DeleteView):
         """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
+    def post(self, request, *args, **kwargs):
+        try:
+            return self.delete(request, *args, **kwargs)
+        except ProtectedError:
+            # render the template with your message in the context
+            # or you can use the messages framework to send the message
+            previous_url = self.request.META.get('HTTP_REFERER')
+            return render(request, 'vol/protect.html', {'previous_url': previous_url})
+
     success_url = reverse_lazy('new_code_iata')
 
 
@@ -708,6 +775,15 @@ class TypeAvionCreate(CreateView):
     def form_valid(self, form):
         form.instance.user_id = self.request.user
         return super(TypeAvionCreate, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            super().post(request, *args, **kwargs)
+        except IntegrityError:
+            verbose_name = TypeAvion._meta.verbose_name.title()
+            verbose_name_plural = TypeAvion._meta.verbose_name_plural.title()
+            data = {'verbose_name': verbose_name, 'verbose_name_plural': verbose_name_plural}
+            return render(request, 'vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
@@ -756,5 +832,14 @@ class TypeAvionDelete(DeleteView):
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return self.delete(request, *args, **kwargs)
+        except ProtectedError:
+            # render the template with your message in the context
+            # or you can use the messages framework to send the message
+            previous_url = self.request.META.get('HTTP_REFERER')
+            return render(request, 'vol/protect.html', {'previous_url': previous_url})
 
     success_url = reverse_lazy('new_type_avion')

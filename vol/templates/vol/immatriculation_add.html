@@ -68,8 +68,15 @@
                                         <form action="{% url 'remove_immatriculation' pk=immatriculation.pk %}" method="post" style="display: inline;">
                                             {% csrf_token %}
                                             <input type="hidden" name="immatriculation_id" value="{{ immatriculation.id }}" />
-                                            <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer l'avion" onclick="return confirm('Are you sure you want to delete this?')">
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                            {% for immat in immat_exists %}
+                                                {% if immatriculation.immatriculation == immat.0 %}
+                                                    {% if immat.1 == True %}
+                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Impossible de supprimer l'avion car un vol lui est lié" onclick="return confirm('Voulez-vous vraiement supprimer cet avion ?')"><button type="submit" class="btn btn-secondary btn-sm" disabled><i class="far fa-trash-alt"></i></button>
+                                                    {% else %}
+                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer l'avion" onclick="return confirm('Voulez-vous vraiement supprimer cet avion ?')"><button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
                                             </a>
                                         </form>
                                     </td>

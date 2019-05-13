@@ -92,6 +92,9 @@ class CodeIata(models.Model):
 
     class Meta:
         ordering = ('code_iata',)
+        verbose_name = _('Code IATA')
+        verbose_name_plural = _('Codes IATA')
+        unique_together = (('code_iata', 'user_id'),)
 
     def __str__(self):
         return self.code_iata
@@ -125,6 +128,9 @@ class TypeAvion(models.Model):
 
     class Meta:
         ordering = ('type_avion',)
+        verbose_name = _('Type d\'avion')
+        verbose_name_plural = _('Types d\'Avions')
+        unique_together = (('type_avion', 'user_id'),)
 
     def __str__(self):
         return self.type_avion
@@ -153,6 +159,8 @@ class Immatriculation(models.Model):
 
     class Meta:
         ordering = ('immatriculation',)
+        verbose_name_plural = _('Immatriculations')
+        unique_together = (('immatriculation', 'user_id'),)
 
     def __str__(self):
         return self.immatriculation
@@ -193,6 +201,8 @@ class Pilote(models.Model):
 
     class Meta:
         ordering = ('nom', 'prenom')
+        verbose_name = _('Pilote')
+        verbose_name_plural = _('Pilotes')
 
     def __str__(self):
         return '%s %s' % (self.nom, self.prenom)

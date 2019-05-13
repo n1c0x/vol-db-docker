@@ -1,0 +1,10 @@
+{% extends 'vol/base_homepage.html' %}
+{% block title %}Contenu protégé{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col"><h2 class="display-4 mt-4 mb-4">Contenu protégé car déjà utilisé, suppression impossible</h2></div>
+</div>
+<div class="row">
+    <div class="col"><h3><a href="{{ previous_url }}">Retour à la liste</a></h3></div>
+</div>
+{% endblock %}

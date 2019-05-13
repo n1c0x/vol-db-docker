@@ -28,7 +28,7 @@ DEBUG = True
 # CentOS perso
 # ALLOWED_HOSTS = ['192.168.1.22']
 # debian work
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 
 # Application definition

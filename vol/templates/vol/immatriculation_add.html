@@ -41,8 +41,15 @@
         </div>
     </form>
 
-<div class="row">
+    <div class="row">
         <div class="col"><h2 class="display-4 mt-4 mb-4">Liste des avions</h2></div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-danger" role="alert">
+                Il est impossible de supprimer un avion lié à un vol. Afin de supprimer un avion, il faut en premier lieu supprimer ou modifier le ou les vols liés.
+            </div>
+        </div>
     </div>
     {% if immatriculation_list %}
         <div class="row">

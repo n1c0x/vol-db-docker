@@ -36,7 +36,14 @@
     <div class="row">
         <div class="col"><h2 class="display-4 mt-4 mb-4">Liste des pilotes</h2></div>
     </div>
-    {% if pilotes_list %}
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-danger" role="alert">
+                Il est impossible de supprimer un pilote lié à un vol. Afin de supprimer un pilote, il faut en premier lieu supprimer ou modifier le ou les vols liés.
+            </div>
+        </div>
+    </div>
+    {% if pilots_list %}
         <div class="row">
             <div class="col">
                 <table class="table table-striped table-bordered table-hover table-sm dt-responsive nowrap" id="table_id">
@@ -47,9 +54,9 @@
                     </tr>
                 </thead>
                     <tbody>
-                        {% for pilote in pilotes_list %}
+                        {% for pilote in pilots_list %}
                             <tr>
-                                <td>{{ pilote.prenom }} {{ pilote.nom }}</td>
+                                <td>{{ pilote }}</td>
                                     <td class="text-center">
                                         <a class="management_links" data-toggle="tooltip" data-placement="top" title="Modifier le pilote" href="{% url 'edit_pilote' pk=pilote.pk %}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button>
@@ -57,8 +64,15 @@
                                         <form action="{% url 'remove_pilote' pk=pilote.pk %}" method="post" style="display: inline;">
                                             {% csrf_token %}
                                             <input type="hidden" name="pilote_id" value="{{ pilote.id }}" />
-                                            <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le pilote" onclick="return confirm('Are you sure you want to delete this?')">
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                            {% for pilot in pilot_exists %}
+                                                {% if pilote|stringformat:"s" == pilot.0|stringformat:"s" %}
+                                                    {% if pilot.1 == True %}
+                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Impossible de supprimer le pilote car un vol lui est lié" onclick="return confirm('Voulez-vous vraiement supprimer ce pilote ?')"><button type="submit" class="btn btn-secondary btn-sm" disabled><i class="far fa-trash-alt"></i></button>
+                                                    {% else %}
+                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le pilote" onclick="return confirm('Voulez-vous vraiement supprimer ce pilote ?')"><button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
                                             </a>
                                         </form>
                                     </td>

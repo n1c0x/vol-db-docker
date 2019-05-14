@@ -94,7 +94,12 @@ class CodeIata(models.Model):
         ordering = ('code_iata',)
         verbose_name = _('Code IATA')
         verbose_name_plural = _('Codes IATA')
-        unique_together = (('code_iata', 'user_id'),)
+        constraints = [
+            models.UniqueConstraint(fields=[
+                'code_iata',
+                'user_id'],
+                name='code_iata_unique')
+        ]
 
     def __str__(self):
         return self.code_iata
@@ -130,7 +135,12 @@ class TypeAvion(models.Model):
         ordering = ('type_avion',)
         verbose_name = _('Type d\'avion')
         verbose_name_plural = _('Types d\'Avions')
-        unique_together = (('type_avion', 'user_id'),)
+        constraints = [
+            models.UniqueConstraint(fields=[
+                'type_avion',
+                'user_id'],
+                name='type_avion_unique')
+        ]
 
     def __str__(self):
         return self.type_avion
@@ -160,13 +170,15 @@ class Immatriculation(models.Model):
     class Meta:
         ordering = ('immatriculation',)
         verbose_name_plural = _('Immatriculations')
-        unique_together = (('immatriculation', 'user_id'),)
+        constraints = [
+            models.UniqueConstraint(fields=[
+                'immatriculation',
+                'user_id'],
+                name='immatriculation_unique')
+        ]
 
     def __str__(self):
         return self.immatriculation
-
-    # def __str__(self):
-    #     return self.immatriculation + " (" + self.type_avion.type_avion + ")"
 
     def save(self, force_insert=False, force_update=False):
         self.immatriculation = self.immatriculation.upper()
@@ -203,9 +215,16 @@ class Pilote(models.Model):
         ordering = ('nom', 'prenom')
         verbose_name = _('Pilote')
         verbose_name_plural = _('Pilotes')
+        constraints = [
+            models.UniqueConstraint(fields=[
+                'prenom',
+                'nom',
+                'user_id'],
+                name='pilot_unique')
+        ]
 
     def __str__(self):
-        return '%s %s' % (self.nom, self.prenom)
+        return '%s %s' % (self.prenom, self.nom)
 
 
 class Vol(models.Model):

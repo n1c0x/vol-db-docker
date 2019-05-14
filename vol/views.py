@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Sum, ProtectedError
+from django.db.models import Sum, ProtectedError, Q
 from django.db import IntegrityError
 from .forms import *
 from django.shortcuts import redirect, render_to_response
@@ -12,6 +12,18 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+
+
+def handler400(request, template_name="400.html"):
+    response = render_to_response("errors/400.html")
+    response.status_code = 400
+    return response
+
+
+def handler403(request, template_name="403.html"):
+    response = render_to_response("errors/403.html")
+    response.status_code = 403
+    return response
 
 
 def handler404(request, exception, template_name="404.html"):
@@ -507,10 +519,8 @@ class ImmatriculationCreate(CreateView):
             entry = Vol.objects.filter(immatriculation=immatriculation.id)
             if entry.exists():
                 context["immat_exists"].append((immatriculation.immatriculation, True),)
-                print("Avion : " + str(immatriculation.immatriculation) + " | " + str(entry))
             else:
                 context["immat_exists"].append((immatriculation.immatriculation, False),)
-                print("Nope")
         return context
 
     def get_form(self, *args, **kwargs):
@@ -520,16 +530,13 @@ class ImmatriculationCreate(CreateView):
 
     def form_valid(self, form):
         form.instance.user_id = self.request.user
-        return super(ImmatriculationCreate, self).form_valid(form)
-
-    def post(self, request, *args, **kwargs):
         try:
-            super().post(request, *args, **kwargs)
+            return super(ImmatriculationCreate, self).form_valid(form)
         except IntegrityError:
-            verbose_name = Immatriculation._meta.verbose_name.title()
+            verbose_name_demonstrative = "cette " + Immatriculation._meta.verbose_name.title()
             verbose_name_plural = Immatriculation._meta.verbose_name_plural.title()
-            data = {'verbose_name': verbose_name, 'verbose_name_plural': verbose_name_plural}
-            return render(request, 'vol/integrity.html', {'data': data})
+            data = {'verbose_name_demonstrative': verbose_name_demonstrative, 'verbose_name_plural': verbose_name_plural}
+            return render_to_response('vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
@@ -557,7 +564,13 @@ class ImmatriculationUpdate(UpdateView):
         return qs.filter(user_id=self.request.user.profile.user_id)
 
     def form_valid(self, form):
-        return super(ImmatriculationUpdate, self).form_valid(form)
+        try:
+            return super(ImmatriculationUpdate, self).form_valid(form)
+        except IntegrityError:
+            verbose_name_demonstrative = "cette " + Immatriculation._meta.verbose_name.title()
+            verbose_name_plural = Immatriculation._meta.verbose_name_plural.title()
+            data = {'verbose_name_demonstrative': verbose_name_demonstrative, 'verbose_name_plural': verbose_name_plural}
+            return render_to_response('vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
@@ -601,13 +614,26 @@ class PiloteCreate(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(PiloteCreate, self).get_context_data(**kwargs)
-        pilotes_list = Pilote.objects.order_by('nom', 'prenom').filter(user_id=self.request.user)
-        context['pilotes_list'] = pilotes_list
+        pilots_list = Pilote.objects.order_by('nom', 'prenom').filter(user_id=self.request.user)
+        context['pilots_list'] = pilots_list
+        context["pilot_exists"] = []
+        for pilot in pilots_list:
+            entry = Vol.objects.filter(Q(cdb=pilot.id) | Q(opl=pilot.id) | Q(obs1=pilot.id) | Q(obs2=pilot.id) | Q(instructeur=pilot.id))
+            if entry.exists():
+                context["pilot_exists"].append((str(pilot), True),)
+            else:
+                context["pilot_exists"].append((str(pilot), False),)
         return context
 
     def form_valid(self, form):
         form.instance.user_id = self.request.user
-        return super(PiloteCreate, self).form_valid(form)
+        try:
+            return super(PiloteCreate, self).form_valid(form)
+        except IntegrityError:
+            verbose_name_demonstrative = "ce " + Pilote._meta.verbose_name.title()
+            verbose_name_plural = Pilote._meta.verbose_name_plural.title()
+            data = {'verbose_name_demonstrative': verbose_name_demonstrative, 'verbose_name_plural': verbose_name_plural}
+            return render_to_response('vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
@@ -625,8 +651,8 @@ class PiloteUpdate(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(PiloteUpdate, self).get_context_data(**kwargs)
-        pilotes_list = Pilote.objects.order_by('nom', 'prenom').filter(user_id=self.request.user)
-        context['pilotes_list'] = pilotes_list
+        pilots_list = Pilote.objects.order_by('nom', 'prenom').filter(user_id=self.request.user)
+        context['pilots_list'] = pilots_list
         return context
 
     def get_queryset(self):
@@ -635,7 +661,13 @@ class PiloteUpdate(UpdateView):
 
     def form_valid(self, form):
         # form.instance.user_id = self.request.user
-        return super(PiloteUpdate, self).form_valid(form)
+        try:
+            return super(PiloteUpdate, self).form_valid(form)
+        except IntegrityError:
+            verbose_name_demonstrative = "ce " + Pilote._meta.verbose_name.title()
+            verbose_name_plural = Pilote._meta.verbose_name_plural.title()
+            data = {'verbose_name_demonstrative': verbose_name_demonstrative, 'verbose_name_plural': verbose_name_plural}
+            return render_to_response('vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
@@ -682,20 +714,24 @@ class CodeIataCreate(CreateView):
         context = super(CodeIataCreate, self).get_context_data(**kwargs)
         iata_list = CodeIata.objects.order_by('code_iata').filter(user_id=self.request.user)
         context['iata_list'] = iata_list
+        context["iata_exists"] = []
+        for iata in iata_list:
+            entry = Vol.objects.filter(Q(depart=iata.id) | Q(arrivee=iata.id))
+            if entry.exists():
+                context["iata_exists"].append((str(iata), True),)
+            else:
+                context["iata_exists"].append((str(iata), False),)
         return context
 
     def form_valid(self, form):
         form.instance.user_id = self.request.user
-        return super(CodeIataCreate, self).form_valid(form)
-
-    def post(self, request, *args, **kwargs):
         try:
-            super().post(request, *args, **kwargs)
+            return super(CodeIataCreate, self).form_valid(form)
         except IntegrityError:
-            verbose_name = CodeIata._meta.verbose_name.title()
-            verbose_name_plural = CodeIata._meta.verbose_name_plural.title()
-            data = {'verbose_name': verbose_name, 'verbose_name_plural': verbose_name_plural}
-            return render(request, 'vol/integrity.html', {'data': data})
+            verbose_name_demonstrative = "ce " + CodeIta._meta.verbose_name.title()
+            verbose_name_plural = CodeIta._meta.verbose_name_plural.title()
+            data = {'verbose_name_demonstrative': verbose_name_demonstrative, 'verbose_name_plural': verbose_name_plural}
+            return render_to_response('vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
@@ -722,8 +758,13 @@ class CodeIataUpdate(UpdateView):
         return qs.filter(user_id=self.request.user.profile.user_id)
 
     def form_valid(self, form):
-        # form.instance.user_id = self.request.user
-        return super(CodeIataUpdate, self).form_valid(form)
+        try:
+            return super(CodeIataUpdate, self).form_valid(form)
+        except IntegrityError:
+            verbose_name_demonstrative = "ce " + CodeIta._meta.verbose_name.title()
+            verbose_name_plural = CodeIta._meta.verbose_name_plural.title()
+            data = {'verbose_name_demonstrative': verbose_name_demonstrative, 'verbose_name_plural': verbose_name_plural}
+            return render_to_response('vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
@@ -770,20 +811,24 @@ class TypeAvionCreate(CreateView):
         context = super(TypeAvionCreate, self).get_context_data(**kwargs)
         type_avion_list = TypeAvion.objects.order_by('type_avion').filter(user_id=self.request.user)
         context['type_avion_list'] = type_avion_list
+        context["type_avion_exists"] = []
+        for type_avion in type_avion_list:
+            entry = Immatriculation.objects.filter(Q(type_avion=type_avion.id))
+            if entry.exists():
+                context["type_avion_exists"].append((str(type_avion), True),)
+            else:
+                context["type_avion_exists"].append((str(type_avion), False),)
         return context
 
     def form_valid(self, form):
         form.instance.user_id = self.request.user
-        return super(TypeAvionCreate, self).form_valid(form)
-
-    def post(self, request, *args, **kwargs):
         try:
-            super().post(request, *args, **kwargs)
+            return super(TypeAvionCreate, self).form_valid(form)
         except IntegrityError:
-            verbose_name = TypeAvion._meta.verbose_name.title()
+            verbose_name_demonstrative = "cette " + TypeAvion._meta.verbose_name.title()
             verbose_name_plural = TypeAvion._meta.verbose_name_plural.title()
-            data = {'verbose_name': verbose_name, 'verbose_name_plural': verbose_name_plural}
-            return render(request, 'vol/integrity.html', {'data': data})
+            data = {'verbose_name_demonstrative': verbose_name_demonstrative, 'verbose_name_plural': verbose_name_plural}
+            return render_to_response('vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """
@@ -810,8 +855,13 @@ class TypeAvionUpdate(UpdateView):
         return qs.filter(user_id=self.request.user.profile.user_id)
 
     def form_valid(self, form):
-        # form.instance.user_id = self.request.user
-        return super(TypeAvionUpdate, self).form_valid(form)
+        try:
+            return super(TypeAvionUpdate, self).form_valid(form)
+        except IntegrityError:
+            verbose_name_demonstrative = "cette " + TypeAvion._meta.verbose_name.title()
+            verbose_name_plural = TypeAvion._meta.verbose_name_plural.title()
+            data = {'verbose_name_demonstrative': verbose_name_demonstrative, 'verbose_name_plural': verbose_name_plural}
+            return render_to_response('vol/integrity.html', {'data': data})
 
     def dispatch(self, *args, **kwargs):
         """ Forces a login to view this page """

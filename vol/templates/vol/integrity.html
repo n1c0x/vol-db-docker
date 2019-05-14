@@ -2,9 +2,9 @@
 {% block title %}Contenu protégé{% endblock %}
 {% block content %}
 <div class="row">
-    <div class="col"><h3 class="mt-4 mb-4">Création impossible car ce champ <i>{{ data.verbose_name }}</i> existe déjà</h2></div>
+    <div class="col"><h3 class="mt-4 mb-4">Création impossible car {{ data.verbose_name_demonstrative }} existe déjà</h2></div>
 </div>
 <div class="row">
-    <div class="col"><h4><a href="{{ previous_url }}">Retour page précédente</a></h4></div>
+    <div class="col"><h4><a href="{{ previous_url }}">Retour à la liste des {{ data.verbose_name_plural }}</a></h4></div>
 </div>
 {% endblock %}

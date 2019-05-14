@@ -35,6 +35,13 @@
     <div class="row">
         <div class="col"><h2 class="display-4 mt-4 mb-4">Liste des aéroports</h2></div>
     </div>
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-danger" role="alert">
+                Il est impossible de supprimer un aéroport lié à un vol. Afin de supprimer un aéroport, il faut en premier lieu supprimer ou modifier le ou les vols liés.
+            </div>
+        </div>
+    </div>
     {% if iata_list %}
         <div class="row">
             <div class="col">
@@ -58,8 +65,15 @@
                                         <form action="{% url 'remove_code_iata' pk=code_iata.pk %}" method="post" style="display: inline;">
                                             {% csrf_token %}
                                             <input type="hidden" name="iata_id" value="{{ iata.id }}" />
-                                            <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer l'aéroport" onclick="return confirm('Are you sure you want to delete this?')">
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                            {% for iata in iata_exists %}
+                                                {% if code_iata.code_iata == iata.0 %}
+                                                    {% if iata.1 == True %}
+                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Impossible de supprimer l'aéroport car un vol lui est lié" onclick="return confirm('Voulez-vous vraiement supprimer cet aéroport ?')"><button type="submit" class="btn btn-secondary btn-sm" disabled><i class="far fa-trash-alt"></i></button>
+                                                    {% else %}
+                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer l'aéroport" onclick="return confirm('Voulez-vous vraiement supprimer cet aéroport ?')"><button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
                                             </a>
                                         </form>
                                     </td>

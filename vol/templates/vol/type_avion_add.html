@@ -37,6 +37,13 @@
     <div class="row">
         <div class="col"><h2 class="display-4 mt-4 mb-4">Liste des types d'avions</h2></div>
     </div>
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-danger" role="alert">
+                Il est impossible de supprimer un type d'avion lié à un avion. Afin de supprimer un type d'avion, il faut en premier lieu supprimer ou modifier le ou les avions liés.
+            </div>
+        </div>
+    </div>
     {% if type_avion_list %}
         <div class="row">
             <div class="col">
@@ -60,8 +67,15 @@
                                         <form action="{% url 'remove_type_avion' pk=type_avion.pk %}" method="post" style="display: inline;">
                                             {% csrf_token %}
                                             <input type="hidden" name="type_avion_id" value="{{ type_avion.id }}" />
-                                            <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le type d'avion" onclick="return confirm('Are you sure you want to delete this?')">
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                            {% for typ_avion in type_avion_exists %}
+                                                {% if type_avion.type_avion|stringformat:"s" == typ_avion.0|stringformat:"s" %}
+                                                    {% if typ_avion.1 == True %}
+                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Impossible de supprimer le type d'avion car un avion lui est lié" onclick="return confirm('Voulez-vous vraiement supprimer ce type d'avion ?')"><button type="submit" class="btn btn-secondary btn-sm" disabled><i class="far fa-trash-alt"></i></button>
+                                                    {% else %}
+                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le type d'avion" onclick="return confirm('Voulez-vous vraiement supprimer ce type d\'avion ?')"><button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
                                             </a>
                                         </form>
                                     </td>

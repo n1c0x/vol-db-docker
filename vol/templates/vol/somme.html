@@ -1,31 +1,32 @@
 {% extends 'vol/base_homepage.html' %}
-{% block title %} Sommes {% endblock %}
+{% load i18n %}
+{% block title %} {% trans "Totals" %} {% endblock %}
 {% block content %}
 
 {% block active_secondary_nav %} {% endblock %}
 
 <ul class="nav nav-tabs">
     <li class="nav-item">
-        <a class="nav-link" href="{% url 'index' %}">Tous les vols</a>
+        <a class="nav-link" href="{% url 'index' %}">{% trans "All flights" %}</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="{% url 'somme' %}">Totaux</a>
+        <a class="nav-link active" href="{% url 'somme' %}">{% trans "Totals" %}</a>
     </li>
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ajouter</a>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{% trans "Add" %}</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="{% url 'new_vol' %}">Vol</a>
+          <a class="dropdown-item" href="{% url 'new_vol' %}">{% trans "Flight" %}</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'new_pilote' %}">Pilote</a>
-          <a class="dropdown-item" href="{% url 'new_immatriculation' %}">Immatriculation</a>
-          <a class="dropdown-item" href="{% url 'new_code_iata' %}">Aéroport</a>
-          <a class="dropdown-item" href="{% url 'new_type_avion' %}">Type d'Avion</a>
+          <a class="dropdown-item" href="{% url 'new_pilote' %}">{% trans "Pilot" %}</a>
+          <a class="dropdown-item" href="{% url 'new_immatriculation' %}">{% trans "Registration" %}</a>
+          <a class="dropdown-item" href="{% url 'new_code_iata' %}">{% trans "Airport" %}</a>
+          <a class="dropdown-item" href="{% url 'new_type_avion' %}">{% trans "Aircraft Type" %}</a>
         </div>
     </li>
 </ul>
 
 <div class="row">
-    <div class="col"><h2 class="display-4 mt-4 mb-4">Totaux</h2></div>
+    <div class="col"><h2 class="display-4 mt-4 mb-4">{% trans "Totals" %}</h2></div>
 </div>   
 
 {% for type_avion, values in dict_somme_vols_total.items %}
@@ -35,23 +36,23 @@
                 <thead  class="thead-dark">
                     <tr>
                         <th>{{ type_avion }}</th>
-                        <th>CDB Jour</th>
-                        <th>CDB Nuit</th>
-                        <th>OPL Jour</th>
-                        <th>OPL Nuit</th>
-                        <th>DC Jour</th>
-                        <th>DC Nuit</th>
-                        <th>Inst Jour</th>
-                        <th>Inst Nuit</th>
-                        <th>Simu</th>
-                        <th>Arrivée IFR</th>
-                        <th>IFR</th>
-                        <th>Total</th>
+                        <th>{% trans "PIC Day" %}</th>
+                        <th>{% trans "PIC Night" %}</th>
+                        <th>{% trans "FO Day" %}</th>
+                        <th>{% trans "FO Night" %}</th>
+                        <th>{% trans "DC Day" %}</th>
+                        <th>{% trans "DC Night" %}</th>
+                        <th>{% trans "Inst Day" %}</th>
+                        <th>{% trans "Inst Night" %}</th>
+                        <th>{% trans "Simu" %}</th>
+                        <th>{% trans "IFR Arrival" %}</th>
+                        <th>{% trans "Duration IFR" %}</th>
+                        <th>{% trans "Total" %}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>Année en cours</th>
+                        <th>{% trans "Current year" %}</th>
                         <td>{% if values.somme_vols_jour_cdb_cur_year.duree_jour__sum %}
                                 {{ values.somme_vols_jour_cdb_cur_year.duree_jour__sum }}
                             {% else %}
@@ -110,7 +111,7 @@
                         <td>{{ values.liste_somme_vols_cur_year }}</td>
                     </tr>
                     <tr>
-                        <th>Année précédente</th>
+                        <th>{% trans "Last year" %}</th>
                         <td>{% if values.somme_vols_jour_cdb_last_year.duree_jour__sum %}
                                 {{ values.somme_vols_jour_cdb_last_year.duree_jour__sum }}
                             {% else %}
@@ -171,7 +172,7 @@
                 </tbody>
                 <tfoot>
                     <tr class="table-primary">
-                        <th>Total</th>
+                        <th>{% trans "Total" %}</th>
                         <td>{% if values.somme_vols_jour_cdb_total.duree_jour__sum %}
                                 {{ values.somme_vols_jour_cdb_total.duree_jour__sum }}
                             {% else %}

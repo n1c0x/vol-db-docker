@@ -1,11 +1,12 @@
 <!doctype html>
+{% load i18n %}
 <html lang="en">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>{% block title %}Base de données de vols{% endblock %}</title>
+        <title>{% block title %}{% trans "Flight Database" %}{% endblock %}</title>
         <!--bootstrap specific -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -37,7 +38,7 @@
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Accueil</a>
+            <a class="navbar-brand" href="/">{% trans "Home" %}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -45,31 +46,31 @@
                 <ul class="navbar-nav mr-auto">
                     {% block active_nav %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'prices' %}">Tarifs</a>
+                        <a class="nav-link" href="{% url 'prices' %}">{% trans "Pricing" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'documentation' %}">Documentation</a>
+                        <a class="nav-link" href="{% url 'documentation' %}">{% trans "Documentation" %}</a>
                     </li>
                     {% endblock %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">Vol</a>
+                        <a class="nav-link" href="{% url 'index' %}">{% trans "Flights" %}</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    Bonjour {{ user.username }}
+                    {% blocktrans with username=user.username%} Hello {{ username }} {% endblocktrans %}
                 </span>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile' user %}"><button type="button" class="btn btn-outline-light btn-sm">Profil</button></a>
+                        <a class="nav-link" href="{% url 'profile' user %}"><button type="button" class="btn btn-outline-light btn-sm">{% trans "Profile" %}</button></a>
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-secondary btn-sm">Déconnexion</button></a>
+                    <a href="{% url 'logout' %}"><button type="button" class="btn btn-outline-secondary btn-sm">{% trans "Logout" %}</button></a>
                 </span>
                     {% else %}
                 <span class="navbar-text">
-                    <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-secondary btn-sm">Connexion</button></a>
+                    <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-secondary btn-sm">{% trans "Login" %}</button></a>
                 </span>
                     {% endif %}
                 
@@ -80,20 +81,20 @@
         {% block active_secondary_nav %}
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Tous les vols</a>
+                <a class="nav-link" href="{% url 'index' %}">{% trans "All flights" %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'somme' %}">Totaux</a>
+                <a class="nav-link" href="{% url 'somme' %}">{% trans "Totals" %}</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Ajouter</a>
+                <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{% trans "Add" %}</a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'new_vol' %}">Vol</a>
+                  <a class="dropdown-item" href="{% url 'new_vol' %}">{% trans "Flight" %}</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'new_pilote' %}">Pilote</a>
-                  <a class="dropdown-item" href="{% url 'new_immatriculation' %}">Immatriculation</a>
-                  <a class="dropdown-item" href="{% url 'new_code_iata' %}">Aéroport</a>
-                  <a class="dropdown-item" href="{% url 'new_type_avion' %}">Type d'Avion</a>
+                  <a class="dropdown-item" href="{% url 'new_pilote' %}">{% trans "Pilot" %}</a>
+                  <a class="dropdown-item" href="{% url 'new_immatriculation' %}">{% trans "Registration" %}</a>
+                  <a class="dropdown-item" href="{% url 'new_code_iata' %}">{% trans "Airport" %}</a>
+                  <a class="dropdown-item" href="{% url 'new_type_avion' %}">{% trans "Aircraft Type" %}</a>
                 </div>
             </li>
         </ul>

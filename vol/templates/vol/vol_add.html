@@ -1,12 +1,13 @@
 {% extends 'vol/base_homepage.html' %}
-{% block title %} Ajouter un vol {% endblock %}
+{% load i18n %}
+{% block title %} {% trans "Add a flight" %} {% endblock %}
 {% block content %}
 {{ VolForm.media }}
 {{ form.media }}
 
 
 <div class="row">
-    <div class="col"><h2 class="display-4 mt-4 mb-4">Nouveau vol</h2></div>
+    <div class="col"><h2 class="display-4 mt-4 mb-4">{% trans "New flight" %}</h2></div>
 </div>
 
 {% load widget_tweaks %}
@@ -14,7 +15,7 @@
         {{ form.non_field_errors }}
 
         <div class="row">
-            <div class="col"><p class="h2 mt-4 mb-4">Informations générales</p></div>
+            <div class="col"><p class="h2 mt-4 mb-4">{% trans "General information" %}</p></div>
         </div>
 
         <div class="form-row">
@@ -37,7 +38,7 @@
         </div>
 
         <div class="row">
-            <div class="col"><p class="h2 mt-4 mb-4">Équipage</p></div>
+            <div class="col"><p class="h2 mt-4 mb-4">{% trans "Crew" %}</p></div>
         </div>
 
         <div class="form-row">
@@ -79,7 +80,7 @@
           <div class="itemAccordion">
             <h5>
               <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">
-                Autres accompagnateurs +
+                {% trans "Additional crew" %} +
               </a>
             </h5>
             <div id="collapseOne2" class="collapse">
@@ -111,7 +112,7 @@
         </div>
 
         <div class="row">
-            <div class="col"><p class="h2 mt-4 mb-4">Aéroports et durées</p></div>
+            <div class="col"><p class="h2 mt-4 mb-4">{% trans "Airports and duration" %}</p></div>
         </div>
             <div class="form-row">
                 <div class="form-group col-md-2">
@@ -140,7 +141,7 @@
                   <div class="itemAccordion">
                     <label>
                       <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne7" aria-expanded="true" aria-controls="collapseOne7">
-                        Conversion +
+                        {% trans "Conversion" %} +
                       </a>
                     </label>
                     <div id="collapseOne7" class="collapse">
@@ -166,7 +167,7 @@
                   <div class="itemAccordion">
                     <label>
                       <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne6" aria-expanded="true" aria-controls="collapseOne6">
-                        Conversion +
+                        {% trans "Conversion" %} +
                       </a>
                     </label>
                     <div id="collapseOne6" class="collapse">
@@ -183,7 +184,7 @@
         
 
         <div class="row">
-            <div class="col"><p class="h2 mt-4 mb-4">Autres</p></div>
+            <div class="col"><p class="h2 mt-4 mb-4">{% trans "Other" %}</p></div>
         </div>
 
 
@@ -193,7 +194,7 @@
                   <div class="itemAccordion">
                     <h5>
                       <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne3" aria-expanded="true" aria-controls="collapseOne3">
-                        Simulateur +
+                        {% trans "Simulator" %} +
                       </a>
                     </h5>
                     <div id="collapseOne3" class="collapse">
@@ -215,7 +216,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Conversion</label>
+                                <label>{% trans "Conversion" %}</label>
                                 <input type="text" name="base_10" id="deci_simu" class="form-control form-control" placeholder="Durée simu" onkeyup="calculate('simu');">
                             </div>
                         </div>
@@ -229,7 +230,7 @@
                   <div class="itemAccordion">
                     <h5>
                       <a data-toggle="collapse" data-parent="#accordion3" href="#collapseOne4" aria-expanded="true" aria-controls="collapseOne4">
-                        IFR +
+                        {% trans "IFR" %} +
                       </a>
                     </h5>
                     <div id="collapseOne4" class="collapse">
@@ -249,7 +250,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Conversion</label>
+                                <label>{% trans "Conversion" %}</label>
                                 <input type="text" name="base_10" id="deci_ifr" class="form-control form-control" placeholder="Durée IFR" onkeyup="calculate('ifr');">
                             </div>
                         </div>
@@ -262,7 +263,7 @@
                   <div class="itemAccordion">
                     <h5>
                       <a data-toggle="collapse" data-parent="#accordion4" href="#collapseOne5" aria-expanded="true" aria-controls="collapseOne5">
-                        Double commandes +
+                        {% trans "Dual commands" %} +
                       </a>
                     </h5>
                     <div id="collapseOne5" class="collapse">
@@ -285,7 +286,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Conversion</label>
+                                <label>{% trans "Conversion" %}</label>
                                 <input type="text" name="base_10" id="deci_dc" class="form-control form-control" placeholder="Durée DC" onkeyup="calculate('dc');">
                             </div>
                         </div>
@@ -308,7 +309,7 @@
 
         <div class="form-row">
             <div class="form-group col-md-12">
-                <button type="submit" class="save btn btn-primary">Enregistrer</button>
+                <button type="submit" class="save btn btn-primary">{% trans "Save" %}</button>
             </div>
         </div>
         

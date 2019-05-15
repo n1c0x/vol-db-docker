@@ -1,24 +1,28 @@
 {% extends 'vol/base_homepage.html' %}
-{% block title %} Profil utilisateurs {% endblock %}
+{% load i18n %}
+{% block title %} {% trans "User profile" %} {% endblock %}
 {% block content %}
 
 {{ form.media }}
 {% load widget_tweaks %}
 {% load static %}
+{% load my_tags %}
 {{ ProfileForm.media }}
 
 {% block active_secondary_nav %}{% endblock %}
 
 {% if user == "AnonymousUser" %}
-<p>Please {% url 'login' %} to see this page.</p>
+    {% url 'login' as login_url %}
+    <p>{% trans "Please {{ login_url }} to see this page." %}</p>
+
 {% else %}
     {% if user.is_authenticated %}
         <div class="row">
-            <div class="col"><h2 class="display-4 mt-4 mb-4">Profil utilisateur</h2></div>
+            <div class="col"><h2 class="display-4 mt-4 mb-4">{% trans "User profile" %}</h2></div>
         </div>
         <div class="row">
             <div class="col-md-1">
-                <a class="btn btn-outline-primary management_links" data-toggle="tooltip" data-placement="top" title="Modifier le profil" href="{% url 'edit_profile' username=user.username %}"><i class="fas fa-pencil-alt"></i></a>
+                <a class="btn btn-outline-primary management_links" data-toggle="tooltip" data-placement="top" title="{% trans "Edit profile" %}" href="{% url 'edit_profile' username=user.username %}"><i class="fas fa-pencil-alt"></i></a>
             </div>
         </div>
     <hr>
@@ -32,14 +36,22 @@
         </div>
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                Adresse Mail : {{ user.email }}
+                {% get_verbose_field_name user "email" as var_email %}
+                {% trans var_email %} : {{ user.email }} <br>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                Type de client : {{ user.profile.client_type }} <br>
-                Poste actuel : {{ user.profile.get_current_position_display }} <br>
-                Employeur : {{ user.profile.employer }} <br>
+                {% get_verbose_field_name user.profile "client_type" as var_client_type %}
+                {% get_verbose_field_name user.profile "current_position" as var_current_position %}
+                {% get_verbose_field_name user.profile "employer" as var_employer %}
+                {% get_verbose_field_name user.profile "language" as var_language %}
+
+                {% trans var_client_type %} : {%trans user.profile.client_type %}<br>
+                {% trans var_current_position %} : {%trans user.profile.get_current_position_display %}<br>
+                {% trans var_employer %} : {%trans user.profile.employer %}<br>
+                {% trans var_language %} : {%trans user.profile.get_language_display %}<br>
+
             </div>
         </div>
     {% if is_modified %}

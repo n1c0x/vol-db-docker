@@ -1,8 +1,9 @@
 {% extends 'vol/base_homepage.html' %}
-{% block title %} Nouveau pilote {% endblock %}
+{% load i18n %}
+{% block title %} {% trans "New Pilot" %} {% endblock %}
 {% block content %}
 <div class="row">
-    <div class="col"><h2 class="display-4 mt-4 mb-4">Nouveau Pilote</h2></div>
+    <div class="col"><h2 class="display-4 mt-4 mb-4">{% trans "New Pilot" %}</h2></div>
 </div>
 {% load widget_tweaks %}
     <form method="POST" class="post-form" id="new_pilote">{% csrf_token %}
@@ -27,19 +28,19 @@
 
         <div class="form-row">
             <div class="form-group col-md-12">
-                <button type="submit" class="save btn btn-primary">Enregistrer</button>
+                <button type="submit" class="save btn btn-primary">{% trans "Save" %}</button>
             </div>
         </div>
     </form>
 
 
     <div class="row">
-        <div class="col"><h2 class="display-4 mt-4 mb-4">Liste des pilotes</h2></div>
+        <div class="col"><h2 class="display-4 mt-4 mb-4">{% trans "List of pilots" %}</h2></div>
     </div>
     <div class="row">
         <div class="col">
             <div class="alert alert-warning" role="alert">
-                Il est impossible de supprimer un pilote lié à un vol. Afin de supprimer un pilote, il faut en premier lieu supprimer ou modifier le ou les vols liés.
+                {% trans "It is impossible to delete a pilot linked to a flight. In order to delete a pilot, it is first necessary to delete or modify the linked flight(s)." %}
             </div>
         </div>
     </div>
@@ -49,8 +50,8 @@
                 <table class="table table-striped table-bordered table-hover table-sm dt-responsive nowrap" id="table_id">
                     <thead>
                     <tr class="thead-dark">
-                        <th scope="col">Pilote</th>
-                        <th scope="col" style="width: 10%">Actions</th>
+                        <th scope="col">{% trans "Pilot" %}</th>
+                        <th scope="col" style="width: 10%">{% trans "Actions" %}</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -58,7 +59,7 @@
                             <tr>
                                 <td>{{ pilote }}</td>
                                     <td class="text-center">
-                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="Modifier le pilote" href="{% url 'edit_pilote' pk=pilote.pk %}">
+                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="{% trans "Edit the pilot" %}" href="{% url 'edit_pilote' pk=pilote.pk %}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button>
                                         </a>
                                         <form action="{% url 'remove_pilote' pk=pilote.pk %}" method="post" style="display: inline;">
@@ -67,9 +68,9 @@
                                             {% for pilot in pilot_exists %}
                                                 {% if pilote|stringformat:"s" == pilot.0|stringformat:"s" %}
                                                     {% if pilot.1 == True %}
-                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Impossible de supprimer le pilote car un vol lui est lié" onclick="return confirm('Voulez-vous vraiement supprimer ce pilote ?')"><button type="submit" class="btn btn-secondary btn-sm" disabled><i class="far fa-trash-alt"></i></button>
+                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="{% trans "Unable to delete the pilot because a flight is linked to it" %}" onclick="return confirm('{% trans "Do you really want to delete this pilot?" %}')"><button type="submit" class="btn btn-secondary btn-sm" disabled><i class="far fa-trash-alt"></i></button>
                                                     {% else %}
-                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="Supprimer le pilote" onclick="return confirm('Voulez-vous vraiement supprimer ce pilote ?')"><button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                                        <a class="text-danger management_links" data-toggle="tooltip" data-placement="top" title="{% trans "Delete the pilot" %}" onclick="return confirm('{% trans "Do you really want to delete this pilot?" %}')"><button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                                                     {% endif %}
                                                 {% endif %}
                                             {% endfor %}
@@ -84,7 +85,7 @@
             </div>
         </div>
     {% else %}
-        <p>Il n'y a pas de pilotes enregistrés.</p>
+        <p>{% trans "There are no registered pilots. "%}</p>
     {% endif %}
 
 {% endblock %}

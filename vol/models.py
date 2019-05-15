@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import gettext
 from django.utils.translation import gettext as _
 from django.urls import reverse
 
@@ -35,30 +36,41 @@ from django.urls import reverse
 class Profile(models.Model):
     """ Define user profile """
     CLIENT_TYPE = (
-        ('Gratuit', 'Gratuit'),
-        ('Payant', 'Payant'),
+        (_('Free'), _('Free')),
+        (_('Pay'), _('Pay')),
     )
     CURRENT_POSITION = (
-        ('CDB', 'Commandant de bord'),
-        ('OPL', 'Copilote'),
-        ('INSTRUC', 'Instructeur'),
-        ('RETR', 'Retraité'),
-        ('AUTRE', 'Autre'),
+        (_('PIC'), _('Pilot in Command')),
+        (_('FO'), _('First Officer')),
+        (_('INSTRUCT'), _('Instructor')),
+        (_('RET'), _('Retired')),
+        (_('OTHER'), _('Other')),
+    )
+    LANGUAGE = (
+        ('fr', _('French')),
+        ('en', _('English')),
+        ('de', _('German')),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     client_type = models.CharField(
         choices=CLIENT_TYPE,
         max_length=25,
-        verbose_name='Type de client',
+        verbose_name=_('Client type'),
     )
     current_position = models.CharField(
         choices=CURRENT_POSITION,
         max_length=25,
-        verbose_name='Poste actuel',
+        verbose_name=_('Current position'),
     )
     employer = models.CharField(
         max_length=25,
-        verbose_name='Employeur',
+        verbose_name=_('Employer'),
+    )
+    language = models.CharField(
+        choices=LANGUAGE,
+        max_length=25,
+        verbose_name=_('Language'),
+        default='fr',
     )
 
     @receiver(post_save, sender=User)
@@ -92,8 +104,8 @@ class CodeIata(models.Model):
 
     class Meta:
         ordering = ('code_iata',)
-        verbose_name = _('Code IATA')
-        verbose_name_plural = _('Codes IATA')
+        verbose_name = _('IATA Code')
+        verbose_name_plural = _('IATA Codes')
         constraints = [
             models.UniqueConstraint(fields=[
                 'code_iata',
@@ -133,8 +145,8 @@ class TypeAvion(models.Model):
 
     class Meta:
         ordering = ('type_avion',)
-        verbose_name = _('Type d\'avion')
-        verbose_name_plural = _('Types d\'Avions')
+        verbose_name = _('Aircraft type')
+        verbose_name_plural = _('Aircraft types')
         constraints = [
             models.UniqueConstraint(fields=[
                 'type_avion',
@@ -169,7 +181,8 @@ class Immatriculation(models.Model):
 
     class Meta:
         ordering = ('immatriculation',)
-        verbose_name_plural = _('Immatriculations')
+        verbose_name = _('Registration Number')
+        verbose_name_plural = _('Registration Numbers')
         constraints = [
             models.UniqueConstraint(fields=[
                 'immatriculation',
@@ -191,30 +204,30 @@ class Immatriculation(models.Model):
 class Pilote(models.Model):
     """ Define pilot table. """
     POSTE = (
-        ('CDB', 'Commandant de bord'),
-        ('OPL', 'Copilote'),
-        ('Instruct', 'Instructeur'),
-        ('OBS', 'Observateur'),
+        (_('PIC'), _('Pilot in Command')),
+        (_('FO'), _('First Officer')),
+        (_('Instruct'), _('Instructor')),
+        (_('OBS'), _('Observer')),
     )
     prenom = models.CharField(
-        verbose_name='Prénom',
+        verbose_name=gettext('First name'),
         max_length=255,
     )
     nom = models.CharField(
-        verbose_name='Nom de famille',
+        verbose_name=gettext('Family name'),
         max_length=255,
     )
     user_id = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
         related_name='%(class)s_utilisateur',
-        verbose_name="Utilisateur",
+        verbose_name=_('User'),
     )
 
     class Meta:
         ordering = ('nom', 'prenom')
-        verbose_name = _('Pilote')
-        verbose_name_plural = _('Pilotes')
+        verbose_name = _('Pilot')
+        verbose_name_plural = _('Pilots')
         constraints = [
             models.UniqueConstraint(fields=[
                 'prenom',

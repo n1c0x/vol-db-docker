@@ -17,8 +17,15 @@
         </svg></a>| Détails du vol</h2></div>
 </div>
 <div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-warning" role="alert">
+        La modification de vols n'est pas encore disponible. 
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-auto mr-auto">
-        <a class="btn btn-outline-primary management_links" data-toggle="tooltip" data-placement="top" title="Modifier le vol" href="{% url 'edit_vol' pk=vol.pk %}"><i class="fas fa-pencil-alt"></i></a>
+        <a class="btn btn-outline-secondary management_links disabled" data-toggle="tooltip" data-placement="top" title="Modifier le vol" href="{% url 'edit_vol' pk=vol.pk %}"><i class="fas fa-pencil-alt"></i></a>
     </div>
     <div class="col-auto">
         <form action="{% url 'remove_vol' pk=vol.pk %}" method="post" style="display: inline;">

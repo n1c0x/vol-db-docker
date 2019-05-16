@@ -2,13 +2,13 @@
 {% load i18n %}
 {% block title %} {% trans "New Pilot" %} {% endblock %}
 {% block content %}
+
 <div class="row">
     <div class="col"><h2 class="display-4 mt-4 mb-4">{% trans "New Pilot" %}</h2></div>
 </div>
 {% load widget_tweaks %}
     <form method="POST" class="post-form" id="new_pilote">{% csrf_token %}
         {{ form.non_field_errors }}
-
         <div class="form-row">
             <div class="form-group col-md-3">
                 <div class="fieldWrapper">

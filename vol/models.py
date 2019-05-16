@@ -2,8 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.utils.translation import gettext
-from django.utils.translation import gettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 
 # from django.utils.duration import _get_duration_components
@@ -36,15 +35,15 @@ from django.urls import reverse
 class Profile(models.Model):
     """ Define user profile """
     CLIENT_TYPE = (
-        (_('Free'), _('Free')),
-        (_('Pay'), _('Pay')),
+        ('free', _('Free')),
+        ('pay', _('Pay')),
     )
     CURRENT_POSITION = (
-        (_('PIC'), _('Pilot in Command')),
-        (_('FO'), _('First Officer')),
-        (_('INSTRUCT'), _('Instructor')),
-        (_('RET'), _('Retired')),
-        (_('OTHER'), _('Other')),
+        ('PIC', _('Pilot in Command')),
+        ('FO', _('First Officer')),
+        ('INSTRUCT', _('Instructor')),
+        ('RET', _('Retired')),
+        ('OTHER', _('Other')),
     )
     LANGUAGE = (
         ('fr', _('French')),
@@ -124,8 +123,8 @@ class CodeIata(models.Model):
 class TypeAvion(models.Model):
     """ Define plane type table """
     NOMBRE_MOTEURS = (
-        ('1', 'Monomoteur'),
-        ('2', 'Multimoteurs'),
+        (_('One'), _('Single-engine')),
+        (_('Multiple'), _('Multi-engine')),
     )
     type_avion = models.CharField(
         verbose_name='Type d\'avion',
@@ -210,11 +209,11 @@ class Pilote(models.Model):
         (_('OBS'), _('Observer')),
     )
     prenom = models.CharField(
-        verbose_name=gettext('First name'),
+        verbose_name=_('First name'),
         max_length=255,
     )
     nom = models.CharField(
-        verbose_name=gettext('Family name'),
+        verbose_name=_('Family name'),
         max_length=255,
     )
     user_id = models.ForeignKey(

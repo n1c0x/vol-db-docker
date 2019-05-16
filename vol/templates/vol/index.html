@@ -25,7 +25,7 @@ $(document).ready(function() {
           <a class="dropdown-item" href="{% url 'new_vol' %}">{% trans "Flight" %}</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'new_pilote' %}">{% trans "Pilot" %}</a>
-          <a class="dropdown-item" href="{% url 'new_immatriculation' %}">{% trans "Registration" %}</a>
+          <a class="dropdown-item" href="{% url 'new_immatriculation' %}">{% trans "Plane" %}</a>
           <a class="dropdown-item" href="{% url 'new_code_iata' %}">{% trans "Airport" %}</a>
           <a class="dropdown-item" href="{% url 'new_type_avion' %}">{% trans "Aircraft Type" %}</a>
         </div>
@@ -54,6 +54,7 @@ $(document).ready(function() {
                         <th scope="col">{% trans "Simu" %}</th>
                         <th scope="col">{% trans "IFR Arrival" %}</th>
                         <th scope="col">{% trans "Duration IFR" %}</th>
+                        <th scope="col">{% trans "Function" %}</th>
                         <th scope="col">{% trans "Position" %}</th>
                         <th scope="col">{% trans "Registration" %}</th>
                         <th scope="col">{% trans "Aircraft Type" %}</th>
@@ -63,7 +64,7 @@ $(document).ready(function() {
                         {% for vol in object_list %}
                             <tr>
                                     <th scope="row">
-                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="Détails" href="{% url 'detail' vol.id %}"><button class="btn btn-outline-primary btn-sm" type="button">{{ vol.date|date:"d/m/Y" }}</button></a>
+                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="{% trans "Details" %}" href="{% url 'detail' vol.id %}"><button class="btn btn-outline-primary btn-sm" type="button">{{ vol.date|date:"d/m/Y" }}</button></a>
                                     </th>
                                     <td>{{ vol.depart }}/{{ vol.arrivee }}</td>
                                     <td>{{ vol.cdb }}</td>
@@ -113,6 +114,7 @@ $(document).ready(function() {
                                                 {% endif %}
                                             {% endif %}</td>
                                     <td>{{ vol.fonction }}</td>
+                                    <td>{{ vol.poste }}</td>
                                     <td>{{ vol.immatriculation }}</td>
                                     <td>{{ vol.immatriculation.type_avion }}</td>
                             </tr>

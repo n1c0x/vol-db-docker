@@ -60,7 +60,7 @@
                         {% for type_avion in type_avion_list %}
                             <tr>
                                 <td>{{ type_avion.type_avion }}</td>
-                                <td>{{ type_avion.nb_moteurs }}</td>
+                                <td>{{ type_avion.get_nb_moteurs_display }}</td>
                                     <td class="text-center">
                                         <a class="management_links" data-toggle="tooltip" data-placement="top" title="Modifier le type d'avion" href="{% url 'edit_type_avion' pk=type_avion.pk %}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button>

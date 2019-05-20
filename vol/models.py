@@ -123,8 +123,8 @@ class CodeIata(models.Model):
 class TypeAvion(models.Model):
     """ Define plane type table """
     NOMBRE_MOTEURS = (
-        (_('One'), _('Single-engine')),
-        (_('Multiple'), _('Multi-engine')),
+        ('One', _('Single-engine')),
+        ('Multiple', _('Multi-engine')),
     )
     type_avion = models.CharField(
         verbose_name=_('Aircraft type'),
@@ -204,10 +204,10 @@ class Immatriculation(models.Model):
 class Pilote(models.Model):
     """ Define pilot table. """
     POSTE = (
-        (_('PIC'), _('Pilot in Command')),
-        (_('FO'), _('First Officer')),
-        (_('Instruct'), _('Instructor')),
-        (_('OBS'), _('Observer')),
+        ('PIC', _('Pilot in Command')),
+        ('FO', _('First Officer')),
+        ('Instruct', _('Instructor')),
+        ('OBS', _('Observer')),
     )
     prenom = models.CharField(
         verbose_name=_('First name'),

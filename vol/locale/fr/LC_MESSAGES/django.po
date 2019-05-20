@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-20 11:57+0000\n"
+"POT-Creation-Date: 2019-05-20 12:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,39 +23,27 @@ msgstr ""
 msgid "Plane"
 msgstr "Avion"
 
-#: vol/forms.py:31 vol/models.py:318
-#, fuzzy
-#| msgid "Duration Day"
+#: vol/forms.py:31 vol/models.py:319
 msgid "Day duration"
 msgstr "Durée jour"
 
-#: vol/forms.py:32 vol/models.py:329
-#, fuzzy
-#| msgid "Duration Day"
+#: vol/forms.py:32 vol/models.py:330
 msgid "Night duration"
 msgstr "Durée nuit"
 
-#: vol/forms.py:33 vol/models.py:364 vol/templates/vol/vol_add.html:254
-#, fuzzy
-#| msgid "Actions"
+#: vol/forms.py:33 vol/models.py:365 vol/templates/vol/vol_add.html:254
 msgid "IFR duration"
 msgstr "Durée IFR"
 
-#: vol/forms.py:34 vol/models.py:384
-#, fuzzy
-#| msgid "Simu"
+#: vol/forms.py:34 vol/models.py:385
 msgid "Simu duration"
 msgstr "Durée simu"
 
-#: vol/forms.py:35 vol/models.py:374 vol/templates/vol/vol_add.html:290
-#, fuzzy
-#| msgid "Duration Day"
+#: vol/forms.py:35 vol/models.py:375 vol/templates/vol/vol_add.html:290
 msgid "DC duration"
 msgstr "Durée DC"
 
 #: vol/forms.py:36
-#, fuzzy
-#| msgid "IFR Arrival"
 msgid "IFR arrival"
 msgstr "Arrivée IFR"
 
@@ -67,16 +55,16 @@ msgstr "Gratuit"
 msgid "Pay"
 msgstr "Payant"
 
-#: vol/models.py:42 vol/models.py:206 vol/models.py:271
+#: vol/models.py:42 vol/models.py:207 vol/models.py:272
 #: vol/templates/vol/detail.html:214
 msgid "Pilot in Command"
 msgstr "Commandant de bord"
 
-#: vol/models.py:43 vol/models.py:207 vol/templates/vol/detail.html:220
+#: vol/models.py:43 vol/models.py:208 vol/templates/vol/detail.html:220
 msgid "First Officer"
 msgstr "Copilote"
 
-#: vol/models.py:44 vol/models.py:208 vol/models.py:299
+#: vol/models.py:44 vol/models.py:209 vol/models.py:300
 #: vol/templates/vol/detail.html:258 vol/templates/vol/index.html:51
 msgid "Instructor"
 msgstr "Instructeur"
@@ -118,7 +106,6 @@ msgid "Language"
 msgstr "Langue"
 
 #: vol/models.py:88
-#, fuzzy
 msgid "IATA code"
 msgstr "Code AITA"
 
@@ -126,42 +113,28 @@ msgstr "Code AITA"
 msgid "City"
 msgstr "Ville"
 
-#: vol/models.py:101 vol/models.py:142 vol/models.py:178 vol/models.py:223
+#: vol/models.py:101 vol/models.py:142 vol/models.py:179 vol/models.py:224
 msgid "User"
 msgstr "Utilisateur"
 
 #: vol/models.py:106 vol/templates/vol/iata_add.html:52
-#, fuzzy
 msgid "IATA Code"
 msgstr "Code AITA"
 
 #: vol/models.py:107
-#, fuzzy
 msgid "IATA Codes"
 msgstr "Codes AITA"
 
 #: vol/models.py:126
-#, fuzzy
-msgid "One"
-msgstr "Un"
-
-#: vol/models.py:126
-#, fuzzy
 msgid "Single-engine"
 msgstr "Monomoteur"
-
-#: vol/models.py:127
-#, fuzzy
-#| msgid "Multi-engine"
-msgid "Multiple"
-msgstr "Plusieurs"
 
 #: vol/models.py:127
 msgid "Multi-engine"
 msgstr "Multimoteurs"
 
-#: vol/models.py:130 vol/models.py:147 vol/templates/vol/detail.html:193
-#: vol/templates/vol/type_avion_add.html:54
+#: vol/models.py:130 vol/models.py:147 vol/models.py:172
+#: vol/templates/vol/detail.html:193 vol/templates/vol/type_avion_add.html:54
 msgid "Aircraft type"
 msgstr "Type d'avion"
 
@@ -173,139 +146,105 @@ msgstr "Nombre de moteurs"
 msgid "Aircraft types"
 msgstr "Types d'avion"
 
-#: vol/models.py:167 vol/models.py:351
-#, fuzzy
-#| msgid "Registration Number"
+#: vol/models.py:167 vol/models.py:352
 msgid "Registration number"
 msgstr "Immatriculation"
 
-#: vol/models.py:183 vol/templates/vol/immatriculation_add.html:57
+#: vol/models.py:184 vol/templates/vol/immatriculation_add.html:57
 msgid "Registration Number"
 msgstr "Immatriculation"
 
-#: vol/models.py:184
+#: vol/models.py:185
 msgid "Registration Numbers"
 msgstr "Immatriculations"
 
-#: vol/models.py:206 vol/templates/vol/index.html:47
-msgid "PIC"
-msgstr "CDB"
-
-#: vol/models.py:207 vol/templates/vol/index.html:48
-msgid "FO"
-msgstr "OPL"
-
-#: vol/models.py:208
-msgid "Instruct"
-msgstr "Instruct"
-
-#: vol/models.py:209
-msgid "OBS"
-msgstr "OBS"
-
-#: vol/models.py:209 vol/templates/vol/detail.html:230
+#: vol/models.py:210 vol/templates/vol/detail.html:230
 #: vol/templates/vol/detail.html:244
 msgid "Observer"
 msgstr "Observateur"
 
-#: vol/models.py:212
+#: vol/models.py:213
 msgid "First name"
 msgstr "Prénom"
 
-#: vol/models.py:216
+#: vol/models.py:217
 msgid "Family name"
 msgstr "Nom de famille"
 
-#: vol/models.py:228 vol/templates/vol/base_homepage.html:94
+#: vol/models.py:229 vol/templates/vol/base_homepage.html:94
 #: vol/templates/vol/index.html:27 vol/templates/vol/pilote_add.html:53
 #: vol/templates/vol/somme.html:20
 msgid "Pilot"
 msgstr "Pilote"
 
-#: vol/models.py:229
+#: vol/models.py:230
 msgid "Pilots"
 msgstr "Pilotes"
 
-#: vol/models.py:265
-#, fuzzy
-#| msgid "Flight Database"
+#: vol/models.py:266
 msgid "Flight date"
 msgstr "Base de données de vols"
 
-#: vol/models.py:277
-#, fuzzy
-#| msgid "First Officer"
+#: vol/models.py:278
 msgid "First officer"
 msgstr "Copilote"
 
-#: vol/models.py:283
-#, fuzzy
-#| msgid "Observer"
+#: vol/models.py:284
 msgid "Observer 1"
 msgstr "Observateur"
 
-#: vol/models.py:291
-#, fuzzy
-#| msgid "Observer"
+#: vol/models.py:292
 msgid "Observer 2"
 msgstr "Observateur"
 
-#: vol/models.py:307
+#: vol/models.py:308
 msgid "Departure"
-msgstr ""
+msgstr "Départ"
 
-#: vol/models.py:313
-#, fuzzy
-#| msgid "IFR Arrival"
+#: vol/models.py:314
 msgid "Arrival"
-msgstr "Arrivée IFR"
+msgstr "Arrivée"
 
-#: vol/models.py:319 vol/models.py:330
+#: vol/models.py:320 vol/models.py:331
 msgid "[DD] [HH:[MM:]]ss[.uuuuuu] format"
 msgstr ""
 
-#: vol/models.py:339 vol/templates/vol/detail.html:142
+#: vol/models.py:340 vol/templates/vol/detail.html:142
 #: vol/templates/vol/index.html:57
-#, fuzzy
-#| msgid "Actions"
 msgid "Function"
 msgstr "Fonction"
 
-#: vol/models.py:344 vol/templates/vol/detail.html:146
+#: vol/models.py:345 vol/templates/vol/detail.html:146
 #: vol/templates/vol/index.html:58
 msgid "Position"
 msgstr "Poste"
 
-#: vol/models.py:354 vol/templates/vol/detail.html:170
+#: vol/models.py:355 vol/templates/vol/detail.html:170
 msgid "Notes"
 msgstr "Observations"
 
-#: vol/models.py:359
-#, fuzzy
+#: vol/models.py:360
 #| msgid "IFR Arrival"
 msgid "IFR arrivals"
 msgstr "Arrivée IFR"
 
-#: vol/models.py:370
-#, fuzzy
+#: vol/models.py:371
 #| msgid "Duration Night"
 msgid "DC flight"
 msgstr "Vol DC"
 
-#: vol/models.py:380 vol/templates/vol/detail.html:150
+#: vol/models.py:381 vol/templates/vol/detail.html:150
 #: vol/templates/vol/vol_add.html:197
-#, fuzzy
-#| msgid "Simu"
 msgid "Simulator"
 msgstr "Simulateur"
 
 #: vol/templates/registration/logged_out.html:9
 msgid "Logged out"
-msgstr ""
+msgstr "Déconnecté"
 
 #: vol/templates/registration/logged_out.html:13
 msgid "Go to Homepage"
-msgstr ""
+msgstr "Retour à la page d'accueil"
 
 #: vol/templates/registration/login.html:9
 #: vol/templates/registration/login.html:51
@@ -315,67 +254,74 @@ msgstr "Connexion"
 
 #: vol/templates/registration/login.html:15
 msgid "Your username and password do not match. Please try again."
-msgstr ""
+msgstr "Vos identifiants de concordent pas. Veuillez réessayer"
 
 #: vol/templates/registration/login.html:22
 msgid ""
 "Your account does not have access to this page. To continue, please login "
 "with an account that has access to it."
 msgstr ""
+"Votre compte n'a pas accès à cette page. Pour continuer, veuillez vous "
+"connecter avec un compte y ayant accès."
 
 #: vol/templates/registration/login.html:24
-#, fuzzy
 #| msgid "Please {{ login_url }} to see this page."
 msgid "Please login to view this page."
 msgstr "Veuillez vous connecter pour voir cette page"
 
 #: vol/templates/registration/login.html:53
 msgid "Password forgotten?"
-msgstr ""
+msgstr "Mot de passe oublié?"
 
 #: vol/templates/registration/password_change_form.html:6
 msgid "Password reset"
-msgstr ""
+msgstr "Réinitialisation du mot de passe"
 
 #: vol/templates/registration/password_reset_complete.html:5
 msgid "The password has been changed!"
-msgstr ""
+msgstr "Le mot de passe a été changé!"
 
 #: vol/templates/registration/password_reset_complete.html:6
 msgid "Login again?"
-msgstr ""
+msgstr "Se reconnecter?"
 
 #: vol/templates/registration/password_reset_confirm.html:6
 msgid "Please enter (and confirm) your new password."
-msgstr ""
+msgstr "Veuillez entrer et confirmer votre nouveua mot de passe"
 
 #: vol/templates/registration/password_reset_confirm.html:12
 msgid "New password:"
-msgstr ""
+msgstr "Nouveau mot de passe:"
 
 #: vol/templates/registration/password_reset_confirm.html:17
 msgid "Confirm password:"
-msgstr ""
+msgstr "Confirmez le mot de passe"
 
 #: vol/templates/registration/password_reset_confirm.html:27
 msgid "Password reset failed"
-msgstr ""
+msgstr "Réinitialisation du mot de passe échouée"
 
 #: vol/templates/registration/password_reset_confirm.html:28
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Le lien de réinitialisation du mot de passe n'était pas valide, peut-être "
+"parce qu'il a déjà été utilisé. Veuillez demander une nouvelle "
+"réinitialisation de mot de passe."
 
 #: vol/templates/registration/password_reset_done.html:5
 msgid ""
 "We've emailed you instructions for setting your password. If they haven't "
 "arrived in a few minutes, check your spam folder."
 msgstr ""
+"Nous vous avons envoyé des instructions par mail pour définir votre mot de "
+"passe. S'ils ne sont pas arrivés dans quelques minutes, vérifiez votre "
+"dossier spam."
 
 #: vol/templates/registration/password_reset_form.html:12
 msgid "Reset password"
-msgstr ""
+msgstr "Réinitialiser le mot de passe"
 
 #: vol/templates/vol/base_homepage.html:9
 msgid "Flight Database"
@@ -403,7 +349,6 @@ msgid " Hello %(username)s "
 msgstr "Bonjour %(username)s"
 
 #: vol/templates/vol/base_homepage.html:65
-#, fuzzy
 #| msgid "User profile"
 msgid "Profile"
 msgstr "Profil"
@@ -414,8 +359,6 @@ msgstr "Déconnexion"
 
 #: vol/templates/vol/base_homepage.html:84 vol/templates/vol/index.html:17
 #: vol/templates/vol/somme.html:10
-#, fuzzy
-#| msgid "Flights"
 msgid "All flights"
 msgstr "Vols"
 
@@ -432,8 +375,6 @@ msgstr "Ajouter"
 
 #: vol/templates/vol/base_homepage.html:92 vol/templates/vol/index.html:25
 #: vol/templates/vol/index.html:46 vol/templates/vol/somme.html:18
-#, fuzzy
-#| msgid "Flights"
 msgid "Flight"
 msgstr "Vol"
 
@@ -446,13 +387,10 @@ msgstr "Aéroport"
 #: vol/templates/vol/immatriculation_add.html:58
 #: vol/templates/vol/index.html:30 vol/templates/vol/index.html:60
 #: vol/templates/vol/somme.html:23
-#, fuzzy
-#| msgid "Aircraft type"
 msgid "Aircraft Type"
 msgstr "Type d'avion"
 
 #: vol/templates/vol/detail.html:3 vol/templates/vol/detail.html:18
-#, fuzzy
 #| msgid "Flight Database"
 msgid "Flight details"
 msgstr "Détails du vol"
@@ -462,27 +400,22 @@ msgid "Flight modification is not yet available."
 msgstr "La modification de vols n'est pas encore disponible."
 
 #: vol/templates/vol/detail.html:35
-#, fuzzy
 #| msgid "List of pilots"
 msgid "Delete the flight"
 msgstr "Supprimer le vol"
 
 #: vol/templates/vol/detail.html:35
-#, fuzzy
 #| msgid "Do you really want to delete this pilot?"
 msgid "Are you sure you want to delete this flight?"
 msgstr "Voulez-vous vraiement supprimer ce vol ?"
 
 #: vol/templates/vol/detail.html:184
-#, fuzzy
 #| msgid "Aircraft type"
 msgid "Aircraft"
 msgstr "Type d'avion"
 
 #: vol/templates/vol/detail.html:189 vol/templates/vol/index.html:59
 #: vol/templates/vol/somme.html:21
-#, fuzzy
-#| msgid "Registration Number"
 msgid "Registration"
 msgstr "Immatriculation"
 
@@ -500,29 +433,21 @@ msgid "None"
 msgstr "Absent"
 
 #: vol/templates/vol/iata_add.html:3 vol/templates/vol/iata_add.html:7
-#, fuzzy
-#| msgid "Pilot"
 msgid "New airport"
 msgstr "Nouvel aéroport"
 
 #: vol/templates/vol/iata_add.html:31
 #: vol/templates/vol/immatriculation_add.html:36
-#: vol/templates/vol/pilote_add.html:31
+#: vol/templates/vol/pilote_add.html:31 vol/templates/vol/profile.html:115
 #: vol/templates/vol/type_avion_add.html:32 vol/templates/vol/vol_add.html:311
 msgid "Save"
 msgstr "Enregistrer"
 
 #: vol/templates/vol/iata_add.html:37
-#, fuzzy
-#| msgid "List of pilots"
 msgid "List of airports"
 msgstr "Liste des aéroports"
 
 #: vol/templates/vol/iata_add.html:42
-#, fuzzy
-#| msgid ""
-#| "It is impossible to delete a pilot linked to a flight. In order to delete "
-#| "a pilot, it is first necessary to delete or modify the linked flight(s)."
 msgid ""
 "It is impossible to delete an airport linked to a flight. In order to delete "
 "an airport, it is first necessary to delete or modify the linked flight(s)."
@@ -532,59 +457,50 @@ msgstr ""
 "liés."
 
 #: vol/templates/vol/iata_add.html:54
-#, fuzzy
-#| msgid "Actions"
 msgid "Action"
 msgstr "Actions"
 
+#: vol/templates/vol/iata_add.html:63
+msgid "Edit the IATA code"
+msgstr "Modifier le code AITA"
+
 #: vol/templates/vol/iata_add.html:72
-#, fuzzy
-#| msgid "Impossible to delete the pilot because a flight is linked to it"
 msgid "Unable to delete the airport because a flight is linked to it"
 msgstr "Impossible de supprimer l'aéroport car un vol lui est lié"
 
 #: vol/templates/vol/iata_add.html:72 vol/templates/vol/iata_add.html:74
-#, fuzzy
 #| msgid "Do you really want to delete this pilot?"
 msgid "Do you really want to delete this airport?"
 msgstr "Voulez-vous vraiement supprimer cet aéroport ?"
 
 #: vol/templates/vol/iata_add.html:74
-#, fuzzy
 #| msgid "List of pilots"
 msgid "Delete the airport"
 msgstr "Supprimer l'aéroport"
 
 #: vol/templates/vol/iata_add.html:89
-#, fuzzy
 #| msgid "There are no registered pilots. "
 msgid "There are no registered airports. "
 msgstr "Il n'y a pas d'aéroports enregistrés."
 
 #: vol/templates/vol/immatriculation_add.html:3
-#: vol/templates/vol/immatriculation_add.html:7
-#, fuzzy
-#| msgid "Pilot"
+#| msgid "New plane"
 msgid "New Plane"
 msgstr "Nouvel avion"
 
+#: vol/templates/vol/immatriculation_add.html:7
+msgid "New plane"
+msgstr "Nouvel avion"
+
 #: vol/templates/vol/immatriculation_add.html:27
-#, fuzzy
-#| msgid "Aircraft type"
 msgid "Add an aircraft type"
 msgstr "Ajouter un type d'avion"
 
 #: vol/templates/vol/immatriculation_add.html:42
-#, fuzzy
-#| msgid "List of pilots"
 msgid "List of planes"
 msgstr "Liste des avions"
 
 #: vol/templates/vol/immatriculation_add.html:47
-#, fuzzy
-#| msgid ""
-#| "It is impossible to delete a pilot linked to a flight. In order to delete "
-#| "a pilot, it is first necessary to delete or modify the linked flight(s)."
 msgid ""
 "It is impossible to delete a plane linked to a flight. In order to delete a "
 "plane, it is first necessary to delete or modify the linked flight(s)."
@@ -599,27 +515,19 @@ msgid "Actions"
 msgstr "Actions"
 
 #: vol/templates/vol/immatriculation_add.html:78
-#, fuzzy
-#| msgid "Impossible to delete the pilot because a flight is linked to it"
 msgid "Unable to delete the plane because a flight is linked to it"
 msgstr "Impossible de supprimer l'avion car un vol lui est lié"
 
 #: vol/templates/vol/immatriculation_add.html:78
 #: vol/templates/vol/immatriculation_add.html:80
-#, fuzzy
-#| msgid "Do you really want to delete this pilot?"
 msgid "Do you really want to delete this plane?"
 msgstr "Voulez-vous vraiement supprimer cet avion ?"
 
 #: vol/templates/vol/immatriculation_add.html:80
-#, fuzzy
-#| msgid "List of pilots"
 msgid "Delete the plane"
 msgstr "Supprimer l'avion"
 
 #: vol/templates/vol/immatriculation_add.html:95
-#, fuzzy
-#| msgid "There are no registered pilots. "
 msgid "There are no registered planes. "
 msgstr "Il n'y a pas d'avions enregistrés."
 
@@ -630,6 +538,14 @@ msgstr "Afficher tous les vols"
 #: vol/templates/vol/index.html:45
 msgid "Date"
 msgstr "Date"
+
+#: vol/templates/vol/index.html:47
+msgid "PIC"
+msgstr "CDB"
+
+#: vol/templates/vol/index.html:48
+msgid "FO"
+msgstr "OPL"
 
 #: vol/templates/vol/index.html:49
 msgid "OBS1"
@@ -664,15 +580,17 @@ msgid "Details"
 msgstr "Détails"
 
 #: vol/templates/vol/index.html:129
-#, fuzzy
 #| msgid "There are no registered pilots. "
 msgid "There are no registered flights."
 msgstr "Il n'y a pas de vols enregistrés."
 
-#: vol/templates/vol/pilote_add.html:3 vol/templates/vol/pilote_add.html:7
-#, fuzzy
-#| msgid "Pilot"
+#: vol/templates/vol/pilote_add.html:3
+#| msgid "New pilot"
 msgid "New Pilot"
+msgstr "Nouveau pilote"
+
+#: vol/templates/vol/pilote_add.html:7
+msgid "New pilot"
 msgstr "Nouveau pilote"
 
 #: vol/templates/vol/pilote_add.html:38
@@ -688,14 +606,10 @@ msgstr ""
 "pilote, il faut en premier lieu supprimer ou modifier le ou les vols liés."
 
 #: vol/templates/vol/pilote_add.html:62
-#, fuzzy
-#| msgid "List of pilots"
 msgid "Edit the pilot"
 msgstr "Modifier le pilote"
 
 #: vol/templates/vol/pilote_add.html:71
-#, fuzzy
-#| msgid "Impossible to delete the pilot because a flight is linked to it"
 msgid "Unable to delete the pilot because a flight is linked to it"
 msgstr "Impossible de supprimer le pilote car un vol lui est lié"
 
@@ -704,8 +618,6 @@ msgid "Do you really want to delete this pilot?"
 msgstr "Voulez-vous vraiement supprimer ce pilote ?"
 
 #: vol/templates/vol/pilote_add.html:73
-#, fuzzy
-#| msgid "List of pilots"
 msgid "Delete the pilot"
 msgstr "Supprimer le pilote"
 
@@ -722,7 +634,6 @@ msgid "Please {{ login_url }} to see this page."
 msgstr "Veuillez vous connecter pour voir cette page"
 
 #: vol/templates/vol/profile.html:26
-#, fuzzy
 #| msgid "User profile"
 msgid "Edit profile"
 msgstr "Modifier le profil"
@@ -744,7 +655,6 @@ msgid "FO Day"
 msgstr "OPL Jour"
 
 #: vol/templates/vol/somme.html:42
-#, fuzzy
 #| msgid "Flights"
 msgid "FO Night"
 msgstr "OPL Nuit"
@@ -754,7 +664,6 @@ msgid "DC Day"
 msgstr "DC Jour"
 
 #: vol/templates/vol/somme.html:44
-#, fuzzy
 #| msgid "Duration Night"
 msgid "DC Night"
 msgstr "DC Nuit"
@@ -768,13 +677,11 @@ msgid "Inst Night"
 msgstr "Inst Nuit"
 
 #: vol/templates/vol/somme.html:50 vol/templates/vol/somme.html:175
-#, fuzzy
 #| msgid "Totals"
 msgid "Total"
 msgstr "Total"
 
 #: vol/templates/vol/somme.html:55
-#, fuzzy
 msgid "Current year"
 msgstr "Année en cours"
 
@@ -784,22 +691,14 @@ msgstr "Année précédente"
 
 #: vol/templates/vol/type_avion_add.html:3
 #: vol/templates/vol/type_avion_add.html:7
-#, fuzzy
-#| msgid "Aircraft type"
 msgid "New aircraft type"
 msgstr "Nouveau type d'avion"
 
 #: vol/templates/vol/type_avion_add.html:39
-#, fuzzy
-#| msgid "Aircraft types"
 msgid "List of aircraft types"
 msgstr "Liste des types d'avion"
 
 #: vol/templates/vol/type_avion_add.html:44
-#, fuzzy
-#| msgid ""
-#| "It is impossible to delete a pilot linked to a flight. In order to delete "
-#| "a pilot, it is first necessary to delete or modify the linked flight(s)."
 msgid ""
 "It is impossible to delete an aircraft type linked to a plane. In order to "
 "delete an aircraft type, it is first necessary to delete or modify the "
@@ -810,39 +709,27 @@ msgstr ""
 "ou les vols liés."
 
 #: vol/templates/vol/type_avion_add.html:74
-#, fuzzy
-#| msgid "Impossible to delete the pilot because a flight is linked to it"
 msgid "Unable to delete the aircraft type because a plane is linked to it"
 msgstr "Impossible de supprimer le type d'avion car un vol lui est lié"
 
 #: vol/templates/vol/type_avion_add.html:74
 #: vol/templates/vol/type_avion_add.html:76
-#, fuzzy
-#| msgid "Do you really want to delete this pilot?"
 msgid "Do you really want to delete this aircraft type?"
 msgstr "Voulez-vous vraiement supprimer ce type d'avion ?"
 
 #: vol/templates/vol/type_avion_add.html:76
-#, fuzzy
-#| msgid "List of pilots"
 msgid "Delete the aircraft type"
 msgstr "Supprimer le type d'avion"
 
 #: vol/templates/vol/type_avion_add.html:91
-#, fuzzy
-#| msgid "There are no registered pilots. "
 msgid "There are no registered aircraft types. "
 msgstr "Il n'y a pas de types d'avion enregistrés."
 
 #: vol/templates/vol/vol_add.html:3
-#, fuzzy
-#| msgid "Flights"
 msgid "Add a flight"
 msgstr "Ajouter un vol"
 
 #: vol/templates/vol/vol_add.html:10
-#, fuzzy
-#| msgid "Flights"
 msgid "New flight"
 msgstr "Nouveau vol"
 
@@ -861,14 +748,10 @@ msgstr "Aéroports et durées"
 #: vol/templates/vol/vol_add.html:144 vol/templates/vol/vol_add.html:170
 #: vol/templates/vol/vol_add.html:219 vol/templates/vol/vol_add.html:253
 #: vol/templates/vol/vol_add.html:289
-#, fuzzy
-#| msgid "Conversion"
 msgid "Convert"
 msgstr "Conversion"
 
 #: vol/templates/vol/vol_add.html:220
-#, fuzzy
-#| msgid "Simu"
 msgid "Simulator duration"
 msgstr "Durée simu"
 
@@ -880,24 +763,3 @@ msgstr "IFR"
 msgid "Dual commands"
 msgstr "Double commande"
 
-#, fuzzy
-#~| msgid "Amount of engines"
-#~ msgid "Amount of IFR arrivals"
-#~ msgstr "Arrivées IFR"
-
-#, fuzzy
-#~| msgid "Pilot in Command"
-#~ msgid "Pilot In Command"
-#~ msgstr "Commandant de bord"
-
-#~ msgid "INSTRUCT"
-#~ msgstr "INSTRUCT"
-
-#~ msgid "RET"
-#~ msgstr "RET"
-
-#~ msgid "OTHER"
-#~ msgstr "AUTRE"
-
-#~ msgid "%(class)s_user"
-#~ msgstr "%(class)s_utilisateur"

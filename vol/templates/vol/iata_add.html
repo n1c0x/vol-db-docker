@@ -60,7 +60,7 @@
                                 <td>{{ code_iata.code_iata }}</td>
                                 <td>{{ code_iata.ville }}</td>
                                     <td class="text-center">
-                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="Modifier le code IATA" href="{% url 'edit_code_iata' pk=code_iata.pk %}">
+                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="{% trans "Edit the IATA code" %}" href="{% url 'edit_code_iata' pk=code_iata.pk %}">
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></button>
                                         </a>
                                         <form action="{% url 'remove_code_iata' pk=code_iata.pk %}" method="post" style="display: inline;">

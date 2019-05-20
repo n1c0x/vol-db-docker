@@ -7,9 +7,6 @@ from django.utils.translation import ugettext_lazy as _
 
 class VolForm(forms.ModelForm):
     """ Generate the flight form. """
-    'ToDo : Set default value of cdp/opl according to the status of the pilot.'
-    'If the pilot is a CDB, set the default value of cdb to "user.prenom user.nom". '
-    'If the pilot is an OPL, set the default value of opl to "user.prenom user.nom". '
 
     def get_current_user(self):
         return self.current_user

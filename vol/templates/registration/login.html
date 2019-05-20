@@ -1,27 +1,27 @@
 {% extends "vol/base_homepage.html" %}
-
+{% load i18n %}
 {% block content %}
 
 {% block active_secondary_nav %}{% endblock %}
 
 <div class="col-6 offset-md-3">
     <div class="row">
-        <h2 class="display-4 align-self-center mt-4 mb-4">Connexion</h2>
+        <h2 class="display-4 align-self-center mt-4 mb-4">{% trans "Login" %}</h2>
     </div>
 
 
     {% if form.errors %}
     <div class="row">
-        <div class="alert alert-danger" role="alert">Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez réessayer.</div>
+        <div class="alert alert-danger" role="alert">{% trans "Your username and password do not match. Please try again." %}Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez réessayer.</div>
     </div>
     {% endif %}
 
     {% if next %}
     <div class="row">
         {% if user.is_authenticated %}
-        <div class="alert alert-danger" role="alert">Votre compte n'a pas accès à cette page. Pour continuer, veuillez vous connecter avec un compte qui y a accès.</div>
+        <div class="alert alert-danger" role="alert">{% trans "Your account does not have access to this page. To continue, please login with an account that has access to it." %}Votre compte n'a pas accès à cette page. Pour continuer, veuillez vous connecter avec un compte qui y a accès.</div>
         {% else %}
-        <div class="alert alert-danger" role="alert">Veuillez vous connecter pour voir cette page.</div>
+        <div class="alert alert-danger" role="alert">{% trans "Please login to view this page." %}Veuillez vous connecter pour voir cette page.</div>
         {% endif %}
     </div>
     {% endif %}
@@ -48,9 +48,9 @@
 
             </div>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">Connexion</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login">{% trans "Login" %}</button>
             <input type="hidden" name="next" value="{{ next }}">
-            <p class="mt-2 text-right"><a href="{# url 'password_reset' #}">Mot de passe perdu ?</a></p>
+            <p class="mt-2 text-right"><a href="{# url 'password_reset' #}">{% trans "Password forgotten?" %}</a></p>
 
         </form>
     </div>

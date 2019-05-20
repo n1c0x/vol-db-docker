@@ -1,15 +1,16 @@
 {% extends "vol/base_homepage.html" %}
+{% load i18n %}
 
 {% block active_secondary_nav %}{% endblock %}
 {% block content %}
 
 <div class="col-6 offset-md-3">
     <div class="row">
-        <h2 class="display-4 align-self-center mt-4 mb-4">Déconnecté</h2>
+        <h2 class="display-4 align-self-center mt-4 mb-4">{% trans "Logged out" %}</h2>
     </div>
 
     <div class="row">
-        <p><a href="/">Page d'accueil</a></p>
+        <p><a href="/">{% trans "Go to Homepage" %}</a></p>
     </div>
 
 

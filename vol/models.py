@@ -85,11 +85,11 @@ class Profile(models.Model):
 class CodeIata(models.Model):
     """ Define IATA codes table. """
     code_iata = models.CharField(
-        verbose_name='Code IATA',
+        verbose_name=_('IATA code'),
         max_length=5,
     )
     ville = models.CharField(
-        verbose_name="Ville",
+        verbose_name=_('City'),
         max_length=50,
         blank=True,
         null=True,
@@ -98,7 +98,7 @@ class CodeIata(models.Model):
         User,
         on_delete=models.PROTECT,
         related_name='%(class)s_utilisateur',
-        verbose_name="Utilisateur",
+        verbose_name=_('User'),
     )
 
     class Meta:
@@ -127,19 +127,19 @@ class TypeAvion(models.Model):
         (_('Multiple'), _('Multi-engine')),
     )
     type_avion = models.CharField(
-        verbose_name='Type d\'avion',
+        verbose_name=_('Aircraft type'),
         max_length=255,
     )
     nb_moteurs = models.CharField(
         choices=NOMBRE_MOTEURS,
         max_length=25,
-        verbose_name='Nombre de moteurs',
+        verbose_name=_('Amount of engines'),
     )
     user_id = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
         related_name='%(class)s_utilisateur',
-        verbose_name="Utilisateur",
+        verbose_name=_('User'),
     )
 
     class Meta:
@@ -164,18 +164,19 @@ class TypeAvion(models.Model):
 class Immatriculation(models.Model):
     """ Define immatriculation table. """
     immatriculation = models.CharField(
-        verbose_name='Immatriculation de l\'avion',
+        verbose_name=_('Registration number'),
         max_length=10,
     )
     type_avion = models.ForeignKey(
         TypeAvion,
+        verbose_name=_('Aircraft type'),
         on_delete=models.PROTECT
     )
     user_id = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
         related_name='%(class)s_utilisateur',
-        verbose_name="Utilisateur",
+        verbose_name=_('User'),
     )
 
     class Meta:
@@ -262,25 +263,25 @@ class Vol(models.Model):
     )
 
     date = models.DateField(
-        verbose_name='Date du vol',
+        verbose_name=_('Flight date'),
     )
     cdb = models.ForeignKey(
         Pilote,
         on_delete=models.PROTECT,
         related_name='%(class)s_cdb',
-        verbose_name="Commandant de bord",
+        verbose_name=_('Pilot in Command'),
     )
     opl = models.ForeignKey(
         Pilote,
         on_delete=models.PROTECT,
         related_name='%(class)s_opl',
-        verbose_name="Copilote",
+        verbose_name=_('First officer'),
     )
     obs1 = models.ForeignKey(
         Pilote,
         on_delete=models.PROTECT,
         related_name='%(class)s_obs1',
-        verbose_name="Observateur 1",
+        verbose_name=_('Observer 1'),
         blank=True,
         null=True,
     )
@@ -288,7 +289,7 @@ class Vol(models.Model):
         Pilote,
         on_delete=models.PROTECT,
         related_name='%(class)s_obs2',
-        verbose_name="Observateur 2",
+        verbose_name=_('Observer 2'),
         blank=True,
         null=True,
     )
@@ -296,7 +297,7 @@ class Vol(models.Model):
         Pilote,
         on_delete=models.PROTECT,
         related_name='%(class)s_instructeur',
-        verbose_name="Instructeur",
+        verbose_name=_('Instructor'),
         blank=True,
         null=True,
     )
@@ -304,18 +305,18 @@ class Vol(models.Model):
         CodeIata,
         on_delete=models.PROTECT,
         related_name='%(class)s_depart',
-        verbose_name="Départ",
+        verbose_name=_('Departure'),
     )
     arrivee = models.ForeignKey(
         CodeIata,
         on_delete=models.PROTECT,
         related_name='%(class)s_arrivee',
-        verbose_name="Arrivée",
+        verbose_name=_('Arrival'),
     )
     duree_jour = models.DurationField(
         null=True,
         blank=True,
-        verbose_name=_('duree_jour'),
+        verbose_name=_('Day duration'),
         help_text=_('[DD] [HH:[MM:]]ss[.uuuuuu] format')
     )
 
@@ -326,7 +327,7 @@ class Vol(models.Model):
     duree_nuit = models.DurationField(
         null=True,
         blank=True,
-        verbose_name=_('duree_nuit'),
+        verbose_name=_('Night duration'),
         help_text=_('[DD] [HH:[MM:]]ss[.uuuuuu] format')
     )
 
@@ -336,52 +337,52 @@ class Vol(models.Model):
 
     fonction = models.CharField(
         choices=FONCTION,
-        verbose_name='Fonction occupée',
+        verbose_name=_('Function'),
         max_length=20,
     )
     poste = models.CharField(
         choices=POSTE,
-        verbose_name='Poste occupé',
+        verbose_name=_('Position'),
         max_length=20,
     )
     immatriculation = models.ForeignKey(
         Immatriculation,
         on_delete=models.PROTECT,
         related_name='%(class)s_immatriculation',
-        verbose_name="Immatriculation de l'avion",
+        verbose_name=_('Registration number'),
     )
     observation = models.TextField(
-        verbose_name="Observations",
+        verbose_name=_('Notes'),
         blank=True,
     )
     vol_ifr = models.CharField(
         choices=ARRIVEE_IFR,
-        verbose_name="Nombre d'arrivée IFR",
+        verbose_name=_('IFR arrivals'),
         max_length=20,
         default=1,
     )
     duree_ifr = models.DurationField(
-        verbose_name="Durée IFR",
+        verbose_name=_('IFR duration'),
         blank=True,
         null=True,
         help_text='Format hh:mm:ss'
     )
     vol_dc = models.BooleanField(
-        verbose_name="Vol DC ?",
+        verbose_name=_('DC flight'),
         default=False,
     )
     duree_dc = models.DurationField(
-        verbose_name="Durée DC",
+        verbose_name=_('DC duration'),
         blank=True,
         null=True,
         help_text='Format hh:mm:ss'
     )
     vol_simu = models.BooleanField(
-        verbose_name="Simulateur ?",
+        verbose_name=_('Simulator'),
         default=False,
     )
     duree_simu = models.DurationField(
-        verbose_name="Durée Simu",
+        verbose_name=_('Simu duration'),
         blank=True,
         null=True,
         help_text='Format hh:mm:ss',
@@ -390,5 +391,5 @@ class Vol(models.Model):
         User,
         on_delete=models.PROTECT,
         related_name='%(class)s_utilisateur',
-        verbose_name="Utilisateur",
+        verbose_name="User",
     )

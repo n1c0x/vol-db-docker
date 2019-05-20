@@ -2,6 +2,7 @@ from django import forms
 from tempus_dominus.widgets import DatePicker
 from .models import *
 from .views import *
+from django.utils.translation import ugettext_lazy as _
 
 
 class VolForm(forms.ModelForm):
@@ -24,15 +25,15 @@ class VolForm(forms.ModelForm):
         self.fields['obs2'].queryset = Pilote.objects.filter(user_id=user_id)
         self.fields['instructeur'].queryset = Pilote.objects.filter(user_id=user_id)
 
-    immatriculation = forms.ModelChoiceField(queryset=Immatriculation.objects.all(), label="Avion")
+    immatriculation = forms.ModelChoiceField(queryset=Immatriculation.objects.all(), label=_('Plane'))
     observation = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 4}))
     date = forms.DateField(widget=DatePicker())
-    duree_jour = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), required=False)
-    duree_nuit = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), required=False)
-    duree_ifr = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), label="Durée IFR", required=False)
-    duree_simu = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), required=False)
-    duree_dc = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), required=False)
-    vol_ifr = forms.ChoiceField(choices=Vol.ARRIVEE_IFR, label="Arrivées IFR", initial='1')
+    duree_jour = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), label=_('Day duration'), required=False)
+    duree_nuit = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), label=_('Night duration'), required=False)
+    duree_ifr = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), label=_('IFR duration'), required=False)
+    duree_simu = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), label=_('Simu duration'), required=False)
+    duree_dc = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'HH:MM', }), label=_('DC duration'), required=False)
+    vol_ifr = forms.ChoiceField(choices=Vol.ARRIVEE_IFR, label=_('IFR arrival'), initial='1')
 
     class Meta:
         model = Vol

@@ -1,0 +1,1530 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>vol.migrations package &#8212; voldb 0.8 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">voldb 0.8 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="vol-migrations-package">
+<h1>vol.migrations package<a class="headerlink" href="#vol-migrations-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-vol.migrations.0001_initial">
+<span id="vol-migrations-0001-initial-module"></span><h2>vol.migrations.0001_initial module<a class="headerlink" href="#module-vol.migrations.0001_initial" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0001_initial.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0001_initial.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0001_initial.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0001_initial.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0001_initial.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = []</em><a class="headerlink" href="#vol.migrations.0001_initial.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0001_initial.Migration.initial">
+<code class="descname">initial</code><em class="property"> = True</em><a class="headerlink" href="#vol.migrations.0001_initial.Migration.initial" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0001_initial.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;CreateModel  name='CodeAita', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('code_aita', &lt;django.db.models.fields.CharField&gt;), ('ville', &lt;django.db.models.fields.CharField&gt;)]&gt;, &lt;CreateModel  name='Immatriculation', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('immatriculation', &lt;django.db.models.fields.CharField&gt;)]&gt;, &lt;CreateModel  name='Pilote', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('prenom', &lt;django.db.models.fields.CharField&gt;), ('nom', &lt;django.db.models.fields.CharField&gt;)]&gt;, &lt;CreateModel  name='TypeAvion', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('type_avion', &lt;django.db.models.fields.CharField&gt;), ('nb_moteurs', &lt;django.db.models.fields.CharField&gt;)]&gt;, &lt;CreateModel  name='Vol', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('date', &lt;django.db.models.fields.DateField&gt;), ('duree_jour', &lt;django.db.models.fields.DurationField&gt;), ('duree_nuit', &lt;django.db.models.fields.DurationField&gt;), ('duree_ifr', &lt;django.db.models.fields.DurationField&gt;), ('arrivee_ifr', &lt;django.db.models.fields.BooleanField&gt;), ('fonction', &lt;django.db.models.fields.CharField&gt;), ('poste', &lt;django.db.models.fields.CharField&gt;), ('observation', &lt;django.db.models.fields.TextField&gt;), ('simu', &lt;django.db.models.fields.BooleanField&gt;), ('arrivee', &lt;django.db.models.fields.related.ForeignKey&gt;), ('cdb', &lt;django.db.models.fields.related.ForeignKey&gt;), ('depart', &lt;django.db.models.fields.related.ForeignKey&gt;), ('immatriculation', &lt;django.db.models.fields.related.ForeignKey&gt;), ('instructeur', &lt;django.db.models.fields.related.ForeignKey&gt;), ('obs1', &lt;django.db.models.fields.related.ForeignKey&gt;), ('obs2', &lt;django.db.models.fields.related.ForeignKey&gt;), ('opl', &lt;django.db.models.fields.related.ForeignKey&gt;)]&gt;, &lt;AddField  model_name='immatriculation', name='type_avion', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0001_initial.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0002_remove_vol_duree_ifr">
+<span id="vol-migrations-0002-remove-vol-duree-ifr-module"></span><h2>vol.migrations.0002_remove_vol_duree_ifr module<a class="headerlink" href="#module-vol.migrations.0002_remove_vol_duree_ifr" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0002_remove_vol_duree_ifr.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0002_remove_vol_duree_ifr.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0002_remove_vol_duree_ifr.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0002_remove_vol_duree_ifr.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0002_remove_vol_duree_ifr.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0001_initial')]</em><a class="headerlink" href="#vol.migrations.0002_remove_vol_duree_ifr.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0002_remove_vol_duree_ifr.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RemoveField  model_name='vol', name='duree_ifr'&gt;]</em><a class="headerlink" href="#vol.migrations.0002_remove_vol_duree_ifr.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0003_vol_duree_ifr">
+<span id="vol-migrations-0003-vol-duree-ifr-module"></span><h2>vol.migrations.0003_vol_duree_ifr module<a class="headerlink" href="#module-vol.migrations.0003_vol_duree_ifr" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0003_vol_duree_ifr.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0003_vol_duree_ifr.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0003_vol_duree_ifr.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0003_vol_duree_ifr.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0003_vol_duree_ifr.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0002_remove_vol_duree_ifr')]</em><a class="headerlink" href="#vol.migrations.0003_vol_duree_ifr.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0003_vol_duree_ifr.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='vol', name='duree_ifr', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0003_vol_duree_ifr.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0004_auto_20181207_1605">
+<span id="vol-migrations-0004-auto-20181207-1605-module"></span><h2>vol.migrations.0004_auto_20181207_1605 module<a class="headerlink" href="#module-vol.migrations.0004_auto_20181207_1605" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0004_auto_20181207_1605.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0004_auto_20181207_1605.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0004_auto_20181207_1605.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0004_auto_20181207_1605.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0004_auto_20181207_1605.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0003_vol_duree_ifr')]</em><a class="headerlink" href="#vol.migrations.0004_auto_20181207_1605.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0004_auto_20181207_1605.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_ifr', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_nuit', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0004_auto_20181207_1605.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0005_auto_20181213_1133">
+<span id="vol-migrations-0005-auto-20181213-1133-module"></span><h2>vol.migrations.0005_auto_20181213_1133 module<a class="headerlink" href="#module-vol.migrations.0005_auto_20181213_1133" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0005_auto_20181213_1133.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0005_auto_20181213_1133.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0005_auto_20181213_1133.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0005_auto_20181213_1133.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0005_auto_20181213_1133.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0004_auto_20181207_1605')]</em><a class="headerlink" href="#vol.migrations.0005_auto_20181213_1133.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0005_auto_20181213_1133.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='fonction', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0005_auto_20181213_1133.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0006_auto_20181213_1404">
+<span id="vol-migrations-0006-auto-20181213-1404-module"></span><h2>vol.migrations.0006_auto_20181213_1404 module<a class="headerlink" href="#module-vol.migrations.0006_auto_20181213_1404" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0006_auto_20181213_1404.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0006_auto_20181213_1404.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0006_auto_20181213_1404.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0006_auto_20181213_1404.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0006_auto_20181213_1404.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0005_auto_20181213_1133')]</em><a class="headerlink" href="#vol.migrations.0006_auto_20181213_1404.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0006_auto_20181213_1404.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RenameField  model_name='vol', old_name='duree_ifr', new_name='duree_ifr_jour'&gt;, &lt;AddField  model_name='vol', name='duree_ifr_nuit', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0006_auto_20181213_1404.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0007_vol_duree_simu">
+<span id="vol-migrations-0007-vol-duree-simu-module"></span><h2>vol.migrations.0007_vol_duree_simu module<a class="headerlink" href="#module-vol.migrations.0007_vol_duree_simu" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0007_vol_duree_simu.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0007_vol_duree_simu.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0007_vol_duree_simu.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0007_vol_duree_simu.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0007_vol_duree_simu.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0006_auto_20181213_1404')]</em><a class="headerlink" href="#vol.migrations.0007_vol_duree_simu.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0007_vol_duree_simu.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='vol', name='duree_simu', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0007_vol_duree_simu.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0008_auto_20181220_1050">
+<span id="vol-migrations-0008-auto-20181220-1050-module"></span><h2>vol.migrations.0008_auto_20181220_1050 module<a class="headerlink" href="#module-vol.migrations.0008_auto_20181220_1050" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0008_auto_20181220_1050.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0008_auto_20181220_1050.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0008_auto_20181220_1050.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0008_auto_20181220_1050.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0008_auto_20181220_1050.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0007_vol_duree_simu')]</em><a class="headerlink" href="#vol.migrations.0008_auto_20181220_1050.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0008_auto_20181220_1050.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='vol', name='duree_dc', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AddField  model_name='vol', name='vol_dc', field=&lt;django.db.models.fields.BooleanField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0008_auto_20181220_1050.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0009_auto_20181220_1051">
+<span id="vol-migrations-0009-auto-20181220-1051-module"></span><h2>vol.migrations.0009_auto_20181220_1051 module<a class="headerlink" href="#module-vol.migrations.0009_auto_20181220_1051" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0009_auto_20181220_1051.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0009_auto_20181220_1051.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0009_auto_20181220_1051.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0009_auto_20181220_1051.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0009_auto_20181220_1051.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0008_auto_20181220_1050')]</em><a class="headerlink" href="#vol.migrations.0009_auto_20181220_1051.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0009_auto_20181220_1051.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RenameField  model_name='vol', old_name='duree_ifr_jour', new_name='duree_ifr'&gt;, &lt;RemoveField  model_name='vol', name='duree_ifr_nuit'&gt;]</em><a class="headerlink" href="#vol.migrations.0009_auto_20181220_1051.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0010_auto_20181220_1104">
+<span id="vol-migrations-0010-auto-20181220-1104-module"></span><h2>vol.migrations.0010_auto_20181220_1104 module<a class="headerlink" href="#module-vol.migrations.0010_auto_20181220_1104" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0010_auto_20181220_1104.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0010_auto_20181220_1104.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0010_auto_20181220_1104.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0010_auto_20181220_1104.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0010_auto_20181220_1104.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0009_auto_20181220_1051')]</em><a class="headerlink" href="#vol.migrations.0010_auto_20181220_1104.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0010_auto_20181220_1104.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='vol_dc', field=&lt;django.db.models.fields.NullBooleanField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0010_auto_20181220_1104.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0011_auto_20181220_1106">
+<span id="vol-migrations-0011-auto-20181220-1106-module"></span><h2>vol.migrations.0011_auto_20181220_1106 module<a class="headerlink" href="#module-vol.migrations.0011_auto_20181220_1106" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0011_auto_20181220_1106.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0011_auto_20181220_1106.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0011_auto_20181220_1106.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0011_auto_20181220_1106.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0011_auto_20181220_1106.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0010_auto_20181220_1104')]</em><a class="headerlink" href="#vol.migrations.0011_auto_20181220_1106.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0011_auto_20181220_1106.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='vol_dc', field=&lt;django.db.models.fields.NullBooleanField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0011_auto_20181220_1106.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0012_auto_20181220_1108">
+<span id="vol-migrations-0012-auto-20181220-1108-module"></span><h2>vol.migrations.0012_auto_20181220_1108 module<a class="headerlink" href="#module-vol.migrations.0012_auto_20181220_1108" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0012_auto_20181220_1108.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0012_auto_20181220_1108.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0012_auto_20181220_1108.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0012_auto_20181220_1108.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0012_auto_20181220_1108.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0011_auto_20181220_1106')]</em><a class="headerlink" href="#vol.migrations.0012_auto_20181220_1108.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0012_auto_20181220_1108.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='vol_dc', field=&lt;django.db.models.fields.BooleanField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0012_auto_20181220_1108.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0013_auto_20181220_1109">
+<span id="vol-migrations-0013-auto-20181220-1109-module"></span><h2>vol.migrations.0013_auto_20181220_1109 module<a class="headerlink" href="#module-vol.migrations.0013_auto_20181220_1109" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0013_auto_20181220_1109.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0013_auto_20181220_1109.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0013_auto_20181220_1109.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0013_auto_20181220_1109.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0013_auto_20181220_1109.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0012_auto_20181220_1108')]</em><a class="headerlink" href="#vol.migrations.0013_auto_20181220_1109.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0013_auto_20181220_1109.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='arrivee_ifr', field=&lt;django.db.models.fields.BooleanField&gt;&gt;, &lt;AlterField  model_name='vol', name='simu', field=&lt;django.db.models.fields.BooleanField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0013_auto_20181220_1109.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0014_auto_20181220_1434">
+<span id="vol-migrations-0014-auto-20181220-1434-module"></span><h2>vol.migrations.0014_auto_20181220_1434 module<a class="headerlink" href="#module-vol.migrations.0014_auto_20181220_1434" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0014_auto_20181220_1434.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0014_auto_20181220_1434.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0014_auto_20181220_1434.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0014_auto_20181220_1434.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0014_auto_20181220_1434.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0013_auto_20181220_1109')]</em><a class="headerlink" href="#vol.migrations.0014_auto_20181220_1434.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0014_auto_20181220_1434.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_nuit', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0014_auto_20181220_1434.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0015_auto_20181220_1435">
+<span id="vol-migrations-0015-auto-20181220-1435-module"></span><h2>vol.migrations.0015_auto_20181220_1435 module<a class="headerlink" href="#module-vol.migrations.0015_auto_20181220_1435" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0015_auto_20181220_1435.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0015_auto_20181220_1435.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0015_auto_20181220_1435.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0015_auto_20181220_1435.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0015_auto_20181220_1435.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0014_auto_20181220_1434')]</em><a class="headerlink" href="#vol.migrations.0015_auto_20181220_1435.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0015_auto_20181220_1435.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_nuit', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0015_auto_20181220_1435.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0016_auto_20181220_1443">
+<span id="vol-migrations-0016-auto-20181220-1443-module"></span><h2>vol.migrations.0016_auto_20181220_1443 module<a class="headerlink" href="#module-vol.migrations.0016_auto_20181220_1443" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0016_auto_20181220_1443.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0016_auto_20181220_1443.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0016_auto_20181220_1443.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0016_auto_20181220_1443.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0016_auto_20181220_1443.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0015_auto_20181220_1435')]</em><a class="headerlink" href="#vol.migrations.0016_auto_20181220_1443.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0016_auto_20181220_1443.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_dc', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_ifr', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0016_auto_20181220_1443.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0017_auto_20181220_1450">
+<span id="vol-migrations-0017-auto-20181220-1450-module"></span><h2>vol.migrations.0017_auto_20181220_1450 module<a class="headerlink" href="#module-vol.migrations.0017_auto_20181220_1450" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0017_auto_20181220_1450.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0017_auto_20181220_1450.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0017_auto_20181220_1450.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0017_auto_20181220_1450.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0017_auto_20181220_1450.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0016_auto_20181220_1443')]</em><a class="headerlink" href="#vol.migrations.0017_auto_20181220_1450.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0017_auto_20181220_1450.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RenameField  model_name='vol', old_name='arrivee_ifr', new_name='vol_ifr'&gt;, &lt;RenameField  model_name='vol', old_name='simu', new_name='vol_simu'&gt;, &lt;AlterField  model_name='vol', name='duree_simu', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0017_auto_20181220_1450.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0018_auto_20181220_1450">
+<span id="vol-migrations-0018-auto-20181220-1450-module"></span><h2>vol.migrations.0018_auto_20181220_1450 module<a class="headerlink" href="#module-vol.migrations.0018_auto_20181220_1450" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0018_auto_20181220_1450.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0018_auto_20181220_1450.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0018_auto_20181220_1450.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0018_auto_20181220_1450.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0018_auto_20181220_1450.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0017_auto_20181220_1450')]</em><a class="headerlink" href="#vol.migrations.0018_auto_20181220_1450.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0018_auto_20181220_1450.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='vol_ifr', field=&lt;django.db.models.fields.BooleanField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0018_auto_20181220_1450.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0019_auto_20181220_1500">
+<span id="vol-migrations-0019-auto-20181220-1500-module"></span><h2>vol.migrations.0019_auto_20181220_1500 module<a class="headerlink" href="#module-vol.migrations.0019_auto_20181220_1500" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0019_auto_20181220_1500.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0019_auto_20181220_1500.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0019_auto_20181220_1500.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0019_auto_20181220_1500.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0019_auto_20181220_1500.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0018_auto_20181220_1450')]</em><a class="headerlink" href="#vol.migrations.0019_auto_20181220_1500.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0019_auto_20181220_1500.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='vol_dc', field=&lt;django.db.models.fields.BooleanField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0019_auto_20181220_1500.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0020_auto_20181228_1022">
+<span id="vol-migrations-0020-auto-20181228-1022-module"></span><h2>vol.migrations.0020_auto_20181228_1022 module<a class="headerlink" href="#module-vol.migrations.0020_auto_20181228_1022" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0020_auto_20181228_1022.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0020_auto_20181228_1022.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0020_auto_20181228_1022.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0020_auto_20181228_1022.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0020_auto_20181228_1022.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0019_auto_20181220_1500')]</em><a class="headerlink" href="#vol.migrations.0020_auto_20181228_1022.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0020_auto_20181228_1022.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;CreateModel  name='CodeIata', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('code_iata', &lt;django.db.models.fields.CharField&gt;), ('ville', &lt;django.db.models.fields.CharField&gt;)]&gt;, &lt;AlterField  model_name='vol', name='arrivee', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='depart', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;DeleteModel  name='CodeAita'&gt;]</em><a class="headerlink" href="#vol.migrations.0020_auto_20181228_1022.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0021_auto_20181231_1240">
+<span id="vol-migrations-0021-auto-20181231-1240-module"></span><h2>vol.migrations.0021_auto_20181231_1240 module<a class="headerlink" href="#module-vol.migrations.0021_auto_20181231_1240" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0021_auto_20181231_1240.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0021_auto_20181231_1240.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0021_auto_20181231_1240.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0021_auto_20181231_1240.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0021_auto_20181231_1240.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0020_auto_20181228_1022')]</em><a class="headerlink" href="#vol.migrations.0021_auto_20181231_1240.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0021_auto_20181231_1240.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0021_auto_20181231_1240.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0022_auto_20181231_1242">
+<span id="vol-migrations-0022-auto-20181231-1242-module"></span><h2>vol.migrations.0022_auto_20181231_1242 module<a class="headerlink" href="#module-vol.migrations.0022_auto_20181231_1242" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0022_auto_20181231_1242.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0022_auto_20181231_1242.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0022_auto_20181231_1242.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0022_auto_20181231_1242.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0022_auto_20181231_1242.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0021_auto_20181231_1240')]</em><a class="headerlink" href="#vol.migrations.0022_auto_20181231_1242.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0022_auto_20181231_1242.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0022_auto_20181231_1242.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0023_auto_20181231_1248">
+<span id="vol-migrations-0023-auto-20181231-1248-module"></span><h2>vol.migrations.0023_auto_20181231_1248 module<a class="headerlink" href="#module-vol.migrations.0023_auto_20181231_1248" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0023_auto_20181231_1248.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0023_auto_20181231_1248.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0023_auto_20181231_1248.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0023_auto_20181231_1248.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0023_auto_20181231_1248.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0022_auto_20181231_1242')]</em><a class="headerlink" href="#vol.migrations.0023_auto_20181231_1248.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0023_auto_20181231_1248.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_dc', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_ifr', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_nuit', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_simu', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0023_auto_20181231_1248.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0024_auto_20181231_1650">
+<span id="vol-migrations-0024-auto-20181231-1650-module"></span><h2>vol.migrations.0024_auto_20181231_1650 module<a class="headerlink" href="#module-vol.migrations.0024_auto_20181231_1650" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0024_auto_20181231_1650.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0024_auto_20181231_1650.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0024_auto_20181231_1650.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0024_auto_20181231_1650.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0024_auto_20181231_1650.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0023_auto_20181231_1248')]</em><a class="headerlink" href="#vol.migrations.0024_auto_20181231_1650.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0024_auto_20181231_1650.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='vol_ifr', field=&lt;django.db.models.fields.DecimalField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0024_auto_20181231_1650.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0025_auto_20181231_1655">
+<span id="vol-migrations-0025-auto-20181231-1655-module"></span><h2>vol.migrations.0025_auto_20181231_1655 module<a class="headerlink" href="#module-vol.migrations.0025_auto_20181231_1655" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0025_auto_20181231_1655.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0025_auto_20181231_1655.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0025_auto_20181231_1655.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0025_auto_20181231_1655.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0025_auto_20181231_1655.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0024_auto_20181231_1650')]</em><a class="headerlink" href="#vol.migrations.0025_auto_20181231_1655.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0025_auto_20181231_1655.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='fonction', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='vol', name='vol_ifr', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0025_auto_20181231_1655.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0026_auto_20181231_1658">
+<span id="vol-migrations-0026-auto-20181231-1658-module"></span><h2>vol.migrations.0026_auto_20181231_1658 module<a class="headerlink" href="#module-vol.migrations.0026_auto_20181231_1658" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0026_auto_20181231_1658.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0026_auto_20181231_1658.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0026_auto_20181231_1658.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0026_auto_20181231_1658.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0026_auto_20181231_1658.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0025_auto_20181231_1655')]</em><a class="headerlink" href="#vol.migrations.0026_auto_20181231_1658.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0026_auto_20181231_1658.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='vol_ifr', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0026_auto_20181231_1658.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0027_auto_20181231_1658">
+<span id="vol-migrations-0027-auto-20181231-1658-module"></span><h2>vol.migrations.0027_auto_20181231_1658 module<a class="headerlink" href="#module-vol.migrations.0027_auto_20181231_1658" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0027_auto_20181231_1658.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0027_auto_20181231_1658.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0027_auto_20181231_1658.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0027_auto_20181231_1658.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0027_auto_20181231_1658.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0026_auto_20181231_1658')]</em><a class="headerlink" href="#vol.migrations.0027_auto_20181231_1658.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0027_auto_20181231_1658.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='vol_ifr', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0027_auto_20181231_1658.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0028_auto_20190131_1505">
+<span id="vol-migrations-0028-auto-20190131-1505-module"></span><h2>vol.migrations.0028_auto_20190131_1505 module<a class="headerlink" href="#module-vol.migrations.0028_auto_20190131_1505" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0028_auto_20190131_1505.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0028_auto_20190131_1505.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0028_auto_20190131_1505.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0028_auto_20190131_1505.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0028_auto_20190131_1505.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0027_auto_20181231_1658')]</em><a class="headerlink" href="#vol.migrations.0028_auto_20190131_1505.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0028_auto_20190131_1505.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='vol_ifr', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0028_auto_20190131_1505.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0029_vol_user">
+<span id="vol-migrations-0029-vol-user-module"></span><h2>vol.migrations.0029_vol_user module<a class="headerlink" href="#module-vol.migrations.0029_vol_user" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0029_vol_user.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0029_vol_user.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0029_vol_user.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0029_vol_user.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0029_vol_user.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('auth', '__first__'), ('vol', '0028_auto_20190131_1505')]</em><a class="headerlink" href="#vol.migrations.0029_vol_user.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0029_vol_user.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='vol', name='user', field=&lt;django.db.models.fields.related.ForeignKey&gt;, preserve_default=False&gt;]</em><a class="headerlink" href="#vol.migrations.0029_vol_user.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0030_remove_vol_user">
+<span id="vol-migrations-0030-remove-vol-user-module"></span><h2>vol.migrations.0030_remove_vol_user module<a class="headerlink" href="#module-vol.migrations.0030_remove_vol_user" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0030_remove_vol_user.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0030_remove_vol_user.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0030_remove_vol_user.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0030_remove_vol_user.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0030_remove_vol_user.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0029_vol_user')]</em><a class="headerlink" href="#vol.migrations.0030_remove_vol_user.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0030_remove_vol_user.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RemoveField  model_name='vol', name='user'&gt;]</em><a class="headerlink" href="#vol.migrations.0030_remove_vol_user.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0031_vol_user">
+<span id="vol-migrations-0031-vol-user-module"></span><h2>vol.migrations.0031_vol_user module<a class="headerlink" href="#module-vol.migrations.0031_vol_user" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0031_vol_user.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0031_vol_user.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0031_vol_user.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0031_vol_user.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0031_vol_user.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('auth', '__first__'), ('vol', '0030_remove_vol_user')]</em><a class="headerlink" href="#vol.migrations.0031_vol_user.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0031_vol_user.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='vol', name='user', field=&lt;django.db.models.fields.related.ForeignKey&gt;, preserve_default=False&gt;]</em><a class="headerlink" href="#vol.migrations.0031_vol_user.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0032_auto_20190207_1024">
+<span id="vol-migrations-0032-auto-20190207-1024-module"></span><h2>vol.migrations.0032_auto_20190207_1024 module<a class="headerlink" href="#module-vol.migrations.0032_auto_20190207_1024" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0032_auto_20190207_1024.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0032_auto_20190207_1024.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0032_auto_20190207_1024.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0032_auto_20190207_1024.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0032_auto_20190207_1024.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0031_vol_user')]</em><a class="headerlink" href="#vol.migrations.0032_auto_20190207_1024.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0032_auto_20190207_1024.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RenameField  model_name='vol', old_name='user', new_name='user_id'&gt;]</em><a class="headerlink" href="#vol.migrations.0032_auto_20190207_1024.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0033_auto_20190208_1449">
+<span id="vol-migrations-0033-auto-20190208-1449-module"></span><h2>vol.migrations.0033_auto_20190208_1449 module<a class="headerlink" href="#module-vol.migrations.0033_auto_20190208_1449" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0033_auto_20190208_1449.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0033_auto_20190208_1449.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0033_auto_20190208_1449.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0033_auto_20190208_1449.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0033_auto_20190208_1449.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('auth', '__first__'), ('vol', '0032_auto_20190207_1024')]</em><a class="headerlink" href="#vol.migrations.0033_auto_20190208_1449.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0033_auto_20190208_1449.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='codeiata', name='user_id', field=&lt;django.db.models.fields.related.ForeignKey&gt;, preserve_default=False&gt;, &lt;AddField  model_name='immatriculation', name='user_id', field=&lt;django.db.models.fields.related.ForeignKey&gt;, preserve_default=False&gt;, &lt;AddField  model_name='pilote', name='user_id', field=&lt;django.db.models.fields.related.ForeignKey&gt;, preserve_default=False&gt;, &lt;AddField  model_name='typeavion', name='user_id', field=&lt;django.db.models.fields.related.ForeignKey&gt;, preserve_default=False&gt;]</em><a class="headerlink" href="#vol.migrations.0033_auto_20190208_1449.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0034_auto_20190213_1547">
+<span id="vol-migrations-0034-auto-20190213-1547-module"></span><h2>vol.migrations.0034_auto_20190213_1547 module<a class="headerlink" href="#module-vol.migrations.0034_auto_20190213_1547" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0034_auto_20190213_1547.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0034_auto_20190213_1547.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0034_auto_20190213_1547.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0034_auto_20190213_1547.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0034_auto_20190213_1547.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0033_auto_20190208_1449')]</em><a class="headerlink" href="#vol.migrations.0034_auto_20190213_1547.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0034_auto_20190213_1547.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='vol_ifr', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0034_auto_20190213_1547.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0035_auto_20190215_1619">
+<span id="vol-migrations-0035-auto-20190215-1619-module"></span><h2>vol.migrations.0035_auto_20190215_1619 module<a class="headerlink" href="#module-vol.migrations.0035_auto_20190215_1619" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0035_auto_20190215_1619.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0035_auto_20190215_1619.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0035_auto_20190215_1619.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0035_auto_20190215_1619.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0035_auto_20190215_1619.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0034_auto_20190213_1547')]</em><a class="headerlink" href="#vol.migrations.0035_auto_20190215_1619.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0035_auto_20190215_1619.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='fonction', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0035_auto_20190215_1619.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0036_auto_20190218_0922">
+<span id="vol-migrations-0036-auto-20190218-0922-module"></span><h2>vol.migrations.0036_auto_20190218_0922 module<a class="headerlink" href="#module-vol.migrations.0036_auto_20190218_0922" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0036_auto_20190218_0922.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0036_auto_20190218_0922.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0036_auto_20190218_0922.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0036_auto_20190218_0922.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0036_auto_20190218_0922.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0035_auto_20190215_1619')]</em><a class="headerlink" href="#vol.migrations.0036_auto_20190218_0922.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0036_auto_20190218_0922.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterModelOptions  name='codeiata', options={'ordering': ('code_iata',)}&gt;, &lt;AlterModelOptions  name='immatriculation', options={'ordering': ('immatriculation',)}&gt;, &lt;AlterModelOptions  name='pilote', options={'ordering': ('nom',)}&gt;, &lt;AlterModelOptions  name='typeavion', options={'ordering': ('type_avion',)}&gt;]</em><a class="headerlink" href="#vol.migrations.0036_auto_20190218_0922.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0037_auto_20190219_0910">
+<span id="vol-migrations-0037-auto-20190219-0910-module"></span><h2>vol.migrations.0037_auto_20190219_0910 module<a class="headerlink" href="#module-vol.migrations.0037_auto_20190219_0910" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0037_auto_20190219_0910.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0037_auto_20190219_0910.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0037_auto_20190219_0910.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0037_auto_20190219_0910.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0037_auto_20190219_0910.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0036_auto_20190218_0922')]</em><a class="headerlink" href="#vol.migrations.0037_auto_20190219_0910.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0037_auto_20190219_0910.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_simu', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0037_auto_20190219_0910.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0038_auto_20190227_0959">
+<span id="vol-migrations-0038-auto-20190227-0959-module"></span><h2>vol.migrations.0038_auto_20190227_0959 module<a class="headerlink" href="#module-vol.migrations.0038_auto_20190227_0959" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0038_auto_20190227_0959.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0038_auto_20190227_0959.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0038_auto_20190227_0959.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0038_auto_20190227_0959.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0038_auto_20190227_0959.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('auth', '__first__'), ('vol', '0037_auto_20190219_0910')]</em><a class="headerlink" href="#vol.migrations.0038_auto_20190227_0959.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0038_auto_20190227_0959.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;CreateModel  name='Client', fields=[('id', &lt;django.db.models.fields.AutoField&gt;), ('email', &lt;django.db.models.fields.EmailField&gt;), ('client_type', &lt;django.db.models.fields.CharField&gt;), ('current_position', &lt;django.db.models.fields.CharField&gt;), ('user', &lt;django.db.models.fields.related.OneToOneField&gt;)]&gt;, &lt;AlterModelOptions  name='pilote', options={'ordering': ('nom', 'prenom')}&gt;, &lt;AlterField  model_name='vol', name='duree_simu', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0038_auto_20190227_0959.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0039_client_employer">
+<span id="vol-migrations-0039-client-employer-module"></span><h2>vol.migrations.0039_client_employer module<a class="headerlink" href="#module-vol.migrations.0039_client_employer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0039_client_employer.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0039_client_employer.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0039_client_employer.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0039_client_employer.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0039_client_employer.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0038_auto_20190227_0959')]</em><a class="headerlink" href="#vol.migrations.0039_client_employer.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0039_client_employer.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='client', name='employer', field=&lt;django.db.models.fields.CharField&gt;, preserve_default=False&gt;]</em><a class="headerlink" href="#vol.migrations.0039_client_employer.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0040_remove_client_email">
+<span id="vol-migrations-0040-remove-client-email-module"></span><h2>vol.migrations.0040_remove_client_email module<a class="headerlink" href="#module-vol.migrations.0040_remove_client_email" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0040_remove_client_email.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0040_remove_client_email.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0040_remove_client_email.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0040_remove_client_email.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0040_remove_client_email.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0039_client_employer')]</em><a class="headerlink" href="#vol.migrations.0040_remove_client_email.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0040_remove_client_email.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RemoveField  model_name='client', name='email'&gt;]</em><a class="headerlink" href="#vol.migrations.0040_remove_client_email.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0041_auto_20190227_1015">
+<span id="vol-migrations-0041-auto-20190227-1015-module"></span><h2>vol.migrations.0041_auto_20190227_1015 module<a class="headerlink" href="#module-vol.migrations.0041_auto_20190227_1015" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0041_auto_20190227_1015.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0041_auto_20190227_1015.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0041_auto_20190227_1015.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0041_auto_20190227_1015.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0041_auto_20190227_1015.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('auth', '__first__'), ('vol', '0040_remove_client_email')]</em><a class="headerlink" href="#vol.migrations.0041_auto_20190227_1015.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0041_auto_20190227_1015.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RenameModel  old_name='Client', new_name='Profile'&gt;]</em><a class="headerlink" href="#vol.migrations.0041_auto_20190227_1015.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0042_auto_20190304_1611">
+<span id="vol-migrations-0042-auto-20190304-1611-module"></span><h2>vol.migrations.0042_auto_20190304_1611 module<a class="headerlink" href="#module-vol.migrations.0042_auto_20190304_1611" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0042_auto_20190304_1611.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0042_auto_20190304_1611.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0042_auto_20190304_1611.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0042_auto_20190304_1611.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0042_auto_20190304_1611.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0041_auto_20190227_1015')]</em><a class="headerlink" href="#vol.migrations.0042_auto_20190304_1611.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0042_auto_20190304_1611.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0042_auto_20190304_1611.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0043_auto_20190304_1616">
+<span id="vol-migrations-0043-auto-20190304-1616-module"></span><h2>vol.migrations.0043_auto_20190304_1616 module<a class="headerlink" href="#module-vol.migrations.0043_auto_20190304_1616" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0043_auto_20190304_1616.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0043_auto_20190304_1616.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0043_auto_20190304_1616.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0043_auto_20190304_1616.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0043_auto_20190304_1616.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0042_auto_20190304_1611')]</em><a class="headerlink" href="#vol.migrations.0043_auto_20190304_1616.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0043_auto_20190304_1616.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0043_auto_20190304_1616.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0044_auto_20190304_1620">
+<span id="vol-migrations-0044-auto-20190304-1620-module"></span><h2>vol.migrations.0044_auto_20190304_1620 module<a class="headerlink" href="#module-vol.migrations.0044_auto_20190304_1620" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0044_auto_20190304_1620.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0044_auto_20190304_1620.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0044_auto_20190304_1620.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0044_auto_20190304_1620.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0044_auto_20190304_1620.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0043_auto_20190304_1616')]</em><a class="headerlink" href="#vol.migrations.0044_auto_20190304_1620.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0044_auto_20190304_1620.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0044_auto_20190304_1620.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0045_auto_20190312_1407">
+<span id="vol-migrations-0045-auto-20190312-1407-module"></span><h2>vol.migrations.0045_auto_20190312_1407 module<a class="headerlink" href="#module-vol.migrations.0045_auto_20190312_1407" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0045_auto_20190312_1407.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0045_auto_20190312_1407.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0045_auto_20190312_1407.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0045_auto_20190312_1407.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0045_auto_20190312_1407.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0044_auto_20190304_1620')]</em><a class="headerlink" href="#vol.migrations.0045_auto_20190312_1407.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0045_auto_20190312_1407.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;RemoveField  model_name='profile', name='id'&gt;, &lt;AlterField  model_name='profile', name='user', field=&lt;django.db.models.fields.related.OneToOneField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_nuit', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0045_auto_20190312_1407.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0046_auto_20190513_1407">
+<span id="vol-migrations-0046-auto-20190513-1407-module"></span><h2>vol.migrations.0046_auto_20190513_1407 module<a class="headerlink" href="#module-vol.migrations.0046_auto_20190513_1407" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0046_auto_20190513_1407.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0046_auto_20190513_1407.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0046_auto_20190513_1407.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0046_auto_20190513_1407.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0046_auto_20190513_1407.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0045_auto_20190312_1407')]</em><a class="headerlink" href="#vol.migrations.0046_auto_20190513_1407.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0046_auto_20190513_1407.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='codeiata', name='code_iata', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0046_auto_20190513_1407.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0047_auto_20190513_1411">
+<span id="vol-migrations-0047-auto-20190513-1411-module"></span><h2>vol.migrations.0047_auto_20190513_1411 module<a class="headerlink" href="#module-vol.migrations.0047_auto_20190513_1411" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0047_auto_20190513_1411.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0047_auto_20190513_1411.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0047_auto_20190513_1411.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0047_auto_20190513_1411.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0047_auto_20190513_1411.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('auth', '__first__'), ('vol', '0046_auto_20190513_1407')]</em><a class="headerlink" href="#vol.migrations.0047_auto_20190513_1411.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0047_auto_20190513_1411.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterModelOptions  name='codeiata', options={'ordering': (('code_iata',),)}&gt;, &lt;AlterField  model_name='codeiata', name='code_iata', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterUniqueTogether  name='codeiata', unique_together={('code_iata', 'user_id')}&gt;]</em><a class="headerlink" href="#vol.migrations.0047_auto_20190513_1411.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0048_auto_20190513_1434">
+<span id="vol-migrations-0048-auto-20190513-1434-module"></span><h2>vol.migrations.0048_auto_20190513_1434 module<a class="headerlink" href="#module-vol.migrations.0048_auto_20190513_1434" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0048_auto_20190513_1434.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0048_auto_20190513_1434.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0048_auto_20190513_1434.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0048_auto_20190513_1434.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0048_auto_20190513_1434.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0047_auto_20190513_1411')]</em><a class="headerlink" href="#vol.migrations.0048_auto_20190513_1434.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0048_auto_20190513_1434.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterModelOptions  name='codeiata', options={'ordering': (('code_iata',),), 'verbose_name_plural': ('Codes IATA',)}&gt;]</em><a class="headerlink" href="#vol.migrations.0048_auto_20190513_1434.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0049_auto_20190513_1439">
+<span id="vol-migrations-0049-auto-20190513-1439-module"></span><h2>vol.migrations.0049_auto_20190513_1439 module<a class="headerlink" href="#module-vol.migrations.0049_auto_20190513_1439" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0049_auto_20190513_1439.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0049_auto_20190513_1439.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0049_auto_20190513_1439.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0049_auto_20190513_1439.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0049_auto_20190513_1439.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0048_auto_20190513_1434')]</em><a class="headerlink" href="#vol.migrations.0049_auto_20190513_1439.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0049_auto_20190513_1439.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterModelOptions  name='codeiata', options={'ordering': ('code_iata',), 'verbose_name': 'Code IATA', 'verbose_name_plural': 'Codes IATA'}&gt;]</em><a class="headerlink" href="#vol.migrations.0049_auto_20190513_1439.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0050_auto_20190513_1527">
+<span id="vol-migrations-0050-auto-20190513-1527-module"></span><h2>vol.migrations.0050_auto_20190513_1527 module<a class="headerlink" href="#module-vol.migrations.0050_auto_20190513_1527" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0050_auto_20190513_1527.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0050_auto_20190513_1527.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0050_auto_20190513_1527.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0050_auto_20190513_1527.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0050_auto_20190513_1527.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('auth', '__first__'), ('vol', '0049_auto_20190513_1439')]</em><a class="headerlink" href="#vol.migrations.0050_auto_20190513_1527.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0050_auto_20190513_1527.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterModelOptions  name='immatriculation', options={'ordering': ('immatriculation',), 'verbose_name_plural': 'Immatriculations'}&gt;, &lt;AlterModelOptions  name='pilote', options={'ordering': ('nom', 'prenom'), 'verbose_name': 'Pilote', 'verbose_name_plural': 'Pilotes'}&gt;, &lt;AlterModelOptions  name='typeavion', options={'ordering': ('type_avion',), 'verbose_name': &quot;Type d'avion&quot;, 'verbose_name_plural': &quot;Types d'Avions&quot;}&gt;, &lt;AlterUniqueTogether  name='immatriculation', unique_together={('immatriculation', 'user_id')}&gt;, &lt;AlterUniqueTogether  name='typeavion', unique_together={('type_avion', 'user_id')}&gt;]</em><a class="headerlink" href="#vol.migrations.0050_auto_20190513_1527.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0051_auto_20190514_1152">
+<span id="vol-migrations-0051-auto-20190514-1152-module"></span><h2>vol.migrations.0051_auto_20190514_1152 module<a class="headerlink" href="#module-vol.migrations.0051_auto_20190514_1152" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0051_auto_20190514_1152.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0051_auto_20190514_1152.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0051_auto_20190514_1152.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0051_auto_20190514_1152.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0051_auto_20190514_1152.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0050_auto_20190513_1527')]</em><a class="headerlink" href="#vol.migrations.0051_auto_20190514_1152.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0051_auto_20190514_1152.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddConstraint  model_name='pilote', constraint=&lt;UniqueConstraint: fields=('prenom', 'nom', 'user_id') name='pilot_unique'&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0051_auto_20190514_1152.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0052_auto_20190515_1112">
+<span id="vol-migrations-0052-auto-20190515-1112-module"></span><h2>vol.migrations.0052_auto_20190515_1112 module<a class="headerlink" href="#module-vol.migrations.0052_auto_20190515_1112" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0052_auto_20190515_1112.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0052_auto_20190515_1112.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0052_auto_20190515_1112.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0052_auto_20190515_1112.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0052_auto_20190515_1112.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0051_auto_20190514_1152')]</em><a class="headerlink" href="#vol.migrations.0052_auto_20190515_1112.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0052_auto_20190515_1112.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AddField  model_name='profile', name='language', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterUniqueTogether  name='codeiata', unique_together=set()&gt;, &lt;AlterUniqueTogether  name='immatriculation', unique_together=set()&gt;, &lt;AlterUniqueTogether  name='typeavion', unique_together=set()&gt;, &lt;AddConstraint  model_name='codeiata', constraint=&lt;UniqueConstraint: fields=('code_iata', 'user_id') name='code_iata_unique'&gt;&gt;, &lt;AddConstraint  model_name='immatriculation', constraint=&lt;UniqueConstraint: fields=('immatriculation', 'user_id') name='immatriculation_unique'&gt;&gt;, &lt;AddConstraint  model_name='typeavion', constraint=&lt;UniqueConstraint: fields=('type_avion', 'user_id') name='type_avion_unique'&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0052_auto_20190515_1112.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0053_auto_20190515_1418">
+<span id="vol-migrations-0053-auto-20190515-1418-module"></span><h2>vol.migrations.0053_auto_20190515_1418 module<a class="headerlink" href="#module-vol.migrations.0053_auto_20190515_1418" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0053_auto_20190515_1418.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0053_auto_20190515_1418.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0053_auto_20190515_1418.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0053_auto_20190515_1418.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0053_auto_20190515_1418.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0052_auto_20190515_1112')]</em><a class="headerlink" href="#vol.migrations.0053_auto_20190515_1418.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0053_auto_20190515_1418.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterModelOptions  name='codeiata', options={'ordering': ('code_iata',), 'verbose_name': 'Code AITA', 'verbose_name_plural': 'Codes AITA'}&gt;, &lt;AlterModelOptions  name='immatriculation', options={'ordering': ('immatriculation',), 'verbose_name': 'Immatriculation', 'verbose_name_plural': 'Immatriculations'}&gt;, &lt;AlterModelOptions  name='typeavion', options={'ordering': ('type_avion',), 'verbose_name': &quot;Type d'avion&quot;, 'verbose_name_plural': &quot;Types d'avion&quot;}&gt;]</em><a class="headerlink" href="#vol.migrations.0053_auto_20190515_1418.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0054_auto_20190516_1149">
+<span id="vol-migrations-0054-auto-20190516-1149-module"></span><h2>vol.migrations.0054_auto_20190516_1149 module<a class="headerlink" href="#module-vol.migrations.0054_auto_20190516_1149" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0054_auto_20190516_1149.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0054_auto_20190516_1149.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0054_auto_20190516_1149.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0054_auto_20190516_1149.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0054_auto_20190516_1149.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0053_auto_20190515_1418')]</em><a class="headerlink" href="#vol.migrations.0054_auto_20190516_1149.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0054_auto_20190516_1149.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='profile', name='client_type', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='profile', name='current_position', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='profile', name='language', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='typeavion', name='nb_moteurs', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0054_auto_20190516_1149.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0055_auto_20190516_1211">
+<span id="vol-migrations-0055-auto-20190516-1211-module"></span><h2>vol.migrations.0055_auto_20190516_1211 module<a class="headerlink" href="#module-vol.migrations.0055_auto_20190516_1211" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0055_auto_20190516_1211.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0055_auto_20190516_1211.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0055_auto_20190516_1211.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0055_auto_20190516_1211.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0055_auto_20190516_1211.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0054_auto_20190516_1149')]</em><a class="headerlink" href="#vol.migrations.0055_auto_20190516_1211.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0055_auto_20190516_1211.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='typeavion', name='nb_moteurs', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0055_auto_20190516_1211.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0056_auto_20190516_1548">
+<span id="vol-migrations-0056-auto-20190516-1548-module"></span><h2>vol.migrations.0056_auto_20190516_1548 module<a class="headerlink" href="#module-vol.migrations.0056_auto_20190516_1548" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0056_auto_20190516_1548.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0056_auto_20190516_1548.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0056_auto_20190516_1548.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0056_auto_20190516_1548.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0056_auto_20190516_1548.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0055_auto_20190516_1211')]</em><a class="headerlink" href="#vol.migrations.0056_auto_20190516_1548.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0056_auto_20190516_1548.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterModelOptions  name='codeiata', options={'ordering': ('code_iata',), 'verbose_name': 'IATA Code', 'verbose_name_plural': 'IATA Codes'}&gt;, &lt;AlterField  model_name='profile', name='client_type', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='typeavion', name='nb_moteurs', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0056_auto_20190516_1548.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0057_auto_20190516_1606">
+<span id="vol-migrations-0057-auto-20190516-1606-module"></span><h2>vol.migrations.0057_auto_20190516_1606 module<a class="headerlink" href="#module-vol.migrations.0057_auto_20190516_1606" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0057_auto_20190516_1606.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0057_auto_20190516_1606.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0057_auto_20190516_1606.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0057_auto_20190516_1606.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0057_auto_20190516_1606.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0056_auto_20190516_1548')]</em><a class="headerlink" href="#vol.migrations.0057_auto_20190516_1606.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0057_auto_20190516_1606.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='profile', name='current_position', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0057_auto_20190516_1606.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0058_auto_20190516_1607">
+<span id="vol-migrations-0058-auto-20190516-1607-module"></span><h2>vol.migrations.0058_auto_20190516_1607 module<a class="headerlink" href="#module-vol.migrations.0058_auto_20190516_1607" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0058_auto_20190516_1607.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0058_auto_20190516_1607.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0058_auto_20190516_1607.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0058_auto_20190516_1607.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0058_auto_20190516_1607.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0057_auto_20190516_1606')]</em><a class="headerlink" href="#vol.migrations.0058_auto_20190516_1607.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0058_auto_20190516_1607.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='profile', name='current_position', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0058_auto_20190516_1607.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0059_auto_20190516_1608">
+<span id="vol-migrations-0059-auto-20190516-1608-module"></span><h2>vol.migrations.0059_auto_20190516_1608 module<a class="headerlink" href="#module-vol.migrations.0059_auto_20190516_1608" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0059_auto_20190516_1608.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0059_auto_20190516_1608.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0059_auto_20190516_1608.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0059_auto_20190516_1608.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0059_auto_20190516_1608.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0058_auto_20190516_1607')]</em><a class="headerlink" href="#vol.migrations.0059_auto_20190516_1608.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0059_auto_20190516_1608.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterModelOptions  name='immatriculation', options={'ordering': ('immatriculation',), 'verbose_name': 'Registration Number', 'verbose_name_plural': 'Registration Numbers'}&gt;, &lt;AlterModelOptions  name='pilote', options={'ordering': ('nom', 'prenom'), 'verbose_name': 'Pilot', 'verbose_name_plural': 'Pilots'}&gt;, &lt;AlterModelOptions  name='typeavion', options={'ordering': ('type_avion',), 'verbose_name': 'Aircraft type', 'verbose_name_plural': 'Aircraft types'}&gt;, &lt;AlterField  model_name='pilote', name='nom', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='pilote', name='prenom', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='pilote', name='user_id', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='profile', name='client_type', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='profile', name='current_position', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='profile', name='employer', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='profile', name='language', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='typeavion', name='nb_moteurs', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0059_auto_20190516_1608.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0060_auto_20190516_1625">
+<span id="vol-migrations-0060-auto-20190516-1625-module"></span><h2>vol.migrations.0060_auto_20190516_1625 module<a class="headerlink" href="#module-vol.migrations.0060_auto_20190516_1625" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0060_auto_20190516_1625.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0060_auto_20190516_1625.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0060_auto_20190516_1625.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0060_auto_20190516_1625.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0060_auto_20190516_1625.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0059_auto_20190516_1608')]</em><a class="headerlink" href="#vol.migrations.0060_auto_20190516_1625.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0060_auto_20190516_1625.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='profile', name='client_type', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0060_auto_20190516_1625.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0061_auto_20190516_1627">
+<span id="vol-migrations-0061-auto-20190516-1627-module"></span><h2>vol.migrations.0061_auto_20190516_1627 module<a class="headerlink" href="#module-vol.migrations.0061_auto_20190516_1627" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0061_auto_20190516_1627.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0061_auto_20190516_1627.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0061_auto_20190516_1627.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0061_auto_20190516_1627.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0061_auto_20190516_1627.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0060_auto_20190516_1625')]</em><a class="headerlink" href="#vol.migrations.0061_auto_20190516_1627.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0061_auto_20190516_1627.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='profile', name='client_type', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0061_auto_20190516_1627.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0062_auto_20190516_1628">
+<span id="vol-migrations-0062-auto-20190516-1628-module"></span><h2>vol.migrations.0062_auto_20190516_1628 module<a class="headerlink" href="#module-vol.migrations.0062_auto_20190516_1628" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0062_auto_20190516_1628.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0062_auto_20190516_1628.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0062_auto_20190516_1628.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0062_auto_20190516_1628.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0062_auto_20190516_1628.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0061_auto_20190516_1627')]</em><a class="headerlink" href="#vol.migrations.0062_auto_20190516_1628.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0062_auto_20190516_1628.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='profile', name='current_position', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0062_auto_20190516_1628.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0063_auto_20190516_1634">
+<span id="vol-migrations-0063-auto-20190516-1634-module"></span><h2>vol.migrations.0063_auto_20190516_1634 module<a class="headerlink" href="#module-vol.migrations.0063_auto_20190516_1634" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0063_auto_20190516_1634.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0063_auto_20190516_1634.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0063_auto_20190516_1634.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0063_auto_20190516_1634.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0063_auto_20190516_1634.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0062_auto_20190516_1628')]</em><a class="headerlink" href="#vol.migrations.0063_auto_20190516_1634.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0063_auto_20190516_1634.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='profile', name='current_position', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0063_auto_20190516_1634.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0064_auto_20190516_1635">
+<span id="vol-migrations-0064-auto-20190516-1635-module"></span><h2>vol.migrations.0064_auto_20190516_1635 module<a class="headerlink" href="#module-vol.migrations.0064_auto_20190516_1635" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0064_auto_20190516_1635.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0064_auto_20190516_1635.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0064_auto_20190516_1635.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0064_auto_20190516_1635.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0064_auto_20190516_1635.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0063_auto_20190516_1634')]</em><a class="headerlink" href="#vol.migrations.0064_auto_20190516_1635.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0064_auto_20190516_1635.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='profile', name='client_type', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0064_auto_20190516_1635.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0065_auto_20190520_1339">
+<span id="vol-migrations-0065-auto-20190520-1339-module"></span><h2>vol.migrations.0065_auto_20190520_1339 module<a class="headerlink" href="#module-vol.migrations.0065_auto_20190520_1339" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0065_auto_20190520_1339.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0065_auto_20190520_1339.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0065_auto_20190520_1339.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0065_auto_20190520_1339.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0065_auto_20190520_1339.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0064_auto_20190516_1635')]</em><a class="headerlink" href="#vol.migrations.0065_auto_20190520_1339.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0065_auto_20190520_1339.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='codeiata', name='code_iata', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='codeiata', name='user_id', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='codeiata', name='ville', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='immatriculation', name='immatriculation', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='immatriculation', name='user_id', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='typeavion', name='nb_moteurs', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='typeavion', name='type_avion', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='typeavion', name='user_id', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='arrivee', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='cdb', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='date', field=&lt;django.db.models.fields.DateField&gt;&gt;, &lt;AlterField  model_name='vol', name='depart', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_dc', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_ifr', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_nuit', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='duree_simu', field=&lt;django.db.models.fields.DurationField&gt;&gt;, &lt;AlterField  model_name='vol', name='fonction', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='vol', name='immatriculation', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='instructeur', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='obs1', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='obs2', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='observation', field=&lt;django.db.models.fields.TextField&gt;&gt;, &lt;AlterField  model_name='vol', name='opl', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='poste', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='vol', name='user_id', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;AlterField  model_name='vol', name='vol_dc', field=&lt;django.db.models.fields.BooleanField&gt;&gt;, &lt;AlterField  model_name='vol', name='vol_ifr', field=&lt;django.db.models.fields.CharField&gt;&gt;, &lt;AlterField  model_name='vol', name='vol_simu', field=&lt;django.db.models.fields.BooleanField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0065_auto_20190520_1339.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0066_auto_20190520_1340">
+<span id="vol-migrations-0066-auto-20190520-1340-module"></span><h2>vol.migrations.0066_auto_20190520_1340 module<a class="headerlink" href="#module-vol.migrations.0066_auto_20190520_1340" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0066_auto_20190520_1340.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0066_auto_20190520_1340.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0066_auto_20190520_1340.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0066_auto_20190520_1340.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0066_auto_20190520_1340.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0065_auto_20190520_1339')]</em><a class="headerlink" href="#vol.migrations.0066_auto_20190520_1340.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0066_auto_20190520_1340.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_simu', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0066_auto_20190520_1340.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0067_auto_20190520_1400">
+<span id="vol-migrations-0067-auto-20190520-1400-module"></span><h2>vol.migrations.0067_auto_20190520_1400 module<a class="headerlink" href="#module-vol.migrations.0067_auto_20190520_1400" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0067_auto_20190520_1400.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0067_auto_20190520_1400.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0067_auto_20190520_1400.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0067_auto_20190520_1400.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0067_auto_20190520_1400.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0066_auto_20190520_1340')]</em><a class="headerlink" href="#vol.migrations.0067_auto_20190520_1400.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0067_auto_20190520_1400.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='immatriculation', name='type_avion', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0067_auto_20190520_1400.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0068_auto_20190520_1405">
+<span id="vol-migrations-0068-auto-20190520-1405-module"></span><h2>vol.migrations.0068_auto_20190520_1405 module<a class="headerlink" href="#module-vol.migrations.0068_auto_20190520_1405" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0068_auto_20190520_1405.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0068_auto_20190520_1405.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0068_auto_20190520_1405.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0068_auto_20190520_1405.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0068_auto_20190520_1405.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0067_auto_20190520_1400')]</em><a class="headerlink" href="#vol.migrations.0068_auto_20190520_1405.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0068_auto_20190520_1405.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0068_auto_20190520_1405.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0069_auto_20190520_1405">
+<span id="vol-migrations-0069-auto-20190520-1405-module"></span><h2>vol.migrations.0069_auto_20190520_1405 module<a class="headerlink" href="#module-vol.migrations.0069_auto_20190520_1405" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0069_auto_20190520_1405.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0069_auto_20190520_1405.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0069_auto_20190520_1405.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0069_auto_20190520_1405.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0069_auto_20190520_1405.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0068_auto_20190520_1405')]</em><a class="headerlink" href="#vol.migrations.0069_auto_20190520_1405.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0069_auto_20190520_1405.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='vol', name='duree_jour', field=&lt;django.db.models.fields.DurationField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0069_auto_20190520_1405.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0070_auto_20190520_1438">
+<span id="vol-migrations-0070-auto-20190520-1438-module"></span><h2>vol.migrations.0070_auto_20190520_1438 module<a class="headerlink" href="#module-vol.migrations.0070_auto_20190520_1438" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0070_auto_20190520_1438.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0070_auto_20190520_1438.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0070_auto_20190520_1438.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0070_auto_20190520_1438.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0070_auto_20190520_1438.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0069_auto_20190520_1405')]</em><a class="headerlink" href="#vol.migrations.0070_auto_20190520_1438.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0070_auto_20190520_1438.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='typeavion', name='nb_moteurs', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0070_auto_20190520_1438.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations.0071_auto_20190520_1439">
+<span id="vol-migrations-0071-auto-20190520-1439-module"></span><h2>vol.migrations.0071_auto_20190520_1439 module<a class="headerlink" href="#module-vol.migrations.0071_auto_20190520_1439" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="vol.migrations.0071_auto_20190520_1439.Migration">
+<em class="property">class </em><code class="descclassname">vol.migrations.0071_auto_20190520_1439.</code><code class="descname">Migration</code><span class="sig-paren">(</span><em>name</em>, <em>app_label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/vol/migrations/0071_auto_20190520_1439.html#Migration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#vol.migrations.0071_auto_20190520_1439.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="attribute">
+<dt id="vol.migrations.0071_auto_20190520_1439.Migration.dependencies">
+<code class="descname">dependencies</code><em class="property"> = [('vol', '0070_auto_20190520_1438')]</em><a class="headerlink" href="#vol.migrations.0071_auto_20190520_1439.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="vol.migrations.0071_auto_20190520_1439.Migration.operations">
+<code class="descname">operations</code><em class="property"> = [&lt;AlterField  model_name='typeavion', name='nb_moteurs', field=&lt;django.db.models.fields.CharField&gt;&gt;]</em><a class="headerlink" href="#vol.migrations.0071_auto_20190520_1439.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-vol.migrations">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-vol.migrations" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">vol.migrations package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0001_initial">vol.migrations.0001_initial module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0002_remove_vol_duree_ifr">vol.migrations.0002_remove_vol_duree_ifr module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0003_vol_duree_ifr">vol.migrations.0003_vol_duree_ifr module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0004_auto_20181207_1605">vol.migrations.0004_auto_20181207_1605 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0005_auto_20181213_1133">vol.migrations.0005_auto_20181213_1133 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0006_auto_20181213_1404">vol.migrations.0006_auto_20181213_1404 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0007_vol_duree_simu">vol.migrations.0007_vol_duree_simu module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0008_auto_20181220_1050">vol.migrations.0008_auto_20181220_1050 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0009_auto_20181220_1051">vol.migrations.0009_auto_20181220_1051 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0010_auto_20181220_1104">vol.migrations.0010_auto_20181220_1104 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0011_auto_20181220_1106">vol.migrations.0011_auto_20181220_1106 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0012_auto_20181220_1108">vol.migrations.0012_auto_20181220_1108 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0013_auto_20181220_1109">vol.migrations.0013_auto_20181220_1109 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0014_auto_20181220_1434">vol.migrations.0014_auto_20181220_1434 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0015_auto_20181220_1435">vol.migrations.0015_auto_20181220_1435 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0016_auto_20181220_1443">vol.migrations.0016_auto_20181220_1443 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0017_auto_20181220_1450">vol.migrations.0017_auto_20181220_1450 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0018_auto_20181220_1450">vol.migrations.0018_auto_20181220_1450 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0019_auto_20181220_1500">vol.migrations.0019_auto_20181220_1500 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0020_auto_20181228_1022">vol.migrations.0020_auto_20181228_1022 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0021_auto_20181231_1240">vol.migrations.0021_auto_20181231_1240 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0022_auto_20181231_1242">vol.migrations.0022_auto_20181231_1242 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0023_auto_20181231_1248">vol.migrations.0023_auto_20181231_1248 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0024_auto_20181231_1650">vol.migrations.0024_auto_20181231_1650 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0025_auto_20181231_1655">vol.migrations.0025_auto_20181231_1655 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0026_auto_20181231_1658">vol.migrations.0026_auto_20181231_1658 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0027_auto_20181231_1658">vol.migrations.0027_auto_20181231_1658 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0028_auto_20190131_1505">vol.migrations.0028_auto_20190131_1505 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0029_vol_user">vol.migrations.0029_vol_user module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0030_remove_vol_user">vol.migrations.0030_remove_vol_user module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0031_vol_user">vol.migrations.0031_vol_user module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0032_auto_20190207_1024">vol.migrations.0032_auto_20190207_1024 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0033_auto_20190208_1449">vol.migrations.0033_auto_20190208_1449 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0034_auto_20190213_1547">vol.migrations.0034_auto_20190213_1547 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0035_auto_20190215_1619">vol.migrations.0035_auto_20190215_1619 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0036_auto_20190218_0922">vol.migrations.0036_auto_20190218_0922 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0037_auto_20190219_0910">vol.migrations.0037_auto_20190219_0910 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0038_auto_20190227_0959">vol.migrations.0038_auto_20190227_0959 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0039_client_employer">vol.migrations.0039_client_employer module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0040_remove_client_email">vol.migrations.0040_remove_client_email module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0041_auto_20190227_1015">vol.migrations.0041_auto_20190227_1015 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0042_auto_20190304_1611">vol.migrations.0042_auto_20190304_1611 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0043_auto_20190304_1616">vol.migrations.0043_auto_20190304_1616 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0044_auto_20190304_1620">vol.migrations.0044_auto_20190304_1620 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0045_auto_20190312_1407">vol.migrations.0045_auto_20190312_1407 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0046_auto_20190513_1407">vol.migrations.0046_auto_20190513_1407 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0047_auto_20190513_1411">vol.migrations.0047_auto_20190513_1411 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0048_auto_20190513_1434">vol.migrations.0048_auto_20190513_1434 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0049_auto_20190513_1439">vol.migrations.0049_auto_20190513_1439 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0050_auto_20190513_1527">vol.migrations.0050_auto_20190513_1527 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0051_auto_20190514_1152">vol.migrations.0051_auto_20190514_1152 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0052_auto_20190515_1112">vol.migrations.0052_auto_20190515_1112 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0053_auto_20190515_1418">vol.migrations.0053_auto_20190515_1418 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0054_auto_20190516_1149">vol.migrations.0054_auto_20190516_1149 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0055_auto_20190516_1211">vol.migrations.0055_auto_20190516_1211 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0056_auto_20190516_1548">vol.migrations.0056_auto_20190516_1548 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0057_auto_20190516_1606">vol.migrations.0057_auto_20190516_1606 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0058_auto_20190516_1607">vol.migrations.0058_auto_20190516_1607 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0059_auto_20190516_1608">vol.migrations.0059_auto_20190516_1608 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0060_auto_20190516_1625">vol.migrations.0060_auto_20190516_1625 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0061_auto_20190516_1627">vol.migrations.0061_auto_20190516_1627 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0062_auto_20190516_1628">vol.migrations.0062_auto_20190516_1628 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0063_auto_20190516_1634">vol.migrations.0063_auto_20190516_1634 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0064_auto_20190516_1635">vol.migrations.0064_auto_20190516_1635 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0065_auto_20190520_1339">vol.migrations.0065_auto_20190520_1339 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0066_auto_20190520_1340">vol.migrations.0066_auto_20190520_1340 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0067_auto_20190520_1400">vol.migrations.0067_auto_20190520_1400 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0068_auto_20190520_1405">vol.migrations.0068_auto_20190520_1405 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0069_auto_20190520_1405">vol.migrations.0069_auto_20190520_1405 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0070_auto_20190520_1438">vol.migrations.0070_auto_20190520_1438 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations.0071_auto_20190520_1439">vol.migrations.0071_auto_20190520_1439 module</a></li>
+<li><a class="reference internal" href="#module-vol.migrations">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/vol.migrations.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">voldb 0.8 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Nicolas Renard.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

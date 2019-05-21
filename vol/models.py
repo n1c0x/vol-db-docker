@@ -33,7 +33,9 @@ from django.urls import reverse
 
 
 class Profile(models.Model):
-    """ Define user profile """
+    """
+    Define user profile
+    """
     CLIENT_TYPE = (
         ('free', _('Free')),
         ('pay', _('Pay')),

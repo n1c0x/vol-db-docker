@@ -10,6 +10,12 @@ Welcome to voldb's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   modules/all-about-me.rst
+   modules/views.rst
+   modules/models.rst
+   modules
+
+
 
 
 Indices and tables

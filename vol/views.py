@@ -120,8 +120,6 @@ class VolDetail(DetailView):
         context = super(VolDetail, self).get_context_data(**kwargs)
         vols_list = Vol.objects.filter(user_id=self.request.user)
         vol = get_object_or_404(vols_list, pk=self.kwargs.get('pk', None))
-        print(vol.duree_jour)
-        print(vol.duree_jour.seconds)
         context['vol'] = vol
         return context
 

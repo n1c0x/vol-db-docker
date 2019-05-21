@@ -1,9 +1,4 @@
 Views
 ======
-
-Coucou
-------
-
-.. console::
-
-    $ python manage.py shell
+.. automodule:: voldb
+    :members:

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum, ProtectedError, Q
 from django.db import IntegrityError
-from .forms import *
+from .forms import VolForm, ImmatriculationForm, UserForm, ProfileForm
 from django.shortcuts import redirect, render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -95,7 +95,9 @@ def update_user_profile(request, username):
 
 @method_decorator(login_required, name='dispatch')
 class VolList(ListView):
-    """ Class which lists all the flights """
+    """
+        Class which lists all the flights
+    """
     model = Vol
     template_name = 'vol/index.html'
 

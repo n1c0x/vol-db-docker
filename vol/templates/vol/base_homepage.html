@@ -49,7 +49,7 @@
                         <a class="nav-link" href="{% url 'prices' %}">{% trans "Pricing" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://vol-db-docker.readthedocs.io/en/latest/" about="_blank">{% trans "Documentation" %}</a>
+                        <a class="nav-link" href="{% url 'documentation' %}">{% trans "Documentation" %}</a>
                     </li>
                     {% endblock %}
                 {% if user.is_authenticated %}

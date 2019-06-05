@@ -91,9 +91,6 @@ MariaDB [(none)]> insert into vol_profile (user_id, client_type, current_positio
 - Homepage
 - Adding/modifying/deleting assets
 
-
-Translated with www.DeepL.com/Translator
-
 ## ToDo
 
 - See Issues

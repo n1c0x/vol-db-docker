@@ -8,3 +8,5 @@ images/
 venv-windows/
 voldb/settings.py
 __pycache__/
+sonar-scanner-script.sh
+.scannerwork/

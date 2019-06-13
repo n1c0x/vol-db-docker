@@ -1,7 +1,5 @@
 Django==2.2.2
-psycopg2-binary
 admin-totals
 django-widget-tweaks
 django-tempus-dominus
 mysqlclient
-gunicorn

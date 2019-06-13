@@ -19,6 +19,7 @@ from django.conf.urls import url
 from django.contrib.auth import views
 from vol import views
 
+
 urlpatterns = [
     path('', include('vol.urls')),
     path('admin/doc/', include('django.contrib.admindocs.urls')),
@@ -26,6 +27,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     url(r'profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='profile'),
 ]
+
 handler400 = 'vol.views.handler400'
 handler403 = 'vol.views.handler403'
 handler404 = 'vol.views.handler404'

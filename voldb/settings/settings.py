@@ -86,13 +86,11 @@ WSGI_APPLICATION = 'voldb.wsgi.application'
 
 DATABASES = {
     'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            # CentOS perso
+            # CentOS
 #            'read_default_file': '/etc/my.cnf.d/client.cnf',
-            # Debian work
+            # Debian
             'read_default_file': '/etc/mysql/conf.d/mysql.cnf',
         }
     }

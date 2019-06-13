@@ -81,22 +81,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'voldb.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            # CentOS
-#            'read_default_file': '/etc/my.cnf.d/client.cnf',
-            # Debian
-            'read_default_file': '/etc/mysql/conf.d/mysql.cnf',
-        }
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 

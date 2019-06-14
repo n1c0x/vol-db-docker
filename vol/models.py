@@ -250,10 +250,10 @@ class Vol(models.Model):
         ('MIX', 'Mix'),
     )
     POSTE = (
-        ('CDB', 'Commandant de bord'),
-        ('OPL', 'Copilote'),
-        ('Instruct', 'Instructeur'),
-        ('OBS', 'Observateur'),
+        ('PIC', _('Pilot in Command')),
+        ('FO', _('First Officer')),
+        ('INSTRUCT', _('Instructor')),
+        ('OBS', _('Observer')),
     )
     ZERO = 0
     UN = 1

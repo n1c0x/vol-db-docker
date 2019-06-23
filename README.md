@@ -53,6 +53,24 @@ password = password
 default-character-set = utf8
 ```
 
+##### Environment variable
+To use the specific settings file, we need to define which will be used as an environment variable. Or add `--settings=voldb.settings.<environment>` at the end of each command. 
+
+###### Development
+```bash
+export DJANGO_SETTINGS_MODULE=voldb.settings.development
+```
+
+###### Staging
+```bash
+export DJANGO_SETTINGS_MODULE=voldb.settings.staging
+```
+
+###### Production
+```bash
+export DJANGO_SETTINGS_MODULE=voldb.settings.production
+```
+
 ##### Database migration
 
 ```bash
@@ -63,7 +81,7 @@ $> python3.7 manage.py migrate
 ### Starting in development mode
 
 ```bash
-$> python manager.py runserver 0.0.0.0:8000
+$> python manager.py runserver 0.0.0.0:8000 
 ```
 
 ### Django superuser creation
@@ -72,11 +90,6 @@ $> python manager.py runserver 0.0.0.0:8000
 $> python3 manage.py createsuperuser
 ```
 
-### Django superuser profile creation (temporary)
-
-```sql
-MariaDB [(none)]> insert into vol_profile (user_id, client_type, current_position, employer) values ("1","free","OTHER","None");
-```
 
 ## Done
 

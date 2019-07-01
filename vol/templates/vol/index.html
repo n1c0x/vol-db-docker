@@ -113,8 +113,8 @@ $(document).ready(function() {
                                                     -
                                                 {% endif %}
                                             {% endif %}</td>
-                                    <td>{{ vol.fonction }}</td>
-                                    <td>{{ vol.poste }}</td>
+                                    <td>{{ vol.fonction }} ({{ vol.get_fonction_display }})</td>
+                                    <td>{{ vol.poste }} ({{ vol.get_poste_display }})</td>
                                     <td>{{ vol.immatriculation }}</td>
                                     <td>{{ vol.immatriculation.type_avion }}</td>
                             </tr>

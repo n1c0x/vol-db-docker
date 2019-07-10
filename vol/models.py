@@ -26,7 +26,11 @@ class Profile(models.Model):
         ('en', _('English')),
         ('de', _('German')),
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
     client_type = models.CharField(
         choices=CLIENT_TYPE,
         max_length=25,

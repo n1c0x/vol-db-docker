@@ -84,4 +84,4 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('client_type', 'current_position', 'employer')
+        fields = ('current_position', 'employer')

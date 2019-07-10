@@ -28,20 +28,31 @@
         </div>
     <hr>
         <div class="row">
-            <div class="col-md-1 offset-md-2">
-                <img src="{% static 'vol/logo-opl.png' %}" alt="My image" height="50">
+            <div class="col-md-1">
+                {% if user.profile.current_position == "PIC" %}
+                    <img src="{% static 'vol/logo-pic.png' %}" alt="{{ user.profile.get_current_position_display }}" height="200">
+                {% else %}
+                    {% if user.profile.current_position == "FO" %}
+                        <img src="{% static 'vol/logo-fo.png' %}" alt="{{ user.profile.get_current_position_display }}" height="200">
+                    {% else %}
+                        {% if user.profile.current_position == "INSTRUCT" %}
+                            <img src="{% static 'vol/logo-instruct.jpg' %}" alt="{{ user.profile.get_current_position_display }}" height="200">
+                        {% else %}
+                            {% if user.profile.current_position == "RET" %}
+                                <img src="{% static 'vol/logo-ret.jpg' %}" alt="{{ user.profile.get_current_position_display }}" height="200">
+                            {% else %}
+                                {% if user.profile.current_position == "OTHER" %}
+                                    <img src="{% static 'vol/logo-other.png' %}" alt="{{ user.profile.get_current_position_display }}" height="200">
+                                {% else %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 offset-md-2">
                 <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
                 {% trans "E-mail address" %} : {{ user.email }} <br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
                 {% get_verbose_field_name user.profile "client_type" as client_type %}
                 {% get_verbose_field_name user.profile "current_position" as current_position %}
                 {% get_verbose_field_name user.profile "employer" as employer %}
@@ -51,9 +62,9 @@
                 {{ current_position }} : {{ user.profile.get_current_position_display }}<br>
                 {{ employer }} : {%trans user.profile.employer %}<br>
                 {{ language }} : {%trans user.profile.get_language_display %}<br>
-
             </div>
         </div>
+
     {% if is_modified %}
         <hr>
         <form class="post-form" method="post">
@@ -84,24 +95,15 @@
                     </div>
                 </div>
                 <div class="form-group col-md-3">
-                    <fieldset disabled>
-                        <div class="fieldWrapper">
-                            {{ profile_form.client_type.errors }}
-                            {{ profile_form.client_type.label_tag }}
-                            {{ profile_form.client_type|add_class:"form-control" }}
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-6">
                     <div class="fieldWrapper">
                         {{ profile_form.current_position.errors }}
                         {{ profile_form.current_position.label_tag }}
                         {{ profile_form.current_position|add_class:"form-control" }}
                     </div>
                 </div>
+            </div>
+
+            <div class="form-row">
                 <div class="form-group col-md-6">
                     <div class="fieldWrapper">
                         {{ profile_form.employer.errors }}
@@ -111,8 +113,11 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-2">
                     <button type="submit" class="save btn btn-primary">{% trans "Save" %}</button>
+                </div>
+                <div class="form-group col-md-2">
+                    <a href="{% url 'profile' user %}" class="btn btn-danger">{% trans "Cancel" %}</a>
                 </div>
             </div>
         </form>

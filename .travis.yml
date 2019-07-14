@@ -1,5 +1,13 @@
-dist: xenial
 language: python
-python: 3.7
+python: 
+        - 3.7
+        - 3.6
+services:
+        - mysql
+env:
+        - DJANGO=2.2.3 DB=mysql
 install: pip install -r requirements/base.txt
-script: python3 manage.py runserver 0.0.0.0:8000 --settings=voldb.settings.development
+before_script:
+        - mysql -e 'create dataabse test;' -u root
+script: 
+        - python3 manage.py test --settings=voldb.settings.development

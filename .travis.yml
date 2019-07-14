@@ -10,6 +10,4 @@ install: pip install -r requirements/base.txt
 before_script:
         - mysql -e 'create database voldb;' -u root
 script: 
-        - python3 manage.py makemigrations vol --settings=voldb.settings.development
-        - python3 manage.py migrate --settings=voldb.settings.development
         - python3 manage.py test --settings=voldb.settings.development

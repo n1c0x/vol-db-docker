@@ -37,6 +37,7 @@ DEBUG = True
 
 INSTALLED_APPS = [
     'vol.apps.VolConfig',
+    'management.apps.ManagementConfig',
     'admin_totals',
     'widget_tweaks',
     'tempus_dominus',

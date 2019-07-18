@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from django.contrib.auth import views
+from django.conf import settings
 from vol import views
 
 
@@ -27,6 +28,13 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     url(r'profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='profile'),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+
+    ] + urlpatterns
 
 handler400 = 'vol.views.handler400'
 handler403 = 'vol.views.handler403'

@@ -21,6 +21,7 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost']
+INTERNAL_IPS = ('10.0.2.2',)
 
 DATABASES = {
     'default': {
@@ -31,3 +32,11 @@ DATABASES = {
         }
     }
 }
+
+INSTALLED_APPS = [
+    'debug_toolbar',
+] + INSTALLED_APPS
+
+MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+] + MIDDLEWARE

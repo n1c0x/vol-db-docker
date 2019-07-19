@@ -1,0 +1,32 @@
+{% extends 'management/base_homepage.html' %}
+{% load i18n %}
+{% load my_tags %}
+{% block title %} {% trans "Management dashboard" %} {% endblock %}
+{% block content %}
+
+<h1>{% trans "Admin Management" %}</h1>
+
+<h1>{% trans "Amounts" %}</h1>
+<ul>
+	<li>{% trans "Amout of admins" %} : {{ object_list.count }}</li>
+</ul>
+
+<h1>{% trans "All admins" %}</h1>
+<table class="table-bordered">
+	<tr>
+		<th>{% trans "Username" %}</th>
+		<th>{% trans "Full name" %}</th>
+		<th>{% trans "Is admin ?" %}</th>
+		<th>{% trans "Mail" %}</th>
+	</tr>
+	{% for admin in object_list %}
+		<tr>
+			<td>{{ admin.username }}</td>
+			<td>{{ admin.first_name }} {{ admin.last_name }}</td>
+			<td>{{ admin.is_superuser }}</td>
+			<td>{{ admin.email }}</td>
+		</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}

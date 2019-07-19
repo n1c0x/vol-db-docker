@@ -23,6 +23,7 @@ from vol import views
 
 urlpatterns = [
     path('', include('vol.urls')),
+    path('management/', include('management.urls')),
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),

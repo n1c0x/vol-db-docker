@@ -1,0 +1,77 @@
+{% extends 'management/base_homepage.html' %}
+{% load i18n %}
+{% load my_tags %}
+{% block title %} {% trans "Management dashboard" %} {% endblock %}
+{% block content %}
+
+<h1>{% trans "Customer Management" %}</h1>
+
+<h1>{% trans "Amounts" %}</h1>
+<ul>
+	<li>{% trans "Amout of customer" %} : {{ object_list.count }}</li>
+	<li>{% trans "Amout of customer not logged in in the previous month" %} : {{ customer_prev_month.count }}</li>
+	<li>{% trans "Percentage of customer not logged in in the previous month" %} : {{ customer_prev_month_percentage }}%</li>
+	<li>{% trans "Amout of inactive customer" %} : {{ customer_is_inactive.count }}</li>
+</ul>
+
+<hr>
+
+<h1>{% trans "Customer not logged in in the previous month" %}</h1>
+<table class="table-bordered">
+	<tr>
+		<th>{% trans "Username" %}</th>
+		<th>{% trans "Full name" %}</th>
+		<th>{% trans "Employer" %}</th>
+		<th>{% trans "Current position" %}</th>
+		<th>{% trans "Mail" %}</th>
+		<th>{% trans "Language" %}</th>
+		<th>{% trans "Type" %}</th>
+		<th>{% trans "Registration date" %}</th>
+		<th>{% trans "Last login" %}</th>
+	</tr>
+	{% for customer in customer_prev_month %}
+		<tr>
+			<td>{{ customer.username }}</td>
+			<td>{{ customer.first_name }} {{ customer.last_name }}</td>
+			<td>{{ customer.profile.employer }}</td>
+			<td>{{ customer.profile.get_current_position_display }}</td>
+			<td>{{ customer.email }}</td>
+			<td>{{ customer.profile.language }}</td>
+			<td>{{ customer.profile.get_client_type_display }}</td>
+			<td>{{ customer.date_joined|date:"d F Y" }} ({{ customer.date_joined|timesince }})</td>
+			<td>{{ customer.last_login }} ({{ customer.last_login|timesince }})</td>
+		</tr>
+	{% endfor %}
+</table>
+
+<h1>{% trans "All customer" %}</h1>
+<table class="table-bordered">
+	<tr>
+		<th>{% trans "Username" %}</th>
+		<th>{% trans "Full name" %}</th>
+		<th>{% trans "Employer" %}</th>
+		<th>{% trans "Current position" %}</th>
+		<th>{% trans "Mail" %}</th>
+		<th>{% trans "Language" %}</th>
+		<th>{% trans "Type" %}</th>
+		<th>{% trans "Registration date" %}</th>
+		<th>{% trans "Last login" %}</th>
+	</tr>
+	{% for customer in object_list %}
+		<tr>
+			<td>{{ customer.username }}</td>
+			<td>{{ customer.first_name }} {{ customer.last_name }}</td>
+			<td>{{ customer.profile.employer }}</td>
+			<td>{{ customer.profile.get_current_position_display }}</td>
+			<td>{{ customer.email }}</td>
+			<td>{{ customer.profile.language }}</td>
+			<td>{{ customer.profile.get_client_type_display }}</td>
+			<td>{{ customer.date_joined|date:"d F Y" }} ({{ customer.date_joined|timesince }})</td>
+			<td>{{ customer.last_login }} ({{ customer.last_login|timesince }})</td>
+		</tr>
+	{% endfor %}
+</table>
+
+
+
+{% endblock %}

@@ -6,16 +6,16 @@ from vol.models import *
 import datetime
 
 
-def index(request):
+def management_index(request):
     """
     Render the home page.
 
     **Template:**
 
-    :template:`management/index.html`
+    :template:`management/management_index.html`
 
     """
-    return render(request, 'management/index.html')
+    return render(request, 'management/management_index.html')
 
 
 def website_performance(request):

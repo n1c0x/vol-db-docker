@@ -6,17 +6,19 @@
 
 <h1>{% trans "Customer Management" %}</h1>
 
-<h1>{% trans "Amounts" %}</h1>
+<a href="{% url 'customer_create' %}">{% trans "Create new customer" %}</a>
+
+<h2>{% trans "Amounts" %}</h2>
 <ul>
 	<li>{% trans "Amout of customer" %} : {{ object_list.count }}</li>
 	<li>{% trans "Amout of customer not logged in in the previous month" %} : {{ customer_prev_month.count }}</li>
-	<li>{% trans "Percentage of customer not logged in in the previous month" %} : {{ customer_prev_month_percentage }}%</li>
+	<li>{% trans "Percentage of customer not logged in in the previous month" %} : {{ customer_prev_month_percentage|floatformat:0 }}%</li>
 	<li>{% trans "Amout of inactive customer" %} : {{ customer_is_inactive.count }}</li>
 </ul>
 
 <hr>
 
-<h1>{% trans "Customer not logged in in the previous month" %}</h1>
+<h2>{% trans "Customer not logged in in the previous month" %}</h2>
 <table class="table-bordered">
 	<tr>
 		<th>{% trans "Username" %}</th>
@@ -39,12 +41,16 @@
 			<td>{{ customer.profile.language }}</td>
 			<td>{{ customer.profile.get_client_type_display }}</td>
 			<td>{{ customer.date_joined|date:"d F Y" }} ({{ customer.date_joined|timesince }})</td>
-			<td>{{ customer.last_login }} ({{ customer.last_login|timesince }})</td>
+			<td>{% if customer.last_login %}
+                    {{ customer.last_login }} ({{ customer.last_login|timesince }})
+                {% else %}
+                    {% trans "Never" %}
+                {% endif %}</td>
 		</tr>
 	{% endfor %}
 </table>
 
-<h1>{% trans "All customer" %}</h1>
+<h2>{% trans "All customer" %}</h2>
 <table class="table-bordered">
 	<tr>
 		<th>{% trans "Username" %}</th>
@@ -56,6 +62,7 @@
 		<th>{% trans "Type" %}</th>
 		<th>{% trans "Registration date" %}</th>
 		<th>{% trans "Last login" %}</th>
+		<th>{% trans "Actions" %}</th>
 	</tr>
 	{% for customer in object_list %}
 		<tr>
@@ -67,7 +74,18 @@
 			<td>{{ customer.profile.language }}</td>
 			<td>{{ customer.profile.get_client_type_display }}</td>
 			<td>{{ customer.date_joined|date:"d F Y" }} ({{ customer.date_joined|timesince }})</td>
-			<td>{{ customer.last_login }} ({{ customer.last_login|timesince }})</td>
+			<td>{% if customer.last_login %}
+                    {{ customer.last_login }} ({{ customer.last_login|timesince }})
+                {% else %}
+                    {% trans "Never" %}
+                {% endif %}</td>
+			<td>
+				<select id="select-action">
+					<option value="edit">{% trans "Edit" %}</option>
+					<option value="delete">{% trans "Delete" %}</option>
+				</select>
+				<a href="#">{% trans "Go" %}</a>
+			</td>
 		</tr>
 	{% endfor %}
 </table>

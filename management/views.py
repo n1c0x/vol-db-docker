@@ -68,7 +68,7 @@ class CustomerList(ListView):
 
 @method_decorator(login_required, name='dispatch')
 class CustomerCreate(CreateView):
-    """ Class to create a flight """
+    """ Class to create a customer """
     model = Profile
     template_name = 'management/customer/add.html'
     form_class = ProfileForm
@@ -78,6 +78,35 @@ class CustomerCreate(CreateView):
     def get_context_data(self, **kwargs):
         context = super(CustomerCreate, self).get_context_data(**kwargs)
         context['user_form'] = self.second_form_class
+        return context
+
+    def form_valid(self, form):
+        user_form = UserForm(self.request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            customer = form.save(commit=False)
+            customer.user_id = user.id
+            customer.save()
+        return super(CustomerCreate, self).form_valid(form)
+
+    def dispatch(self, *args, **kwargs):
+        """ Forces a login to view this page """
+        return super().dispatch(*args, **kwargs)
+
+
+@method_decorator(login_required, name='dispatch')
+class CustomerUpdate(UpdateView):
+    """ Class to update a customer """
+    model = User
+    template_name = 'management/customer/add.html'
+    fields = ['username', 'first_name', 'last_name', 'email']
+    # form_class = ProfileForm
+    # second_form_class = SignupForm
+    success_url = '/management/customer_management'
+
+    def get_context_data(self, **kwargs):
+        context = super(CustomerUpdate, self).get_context_data(**kwargs)
+        # context['user_form'] = self.second_form_class
         return context
 
     def form_valid(self, form):

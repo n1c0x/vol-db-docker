@@ -21,6 +21,7 @@
 <h2>{% trans "Customer not logged in in the previous month" %}</h2>
 <table class="table-bordered">
 	<tr>
+		<th>{% trans "ID" %}</th>
 		<th>{% trans "Username" %}</th>
 		<th>{% trans "Full name" %}</th>
 		<th>{% trans "Employer" %}</th>
@@ -33,6 +34,7 @@
 	</tr>
 	{% for customer in customer_prev_month %}
 		<tr>
+			<td>{{ customer.id }}</td>
 			<td>{{ customer.username }}</td>
 			<td>{{ customer.first_name }} {{ customer.last_name }}</td>
 			<td>{{ customer.profile.employer }}</td>
@@ -53,6 +55,7 @@
 <h2>{% trans "All customer" %}</h2>
 <table class="table-bordered">
 	<tr>
+		<th>{% trans "ID" %}</th>
 		<th>{% trans "Username" %}</th>
 		<th>{% trans "Full name" %}</th>
 		<th>{% trans "Employer" %}</th>
@@ -66,6 +69,7 @@
 	</tr>
 	{% for customer in object_list %}
 		<tr>
+			<td>{{ customer.id }}</td>
 			<td>{{ customer.username }}</td>
 			<td>{{ customer.first_name }} {{ customer.last_name }}</td>
 			<td>{{ customer.profile.employer }}</td>

@@ -1,132 +1,71 @@
-{% extends 'vol/base_homepage.html' %}
+{% extends "vol/base_homepage.html" %}
 {% load i18n %}
 {% load my_tags %}
-{% block title %} {% trans "Flights" %} {% endblock %}
 {% block content %}
-<script>
-$(document).ready(function() {
-    $('#table_id').DataTable({
-        "ordering": false
-    });
-} );
-</script>
 
-{% block active_secondary_nav %} {% endblock %}
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link active" href="{% url 'index' %}">{% trans "All flights" %}</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'somme' %}">{% trans "Totals" %}</a>
-    </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{% trans "Add" %}</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{% url 'new_vol' %}">{% trans "Flight" %}</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'new_pilote' %}">{% trans "Pilot" %}</a>
-          <a class="dropdown-item" href="{% url 'new_immatriculation' %}">{% trans "Plane" %}</a>
-          <a class="dropdown-item" href="{% url 'new_code_iata' %}">{% trans "Airport" %}</a>
-          <a class="dropdown-item" href="{% url 'new_type_avion' %}">{% trans "Aircraft Type" %}</a>
-        </div>
-    </li>
-</ul>
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">{% trans "Dashboard" %}</h1>
+</div>
 
     <div class="row">
-        <div class="col"><h2 class="display-4 mt-4 mb-4">{% trans "Display all flights" %}</h2></div>
-    </div>
-        {% if object_list %}
-        <div class="row">
-            <div class="col"></div>
-            <div class="col-12">
-                <table class="table table-striped table-bordered table-hover dt-responsive nowrap" id="table_id">
-                <thead  class="thead-dark">
-                    <tr>
-                        <th scope="col">{% trans "Date" %}</th>
-                        <th scope="col">{% trans "Flight" %}</th>
-                        <th scope="col">{% trans "PIC" %}</th>
-                        <th scope="col">{% trans "FO" %}</th>
-                        <th scope="col">{% trans "OBS1" %}</th>
-                        <th scope="col">{% trans "OBS2" %}</th>
-                        <th scope="col">{% trans "Instructor" %}</th>
-                        <th scope="col">{% trans "Duration Day" %}</th>
-                        <th scope="col">{% trans "Duration Night" %}</th>
-                        <th scope="col">{% trans "Simu" %}</th>
-                        <th scope="col">{% trans "IFR Arrival" %}</th>
-                        <th scope="col">{% trans "Duration IFR" %}</th>
-                        <th scope="col">{% trans "Function" %}</th>
-                        <th scope="col">{% trans "Position" %}</th>
-                        <th scope="col">{% trans "Registration" %}</th>
-                        <th scope="col">{% trans "Aircraft Type" %}</th>
-                    </tr>
-                </thead>
-                    <tbody>
-                        {% for vol in object_list %}
-                            <tr>
-                                    <th scope="row">
-                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="{% trans "Details" %}" href="{% url 'detail' vol.id %}"><button class="btn btn-outline-primary btn-sm" type="button">{{ vol.date|date:"d/m/Y" }}</button></a>
-                                    </th>
-                                    <td>{{ vol.depart }}/{{ vol.arrivee }}</td>
-                                    <td>{{ vol.cdb }}</td>
-                                    <td>{{ vol.opl }}</td>
-                                    <td>{% if vol.obs1 %}
-                                            {{ vol.obs1 }}
-                                        {% else %}
-                                            -
-                                        {% endif %}</td>
-                                    <td>{% if vol.obs2 %}
-                                            {{ vol.obs2 }}
-                                        {% else %}
-                                            -
-                                        {% endif %}</td>
-                                    <td>{% if vol.instructeur %}
-                                            {{ vol.instructeur }}
-                                        {% else %}
-                                            -
-                                        {% endif %}</td>
-                                     <td>{% if vol.duree_jour %}
-                                            {{ vol.duree_jour }}
-                                        {% else %}
-                                            -
-                                        {% endif %}</td>
-                                    <td>{% if vol.duree_nuit %}
-                                            {{ vol.duree_nuit }}
-                                        {% else %}
-                                            -
-                                        {% endif %}</td>
-                                    <td>{% if vol.vol_simu %}
-                                        {{ vol.duree_simu }}</td>
-                                        {% else %}
-                                            -
-                                        {% endif %}</td>
-                                    <td>{% if vol.vol_ifr != "Zéro" %}
-                                            {{ vol.get_vol_ifr_display }}
-                                        {% else %}
-                                            -
-                                        {% endif %}</td>
-                                    <td>{% if vol.duree_ifr %}
-                                                {{ vol.duree_ifr }}
-                                            {% else %}
-                                                {% if vol.vol_simu %}
-                                                    {{ vol.duree_simu }}
-                                                {% else %}
-                                                    -
-                                                {% endif %}
-                                            {% endif %}</td>
-                                    <td>{{ vol.fonction }} ({{ vol.get_fonction_display }})</td>
-                                    <td>{{ vol.poste }} ({{ vol.get_poste_display }})</td>
-                                    <td>{{ vol.immatriculation }}</td>
-                                    <td>{{ vol.immatriculation.type_avion }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            </div>
-            <div class="col"></div>
+        <div class="col-md-12">
+            <p class="lead">{% trans "Your pilot Dashboard" %}</p>
         </div>
-        {% else %}
-            <p>{% trans "There are no registered flights." %}</p>
-        {% endif %}
+        <div class="col-md-3">
+            <div class="card">
+            	<div class="card-header">
+            		{% trans "Last flight"%}
+            	</div>
+				<div class="card-body">
+					<h5 class="card-title">{% trans "Another title" %}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{% trans "Date of last fliht" %}</h6>
+					<p class="card-text">{% trans "Date and other information about last flight" %}</p>
+					<a href="{% url 'flight_list' %}" class="card-link">{% trans "Link to all the flights" %}</a>
+				</div>
+			</div>
+		</div>
+        <div class="col-md-3">
+			<div class="card">
+				<div class="card-header">
+					{% trans "Amount of Pilots"%}
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">{% trans "Another title" %}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{% trans "Amount of pilots" %}</h6>
+					<p class="card-text">{% trans "xxx pilots, Top pilot the pilot flew with" %}</p>
+					<a href="#" class="card-link">{% trans "Link to all the pilots" %}</a>
+				</div>
+			</div>
+		</div>
+        <div class="col-md-3">
+			<div class="card">
+				<div class="card-header">
+					{% trans "Amount of Airports"%}
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">{% trans "Another title" %}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{% trans "Amount of airports" %}</h6>
+					<p class="card-text">{% trans "xxx airports, Top airport the pilot flew to and from" %}</p>
+					<a href="#" class="card-link">{% trans "Link to all the airports" %}</a>
+				</div>
+			</div>
+		</div>
+        <div class="col-md-3">
+			<div class="card">
+				<div class="card-header">
+					{% trans "Amount of planes"%}
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">{% trans "Another title" %}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{% trans "Amount of planes" %}</h6>
+					<p class="card-text">{% trans "xxx planes, Top plane the pilot flew with" %}</p>
+					<a href="#" class="card-link">{% trans "Link to all the planes" %}</a>
+				</div>
+			</div>
+		</div>
+
+
+        </div>
     </div>
+
 {% endblock %}

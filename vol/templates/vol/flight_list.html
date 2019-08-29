@@ -1,0 +1,111 @@
+{% extends 'vol/base_homepage.html' %}
+{% load i18n %}
+{% load my_tags %}
+{% block title %} {% trans "Flights" %} {% endblock %}
+{% block content %}
+<script>
+$(document).ready(function() {
+    $('#table_id').DataTable({
+        "ordering": false
+    });
+} );
+</script>
+
+    <div class="row">
+        <div class="col-md-6"><h2 class="display-4 mt-4 mb-4">{% trans "Display all flights" %}</h2></div>
+    </div>
+        {% if object_list %}
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-12">
+                <table class="table table-striped table-bordered table-hover dt-responsive nowrap" id="table_id">
+                <thead  class="thead-dark">
+                    <tr>
+                        <th scope="col">{% trans "Date" %}</th>
+                        <th scope="col">{% trans "Flight" %}</th>
+                        <th scope="col">{% trans "PIC" %}</th>
+                        <th scope="col">{% trans "FO" %}</th>
+                        <th scope="col">{% trans "OBS1" %}</th>
+                        <th scope="col">{% trans "OBS2" %}</th>
+                        <th scope="col">{% trans "Instructor" %}</th>
+                        <th scope="col">{% trans "Duration Day" %}</th>
+                        <th scope="col">{% trans "Duration Night" %}</th>
+                        <th scope="col">{% trans "Simu" %}</th>
+                        <th scope="col">{% trans "IFR Arrival" %}</th>
+                        <th scope="col">{% trans "Duration IFR" %}</th>
+                        <th scope="col">{% trans "Function" %}</th>
+                        <th scope="col">{% trans "Position" %}</th>
+                        <th scope="col">{% trans "Registration" %}</th>
+                        <th scope="col">{% trans "Aircraft Type" %}</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        {% for vol in object_list %}
+                            <tr>
+                                    <th scope="row">
+                                        <a class="management_links" data-toggle="tooltip" data-placement="top" title="{% trans "Details" %}" href="{% url 'detail' vol.id %}"><button class="btn btn-outline-primary btn-sm" type="button">{{ vol.date|date:"d/m/Y" }}</button></a>
+                                    </th>
+                                    <td>{{ vol.depart }}/{{ vol.arrivee }}</td>
+                                    <td>{{ vol.cdb }}</td>
+                                    <td>{{ vol.opl }}</td>
+                                    <td>{% if vol.obs1 %}
+                                            {{ vol.obs1 }}
+                                        {% else %}
+                                            -
+                                        {% endif %}</td>
+                                    <td>{% if vol.obs2 %}
+                                            {{ vol.obs2 }}
+                                        {% else %}
+                                            -
+                                        {% endif %}</td>
+                                    <td>{% if vol.instructeur %}
+                                            {{ vol.instructeur }}
+                                        {% else %}
+                                            -
+                                        {% endif %}</td>
+                                     <td>{% if vol.duree_jour %}
+                                            {{ vol.duree_jour }}
+                                        {% else %}
+                                            -
+                                        {% endif %}</td>
+                                    <td>{% if vol.duree_nuit %}
+                                            {{ vol.duree_nuit }}
+                                        {% else %}
+                                            -
+                                        {% endif %}</td>
+                                    <td>{% if vol.vol_simu %}
+                                        {{ vol.duree_simu }}</td>
+                                        {% else %}
+                                            -
+                                        {% endif %}</td>
+                                    <td>{% if vol.vol_ifr != "Zéro" %}
+                                            {{ vol.get_vol_ifr_display }}
+                                        {% else %}
+                                            -
+                                        {% endif %}</td>
+                                    <td>{% if vol.duree_ifr %}
+                                                {{ vol.duree_ifr }}
+                                            {% else %}
+                                                {% if vol.vol_simu %}
+                                                    {{ vol.duree_simu }}
+                                                {% else %}
+                                                    -
+                                                {% endif %}
+                                            {% endif %}</td>
+                                    <td>{{ vol.fonction }} ({{ vol.get_fonction_display }})</td>
+                                    <td>{{ vol.poste }} ({{ vol.get_poste_display }})</td>
+                                    <td>{{ vol.immatriculation }}</td>
+                                    <td>{{ vol.immatriculation.type_avion }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="col"></div>
+        </div>
+        {% else %}
+            <p>{% trans "There are no registered flights." %}</p>
+        {% endif %}
+    </div>
+{% endblock %}

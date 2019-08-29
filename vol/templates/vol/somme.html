@@ -4,28 +4,6 @@
 {% block title %} {% trans "Totals" %} {% endblock %}
 {% block content %}
 
-{% block active_secondary_nav %} {% endblock %}
-
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'index' %}">{% trans "All flights" %}</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="{% url 'somme' %}">{% trans "Totals" %}</a>
-    </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{% trans "Add" %}</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{% url 'new_vol' %}">{% trans "Flight" %}</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'new_pilote' %}">{% trans "Pilot" %}</a>
-          <a class="dropdown-item" href="{% url 'new_immatriculation' %}">{% trans "Registration" %}</a>
-          <a class="dropdown-item" href="{% url 'new_code_iata' %}">{% trans "Airport" %}</a>
-          <a class="dropdown-item" href="{% url 'new_type_avion' %}">{% trans "Aircraft Type" %}</a>
-        </div>
-    </li>
-</ul>
-
 <div class="row">
     <div class="col"><h2 class="display-4 mt-4 mb-4">{% trans "Totals" %}</h2></div>
 </div>

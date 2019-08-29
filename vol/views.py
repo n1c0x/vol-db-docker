@@ -37,27 +37,17 @@ def handler500(request, template_name="500.html"):
     response.status_code = 500
     return response
 
-
-def homepage(request):
+@login_required
+def index(request):
     """
     Render the home page.
 
     **Template:**
 
-    :template:`vol/homepage.html`
+    :template:`vol/index.html`
 
     """
-    return render(request, 'vol/homepage.html')
-
-
-def prices(request):
-    """ Render de prices page. """
-    return render(request, 'vol/prices.html')
-
-
-def documentation(request):
-    """ Render de prices page. """
-    return render(request, 'vol/documentation.html')
+    return render(request, 'vol/index.html')
 
 
 @login_required
@@ -99,7 +89,7 @@ class VolList(ListView):
         Class which lists all the flights
     """
     model = Vol
-    template_name = 'vol/index.html'
+    template_name = 'vol/flight_list.html'
 
     def get_queryset(self):
         """ Override the standard get_query method. The override orders by date and filters by current user """
@@ -403,6 +393,8 @@ def somme(request):
             'liste_somme_vols_last_year': convert_timedelta_days_to_seconds(liste_somme_vols_last_year),
             'liste_somme_vols_total_total': convert_timedelta_days_to_seconds(liste_somme_vols_total_total), }
 
+    current_page = "total"
+
     return render(request, 'vol/somme.html', {'dict_somme_vols_total': dict_somme_vols_total})
 
 
@@ -504,7 +496,7 @@ class VolDelete(DeleteView):
         """ Forces a login to view this page """
         return super().dispatch(*args, **kwargs)
 
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('flight_list')
 
 
 @method_decorator(login_required, name='dispatch')

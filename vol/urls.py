@@ -5,9 +5,9 @@ from vol.views import *
 from . import views
 
 urlpatterns = [
-    path('', views.homepage, name='homepage'),
+    path('', views.index, name='index'),
     url(r'^somme', views.somme, name='somme'),
-    re_path('vols', VolList.as_view(), name='index'),
+    re_path('vols', VolList.as_view(), name='flight_list'),
     path('vol_add', VolCreate.as_view(), name='new_vol'),
     re_path(r'^(?P<pk>[0-9]+)/edit/$', VolUpdate.as_view(), name='edit_vol'),
     re_path(r'^(?P<pk>[0-9]+)/remove/$', VolDelete.as_view(), name='remove_vol'),
@@ -26,6 +26,4 @@ urlpatterns = [
     path('type_avion_add/<int:pk>/delete', TypeAvionDelete.as_view(), name='remove_type_avion'),
     url(r'^profile/(?P<username>[a-zA-Z0-9]+)$', views.get_user_profile, name='profile'),
     url(r'^profile/(?P<username>[a-zA-Z0-9]+)/edit/$', views.update_user_profile, name='edit_profile'),
-    url(r'^prices', views.prices, name='prices'),
-    url(r'^documentation', views.documentation, name='documentation'),
 ]

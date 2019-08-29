@@ -1,20 +1,15 @@
 {% extends 'management/base_homepage.html' %}
 {% load i18n %}
 {% load my_tags %}
-{% block title %} {% trans "Management dashboard" %} {% endblock %}
 {% block content %}
 
-<h1>{% trans "Create a new customer" %}</h1>
-
+<h2>{% trans "Create new Customer" %}</h2>
 
 <form method="post"> {% csrf_token %}
 	{{ user_form.as_p }} 
-	<hr>
+		<hr>
 	{{ form.as_p }}
-	<button type="submit" value="save">{% trans "Save" %}</button>
+	<button type="submit">{% trans "Save" %}</button>
 </form>
-
-
-
 
 {% endblock %}

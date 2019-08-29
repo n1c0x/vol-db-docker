@@ -35,8 +35,11 @@ DATABASES = {
 
 INSTALLED_APPS = [
     'debug_toolbar',
+    'bootstrap_modal_forms',
 ] + INSTALLED_APPS
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ] + MIDDLEWARE
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Sum, ProtectedError, Q
+from django.db.models import Sum, ProtectedError, Q, Count
 from django.db import IntegrityError
 from .forms import VolForm, ImmatriculationForm, UserForm, ProfileForm
 from django.shortcuts import redirect, render_to_response
@@ -37,6 +37,7 @@ def handler500(request, template_name="500.html"):
     response.status_code = 500
     return response
 
+
 @login_required
 def index(request):
     """
@@ -47,7 +48,32 @@ def index(request):
     :template:`vol/index.html`
 
     """
-    return render(request, 'vol/index.html')
+    current_user = request.user
+    data = {}
+
+    count_pilots = Pilote.objects.filter(user_id=current_user.id).count()
+    count_airports = CodeIata.objects.filter(user_id=current_user.id).count()
+    count_planes = Immatriculation.objects.filter(user_id=current_user.id).count()
+    last_flight = Vol.objects.filter(user_id=current_user.id).latest('date')
+    last_flight_total_duration = last_flight.duree_jour + last_flight.duree_nuit
+    top_src_dest = Vol.objects.filter(user_id=current_user.id).values('depart__code_iata', 'arrivee__code_iata').annotate(src_dest_count=Count('*')).order_by('-src_dest_count')
+    top_airport_from = Vol.objects.filter(user_id=current_user.id).values('depart__code_iata', 'depart__ville').annotate(airport_count=Count('*')).order_by('-airport_count')
+    top_airport_to = Vol.objects.filter(user_id=current_user.id).values('arrivee__code_iata', 'arrivee__ville').annotate(airport_count=Count('*')).order_by('-airport_count')
+    top_plane = Vol.objects.filter(user_id=current_user.id).values('immatriculation__immatriculation', 'immatriculation__type_avion__type_avion').annotate(plane_count=Count('*')).order_by('-plane_count')
+    top_pilot_cdb = Vol.objects.filter(user_id=current_user.id).values('cdb__prenom', 'cdb__nom').annotate(pilot_count=Count('*')).order_by('-pilot_count')
+
+    data['count_pilots'] = count_pilots
+    data['count_airports'] = count_airports
+    data['count_planes'] = count_planes
+    data['last_flight'] = last_flight
+    data['last_flight_total_duration'] = last_flight_total_duration
+    data['top_src_dest'] = top_src_dest
+    data['top_airport_from'] = top_airport_from
+    data['top_airport_to'] = top_airport_to
+    data['top_plane'] = top_plane
+    data['top_pilot_cdb'] = top_pilot_cdb
+
+    return render(request, 'vol/index.html', {'data': data})
 
 
 @login_required

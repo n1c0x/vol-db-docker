@@ -7,19 +7,25 @@
     <h1 class="display-4">{% trans "Dashboard" %}</h1>
 </div>
 
+
+<hr>
+
+
     <div class="row">
         <div class="col-md-12">
             <p class="lead">{% trans "Your pilot Dashboard" %}</p>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <div class="card">
             	<div class="card-header">
             		{% trans "Last flight"%}
             	</div>
 				<div class="card-body">
-					<h5 class="card-title">{% trans "Another title" %}</h5>
-					<h6 class="card-subtitle mb-2 text-muted">{% trans "Date of last fliht" %}</h6>
-					<p class="card-text">{% trans "Date and other information about last flight" %}</p>
+					<h5 class="card-title"><a href="{% url 'detail' data.last_flight.id %}" target="_blank" class="card-link">{{ data.last_flight.date }}</a></h5>
+					<h6 class="card-subtitle mb-2 text-muted">{% trans "From " %}{{ data.last_flight.depart }} {% trans " to "%} {{ data.last_flight.arrivee }}</h6>
+					<p class="card-text">{% trans "Duration" %} {{ data.last_flight_total_duration }}</p>
 					<a href="{% url 'flight_list' %}" class="card-link">{% trans "Link to all the flights" %}</a>
 				</div>
 			</div>
@@ -27,45 +33,121 @@
         <div class="col-md-3">
 			<div class="card">
 				<div class="card-header">
-					{% trans "Amount of Pilots"%}
+					{% trans "Pilots"%}
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">{% trans "Another title" %}</h5>
-					<h6 class="card-subtitle mb-2 text-muted">{% trans "Amount of pilots" %}</h6>
-					<p class="card-text">{% trans "xxx pilots, Top pilot the pilot flew with" %}</p>
-					<a href="#" class="card-link">{% trans "Link to all the pilots" %}</a>
+					<h5 class="card-title">{{ data.count_pilots }}{% trans " saved pilots" %}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{% trans "Lorem Ipsum" %}</h6>
+					<p class="card-text">{% trans "Lorem Ipsum" %}</p>
+					<a href="{% url 'new_pilote' %}" class="card-link">{% trans "Link to all the pilots" %}</a>
 				</div>
 			</div>
 		</div>
         <div class="col-md-3">
 			<div class="card">
 				<div class="card-header">
-					{% trans "Amount of Airports"%}
+					{% trans "Airports"%}
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">{% trans "Another title" %}</h5>
-					<h6 class="card-subtitle mb-2 text-muted">{% trans "Amount of airports" %}</h6>
-					<p class="card-text">{% trans "xxx airports, Top airport the pilot flew to and from" %}</p>
-					<a href="#" class="card-link">{% trans "Link to all the airports" %}</a>
+					<h5 class="card-title">{{ data.count_airports }}{% trans " saved airports" %}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{% trans "Lorem Ipsum" %}</h6>
+					<p class="card-text">{% trans "Lorem Ipsum" %}</p>
+					<a href="{% url 'new_code_iata' %}" class="card-link">{% trans "Link to all the airports" %}</a>
 				</div>
 			</div>
 		</div>
         <div class="col-md-3">
 			<div class="card">
 				<div class="card-header">
-					{% trans "Amount of planes"%}
+					{% trans "Planes"%}
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">{% trans "Another title" %}</h5>
-					<h6 class="card-subtitle mb-2 text-muted">{% trans "Amount of planes" %}</h6>
-					<p class="card-text">{% trans "xxx planes, Top plane the pilot flew with" %}</p>
-					<a href="#" class="card-link">{% trans "Link to all the planes" %}</a>
+					<h5 class="card-title">{{ data.count_planes }}{% trans " saved planes" %}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{% trans "Lorem Ipsum" %}</h6>
+					<p class="card-text">{% trans "Lorem Ipsum" %}</p>
+					<a href="{% url 'new_immatriculation' %}" class="card-link">{% trans "Link to all the planes" %}</a>
 				</div>
 			</div>
 		</div>
-
-
-        </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+            	<div class="card-header">
+            		{% trans "Top 3 flights"%}
+            	</div>
+				<div class="card-body">
+					<h5 class="card-title">
+						{% trans "From " %} {{data.top_src_dest.0.depart__code_iata}}{% trans " to " %} {{data.top_src_dest.0.arrivee__code_iata}}
+					</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{{data.top_src_dest.0.src_dest_count}} {% trans " times "%}</h6>
+					<p class="card-text">
+						{% trans "From " %} {{data.top_src_dest.1.depart__code_iata}}{% trans " to " %} {{data.top_src_dest.1.arrivee__code_iata}}<br>
+						{% trans "From " %} {{data.top_src_dest.2.depart__code_iata}}{% trans " to " %} {{data.top_src_dest.2.arrivee__code_iata}}
+					</p>
+					<a href="{% url 'flight_list' %}" class="card-link">{% trans "Link to all the flights" %}</a>
+				</div>
+			</div>
+		</div>
+        <div class="col-md-3">
+			<div class="card">
+				<div class="card-header">
+					{% trans "Top 3 CDB"%}
+				</div>
+				<div class="card-body">
+
+					<h5 class="card-title">
+						{{ data.top_pilot_cdb.0.cdb__prenom }} {{ data.top_pilot_cdb.0.cdb__nom }}
+					</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{{ data.top_pilot_cdb.0.pilot_count }} {% trans " times"%}</h6>
+					<p class="card-text">
+						{{ data.top_pilot_cdb.1.cdb__prenom }} {{ data.top_pilot_cdb.1.cdb__nom }}<br>
+						{{ data.top_pilot_cdb.2.cdb__prenom }} {{ data.top_pilot_cdb.2.cdb__nom }}
+					</p>
+					<a href="{% url 'new_code_iata' %}" class="card-link">{% trans "Link to all the airports" %}</a>
+				</div>
+			</div>
+		</div>
+        <div class="col-md-3">
+			<div class="card">
+				<div class="card-header">
+					{% trans "Top 3 airports"%}
+				</div>
+				<div class="card-body">
+
+					<h5 class="card-title">
+						{{ data.top_airport_to.0.arrivee__code_iata }} ({{data.top_airport_to.0.arrivee__ville}})
+					</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{{ data.top_airport_to.0.airport_count }} {% trans " times"%}</h6>
+					<p class="card-text">
+						{{ data.top_airport_to.1.arrivee__code_iata }} ({{data.top_airport_to.1.arrivee__ville}})<br>
+						{{ data.top_airport_to.2.arrivee__code_iata }} ({{data.top_airport_to.2.arrivee__ville}})
+					</p>
+					<a href="{% url 'new_code_iata' %}" class="card-link">{% trans "Link to all the airports" %}</a>
+				</div>
+			</div>
+		</div>
+        <div class="col-md-3">
+			<div class="card">
+				<div class="card-header">
+					{% trans "Top 3 planes"%}
+				</div>
+				<div class="card-body">
+
+					<h5 class="card-title">
+						{{ data.top_plane.0.immatriculation__immatriculation }} ({{data.top_plane.0.immatriculation__type_avion__type_avion}})
+					</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{{ data.top_plane.0.plane_count }} {% trans " times"%}</h6>
+					<p class="card-text">
+						{{ data.top_plane.1.immatriculation__immatriculation }} ({{data.top_plane.1.immatriculation__type_avion__type_avion}})<br>
+						{{ data.top_plane.2.immatriculation__immatriculation }} ({{data.top_plane.2.immatriculation__type_avion__type_avion}})
+					</p>
+					<a href="{% url 'new_immatriculation' %}" class="card-link">{% trans "Link to all the planes" %}</a>
+				</div>
+			</div>
+    	</div>
+    </div>
+
 
 {% endblock %}

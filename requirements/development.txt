@@ -1,4 +1,4 @@
 -r base.txt
 flake8
 django-bootstrap-modal-forms
-debug_toolbar
+django-debug-toolbar
